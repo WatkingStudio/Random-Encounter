@@ -1,6 +1,6 @@
 Head
 Neck
-Chester
+Chest
 Arm
 Hand
 Ear

@@ -43,7 +43,7 @@
 		"loot":"null"
 	},
 	{
-	    "encounter":"{0} takes part in a cult sacrifice summoning the god of {1}",
+	    "encounter":"{0} takes part in a cult sacrifice summoning the god of {1}s",
 		"exp":0,
 		"treasure":0,
 		"trophies":"null",
