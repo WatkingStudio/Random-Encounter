@@ -18,13 +18,13 @@ sys.path.append(os.path.join(os.path.dirname(__file__), "lib"))  # point at lib 
 # ---------------------------
 #   [Required] Script Information
 # ---------------------------
-ScriptName = "Fantasy Encounters"
+ScriptName = "Random Encounters"
 Website = "https://www.twitch.tv/mr_snoblar"
-Description = "Temporary Fantasy Encounters"
+Description = "Random Encounters"
 Creator = "Mr_Snoblar"
 Version = "1.0.0.0"
 
-# Twitch Channel = twitch.tv/dumpster_player2
+# Twitch Channel = https://www.twitch.tv/mr_snoblar
 
 # ---------------------------
 #   Define Global Variables
@@ -179,6 +179,26 @@ class Encounter:
     exp = 0
     weapon = ""
     treasure = ""
+
+# ---------------------------------------
+# Functions used for user creation/modification
+# ---------------------------------------
+
+def DetermineLevel(exp):
+    if exp <= 10:
+        return 1
+    elif exp <= 20:
+        return 2
+    else:
+        return 3
+
+def DetermineRank(level):
+    if level <= 1:
+        return "Grunt"
+    elif level <= 2:
+        return "Warrior"
+    else:
+        return "God"
 
 # ---------------------------------------
 # Functions used in commands
@@ -467,34 +487,71 @@ def Execute(data):
 
             data2 = ""
 
-            #If this is the first time running the encounter script, make the user a new .json file
+            #User Stats
+            #{
+            #   "exp": int,
+            #   "level": int,
+            #   "rank": string,
+            #   "equipment": [string],
+            #   "treasure": [string],
+            #   "trophies": [string],
+            #   "loot": [string]
+            #}
+
+            # If this is the first time running the encounter script, make the user a new .json file
             if not os.path.exists(userencounterpath):
                 create = open(userencounterpath, "w+")
                 create.close()
                 data2 = {}
-                #Add the Experience from the encounter
+                # Add the Experience from the encounter
                 data2['exp'] = RandomEncounter.exp
-                #Add the Weapons from the encounter
-                data2['weapons'] = []
-                if not RandomEncounter.weapon == "null":
-                    data2['weapons'].append(RandomEncounter.weapon)
-                #Add the Treasure from the encounter
-                data2['treasure'] = []
-                if not RandomEncounter.treasure == "null":
-                    data2['treasure'].append(RandomEncounter.treasure)
-            #If the user already has a .json file, open it and add the new data to it
+                # Assign a level to the user
+                data2['level'] = DetermineLevel(data2['exp'])
+                # Assign a rank to the user
+                data2['rank'] = DetermineRank(data2['level'])
+                # Assign equipment to the user
+                equipment = {}
+                equipment['head'] = "Leather Helmet"
+                equipment['body'] = "Cloth Shirt"
+                equipment['legs'] = "Leather Trousers"
+                equipment['feet'] = "Leather Boots"
+                equipment['hands'] = "Empty"
+                equipment['right hand'] = "Sword"
+                equipment['left hand'] = "Shield"
+                equipment['back'] = "Bow"
+                data2['equipment'] = equipment
+                # Assign treasure to the user
+                data2['treasure'] = RandomEncounter.treasure
+                # Assign Trophies to the user
+                data2['trophies'] = []
+                if not RandomEncounter.trophies == "null":
+                    data2['trophies'].append(RandomEncounter.trophies)
+                # Assign Loot to the user
+                data2['loot'] = []
+                if not RandomEncounter.loot == "null":
+                    data2['loot'].append(RandomEncounter.loot)
+            # If the user already has a .json file, open it and add the new data to it
             else:
                 with open(userencounterpath) as json_file:
                     data2 = json.load(json_file)
-                    #Add the Experience from the encounter
+                    # Add the Experience from the encounter
                     value = data2['exp'] + RandomEncounter.exp
                     data2['exp'] = value
-                    #Add The Weapons from the encounter
-                    if not RandomEncounter.weapon == "null":
-                        data2['weapons'].append(RandomEncounter.weapon)
-                    #Add the Treasure from the encounter
-                    if not RandomEncounter.treasure == "null":
-                        data2['treasure'].append(RandomEncounter.treasure)
+                    # Update the users level
+                    data2['level'] = DetermineLevel(data2['exp'])
+                    # Update the users rank
+                    data2['rank'] = DetermineRank(data2['level'])
+                    # Add equipment to the user
+
+                    # Add treasure to the user
+                    treasureValue = data2['treasure'] + RandomEncounter.treasure
+                    data2['treasure'] = treasureValue
+                    # Add Trophies from the encounter
+                    if not RandomEncounter.trophies == "null":
+                        data2['trophies'].append(RandomEncounter.trophies)
+                    # Add Loot from the encounter
+                    if not RandomEncounter.loot == "null":
+                        data2['loot'].append(RandomEncounter.loot)
 
             if os.path.exists(userencounterpath):
                 os.remove(userencounterpath)
