@@ -1,0 +1,30 @@
+Club
+Dagger
+Greatclub
+Handaxe
+Javelin
+Light Hammer
+Mace
+Quarterstaff
+Sickle
+Spear
+Battleaxe
+Flail
+Glaive
+Greataxe
+Halberd
+Lance
+Longsword
+Maul
+Morningstar
+Pike
+Rapier
+Scimitar
+Shortsword
+Trident
+War Pick
+Warhammer
+Whip
+Frying Pan
+Cutlass
+Walking Stick

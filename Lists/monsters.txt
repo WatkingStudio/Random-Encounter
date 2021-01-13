@@ -1,0 +1,225 @@
+Air Demon
+Air Elemental
+Alligator
+Ape
+Ancient Corpse
+Ancient Minotaur
+Ape
+Assassin
+Awakened Tree
+Baboon
+Badger
+Bandit
+Banshee
+Barghest
+Basilisk
+Bat
+Berserker
+Black Bear
+Black Dragon
+Blue Dragon
+Boar
+Brass Dragon
+Bronze Dragon
+Brown Bear
+Bull
+Bull Centaur
+Camel
+Catoblepas
+Cave Troll
+Centaur
+Centaur Scout
+Chimera
+Cloud Giant
+Cockatrice
+Copper Dragon
+Crocodile
+Cultist
+Cyclops
+Deer
+Dire Wolf
+Dracaenae
+Dragonling
+Drake
+Dryad
+Dwarf
+Eagle
+Earth Elemental
+Elephant
+Elk
+Elf
+Enslaved Corpse
+Falcon
+Faun
+Fire Elemental
+Fire Giant
+Fire Snake
+Flame Demon
+Frost Giant
+Gargoyle
+Ghost
+Ghoul
+Giant Ape
+Giant Badger
+Giant Bat
+Giant Crab
+Giant Crocodile
+Giant Eagle
+Giant Elk
+Giant Fire Beetle
+Giant Frog
+Giant Goat
+Giant Gorilla
+Giant Hyena
+Giant Lion
+Giant Lizard
+Giant Owl
+Giant Platypus
+Giant Rat
+Giant Scorpion
+Giant Snail
+Giant Spider
+Giant Toad
+Giant Vulture
+Giant Wasp
+Giant Weasel
+Giant Worm
+Gnoll
+Gnome
+Goblin
+Gold Dragon
+Golem
+Goliath
+Gorgon
+Gorilla
+Gremlin
+Green Dragon
+Griffon
+Guard
+Hag
+Half-Elf
+Half-Ogre
+Half-Orc
+Half-Troll
+Halfling
+Harpy
+Hawk
+Hellhound
+Hill Giant
+Hill Troll
+Hippogriff
+Hobgoblin
+Human
+Hydra
+Hyena
+Ice Demon
+Ice Elemental
+Ice Troll
+Imp
+Incubus
+Jabberwock
+Jackal
+Knight
+Kobold
+Lammasu
+Leopard
+Lesser Corpse
+Liche
+Lion
+Mage
+Manticore
+Mercenary
+Mammoth
+Minotaur Bull
+Minotaur Calf
+Minotaur Skeleton
+Mummy
+Naga
+Necromancer
+Nymph
+Ogre
+Ogre Zombie
+Orangutan
+Orc
+Orc
+Owl
+Owlbear
+Panther
+Pegasus
+Phoenix
+Pixie
+Polar Bear
+Pseudodragon
+Rat
+Raven
+Red Dragon
+Redcap
+Rhinoceros
+Rock Troll
+River Troll
+Sabre-Toother Tiger
+Salamander
+Satyr
+Scarecrow
+Scorpion
+Scout
+Silver Dragon
+Siren
+Skeleton
+Sphinx
+Sprite
+Stone Giant
+Storm Elemental
+Storm Giant
+Succubus
+Taurus
+Thug
+Tiger
+Treemen
+Troll
+Unicorn
+Vampire
+Vampire Lord
+Vampire Spawn
+Veteran
+Vulture
+Water Elemental
+Warg
+Warhorse
+Warhorse Skeleton
+Werebear
+Wereboar
+Wererat
+Weretiger
+Werewolf
+White Dragon
+Wight
+Will-O-Wisp
+Winter Wolf
+Wizard
+Wolf
+Worg
+Wraith
+Wyvern
+Yeti
+Zombie
+Mouse
+Purple Dragon
+Mind Flayer
+Ceberus
+Medusa
+Ranclaw
+Deathclaw
+White Walkers
+Rug Of Smothering
+Dragon Ogre
+Warhound
+Squig
+Cave Squig
+Snotling
+Gnoblar
+Greater Demon
+Emperor Dragon
+Demon Lord
+Balrog
+Uruk-hai

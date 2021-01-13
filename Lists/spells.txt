@@ -1,0 +1,142 @@
+Firebolt
+Ice Blast
+Lightning Bolt
+Create Food
+Cure Wounds
+Open Lock
+Feign Death
+Light
+Dancing Lights
+Slip
+Healing Hands
+Zone of Silence
+Ice Blades
+Ogre Strength
+Confuse
+Finger of Death
+Acid Blast
+Ice Tomb
+Levitate
+Dispel Magic
+Fireball
+Flaming Hammer
+Pit of Despair
+Blur
+Dazzle
+Life Force
+Invisibility
+Sleep
+Swords of Doom
+Shield
+Wings of Power
+Burning Storm
+Chain Lightning
+Dome of Power
+Time Freeze
+Warp Jump
+Spear of Light
+Cage of Stone
+Chorus of Valour
+Windblast
+Winds of Fate
+Window of the Void
+Firestorm
+Vortex of Destruction
+Mage Hand
+Mending
+Minor Illusion
+Charm Person
+Detect Magic
+Thunderwave
+Cloud of Daggers
+Shatter
+Bestow Curse
+Fear
+Major Image
+Confusion
+Dimension Door
+Polymorph
+Dominate Person
+Dream
+Raise Dead
+Scrying
+Regenerate
+Resurrection
+Dominate Monster
+Power Word Stun
+Power Word Kill
+True Polymorph
+Spare the Dying
+Sacred Flame
+Bane
+Bless
+Command
+Guiding Bolt
+Shield of Faith
+Remove Curse
+Poison Spray
+Produce Flame
+Faerie Fire
+Fog Cloud
+Beast Sense
+Flame Blade
+Flame Sphere
+Gust of Wind
+Moonbeam
+Call Lightning
+Sleet Storm
+Blight
+Control Water
+Conjure Minor Elementals
+Conjure Woodland Beings
+Ice Storm
+Wall of Fire
+Conjure Elemental
+Reincarnate
+Wall of Stone
+Conjure Fey
+Heal
+Heroes Feast
+Sunbeam
+Fire Storm
+Reverse Gravity
+Earthquake
+Sunburst
+Tsunami
+Divine Favour
+Heroism
+Searing Smite
+Thunderous Smite
+Wrathful Smite
+Branding Smite
+Blinding Smite
+Elemental Weapon
+Crusader's Mantle
+Banishment
+Death Ward
+Staggering Smite
+Destructive Wave
+Lightning Arrow
+Acid Splash
+Ray of Frost
+Shocking Grasp
+Burning Hands
+Chromatic Orb
+Mage Armour
+Magic Missile
+Witch Bolt
+Scorching Ray
+Cloudkill
+Cone of Cold
+Incendiary Cloud
+Meteor Swarm
+Hex
+Crown of Madness
+Darkness
+Vampiric Touch
+Circle of Death
+Fabricate
+Fire Shield
+Eyebite
+Prismatic Spray
+Astral Protection
