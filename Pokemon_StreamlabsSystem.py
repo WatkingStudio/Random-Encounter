@@ -62,6 +62,8 @@ global SpellsFile
 SpellsFile = ListFilePath + "spells.txt"
 global TreasureFile
 TreasureFile = ListFilePath + "treasure.txt"
+global TrophyConditionFile
+TrophyConditionFile = ListFilePath + "trophy-condition.txt"
 global WeaponFile
 WeaponFile = ListFilePath + "weapons.txt"
 # ---------------------------------------
@@ -194,6 +196,8 @@ def DetermineLevel(exp):
         return 2
     else:
         return 3
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def DetermineRank(level):
     if level <= 1:
@@ -375,6 +379,18 @@ def GetTargetPointsPath(TargetOf):
 # -----------------------------------------------------------------------------------------------------------------------
 
 # ---------------------------------------
+# Functions used to format trophies
+# ---------------------------------------
+
+def GetTrophyCondition():
+    return random.choice(ReadLinesFile(TrophyConditionFile))
+
+def FormatTrophy(trophyString, monster):
+    formattedTrophy = trophyString.replace('{0}', monster)\
+        .replace('{1}', GetTrophyCondition())
+    return formattedTrophy
+
+# ---------------------------------------
 # Functions used to get random string from data files
 # ---------------------------------------
 
@@ -491,6 +507,35 @@ def Execute(data):
 
             data2 = ""
 
+
+            # The next section of code goes through the encounter and replaces any variables with the appropriate data
+            # {0} - Username
+            # {1} - Monster One
+            # {2} - Monster Two
+            # {3} - Time (1-12)
+            # {4} - Weapon
+            # {5} - Spell
+            # {6} - Treasure
+            # {7} - Body Part
+            # {8} - Location
+            # {9} - NPC
+
+            randomMonster = GetRandomMonster()
+
+            formattedEncounter = RandomEncounter.encounter.replace('{0}', data.UserName)\
+                .replace('{1}', randomMonster)\
+                .replace('{2}', GetRandomMonster())\
+                .replace('{3}', str(GetRandomTime()))\
+                .replace('{4}', GetRandomWeapon())\
+                .replace('{5}', GetRandomSpell())\
+                .replace('{6}', GetRandomTreasure())\
+                .replace('{7}', GetRandomBodyPart())\
+                .replace('{8}', GetRandomLocation())\
+                .replace('{9}', GetRandomNPC())
+
+            # constructs a response message based on parameters given in SL chatbot UI
+            response = MySet.EncounterResponse.format(formattedEncounter)
+
             #User Stats
             #{
             #   "exp": int,
@@ -529,7 +574,7 @@ def Execute(data):
                 # Assign Trophies to the user
                 data2['trophies'] = []
                 if not RandomEncounter.trophies == "null":
-                    data2['trophies'].append(RandomEncounter.trophies)
+                    data2['trophies'].append(FormatTrophy(RandomEncounter.trophies, randomMonster))
                 # Assign Loot to the user
                 data2['loot'] = []
                 if not RandomEncounter.loot == "null":
@@ -553,41 +598,16 @@ def Execute(data):
                     data2['treasure'] = treasureValue
                     # Add Trophies from the encounter
                     if not RandomEncounter.trophies == "null":
-                        data2['trophies'].append(RandomEncounter.trophies)
+                        data2['trophies'].append(FormatTrophy(RandomEncounter.trophies, randomMonster))
                     # Add Loot from the encounter
                     if not RandomEncounter.loot == "null":
                         data2['loot'].append(RandomEncounter.loot)
+
 
             if os.path.exists(userencounterpath):
                 os.remove(userencounterpath)
 
             AddToFile(userencounterpath, data2)
-
-            # The next section of code goes through the encounter and replaces any variables with the appropriate data
-            # {0} - Username
-            # {1} - Monster One
-            # {2} - Monster Two
-            # {3} - Time (1-12)
-            # {4} - Weapon
-            # {5} - Spell
-            # {6} - Treasure
-            # {7} - Body Part
-            # {8} - Location
-            # {9} - NPC
-
-            formattedEncounter = RandomEncounter.encounter.replace('{0}', data.UserName)\
-                .replace('{1}', GetRandomMonster())\
-                .replace('{2}', GetRandomMonster())\
-                .replace('{3}', str(GetRandomTime()))\
-                .replace('{4}', GetRandomWeapon())\
-                .replace('{5}', GetRandomSpell())\
-                .replace('{6}', GetRandomTreasure())\
-                .replace('{7}', GetRandomBodyPart())\
-                .replace('{8}', GetRandomLocation())\
-                .replace('{9}', GetRandomNPC())
-
-            # constructs a response message based on parameters given in SL chatbot UI
-            response = MySet.EncounterResponse.format(formattedEncounter)
 
             Parent.SendStreamMessage(str(response))
             Parent.AddUserCooldown(ScriptName, MySet.EncounterCommand, data.User, MySet.EncounterCooldown)

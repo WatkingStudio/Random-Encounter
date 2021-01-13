@@ -4,7 +4,7 @@
 	    "encounter":"{0} found a {1} by the watering hole. They decided to attack the {1} and quickly defeated it.",
 		"exp":1,
 		"treasure":1,
-		"trophies":"Creature Head",
+		"trophies":"{0} Head",
 		"loot":"null"
 	},
 	{
@@ -39,7 +39,7 @@
 	    "encounter":"{0} won a plush {1} at the local carnival.",
 		"exp":0,
 		"treasure":0,
-		"trophies":"plush toy",
+		"trophies":"{0} Plush",
 		"loot":"null"
 	},
 	{
