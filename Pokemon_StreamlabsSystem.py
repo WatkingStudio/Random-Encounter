@@ -54,6 +54,10 @@ global EncounterFile
 EncounterFile =  ListFilePath + "encounter.json"
 global LocationFile
 LocationFile = ListFilePath + "location.txt"
+global LootDataFile
+LootDataFile = ListFilePath + "lootData.txt"
+global LootListFile
+LootListFile = ListFilePath + "lootList.txt"
 global MonsterFile
 MonsterFile = ListFilePath + "monsters.txt"
 global NPCFile
@@ -379,7 +383,7 @@ def GetTargetPointsPath(TargetOf):
 # -----------------------------------------------------------------------------------------------------------------------
 
 # ---------------------------------------
-# Functions used to format trophies
+# Functions used to apply encounter results
 # ---------------------------------------
 
 def GetTrophyCondition():
@@ -389,6 +393,13 @@ def FormatTrophy(trophyString, monster):
     formattedTrophy = trophyString.replace('{0}', monster)\
         .replace('{1}', GetTrophyCondition())
     return formattedTrophy
+
+def GetRandomLoot():
+    return random.choice(ReadLinesFile(LootListFile))
+
+def AssignLoot(lootString):
+    assignedLoot = lootString.replace('{0}', GetRandomLoot())
+    return assignedLoot
 
 # ---------------------------------------
 # Functions used to get random string from data files
@@ -578,7 +589,7 @@ def Execute(data):
                 # Assign Loot to the user
                 data2['loot'] = []
                 if not RandomEncounter.loot == "null":
-                    data2['loot'].append(RandomEncounter.loot)
+                    data2['loot'].append(AssignLoot(RandomEncounter.loot))
             # If the user already has a .json file, open it and add the new data to it
             else:
                 with open(userencounterpath) as json_file:
@@ -601,7 +612,7 @@ def Execute(data):
                         data2['trophies'].append(FormatTrophy(RandomEncounter.trophies, randomMonster))
                     # Add Loot from the encounter
                     if not RandomEncounter.loot == "null":
-                        data2['loot'].append(RandomEncounter.loot)
+                        data2['loot'].append(AssignLoot(RandomEncounter.loot))
 
 
             if os.path.exists(userencounterpath):
