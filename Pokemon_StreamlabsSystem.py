@@ -30,7 +30,7 @@ Version = "1.0.0.0"
 #   Define Global Variables
 # ---------------------------
 global FilePath
-FilePath = "Services\\Scripts\\CaptureGame\\UserData\\"
+FilePath = "Services\\Scripts\\Random-Encounter\\UserData\\"
 global UsersMonFolder
 UsersMonFolder = FilePath + "UserMon\\"
 global UsersMonLevelsFolder
@@ -46,22 +46,24 @@ OpenDuelsFolder = FilePath + "OpenDuels\\"
 # ---------------------------------------
 # Global Filepath Variables
 # ---------------------------------------
+global ListFilePath
+ListFilePath = "Services\\Scripts\\Random-Encounter\\Lists\\"
 global BodyPartFile
-BodyPartFile = FilePath + "bodypart.txt"
+BodyPartFile = ListFilePath + "bodypart.txt"
 global EncounterFile
-EncounterFile =  FilePath + "encounter.json"
+EncounterFile =  ListFilePath + "encounter.json"
 global LocationFile
-LocationFile = FilePath + "location.txt"
+LocationFile = ListFilePath + "location.txt"
 global MonsterFile
-MonsterFile = FilePath + "monsters.txt"
+MonsterFile = ListFilePath + "monsters.txt"
 global NPCFile
-NPCFile = FilePath + "npc.txt"
+NPCFile = ListFilePath + "npc.txt"
 global SpellsFile
-SpellsFile = FilePath + "spells.txt"
+SpellsFile = ListFilePath + "spells.txt"
 global TreasureFile
-TreasureFile = FilePath + "treasure.txt"
+TreasureFile = ListFilePath + "treasure.txt"
 global WeaponFile
-WeaponFile = FilePath + "weapons.txt"
+WeaponFile = ListFilePath + "weapons.txt"
 # ---------------------------------------
 # Variables
 # ---------------------------------------
@@ -177,8 +179,9 @@ class Settings:
 class Encounter:
     encounter = ""
     exp = 0
-    weapon = ""
-    treasure = ""
+    treasure = 0
+    trophies = ""
+    loot = ""
 
 # ---------------------------------------
 # Functions used for user creation/modification
@@ -478,8 +481,9 @@ def Execute(data):
                     en = Encounter()
                     en.encounter = e['encounter']
                     en.exp = e['exp']
-                    en.weapon = e['weapon']
                     en.treasure = e['treasure']
+                    en.trophies = e['trophies']
+                    en.loot = e['loot']
                     EncounterList.append(en)
 
                 randnum = Parent.GetRandom(0, len(EncounterList))
@@ -541,7 +545,8 @@ def Execute(data):
                     data2['level'] = DetermineLevel(data2['exp'])
                     # Update the users rank
                     data2['rank'] = DetermineRank(data2['level'])
-                    # Add equipment to the user
+                    # No equipment should be assigned by the encounter script.
+                    # This should only be done manually by the user
 
                     # Add treasure to the user
                     treasureValue = data2['treasure'] + RandomEncounter.treasure
