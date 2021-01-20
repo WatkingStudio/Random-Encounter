@@ -6,104 +6,111 @@
         "label": "Points Name",
         "tooltip": "Name of the points system for this script(independent from chatbot)",
         "group": "General"
-      },
+    },
+	"InvalidDataResponse": {
+	    "type": "textbox",
+		"value": "{0} does not have a valid data file",
+		"label": "Invalid Data Response",
+		"tooltip": "Response for when the users text file is not valid",
+		"group": "General"
+	},
   	"OnlyLive": {
-	"type": "checkbox",
-	"value": false,
-	"label": "Only when live",
-	"tooltip": "Commands only work while stream is live.",
-	"group": "General"
+	   "type": "checkbox",
+	    "value": false,
+	    "label": "Only when live",
+	    "tooltip": "Commands only work while stream is live.",
+	    "group": "General"
 	},
   	"TurnOnEncounter": {
-	"type": "checkbox",
-	"value": false,
-	"label": "Turn on Encounter",
-	"tooltip": "Turn on Encounter Command",
-	"group": "General"
+	    "type": "checkbox",
+	    "value": false,
+	    "label": "Turn on Encounter",
+	    "tooltip": "Turn on Encounter Command",
+	    "group": "General"
 	},
   	"TurnOnMonster": {
-	"type": "checkbox",
-	"value": false,
-	"label": "Turn on Monster",
-	"tooltip": "Turn on Monster Command",
-	"group": "General"
+	    "type": "checkbox",
+	    "value": false,
+	    "label": "Turn on Monster",
+	    "tooltip": "Turn on Monster Command",
+	    "group": "General"
 	},
 	"TurnOnCheckLevel": {
-	"type": "checkbox",
-	"value": false,
-	"label": "Turn on Level",
-	"tooltip": "Turn on Level Command",
-	"group": "General"
+	    "type": "checkbox",
+	    "value": false,
+	    "label": "Turn on Level",
+	    "tooltip": "Turn on Level Command",
+	    "group": "General"
 	},
 	"TurnOnCheckTreasure": {
-	"type": "checkbox",
-	"value": true,
-	"label": "Turn on Treasure",
-	"tooltip": "Turn on the Treasure Command",
-	"group": "General"
+	    "type": "checkbox",
+	    "value": true,
+	    "label": "Turn on Treasure",
+	    "tooltip": "Turn on the Treasure Command",
+	    "group": "General"
 	},
 	"TurnOnEquipment": {
-	"type": "checkbox",
-	"value": true,
-	"label": "Turn on Equipment",
-	"tooltip": "Turn on the Equipment Command",
-	"group": "General"
+	    "type": "checkbox",
+	    "value": true,
+	    "label": "Turn on Equipment",
+	    "tooltip": "Turn on the Equipment Command",
+	    "group": "General"
 	},
   	"TurnOnCatch": {
-	"type": "checkbox",
-	"value": false,
-	"label": "Turn on Catch",
-	"tooltip": "Turn on Catch Command",
-	"group": "General"
+	    "type": "checkbox",
+	    "value": false,
+	    "label": "Turn on Catch",
+	    "tooltip": "Turn on Catch Command",
+	    "group": "General"
 	},
   	"TurnOnBattle": {
-	"type": "checkbox",
-	"value": false,
-	"label": "Turn on Battle",
-	"tooltip": "Turn on Battle Command",
-	"group": "General"
+	    "type": "checkbox",
+	    "value": false,
+	    "label": "Turn on Battle",
+	    "tooltip": "Turn on Battle Command",
+	    "group": "General"
 	},
   	"TurnOnRelease": {
-	"type": "checkbox",
-	"value": false,
-	"label": "Turn on Release",
-	"tooltip": "Turn on Release Command",
-	"group": "General"
+	    "type": "checkbox",
+	    "value": false,
+	    "label": "Turn on Release",
+	    "tooltip": "Turn on Release Command",
+	    "group": "General"
 	},
   	"TurnOnTrade": {
-	"type": "checkbox",
-	"value": false,
-	"label": "Turn on Trade",
-	"tooltip": "Turn on Trade Command",
-	"group": "General"
+	    "type": "checkbox",
+	    "value": false,
+	    "label": "Turn on Trade",
+	    "tooltip": "Turn on Trade Command",
+	    "group": "General"
 	},
   	"TurnOnAcceptTrade": {
-	"type": "checkbox",
-	"value": false,
-	"label": "Turn on AcceptTrade",
-	"tooltip": "Turn on AcceptTrade Command",
-	"group": "General"
+	    "type": "checkbox",
+	    "value": false,
+	    "label": "Turn on AcceptTrade",
+	    "tooltip": "Turn on AcceptTrade Command",
+	    "group": "General"
 	},
   	"TurnOnRefuse": {
-	"type": "checkbox",
-	"value": false,
-	"label": "Turn on Refuse",
-	"tooltip": "Turn on Refuse Command",
-	"group": "General"
+	    "type": "checkbox",
+	    "value": false,
+	    "label": "Turn on Refuse",
+	    "tooltip": "Turn on Refuse Command",
+	    "group": "General"
 	},
   	"TurnOnDuel": {
-	"type": "checkbox",
-	"value": false,
-	"label": "Turn on Duel",
-	"tooltip": "Turn on Duel Command",
-	"group": "General"
+	    "type": "checkbox",
+	    "value": false,
+	    "label": "Turn on Duel",
+	    "tooltip": "Turn on Duel Command",
+	    "group": "General"
 	},
   	"TurnOnAcceptDuel": {
-	"type": "checkbox",
-	"value": false,
-	"label": "Turn on AcceptDuel",
-	"tooltip": "Turn on AcceptDuel Command",
-	"group": "General"
+	    "type": "checkbox",
+	    "value": false,
+	    "label": "Turn on AcceptDuel",
+	    "tooltip": "Turn on AcceptDuel Command",
+	    "group": "General"
 	},
     "EncounterCommand": {
         "type": "textbox",
@@ -134,14 +141,14 @@
         "group": "Encounter"
       },
     "EncounterCooldown": {
-      "type": "slider",
-      "value": 5,
-      "min": 1,
-      "max": 300,
-      "ticks": 1,
-      "label": "Encounter Cooldown (seconds)",
-      "tooltip": "How long the command should go on cooldown for in (seconds)",
-      "group": "Encounter"
+        "type": "slider",
+        "value": 5,
+        "min": 1,
+        "max": 300,
+        "ticks": 1,
+        "label": "Encounter Cooldown (seconds)",
+        "tooltip": "How long the command should go on cooldown for in (seconds)",
+        "group": "Encounter"
     },
 	"MonsterCommand": {
         "type": "textbox",
@@ -187,14 +194,14 @@
         "group": "Add Monster"
       },
     "MonsterCooldown": {
-      "type": "slider",
-      "value": 5,
-      "min": 1,
-      "max": 300,
-      "ticks": 1,
-      "label": "Monster Cooldown (seconds)",
-      "tooltip": "How long the command should go on cooldown for in (seconds)",
-      "group": "Add Monster"
+        "type": "slider",
+        "value": 5,
+        "min": 1,
+        "max": 300,
+        "ticks": 1,
+        "label": "Monster Cooldown (seconds)",
+        "tooltip": "How long the command should go on cooldown for in (seconds)",
+        "group": "Add Monster"
     },
 	"CheckLevelCommand": {
 	    "type": "textbox",
@@ -215,13 +222,6 @@
 	    "value": "{0} the level command is on cooldown for {1} seconds",
 	    "label": "Level Cooldown Response",
 	    "tooltip": "Level Cooldown Response",
-	    "group": "Level"
-	},	
-	"CheckLevelInvalidResponse": {
-	    "type": "textbox",
-	    "value": "{0} does not have a valid data file",
-	    "label": "Level Invalid Response",
-	    "tooltip": "Level Invalid Response",
 	    "group": "Level"
 	},
 	"CheckLevelCooldown":{
@@ -253,13 +253,6 @@
 	    "value": "{0} the treasure command is on cooldown for {1} seconds",
 	    "label": "Treasure Cooldown Response",
 	    "tooltip": "Treasure Cooldown Response",
-	    "group": "Treasure"
-	},	
-	"CheckTreasureInvalidResponse": {
-	    "type": "textbox",
-	    "value": "{0} does not have a valid data file",
-	    "label": "Treasure Invalid Response",
-	    "tooltip": "Treasure Invalid Response",
 	    "group": "Treasure"
 	},
 	"CheckTreasureCooldown":{
@@ -305,13 +298,6 @@
 	    "value": "{0} the equipment command is on cooldown for {1} seconds",
 	    "label": "Equipment Cooldown Response",
 	    "tooltip": "Equipment Cooldown Response",
-	    "group": "Equipment"
-	},
-	"EquipmentInvalidResponse": {
-	    "type": "textbox",
-	    "value": "{0} does not have a valid data file",
-	    "label": "Equipment Invalid Response",
-	    "tooltip": "Equipment Invalid Response",
 	    "group": "Equipment"
 	},
 	"EquipmentWhisperCooldown": {

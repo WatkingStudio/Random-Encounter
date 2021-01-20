@@ -103,6 +103,7 @@ class Settings:
             self.TurnOnDuel = True
             self.TurnOnAcceptDuel = True
             self.PointsName = "Street Rep"
+            self.InvalidDataResponse = "{0} does not have a valid data file"
             self.EncounterCommand = "!encounter"
             self.EncounterResponse = "caught pokemon"
             self.EncounterCooldownResponse = "{0}, the encounter command on cooldown for {1}"
@@ -118,19 +119,16 @@ class Settings:
             self.CheckLevelCommand = "!level"
             self.CheckLevelResponse = "{0} level is: {1}"
             self.CheckLevelCooldownResponse = "{0} the level command is on cooldown for {1} seconds"
-            self.CheckLevelInvalidResponse = "{0} does not have a valid data file"
             self.CheckLevelCooldown = 1.0
             self.CheckTreasureCommand = "!treasure"
             self.CheckTreasureResponse = "{0} has {1} piles of treasure!"
             self.CheckTreasureCooldownResponse = "{0} the treasure command is on cooldown for {1} seconds"
-            self.CheckTreasureInvalidResponse = "{0} does not have a valid data file"
             self.CheckTreasureCooldown = 60.0
             self.EquipmentCommand = "!equipment"
             self.EquipmentWhisperResponse = "{0} has the following equipped: (head) {0}, (body) {1}, (hands) {2}, (legs) {3}, (feet) {4}, (right hand) {5}, (left hand) {6}, (back) {7}"
             self.EquipmentResponse = "{0} check your twitch inbox for your equipment info, you may need to refresh."
             self.EquipmentSpecificResponse = "{0} has a {1} equipped on their {2}"
             self.EquipmentCooldownResponse = "{0} the equipment command is on cooldown for {1} seconds"
-            self.EquipmentInvalidResponse = "{0} does not have a valid data file"
             self.EquipmentWhisperCooldown = 60.0
             self.EquipmentChatCooldown = 300.0
             self.BattleCommand = "!battle"
@@ -694,7 +692,7 @@ def Execute(data):
                     data2 = json.load(json_file)
                     response = MySet.CheckLevelResponse.format(data.UserName, data2['level'])
             else:
-                response = MySet.CheckLevelInvalidResponse.format(data.UserName)
+                response = MySet.InvalidDataResponse.format(data.UserName)
 
             Parent.SendStreamMessage(str(response))
             Parent.AddUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User, MySet.CheckLevelCooldown)
@@ -718,7 +716,7 @@ def Execute(data):
                     data2 = json.load(json_file)
                     response = MySet.CheckTreasureResponse.format(data.UserName, data2['treasure'])
             else:
-                response = MySet.CheckTreasureInvalidResponse.format(data.UserName)
+                response = MySet.InvalidDataResponse.format(data.UserName)
 
             Parent.SendStreamMessage(str(response))
             Parent.AddUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User, MySet.CheckTreasureCooldown)
@@ -763,7 +761,7 @@ def Execute(data):
                                                               equipment['hands'], equipment['legs'], equipment['feet'],
                                                               equipment['right hand'], equipment['left hand'], equipment['back'])
             else:
-                response = MySet.EquipmentInvalidResponse.format(data.UserName)
+                response = MySet.InvalidDataResponse.format(data.UserName)
 
             # Check to see if the user wants to print the information into the Twitch chat
             if(data.GetParam(1).lower() == "chat"):
