@@ -92,6 +92,7 @@ class Settings:
             self.OnlyLive = False
             self.TurnOnEncounter = True
             self.TurnOnMonster = True
+            self.TurnOnCheckLevel = True
             self.TurnOnCatch = True
             self.TurnOnBattle = True
             self.TurnOnRelease = True
@@ -116,6 +117,7 @@ class Settings:
             self.CheckLevelCommand = "!level"
             self.CheckLevelResponse = "{0} level is: {1}"
             self.CheckLevelCooldownResponse = "{0} the level command is on cooldown for {1} seconds"
+            self.CheckLevelInvalidResponse = "{0} does not have a valid data file"
             self.CheckLevelCooldown = 1.0
             self.BattleCommand = "!battle"
             self.BattleResponse = "{0} {1} {2} {3}"
@@ -666,9 +668,16 @@ def Execute(data):
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.CheckLevelCommand.lower() and LiveCheck() and MySet.TurnOnCheckLevel:
         if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User):
-            Log("Hi")
+            response = "null"
 
-            Parent.SendStreamMessage("Hello")
+            if os.path.exists(userencounterpath):
+                with open(userencounterpath) as json_file:
+                    data2 = json.load(json_file)
+                    response = MySet.CheckLevelResponse.format(data.UserName, data2['level'])
+            else:
+                response = MySet.CheckLevelInvalidResponse.format(data.UserName)
+
+            Parent.SendStreamMessage(str(response))
             Parent.AddUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User, MySet.CheckLevelCooldown)
 
         else:
