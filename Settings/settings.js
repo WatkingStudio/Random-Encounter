@@ -3,6 +3,7 @@
   "TurnOnEncounter": true,
   "TurnOnMonster": true,
   "TurnOnCheckLevel": true,
+  "TurnOnCheckTreasure": true,
   "TurnOnCatch": false,
   "TurnOnBattle": false,
   "TurnOnRelease": false,
@@ -84,6 +85,5 @@
   "AcceptDuelCooldown": 1.0,
   "TurnOnAcceptDuel": false,
   "AcceptDuelOutcomeResponse": "/me {0} and their {2} absolutely demolished {1} and their {3}!",
-  "MonsterPermissionResp": "$user -> only $permission ($permissioninfo) and higher can use this command",
-  "TurnOnCheckTreasure": true
+  "MonsterPermissionResp": "$user -> only $permission ($permissioninfo) and higher can use this command"
 };
