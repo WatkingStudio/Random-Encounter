@@ -93,6 +93,7 @@ class Settings:
             self.TurnOnEncounter = True
             self.TurnOnMonster = True
             self.TurnOnCheckLevel = True
+            self.TurnOnCheckTreasure = True
             self.TurnOnCatch = True
             self.TurnOnBattle = True
             self.TurnOnRelease = True
@@ -688,6 +689,30 @@ def Execute(data):
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckLevelCommand, data.User)
             message = MySet.CheckLevelCooldownResponse.format(data.UserName,cooldownduration)
+            Parent.SendStreamMessage(str(message))
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Check Treasure
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+            0).lower() == MySet.CheckTreasureCommand.lower() and LiveCheck() and MySet.TurnOnCheckTreasure:
+        if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User):
+            response = "null"
+
+            if os.path.exists(userencounterpath):
+                with open(userencounterpath) as json_file:
+                    data2 = json.load(json_file)
+                    response = MySet.CheckTreasureResponse.format(data.UserName, data2['treasure'])
+            else:
+                response = MySet.CheckTreasureInvalidResponse.format(data.UserName)
+
+            Parent.SendStreamMessage(str(response))
+            Parent.AddUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User, MySet.CheckTreasureCooldown)
+
+        else:
+            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckTreasureCommand, data.User)
+            message = MySet.CheckTreasureCooldownResponse.format(data.UserName,cooldownduration)
             Parent.SendStreamMessage(str(message))
 
     # -----------------------------------------------------------------------------------------------------------------------

@@ -31,7 +31,7 @@
   "CheckTreasureResponse": "{0} has {1} piles of treasure!",
   "CheckTreasureCooldownResponse": "{0} the treasure command is on cooldown for {1} seconds",
   "CheckTreasureInvalidResponse": "{0} does not have a valid data file",
-  "CheckTreasureCooldown": 1,
+  "CheckTreasureCooldown": 60.0,
   "BattleCommand": "!battle",
   "BattleResponse": "/me {5}",
   "BattleCooldownResponse": "/me {0}, the battle command is on cooldown for {1} seconds",
