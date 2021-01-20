@@ -125,6 +125,11 @@ class Settings:
             self.CheckTreasureCooldownResponse = "{0} the treasure command is on cooldown for {1} seconds"
             self.CheckTreasureInvalidResponse = "{0} does not have a valid data file"
             self.CheckTreasureCooldown = 60.0
+            self.EquipmentCommand = "!equipment"
+            self.EquipmentResponse = "{0} has the following equipped: (head) {0}, (body) {1}, (hands) {2}, (legs) {3}, (feet) {4}, (right hand) {5}, (left hand) {6}, (back) {7}"
+            self.EquipmentCooldownResponse = "{0} the equipment command is on cooldown for {1} seconds"
+            self.EquipmentInvalidResponse = "{0} does not have a valid data file"
+            self.EquipmentCooldown = 60.0
             self.BattleCommand = "!battle"
             self.BattleResponse = "{0} {1} {2} {3}"
             self.BattleCooldownResponse = "Battle command is on cooldown"
@@ -358,6 +363,11 @@ def Log(message):
 
 def SendMessage(message):
     return Parent.SendStreamMessage(str(message))
+
+# -----------------------------------------------------------------------------------------------------------------------
+
+def SendWhisper(target, message):
+    return Parent.SendStreamWhisper(str(target), str(message))
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -713,6 +723,35 @@ def Execute(data):
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckTreasureCommand, data.User)
             message = MySet.CheckTreasureCooldownResponse.format(data.UserName,cooldownduration)
+            Parent.SendStreamMessage(str(message))
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Check Equipment
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    #SendWhisper(data.UserName, "This is a whisper 2")
+
+    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+        0).lower() == MySet.EquipmentCommand.lower() and LiveCheck() and MySet.TurnOnEquipment:
+        if not Parent.IsOnUserCooldown(ScriptName, MySet.EquipmentCommand, data.User):
+            response = "null"
+
+            if os.path.exists(userencounterpath):
+                with open(userencounterpath) as json_file:
+                    data2 = json.load(json_file)
+                    equipment = data2['equipment']
+                    response = MySet.EquipmentResponse.format(data.UserName, equipment['head'], equipment['body'],
+                                                              equipment['hands'], equipment['legs'], equipment['feet'],
+                                                              equipment['right hand'], equipment['left hand'], equipment['back'])
+            else:
+                    response = MySet.EquipmentInvalidResponse.format(data.UserName)
+
+            SendWhisper(data.UserName, str(response))
+            Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentCooldown)
+
+        else:
+            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipmentCommand, data.User)
+            message = MySet.EquipmentCooldownResponse.format(data.UserName, cooldownduration)
             Parent.SendStreamMessage(str(message))
 
     # -----------------------------------------------------------------------------------------------------------------------

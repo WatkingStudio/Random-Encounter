@@ -42,6 +42,13 @@
 	"tooltip": "Turn on the Treasure Command",
 	"group": "General"
 	},
+	"TurnOnEquipment": {
+	"type": "checkbox",
+	"value": true,
+	"label": "Turn on Equipment",
+	"tooltip": "Turn on the Equipment Command",
+	"group": "General"
+	},
   	"TurnOnCatch": {
 	"type": "checkbox",
 	"value": false,
@@ -264,6 +271,44 @@
 	    "label": "Check Treasure Cooldown (seconds)",
 	    "tooltip": "How long the command should go on cooldown for in (seconds)",
 	    "group": "Treasure"
+	},
+	"EquipmentCommand": {
+        "type": "textbox",
+		"value": "!equipment",
+		"label": "Equipment Command",
+		"tooltip": "Equipment Command",
+		"group": "Equipment"
+	},
+	"EquipmentResponse": {
+	    "type": "textbox",
+		"value": "{0} has the following equipped: (head) {0}, (body) {1}, (hands) {2}, (legs) {3}, (feet) {4}, (right hand) {5}, (left hand) {6}, (back) {7}",
+		"label": "Equipment Response",
+		"tooltip": "Equipment Response",
+		"group": "Equipment"
+	},
+	"EquipmentCooldownResponse": {
+	    "type": "textbox",
+	    "value": "{0} the equipment command is on cooldown for {1} seconds",
+	    "label": "Equipment Cooldown Response",
+	    "tooltip": "Equipment Cooldown Response",
+	    "group": "Equipment"
+	},
+	"EquipmentInvalidResponse": {
+	    "type": "textbox",
+	    "value": "{0} does not have a valid data file",
+	    "label": "Equipment Invalid Response",
+	    "tooltip": "Equipment Invalid Response",
+	    "group": "Equipment"
+	},
+	"EquipmentCooldown": {
+	    "type": "slider",
+	    "value": 5,
+	    "min": 1,
+	    "max": 300,
+	    "ticks": 1,
+	    "label": "Check Equipment Cooldown (seconds)",
+	    "tooltip": "How long the command should go on cooldown for in (seconds)",
+	    "group": "Equipment"
 	},
     "CatchCommand": {
         "type": "textbox",
