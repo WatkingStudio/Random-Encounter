@@ -128,6 +128,7 @@ class Settings:
             self.EquipmentCommand = "!equipment"
             self.EquipmentWhisperResponse = "{0} has the following equipped: (head) {0}, (body) {1}, (hands) {2}, (legs) {3}, (feet) {4}, (right hand) {5}, (left hand) {6}, (back) {7}"
             self.EquipmentResponse = "{0} check your twitch inbox for your equipment info, you may need to refresh."
+            self.EquipmentSpecificResponse = "{0} has a {1} equipped on their {2}"
             self.EquipmentCooldownResponse = "{0} the equipment command is on cooldown for {1} seconds"
             self.EquipmentInvalidResponse = "{0} does not have a valid data file"
             self.EquipmentWhisperCooldown = 60.0
@@ -731,36 +732,47 @@ def Execute(data):
     #   Check Equipment
     # -----------------------------------------------------------------------------------------------------------------------
 
-    #SendWhisper(data.UserName, "This is a whisper 2")
-
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
         0).lower() == MySet.EquipmentCommand.lower() and LiveCheck() and MySet.TurnOnEquipment:
         if not Parent.IsOnUserCooldown(ScriptName, MySet.EquipmentCommand, data.User):
             response = "null"
 
-            #data.GetParam(1) - Gives the first parameter
-
+            # Check to see if the user wants to know what is equipped in a specific location
             if os.path.exists(userencounterpath):
                 with open(userencounterpath) as json_file:
                     data2 = json.load(json_file)
                     equipment = data2['equipment']
-                    response = MySet.EquipmentWhisperResponse.format(data.UserName, equipment['head'], equipment['body'],
+                    if(data.GetParam(1).lower() == 'head' or data.GetParam(2).lower() == 'head'):
+                        response = MySet.EquipmentSpecificResponse.format(data.UserName, equipment['head'], "head")
+                    elif(data.GetParam(1).lower() == 'body' or data.GetParam(2).lower() == 'body'):
+                        response = MySet.EquipmentSpecificResponse.format(data.UserName, equipment['body'], "body")
+                    elif(data.GetParam(1).lower() == 'hands' or data.GetParam(2).lower() == 'hands'):
+                        response = MySet.EquipmentSpecificResponse.format(data.UserName, equipment['hands'], "hands")
+                    elif(data.GetParam(1).lower() == 'legs' or data.GetParam(2).lower() == 'legs'):
+                        response = MySet.EquipmentSpecificResponse.format(data.UserName, equipment['legs'], "legs")
+                    elif(data.GetParam(1).lower() == 'feet' or data.GetParam(2).lower() == 'feet'):
+                        response = MySet.EquipmentSpecificResponse.format(data.UserName, equipment['feet'], "feet")
+                    elif(data.GetParam(1).lower() == 'righthand' or data.GetParam(2).lower() == 'righthand'):
+                        response = MySet.EquipmentSpecificResponse.format(data.UserName, equipment['right hand'], "right hand")
+                    elif(data.GetParam(1).lower() == 'lefthand' or data.GetParam(2).lower() == 'lefthand'):
+                        response = MySet.EquipmentSpecificResponse.format(data.UserName, equipment['left hand'], "left hand")
+                    elif(data.GetParam(1).lower() == 'back' or data.GetParam(2).lower() == 'back'):
+                        response = MySet.EquipmentSpecificResponse.format(data.UserName, equipment['back'], "back")
+                    else:
+                        response = MySet.EquipmentWhisperResponse.format(data.UserName, equipment['head'], equipment['body'],
                                                               equipment['hands'], equipment['legs'], equipment['feet'],
                                                               equipment['right hand'], equipment['left hand'], equipment['back'])
             else:
                 response = MySet.EquipmentInvalidResponse.format(data.UserName)
 
-            if(data.GetParam(1) == "chat"):
+            # Check to see if the user wants to print the information into the Twitch chat
+            if(data.GetParam(1).lower() == "chat"):
                 SendMessage(str(response))
                 Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentChatCooldown)
             else:
-                #SendWhisper(data.UserName, str(response))
+                SendWhisper(data.UserName, str(response))
                 SendMessage(str(MySet.EquipmentResponse.format(data.UserName)))
                 Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentWhisperCooldown)
-
-            #SendWhisper(data.UserName, str(response))
-            #SendMessage(str(MySet.EquipmentResponse.format(data.UserName)))
-            #Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentCooldown)
 
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipmentCommand, data.User)

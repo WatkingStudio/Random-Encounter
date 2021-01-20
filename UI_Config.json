@@ -286,11 +286,18 @@
 		"tooltip": "Equipment Whisper Response",
 		"group": "Equipment"
 	},
-	"EquipmentResponse":{
+	"EquipmentResponse": {
 	    "type": "textbox",
 		"value": "{0} check your twitch inbox for your equipment info, you may need to refresh.",
 		"label": "Equipment Response",
 		"tooltip": "Equipment Response",
+		"group": "Equipment"
+	},
+	"EquipmentSpecificResponse": {
+	"type": "textbox",
+		"value": "{0} has a {1} equipped on their {2}",
+		"label": "Equipment Specific Response",
+		"tooltip": "The response for a specific equipment location",
 		"group": "Equipment"
 	},
 	"EquipmentCooldownResponse": {
