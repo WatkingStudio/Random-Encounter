@@ -26,7 +26,12 @@
   "CheckLevelResponse": "{0} level is: {1}",
   "CheckLevelCooldownResponse": "{0} the level command is on cooldown for {1} seconds",
   "CheckLevelInvalidResponse": "{0} does not have a valid data file",
-  "CheckLevelCooldown": 60,
+  "CheckLevelCooldown": 60.0,
+  "CheckTreasureCommand": "!treasure",
+  "CheckTreasureResponse": "{0} has {1} piles of treasure!",
+  "CheckTreasureCooldownResponse": "{0} the treasure command is on cooldown for {1} seconds",
+  "CheckTreasureInvalidResponse": "{0} does not have a valid data file",
+  "CheckTreasureCooldown": 1,
   "BattleCommand": "!battle",
   "BattleResponse": "/me {5}",
   "BattleCooldownResponse": "/me {0}, the battle command is on cooldown for {1} seconds",
@@ -79,5 +84,6 @@
   "AcceptDuelCooldown": 1.0,
   "TurnOnAcceptDuel": false,
   "AcceptDuelOutcomeResponse": "/me {0} and their {2} absolutely demolished {1} and their {3}!",
-  "MonsterPermissionResp": "$user -> only $permission ($permissioninfo) and higher can use this command"
+  "MonsterPermissionResp": "$user -> only $permission ($permissioninfo) and higher can use this command",
+  "TurnOnCheckTreasure": true
 }

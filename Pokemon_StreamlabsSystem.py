@@ -119,6 +119,11 @@ class Settings:
             self.CheckLevelCooldownResponse = "{0} the level command is on cooldown for {1} seconds"
             self.CheckLevelInvalidResponse = "{0} does not have a valid data file"
             self.CheckLevelCooldown = 1.0
+            self.CheckTreasureCommand = "!treasure"
+            self.CheckTreasureResponse = "{0} has {1} piles of treasure!"
+            self.CheckTreasureCooldownResponse = "{0} the treasure command is on cooldown for {1} seconds"
+            self.CheckTreasureInvalidResponse = "{0} does not have a valid data file"
+            self.CheckTreasureCooldown = 60.0
             self.BattleCommand = "!battle"
             self.BattleResponse = "{0} {1} {2} {3}"
             self.BattleCooldownResponse = "Battle command is on cooldown"
