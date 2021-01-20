@@ -113,6 +113,10 @@ class Settings:
             self.MonsterResponse = "/me Added {0} to the monster script"
             self.MonsterCooldownResponse = "{0}; the monster command is on cooldown for {1} seconds"
             self.MonsterCooldown = 1.0
+            self.CheckLevelCommand = "!level"
+            self.CheckLevelResponse = "{0} level is: {1}"
+            self.CheckLevelCooldownResponse = "{0} the level command is on cooldown for {1} seconds"
+            self.CheckLevelCooldown = 1.0
             self.BattleCommand = "!battle"
             self.BattleResponse = "{0} {1} {2} {3}"
             self.BattleCooldownResponse = "Battle command is on cooldown"
@@ -518,7 +522,6 @@ def Execute(data):
 
             data2 = ""
 
-
             # The next section of code goes through the encounter and replaces any variables with the appropriate data
             # {0} - Username
             # {1} - Monster One
@@ -654,6 +657,23 @@ def Execute(data):
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.MonsterCommand, data.User)
             message = MySet.MonsterCooldownResponse.format(data.UserName, cooldownduration)
+            Parent.SendStreamMessage(str(message))
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Check Level
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+            0).lower() == MySet.CheckLevelCommand.lower() and LiveCheck() and MySet.TurnOnCheckLevel:
+        if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User):
+            Log("Hi")
+
+            Parent.SendStreamMessage("Hello")
+            Parent.AddUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User, MySet.CheckLevelCooldown)
+
+        else:
+            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckLevelCommand, data.User)
+            message = MySet.CheckLevelCooldownResponse.format(data.UserName,cooldownduration)
             Parent.SendStreamMessage(str(message))
 
     # -----------------------------------------------------------------------------------------------------------------------
