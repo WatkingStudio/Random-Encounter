@@ -126,10 +126,12 @@ class Settings:
             self.CheckTreasureInvalidResponse = "{0} does not have a valid data file"
             self.CheckTreasureCooldown = 60.0
             self.EquipmentCommand = "!equipment"
-            self.EquipmentResponse = "{0} has the following equipped: (head) {0}, (body) {1}, (hands) {2}, (legs) {3}, (feet) {4}, (right hand) {5}, (left hand) {6}, (back) {7}"
+            self.EquipmentWhisperResponse = "{0} has the following equipped: (head) {0}, (body) {1}, (hands) {2}, (legs) {3}, (feet) {4}, (right hand) {5}, (left hand) {6}, (back) {7}"
+            self.EquipmentResponse = "{0} check your twitch inbox for your equipment info, you may need to refresh."
             self.EquipmentCooldownResponse = "{0} the equipment command is on cooldown for {1} seconds"
             self.EquipmentInvalidResponse = "{0} does not have a valid data file"
-            self.EquipmentCooldown = 60.0
+            self.EquipmentWhisperCooldown = 60.0
+            self.EquipmentChatCooldown = 300.0
             self.BattleCommand = "!battle"
             self.BattleResponse = "{0} {1} {2} {3}"
             self.BattleCooldownResponse = "Battle command is on cooldown"
@@ -736,18 +738,29 @@ def Execute(data):
         if not Parent.IsOnUserCooldown(ScriptName, MySet.EquipmentCommand, data.User):
             response = "null"
 
+            #data.GetParam(1) - Gives the first parameter
+
             if os.path.exists(userencounterpath):
                 with open(userencounterpath) as json_file:
                     data2 = json.load(json_file)
                     equipment = data2['equipment']
-                    response = MySet.EquipmentResponse.format(data.UserName, equipment['head'], equipment['body'],
+                    response = MySet.EquipmentWhisperResponse.format(data.UserName, equipment['head'], equipment['body'],
                                                               equipment['hands'], equipment['legs'], equipment['feet'],
                                                               equipment['right hand'], equipment['left hand'], equipment['back'])
             else:
-                    response = MySet.EquipmentInvalidResponse.format(data.UserName)
+                response = MySet.EquipmentInvalidResponse.format(data.UserName)
 
-            SendWhisper(data.UserName, str(response))
-            Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentCooldown)
+            if(data.GetParam(1) == "chat"):
+                SendMessage(str(response))
+                Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentChatCooldown)
+            else:
+                #SendWhisper(data.UserName, str(response))
+                SendMessage(str(MySet.EquipmentResponse.format(data.UserName)))
+                Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentWhisperCooldown)
+
+            #SendWhisper(data.UserName, str(response))
+            #SendMessage(str(MySet.EquipmentResponse.format(data.UserName)))
+            #Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentCooldown)
 
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipmentCommand, data.User)

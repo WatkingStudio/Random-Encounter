@@ -279,9 +279,16 @@
 		"tooltip": "Equipment Command",
 		"group": "Equipment"
 	},
-	"EquipmentResponse": {
+	"EquipmentWhisperResponse": {
 	    "type": "textbox",
 		"value": "{0} has the following equipped: (head) {0}, (body) {1}, (hands) {2}, (legs) {3}, (feet) {4}, (right hand) {5}, (left hand) {6}, (back) {7}",
+		"label": "Equipment Whisper Response",
+		"tooltip": "Equipment Whisper Response",
+		"group": "Equipment"
+	},
+	"EquipmentResponse":{
+	    "type": "textbox",
+		"value": "{0} check your twitch inbox for your equipment info, you may need to refresh.",
 		"label": "Equipment Response",
 		"tooltip": "Equipment Response",
 		"group": "Equipment"
@@ -300,14 +307,24 @@
 	    "tooltip": "Equipment Invalid Response",
 	    "group": "Equipment"
 	},
-	"EquipmentCooldown": {
+	"EquipmentWhisperCooldown": {
 	    "type": "slider",
 	    "value": 5,
 	    "min": 1,
 	    "max": 300,
 	    "ticks": 1,
-	    "label": "Check Equipment Cooldown (seconds)",
-	    "tooltip": "How long the command should go on cooldown for in (seconds)",
+	    "label": "Check Equipment Whisper Cooldown (seconds)",
+	    "tooltip": "How long the command should go on cooldown for in (seconds) after sending in a whisper",
+	    "group": "Equipment"
+	},
+	"EquipmentChatCooldown": {
+	    "type": "slider",
+	    "value": 5,
+	    "min": 1,
+	    "max": 300,
+	    "ticks": 1,
+	    "label": "Check Equipment Chat Cooldown (seconds)",
+	    "tooltip": "How long the command should go on cooldown for in (seconds) after sending in the chat",
 	    "group": "Equipment"
 	},
     "CatchCommand": {
