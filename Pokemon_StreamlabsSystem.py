@@ -94,6 +94,9 @@ class Settings:
             self.TurnOnMonster = True
             self.TurnOnCheckLevel = True
             self.TurnOnCheckTreasure = True
+            self.TurnOnEquipment = True
+            self.TurnOnCheckLoot = True
+            self.TurnOnCheckTrophies = True
             self.TurnOnCatch = True
             self.TurnOnBattle = True
             self.TurnOnRelease = True
@@ -137,6 +140,12 @@ class Settings:
             self.CheckLootCooldownResponse = "{0} the loot command is on cooldown for {1} seconds"
             self.CheckLootWhisperCooldown = 60.0
             self.CheckLootChatCooldown = 300.0
+            self.CheckTrophiesCommand = "!trophies"
+            self.CheckTrophiesWhisperResponse = "{0} check your twitch inbox for your trophies info, you may need to refresh."
+            self.CheckTrophiesMessage = "{0} has the following trophies: {1}"
+            self.CheckTrophiesCooldownResponse = "{0} the trophies command is on cooldown for {1} seconds"
+            self.CheckTrophiesWhisperCooldown = 60.0
+            self.CheckTrophiesChatCooldown = 300.0
             self.BattleCommand = "!battle"
             self.BattleResponse = "{0} {1} {2} {3}"
             self.BattleCooldownResponse = "Battle command is on cooldown"
@@ -773,7 +782,7 @@ def Execute(data):
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipmentCommand, data.User)
             message = MySet.EquipmentCooldownResponse.format(data.UserName, cooldownduration)
-            Parent.SendStreamMessage(str(message))
+            SendMessage(str(message))
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Loot
@@ -803,7 +812,37 @@ def Execute(data):
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckLootCommand, data.User)
             message = MySet.CheckLootCooldownResponse.format(data.UserName, cooldownduration)
-            Parent.SendStreamMessage(str(message))
+            SendMessage(str(message))
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Trophies
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+        0).lower() == MySet.CheckTrophiesCommand.lower() and LiveCheck() and MySet.TurnOnCheckTrophies:
+        if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User):
+            response = "null"
+
+            if os.path.exists(userencounterpath):
+                with open(userencounterpath) as json_file:
+                    data2 = json.load(json_file)
+                    trophies = data2['trophies']
+                    response = MySet.CheckTrophiesMessage.format(data.UserName, trophies)
+            else:
+                response = MySet.InvalidDataResponse.format(data.UserName)
+
+            #Check to see if the user wants to print the information into the Twitch chat
+            if(data.GetParam(1).lower() == "chat"):
+                SendMessage(str(response))
+                Parent.AddUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.user, MySet.CheckTrophiesChatCooldown)
+            else:
+                SendWhisper(data.UserName, str(response))
+                SendMessage(str(MySet.CheckTrophiesWhisperResponse))
+                Parent.AddUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User, MySet.CheckTrophiesWhisperCooldown)
+        else:
+            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckTrophiesCommand, data.User)
+            message = MySet.CheckTrophiesCooldownResponse.format(data.UserName, cooldownduration)
+            SendMessage(str(message))
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Catch

@@ -63,6 +63,13 @@
 		"tooltip": "Turn on the Check Loot Command",
 		"group": "General"
 	},
+	"TurnOnCheckTrophies":{
+		"type": "checkbox",
+		"value": true,
+		"label": "Turn on Trophies",
+		"tooltip": "Turn on the Check Trophies Command",
+		"group": "General"
+	},
   	"TurnOnCatch": {
 	    "type": "checkbox",
 	    "value": false,
@@ -336,14 +343,14 @@
 	},
 	"CheckLootWhisperResponse": {
 		"type": "textbox",
-		"value": "whisper message",
+		"value": "{0} check your twitch inbox for your loot info, you may need to refresh.",
 		"label": "Check Loot Whisper Response",
 		"tooltip": "Check Loot Whisper Response",
 		"group": "Check Loot"
 	},
 	"CheckLootMessage": {
 		"type": "textbox",
-		"value": "chat message",
+		"value": "{0} has the following loot: {1}",
 		"label": "Check Loot Message",
 		"tooltip": "Check Loot Message",
 		"group": "Check Loot"
@@ -365,7 +372,7 @@
 		"tooltip": "How long the command should go on cooldown for in (seconds) after sending in a whisper",
 		"group": "Check Loot"
 	},
-	"CheckLootCooldown": {
+	"CheckLootChatCooldown": {
 		"type": "slider",
 		"value": 300,
 		"min": 1,
@@ -374,6 +381,54 @@
 		"label": "Check Loot Cooldown (seconds)",
 		"tooltip": "How long the command should go on cooldown for in (seconds) after sending in the chat",
 		"group": "Check Loot"
+	},
+	"CheckTrophiesCommand": {
+		"type": "textbox",
+		"value": "!trophies",
+		"label": "Check Trophies Command",
+		"tooltip": "Check Trophies Command",
+		"group": "Check Trophies"
+	},
+	"CheckTrophiesWhisperResponse": {
+		"type": "textbox",
+		"value": "{0} check your twitch inbox for your trophies info, you may need to refresh.",
+		"label": "Check Trophies Whisper Response",
+		"tooltip": "Check Trophies Whisper Response",
+		"group": "Check Trophies"
+	},
+	"CheckTrophiesMessage":{
+		"type": "textbox",
+		"value": "{0} has the following trophies: {1}",
+		"label": "Check Trophies Message",
+		"tooltip": "Check Trophies Message",
+		"group": "Check Trophies"
+	},
+	"CheckTrophiesCooldownResponse":{
+		"type": "textbox",
+		"value": "{0} the trophies command is on cooldown for {1} seconds",
+		"label": "Check Trophies Cooldown Response",
+		"tooltip": "Check Trophies Cooldown Response",
+		"group": "Check Trophies"
+	},
+	"CheckTrophiesWhisperCooldown":{
+		"type": "slider",
+		"value": 60,
+		"min": 1, 
+		"max": 300,
+		"ticks": 1,
+		"label": "Check Trophies Whisper Cooldown (seconds)",
+		"tooltip": "How long the command should go on cooldown for in (seconds) after sending in a whisper",
+		"group": "Check Trophies"
+	},
+	"CheckTrophiesChatCooldown":{
+		"type": "slider",
+		"value": 60,
+		"min": 1, 
+		"max": 300,
+		"ticks": 1,
+		"label": "Check Trophies Chat Cooldown (seconds)",
+		"tooltip": "How long the command should go on cooldown for in (seconds) after sending in the chat",
+		"group": "Check Trophies"
 	},
     "CatchCommand": {
         "type": "textbox",
