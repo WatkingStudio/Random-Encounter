@@ -56,6 +56,13 @@
 	    "tooltip": "Turn on the Equipment Command",
 	    "group": "General"
 	},
+	"TurnOnCheckLoot":{
+		"type": "checkbox",
+		"value": true,
+		"label": "Turn on Loot",
+		"tooltip": "Turn on the Check Loot Command",
+		"group": "General"
+	},
   	"TurnOnCatch": {
 	    "type": "checkbox",
 	    "value": false,
@@ -274,20 +281,20 @@
 	},
 	"EquipmentWhisperResponse": {
 	    "type": "textbox",
-		"value": "{0} has the following equipped: (head) {0}, (body) {1}, (hands) {2}, (legs) {3}, (feet) {4}, (right hand) {5}, (left hand) {6}, (back) {7}",
+		"value": "{0} check your twitch inbox for your equipment info, you may need to refresh.",
 		"label": "Equipment Whisper Response",
 		"tooltip": "Equipment Whisper Response",
 		"group": "Equipment"
 	},
-	"EquipmentResponse": {
+	"EquipmentMessage": {
 	    "type": "textbox",
-		"value": "{0} check your twitch inbox for your equipment info, you may need to refresh.",
-		"label": "Equipment Response",
-		"tooltip": "Equipment Response",
+		"value": "{0} has the following equipped: (head) {0}, (body) {1}, (hands) {2}, (legs) {3}, (feet) {4}, (right hand) {5}, (left hand) {6}, (back) {7}",
+		"label": "Equipment Message",
+		"tooltip": "Equipment Message",
 		"group": "Equipment"
 	},
 	"EquipmentSpecificResponse": {
-	"type": "textbox",
+		"type": "textbox",
 		"value": "{0} has a {1} equipped on their {2}",
 		"label": "Equipment Specific Response",
 		"tooltip": "The response for a specific equipment location",
@@ -319,6 +326,54 @@
 	    "label": "Check Equipment Chat Cooldown (seconds)",
 	    "tooltip": "How long the command should go on cooldown for in (seconds) after sending in the chat",
 	    "group": "Equipment"
+	},
+	"CheckLootCommand": {
+		"type": "textbox",
+		"value": "!loot",
+		"label": "Check Loot Command",
+		"tooltip": "Check Loot Command",
+		"group": "Check Loot"
+	},
+	"CheckLootWhisperResponse": {
+		"type": "textbox",
+		"value": "whisper message",
+		"label": "Check Loot Whisper Response",
+		"tooltip": "Check Loot Whisper Response",
+		"group": "Check Loot"
+	},
+	"CheckLootMessage": {
+		"type": "textbox",
+		"value": "chat message",
+		"label": "Check Loot Message",
+		"tooltip": "Check Loot Message",
+		"group": "Check Loot"
+	},
+	"CheckLootCooldownResponse": {
+		"type": "textbox",
+		"value": "{0} the loot command is on cooldown for {1} seconds",
+		"label": "Check Loot Cooldown Response",
+		"tooltip": "Check Loot Cooldown Response",
+		"group": "Check Loot"
+	},
+	"CheckLootWhisperCooldown": {
+		"type": "slider",
+		"value": 60,
+		"min": 1,
+		"max": 300,
+		"ticks": 1,
+		"label": "Check Loot Whisper Cooldown (seconds)",
+		"tooltip": "How long the command should go on cooldown for in (seconds) after sending in a whisper",
+		"group": "Check Loot"
+	},
+	"CheckLootCooldown": {
+		"type": "slider",
+		"value": 300,
+		"min": 1,
+		"max": 300,
+		"ticks": 1,
+		"label": "Check Loot Cooldown (seconds)",
+		"tooltip": "How long the command should go on cooldown for in (seconds) after sending in the chat",
+		"group": "Check Loot"
 	},
     "CatchCommand": {
         "type": "textbox",
