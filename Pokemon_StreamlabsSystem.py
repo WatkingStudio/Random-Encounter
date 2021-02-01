@@ -788,7 +788,6 @@ def Execute(data):
                 with open(userencounterpath) as json_file:
                     data2 = json.load(json_file)
                     loot = data2['loot']
-
                     response = MySet.CheckLootMessage.format(data.UserName, loot)
             else:
                 response = MySet.InvaldDataResponse.format(data.UserName)

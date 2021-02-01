@@ -5,6 +5,7 @@
   "TurnOnCheckLevel": true,
   "TurnOnCheckTreasure": true,
   "TurnOnEquipment": true,
+  "TurnOnCheckLoot": true,
   "TurnOnCatch": false,
   "TurnOnBattle": false,
   "TurnOnRelease": false,
@@ -45,7 +46,7 @@
   "CheckLootMessage": "{0} has the following loot: {1}",
   "CheckLootCooldownResponse": "{0} the loot command is on cooldown for {1} seconds",
   "CheckLootWhisperCooldown": 60,
-  "CheckLootCooldown": 300,
+  "CheckLootChatCooldown": 300,
   "BattleCommand": "!battle",
   "BattleResponse": "/me {5}",
   "BattleCooldownResponse": "/me {0}, the battle command is on cooldown for {1} seconds",
@@ -98,7 +99,5 @@
   "AcceptDuelCooldown": 1.0,
   "TurnOnAcceptDuel": false,
   "AcceptDuelOutcomeResponse": "/me {0} and their {2} absolutely demolished {1} and their {3}!",
-  "MonsterPermissionResp": "$user -> only $permission ($permissioninfo) and higher can use this command",
-  "TurnOnCheckLoot": true,
-  "CheckLootChatCooldown": 1
+  "MonsterPermissionResp": "$user -> only $permission ($permissioninfo) and higher can use this command"
 };
