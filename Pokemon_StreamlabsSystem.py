@@ -141,7 +141,7 @@ class Settings:
             self.CheckLootWhisperCooldown = 60.0
             self.CheckLootChatCooldown = 300.0
             self.CheckTrophiesCommand = "!trophies"
-            self.CheckTrophiesWhisperResponse = "{0} your twitch inbox for your trophies info, you may need to refresh."
+            self.CheckTrophiesWhisperResponse = "{0} check your twitch inbox for your trophies info, you may need to refresh."
             self.CheckTrophiesMessage = "{0} has the following trophies: {1}"
             self.CheckTrophiesCooldownResponse = "{0} the trophies command is on cooldown for {1} seconds"
             self.CheckTrophiesWhisperCooldown = 60.0

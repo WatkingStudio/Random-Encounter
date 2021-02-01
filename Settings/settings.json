@@ -49,7 +49,7 @@
   "CheckLootWhisperCooldown": 60.0,
   "CheckLootChatCooldown": 300.0,
   "CheckTrophiesCommand": "!trophies",
-  "CheckTrophiesWhisperResponse": "{0} your twitch inbox for your trophies info, you may need to refresh.",
+  "CheckTrophiesWhisperResponse": "{0} check your twitch inbox for your trophies info, you may need to refresh.",
   "CheckTrophiesMessage": "{0} has the following trophies: {1}",
   "CheckTrophiesCooldownResponse": "{0} the trophies command is on coodown for {1} seconds",
   "CheckTrophiesWhisperCooldown": 60.0,
