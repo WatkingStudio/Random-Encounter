@@ -125,12 +125,18 @@ class Settings:
             self.CheckTreasureCooldownResponse = "{0} the treasure command is on cooldown for {1} seconds"
             self.CheckTreasureCooldown = 60.0
             self.EquipmentCommand = "!equipment"
-            self.EquipmentWhisperResponse = "{0} has the following equipped: (head) {0}, (body) {1}, (hands) {2}, (legs) {3}, (feet) {4}, (right hand) {5}, (left hand) {6}, (back) {7}"
-            self.EquipmentResponse = "{0} check your twitch inbox for your equipment info, you may need to refresh."
+            self.EquipmentWhisperResponse = "{0} check your twitch inbox for your equipment info, you may need to refresh."
+            self.EquipmentMessage = "{0} has the following equipped: (head) {1}, (body) {2}, (hands) {3}, (legs) {4}, (feet) {5}, (right hand) {6}, (left hand) {7}, (back) {8}"
             self.EquipmentSpecificResponse = "{0} has a {1} equipped on their {2}"
             self.EquipmentCooldownResponse = "{0} the equipment command is on cooldown for {1} seconds"
             self.EquipmentWhisperCooldown = 60.0
             self.EquipmentChatCooldown = 300.0
+            self.CheckLootCommand = "!loot"
+            self.CheckLootWhisperResponse = "{0} check your twitch inbox for your loot info, you may need to refresh."
+            self.CheckLootMessage = "{0} has the following loot: {1}"
+            self.CheckLootCooldownResponse = "{0} the loot command is on cooldown for {1} seconds"
+            self.CheckLootWhisperCooldown = 60.0
+            self.CheckLootChatCooldown = 300.0
             self.BattleCommand = "!battle"
             self.BattleResponse = "{0} {1} {2} {3}"
             self.BattleCooldownResponse = "Battle command is on cooldown"
@@ -510,17 +516,9 @@ def Execute(data):
             if not os.path.exists(userpath):
                 create = open(userpath, "w+")
 
-            # if the user had a previous encounter, delete it
-            #if os.path.exists(userencounterpath):
-            #    os.remove(userencounterpath)
-
-            # Adds the latest encounter to the encounter file
-            #AddToFile(userencounterpath, RandomMonster)
-
             # gets a random line from the encounter files
             # This is the encounter which is selected
             encounters = ReadLinesFile(EncounterFile)
-            #RandomEncounter = encounters[Parent.GetRandom(0, len(encounters))]
 
             EncounterList = []
             RandomEncounter = Encounter()
@@ -757,7 +755,7 @@ def Execute(data):
                     elif(data.GetParam(1).lower() == 'back' or data.GetParam(2).lower() == 'back'):
                         response = MySet.EquipmentSpecificResponse.format(data.UserName, equipment['back'], "back")
                     else:
-                        response = MySet.EquipmentWhisperResponse.format(data.UserName, equipment['head'], equipment['body'],
+                        response = MySet.EquipmentMessage.format(data.UserName, equipment['head'], equipment['body'],
                                                               equipment['hands'], equipment['legs'], equipment['feet'],
                                                               equipment['right hand'], equipment['left hand'], equipment['back'])
             else:
@@ -769,12 +767,42 @@ def Execute(data):
                 Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentChatCooldown)
             else:
                 SendWhisper(data.UserName, str(response))
-                SendMessage(str(MySet.EquipmentResponse.format(data.UserName)))
+                SendMessage(str(MySet.EquipmentWhisperResponse.format(data.UserName)))
                 Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentWhisperCooldown)
 
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipmentCommand, data.User)
             message = MySet.EquipmentCooldownResponse.format(data.UserName, cooldownduration)
+            Parent.SendStreamMessage(str(message))
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Loot
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+        0).lower() == MySet.CheckLootCommand.lower() and LiveCheck() and MySet.TurnOnCheckLoot:
+        if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLootCommand, data.User):
+            response = "null"
+
+            if os.path.exists(userencounterpath):
+                with open(userencounterpath) as json_file:
+                    data2 = json.load(json_file)
+                    loot = data2['loot']
+                    response = MySet.CheckLootMessage.format(data.UserName, loot)
+            else:
+                response = MySet.InvaldDataResponse.format(data.UserName)
+
+            # Check to see if the user wants to print the information into the Twitch chat
+            if(data.GetParam(1).lower() == "chat"):
+                SendMessage(str(response))
+                Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootChatCooldown)
+            else:
+                SendWhisper(data.UserName, str(response))
+                SendMessage(str(MySet.CheckLootWhisperResponse))
+                Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootWhisperCooldown)
+        else:
+            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckLootCommand, data.User)
+            message = MySet.CheckLootCooldownResponse.format(data.UserName, cooldownduration)
             Parent.SendStreamMessage(str(message))
 
     # -----------------------------------------------------------------------------------------------------------------------
