@@ -97,6 +97,7 @@ class Settings:
             self.TurnOnEquipment = True
             self.TurnOnCheckLoot = True
             self.TurnOnCheckTrophies = True
+            self.TurnOnEquip = True
             self.TurnOnCatch = True
             self.TurnOnBattle = True
             self.TurnOnRelease = True
@@ -146,6 +147,10 @@ class Settings:
             self.CheckTrophiesCooldownResponse = "{0} the trophies command is on cooldown for {1} seconds"
             self.CheckTrophiesWhisperCooldown = 60.0
             self.CheckTrophiesChatCooldown = 300.0
+            self.EquipCommand = "!equip"
+            self.EquipResponse = "response"
+            self.EquipCooldownResponse = "{0} the equip command is on cooldown for {1} seconds"
+            self.EquipCooldown = 5
             self.BattleCommand = "!battle"
             self.BattleResponse = "{0} {1} {2} {3}"
             self.BattleCooldownResponse = "Battle command is on cooldown"
@@ -842,6 +847,23 @@ def Execute(data):
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckTrophiesCommand, data.User)
             message = MySet.CheckTrophiesCooldownResponse.format(data.UserName, cooldownduration)
+            SendMessage(str(message))
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Equip
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+            0).lower() == MySet.EquipCommand.lower() and LiveCheck() and MySet.TurnOnEquip:
+        if not Parent.IsOnUserCooldown(ScriptName, MySet.EquipCommand, data.User):
+
+            itemName = data.GetParam(1).lower()
+
+            SendMessage(str(itemName))
+            Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
+        else:
+            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipCommand, data.User)
+            message = MySet.EquipCooldownResponse.format(date.UserName, cooldownduration)
             SendMessage(str(message))
 
     # -----------------------------------------------------------------------------------------------------------------------
