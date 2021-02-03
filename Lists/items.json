@@ -1,0 +1,15 @@
+{
+"items":[
+	{
+		"name": "Sword of Vengence",
+		"location": ["right","left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Axe",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	}]
+}

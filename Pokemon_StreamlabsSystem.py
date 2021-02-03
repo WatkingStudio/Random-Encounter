@@ -52,6 +52,8 @@ global BodyPartFile
 BodyPartFile = ListFilePath + "bodypart.txt"
 global EncounterFile
 EncounterFile =  ListFilePath + "encounter.json"
+global ItemsFile
+ItemsFile = ListFilePath + "items.json"
 global LocationFile
 LocationFile = ListFilePath + "location.txt"
 global LootDataFile
@@ -227,6 +229,12 @@ class Encounter:
     trophies = ""
     loot = ""
 
+class Item:
+    name = ""
+    location = ""
+    offence = 0
+    defence = 0
+
 # ---------------------------------------
 # Functions used for user creation/modification
 # ---------------------------------------
@@ -256,12 +264,6 @@ def DetermineRank(level):
 def AddToFile(filepath, addme):
     with open(filepath, "a") as outfile:
         json.dump(addme, outfile, indent=4)
-    #with open(filepath, "a+") as f:
-        #f.seek(0)
-        #data = f.read(100)
-        #if len(data) > 0:
-            #f.write("\n")
-        #f.write(addme)
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -513,6 +515,8 @@ def Execute(data):
     UserStarted = "test"
     TargetOf = "test"
     userpath = UsersMonFolder + data.UserName + ".txt"
+    # THIS VARIABLE NAME IS MISS LEADING AND SHOULD BE CHANGED COMPLETELY
+    # IT SHOULDN'T BE FOR THE ENCOUNTER PATH, BUT INSTEAD FOR THE USERS DATA
     userencounterpath = EncounterFolder + data.UserName + ".json"
 
     random.seed()
@@ -857,14 +861,58 @@ def Execute(data):
             0).lower() == MySet.EquipCommand.lower() and LiveCheck() and MySet.TurnOnEquip:
         if not Parent.IsOnUserCooldown(ScriptName, MySet.EquipCommand, data.User):
 
-            itemName = data.GetParam(1).lower()
+            data2 = ""
 
-            SendMessage(str(itemName))
+            itemName = ""
+            numberOfParams = data.GetParamCount()
+            location = data.GetParam(numberOfParams - 1).lower()
+            hasLocation = False
+            if location == "head" or location == "body" or location == "hands" or location == "legs" or location == "feet" or location == "right" or location == "left" or location == "back":
+                hasLocation = True
+
+            for i in range (1, numberOfParams):
+                word = data.GetParam(i)
+                if word.lower() != "right" and word.lower() != "left":
+                    if i != 1:
+                        itemName += " "
+                    itemName += word
+
+            item = Item()
+            with open(ItemsFile) as json_file:
+                itemList = json.load(json_file)
+                for i in itemList['items']:
+                    if i['name'].lower() == itemName.lower():
+                        item.name = itemName
+                        item.location = i['location']
+                        item.offence = i['offence']
+                        item.defence = i['defence']
+
+            if hasLocation == True:
+                for loc in item.location:
+                    Log(loc)
+                    if location == loc:
+                        with open(userencounterpath) as json_file:
+                            data2 = json.load(json_file)
+                            equipment = data2['equipment']
+                            if location == "right":
+                                equipment['right hand'] = item.name
+                                Log("this")
+                            data2['equipment'] = equipment
+                            Log("here")
+
+            if os.path.exists(userencounterpath):
+                os.remove(userencounterpath)
+            AddToFile(userencounterpath, data2)
+
+            response = MySet.EquipResponse.format(item.name, item.location, item.offence, item.defence)
+            SendMessage(str(response))
             Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipCommand, data.User)
-            message = MySet.EquipCooldownResponse.format(date.UserName, cooldownduration)
+            message = MySet.EquipCooldownResponse.format(data.UserName, cooldownduration)
             SendMessage(str(message))
+
+#EquipItem(name, location, offence, defence):
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Catch
