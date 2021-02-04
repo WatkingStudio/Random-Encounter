@@ -614,6 +614,8 @@ def Execute(data):
             #{
             #   "exp": int,
             #   "level": int,
+            #   "offence": int,
+            #   "defence": int,
             #   "rank": string,
             #   "equipment": [string],
             #   "treasure": [string],
@@ -632,6 +634,8 @@ def Execute(data):
                 data2['level'] = DetermineLevel(data2['exp'])
                 # Assign a rank to the user
                 data2['rank'] = DetermineRank(data2['level'])
+                data2['offence'] = 0
+                data2['defence'] = 0
                 # Assign equipment to the user
                 equipment = {}
                 equipment['head'] = "Leather Helmet"
@@ -664,9 +668,6 @@ def Execute(data):
                     data2['level'] = DetermineLevel(data2['exp'])
                     # Update the users rank
                     data2['rank'] = DetermineRank(data2['level'])
-                    # No equipment should be assigned by the encounter script.
-                    # This should only be done manually by the user
-
                     # Add treasure to the user
                     treasureValue = data2['treasure'] + RandomEncounter.treasure
                     data2['treasure'] = treasureValue
@@ -910,7 +911,10 @@ def Execute(data):
                     for loc in item.location:
                         if location == loc:
                             if location == "right":
+                                oldItem = RetrieveItem(equipment['right hand'])
+                                val = data2['offence'] - oldItem.offence + item.offence
                                 equipment['right hand'] = item.name
+                                data2['offence'] = val
                             elif location == "left":
                                 equipment['left hand'] = item.name
                             elif location == "head":
