@@ -447,6 +447,31 @@ def AssignLoot(lootString):
     return assignedLoot
 
 # ---------------------------------------
+# Functions used for the equip command
+# ---------------------------------------
+
+#This function checks to see if the word is a location or not
+def WordIsLocation(location):
+    if location == "head" or location == "body" or location == "hands" or location == "legs" or location == "feet" or location == "right" or location == "left" or location == "back":
+        return True
+    else:
+        return False
+
+#This function takes the name of the item and retrieves it's data from the items list
+def RetrieveItem(itemName):
+    item = Item()
+    with open(ItemsFile) as json_file:
+        itemList = json.load(json_file)
+        for i in itemList['items']:
+            if i['name'].lower() == itemName.lower():
+                item.name = itemName
+                item.location = i['location']
+                item.offence = i['offence']
+                item.defence = i['defence']
+                break
+    return item
+
+# ---------------------------------------
 # Functions used to get random string from data files
 # ---------------------------------------
 
@@ -866,39 +891,41 @@ def Execute(data):
             itemName = ""
             numberOfParams = data.GetParamCount()
             location = data.GetParam(numberOfParams - 1).lower()
-            hasLocation = False
-            if location == "head" or location == "body" or location == "hands" or location == "legs" or location == "feet" or location == "right" or location == "left" or location == "back":
-                hasLocation = True
+            hasLocation = WordIsLocation(location)
 
             for i in range (1, numberOfParams):
                 word = data.GetParam(i)
-                if word.lower() != "right" and word.lower() != "left":
+                if not WordIsLocation(word):
                     if i != 1:
                         itemName += " "
                     itemName += word
 
-            item = Item()
-            with open(ItemsFile) as json_file:
-                itemList = json.load(json_file)
-                for i in itemList['items']:
-                    if i['name'].lower() == itemName.lower():
-                        item.name = itemName
-                        item.location = i['location']
-                        item.offence = i['offence']
-                        item.defence = i['defence']
+            item = RetrieveItem(itemName)
 
-            if hasLocation == True:
-                for loc in item.location:
-                    Log(loc)
-                    if location == loc:
-                        with open(userencounterpath) as json_file:
-                            data2 = json.load(json_file)
-                            equipment = data2['equipment']
+            #(the item, if the item has a location, what location)
+            with open(userencounterpath) as json_file:
+                data2 = json.load(json_file)
+                equipment = data2['equipment']
+                if hasLocation == True:
+                    for loc in item.location:
+                        if location == loc:
                             if location == "right":
                                 equipment['right hand'] = item.name
-                                Log("this")
+                            elif location == "left":
+                                equipment['left hand'] = item.name
+                            elif location == "head":
+                                equipment['head'] = item.name
+                            elif location == "body":
+                                equipment['body'] = item.name
+                            elif location == "hands":
+                                equipment['hands'] = item.name
+                            elif location == "legs":
+                                equipment['legs'] = item.name
+                            elif location == "feet":
+                                equipment['feet'] = item.name
+                            elif location == "back":
+                                equipment['back'] = item.name
                             data2['equipment'] = equipment
-                            Log("here")
 
             if os.path.exists(userencounterpath):
                 os.remove(userencounterpath)
@@ -911,8 +938,6 @@ def Execute(data):
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipCommand, data.User)
             message = MySet.EquipCooldownResponse.format(data.UserName, cooldownduration)
             SendMessage(str(message))
-
-#EquipItem(name, location, offence, defence):
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Catch
