@@ -60,7 +60,7 @@
   "EquipResponseItemInvalid": "The item {0} is not a valid item",
   "EquipResponseLocationInvalid": "The location {0} is not a valid location for a {1}",
   "EquipCooldownResponse": "{0} the equip command is on cooldown for {1} seconds",
-  "EquipCooldown": 1.0,
+  "EquipCooldown": 5,
   "BattleCommand": "!battle",
   "BattleResponse": "/me {5}",
   "BattleCooldownResponse": "/me {0}, the battle command is on cooldown for {1} seconds",
