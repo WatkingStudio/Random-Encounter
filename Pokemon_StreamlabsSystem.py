@@ -150,7 +150,9 @@ class Settings:
             self.CheckTrophiesWhisperCooldown = 60.0
             self.CheckTrophiesChatCooldown = 300.0
             self.EquipCommand = "!equip"
-            self.EquipResponse = "response"
+            self.EquipResponseSuccess = "{0} has successfully been equipped"
+            self.EquipResponseItemInvalid = "The item {0} is not a valid item"
+            self.EquipResponseLocationInvalid = "The location {0} is not a valid location for a {1}"
             self.EquipCooldownResponse = "{0} the equip command is on cooldown for {1} seconds"
             self.EquipCooldown = 5
             self.BattleCommand = "!battle"
@@ -460,10 +462,12 @@ def WordIsLocation(location):
 #This function takes the name of the item and retrieves it's data from the items list
 def RetrieveItem(itemName):
     item = Item()
+    validItem = False
     with open(ItemsFile) as json_file:
         itemList = json.load(json_file)
         for i in itemList['items']:
             if i['name'].lower() == itemName.lower():
+                validItem = True
                 item.name = itemName
                 item.location = i['location']
                 item.offence = i['offence']
@@ -547,6 +551,7 @@ def GetRandomLocation():
 
 def GetRandomNPC():
     return random.choice(ReadLinesFile(NPCFile))
+
 
 # ---------------------------
 #   [Required] Initialize Data (Only called on load)
@@ -927,6 +932,8 @@ def Execute(data):
             numberOfParams = data.GetParamCount()
             location = data.GetParam(numberOfParams - 1).lower()
             hasLocation = WordIsLocation(location)
+            itemIsValid = True
+            locationIsValid = True
 
             for i in range (1, numberOfParams):
                 word = data.GetParam(i)
@@ -936,24 +943,37 @@ def Execute(data):
                     itemName += word
 
             item = RetrieveItem(itemName)
+            if item.name == "":
+                itemIsValid = False
 
-            with open(userencounterpath) as json_file:
-                data2 = json.load(json_file)
-                equipment = data2['equipment']
-                if hasLocation == True:
-                    for loc in item.location:
-                        if location == loc:
-                            data2 = AssignItem(data2, item, location)
+            if itemIsValid:
+                with open(userencounterpath) as json_file:
+                    data2 = json.load(json_file)
+                    equipment = data2['equipment']
+                    # If a location is specified use that location
+                    #  otherwise use the first location in the array
+                    if hasLocation == True:
+                        for loc in item.location:
+                            if location == loc:
+                                locationIsValid = True
+                                data2 = AssignItem(data2, item, location)
+                                break
+                            else:
+                                locationIsValid = False
+                    else:
+                        data2 = AssignItem(data2, item, item.location[0])
+
+                # If the item and location is valid, update the users files
+                if locationIsValid:
+                    if os.path.exists(userencounterpath):
+                        os.remove(userencounterpath)
+                    AddToFile(userencounterpath, data2)
+                    Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
+                    SendMessage(str(MySet.EquipResponseSuccess.format(itemName)))
                 else:
-                    data2 = AssignItem(data2, item, item.location[0])
-
-            if os.path.exists(userencounterpath):
-                os.remove(userencounterpath)
-            AddToFile(userencounterpath, data2)
-
-            response = MySet.EquipResponse.format(item.name, item.location, item.offence, item.defence)
-            SendMessage(str(response))
-            Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
+                    SendMessage(str(MySet.EquipResponseLocationInvalid.format(location, itemName)))
+            else:
+                SendMessage(str(MySet.EquipResponseItemInvalid.format(itemName)))
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipCommand, data.User)
             message = MySet.EquipCooldownResponse.format(data.UserName, cooldownduration)

@@ -444,11 +444,25 @@
 		"tooltip": "Equip Command",
 		"group": "Equip"
 	},
-	"EquipResponse":{
+	"EquipResponseSuccess":{
 		"type": "textbox",
-		"value": "response",
-		"label": "Equip Response",
-		"tooltip": "Equip Response",
+		"value": "{0} has been successfully been equipped to your {1} slot",
+		"label": "Equip Response Success",
+		"tooltip": "Equip Response Success",
+		"group": "Equip"
+	},
+	"EquipResponseItemInvalid":{
+		"type": "textbox",
+		"value": "The item {0} is not a valid item",
+		"label": "Equip Response Item Invalid",
+		"tooltip": "Equip Response Item Invalid",
+		"group": "Equip"
+	},
+	"EquipResponseLocationInvalid":{
+		"type": "textbox",
+		"value": "The location {0} is not a valid location",
+		"label": "Equip Response Location Invalid",
+		"tooltip": "Equip Response Location Invalid",
 		"group": "Equip"
 	},
 	"EquipCooldownResponse":{
