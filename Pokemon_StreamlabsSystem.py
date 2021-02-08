@@ -77,6 +77,8 @@ WeaponFile = ListFilePath + "weapons.txt"
 # ---------------------------------------
 settingsFile = os.path.join(os.path.dirname(__file__), "Settings\settings.json")
 MessageBox = ctypes.windll.user32.MessageBoxW
+global locationList
+locationList = ["head", "body", "hands", "legs", "feet", "right", "left", "back"]
 
 # ---------------------------------------
 # Classes
@@ -454,10 +456,10 @@ def AssignLoot(lootString):
 
 #This function checks to see if the word is a location or not
 def WordIsLocation(location):
-    if location == "head" or location == "body" or location == "hands" or location == "legs" or location == "feet" or location == "right" or location == "left" or location == "back":
-        return True
-    else:
-        return False
+    for loc in locationList:
+        if location == loc:
+            return True
+    return False
 
 #This function takes the name of the item and retrieves it's data from the items list
 def RetrieveItem(itemName):
@@ -927,13 +929,8 @@ def Execute(data):
             0).lower() == MySet.EquipCommand.lower() and LiveCheck() and MySet.TurnOnEquip:
         if not Parent.IsOnUserCooldown(ScriptName, MySet.EquipCommand, data.User):
 
-            data2 = ""
             itemName = ""
             numberOfParams = data.GetParamCount()
-            location = data.GetParam(numberOfParams - 1).lower()
-            hasLocation = WordIsLocation(location)
-            itemIsValid = True
-            locationIsValid = True
 
             for i in range (1, numberOfParams):
                 word = data.GetParam(i)
@@ -943,13 +940,17 @@ def Execute(data):
                     itemName += word
 
             item = RetrieveItem(itemName)
+            itemIsValid = True
             if item.name == "":
                 itemIsValid = False
 
             if itemIsValid:
+                location = data.GetParam(numberOfParams - 1).lower()
+                locationIsValid = True
+
                 with open(userencounterpath) as json_file:
                     data2 = json.load(json_file)
-                    equipment = data2['equipment']
+                    hasLocation = WordIsLocation(location)
                     # If a location is specified use that location
                     #  otherwise use the first location in the array
                     if hasLocation == True:
@@ -969,11 +970,11 @@ def Execute(data):
                         os.remove(userencounterpath)
                     AddToFile(userencounterpath, data2)
                     Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
-                    SendMessage(str(MySet.EquipResponseSuccess.format(itemName)))
+                    SendWhisper(data.UserName, str(MySet.EquipResponseSuccess.format(itemName)))
                 else:
-                    SendMessage(str(MySet.EquipResponseLocationInvalid.format(location, itemName)))
+                    SendWhisper(data.UserName, str(MySet.EquipResponseLocationInvalid.format(location, itemName)))
             else:
-                SendMessage(str(MySet.EquipResponseItemInvalid.format(itemName)))
+                SendWhisper(data.UserName, str(MySet.EquipResponseItemInvalid.format(itemName)))
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipCommand, data.User)
             message = MySet.EquipCooldownResponse.format(data.UserName, cooldownduration)
