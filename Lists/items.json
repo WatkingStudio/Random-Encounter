@@ -10,7 +10,7 @@
 		"name": "Axe",
 		"location": ["right", "left"],
 		"offence": 1,
-		"defence": 0
+		"defence": 1
 	},
 	{
 		"name": "Diamond Helmet",

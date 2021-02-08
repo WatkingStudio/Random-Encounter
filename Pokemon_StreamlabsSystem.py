@@ -471,6 +471,41 @@ def RetrieveItem(itemName):
                 break
     return item
 
+# This function applies the changes required when a new item is being equipped
+# It modifies the offence and defence statistics and equips the item to the correct slot
+def AssignItem(userJson, item, location):
+    equipment = userJson['equipment']
+    oldItem = Item()
+    if location == "right":
+        oldItem = RetrieveItem(equipment['right hand'])
+        equipment['right hand'] = item.name
+    elif location == "left":
+        oldItem = RetrieveItem(equipment['left hand'])
+        equipment['left hand'] = item.name
+    elif location == "head":
+        oldItem = RetrieveItem(equipment['head'])
+        equipment['head'] = item.name
+    elif location == "body":
+        oldItem = RetrieveItem(equipment['body'])
+        equipment['body'] = item.name
+    elif location == "hands":
+        oldItem = RetrieveItem(equipment['hands'])
+        equipment['hands'] = item.name
+    elif location == "legs":
+        oldItem = RetrieveItem(equipment['legs'])
+        equipment['legs'] = item.name
+    elif location == "feet":
+        oldItem = RetrieveItem(equipment['feet'])
+        equipment['feet'] = item.name
+    elif location == "back":
+        oldItem = RetrieveItem(equipment['back'])
+        equipment['back'] = item.name
+
+    userJson['offence'] = userJson['offence'] - oldItem.offence + item.offence
+    userJson['defence'] = userJson['defence'] - oldItem.defence + item.defence
+    userJson['equipment'] = equipment
+    return userJson
+
 # ---------------------------------------
 # Functions used to get random string from data files
 # ---------------------------------------
@@ -888,7 +923,6 @@ def Execute(data):
         if not Parent.IsOnUserCooldown(ScriptName, MySet.EquipCommand, data.User):
 
             data2 = ""
-
             itemName = ""
             numberOfParams = data.GetParamCount()
             location = data.GetParam(numberOfParams - 1).lower()
@@ -903,33 +937,15 @@ def Execute(data):
 
             item = RetrieveItem(itemName)
 
-            #(the item, if the item has a location, what location)
             with open(userencounterpath) as json_file:
                 data2 = json.load(json_file)
                 equipment = data2['equipment']
                 if hasLocation == True:
                     for loc in item.location:
                         if location == loc:
-                            if location == "right":
-                                oldItem = RetrieveItem(equipment['right hand'])
-                                val = data2['offence'] - oldItem.offence + item.offence
-                                equipment['right hand'] = item.name
-                                data2['offence'] = val
-                            elif location == "left":
-                                equipment['left hand'] = item.name
-                            elif location == "head":
-                                equipment['head'] = item.name
-                            elif location == "body":
-                                equipment['body'] = item.name
-                            elif location == "hands":
-                                equipment['hands'] = item.name
-                            elif location == "legs":
-                                equipment['legs'] = item.name
-                            elif location == "feet":
-                                equipment['feet'] = item.name
-                            elif location == "back":
-                                equipment['back'] = item.name
-                            data2['equipment'] = equipment
+                            data2 = AssignItem(data2, item, location)
+                else:
+                    data2 = AssignItem(data2, item, item.location[0])
 
             if os.path.exists(userencounterpath):
                 os.remove(userencounterpath)
