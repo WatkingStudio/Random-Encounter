@@ -1,0 +1,27 @@
+{
+"items":[
+	{
+		"name": "Sword of Vengence",
+		"location": ["right","left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Axe",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 1
+	},
+	{
+		"name": "Diamond Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 1
+	},
+	{
+		"name": "Sword",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	}]
+}

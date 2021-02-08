@@ -52,6 +52,8 @@ global BodyPartFile
 BodyPartFile = ListFilePath + "bodypart.txt"
 global EncounterFile
 EncounterFile =  ListFilePath + "encounter.json"
+global ItemsFile
+ItemsFile = ListFilePath + "items.json"
 global LocationFile
 LocationFile = ListFilePath + "location.txt"
 global LootDataFile
@@ -75,6 +77,8 @@ WeaponFile = ListFilePath + "weapons.txt"
 # ---------------------------------------
 settingsFile = os.path.join(os.path.dirname(__file__), "Settings\settings.json")
 MessageBox = ctypes.windll.user32.MessageBoxW
+global locationList
+locationList = ["head", "body", "hands", "legs", "feet", "right", "left", "back"]
 
 # ---------------------------------------
 # Classes
@@ -97,6 +101,7 @@ class Settings:
             self.TurnOnEquipment = True
             self.TurnOnCheckLoot = True
             self.TurnOnCheckTrophies = True
+            self.TurnOnEquip = True
             self.TurnOnCatch = True
             self.TurnOnBattle = True
             self.TurnOnRelease = True
@@ -146,6 +151,12 @@ class Settings:
             self.CheckTrophiesCooldownResponse = "{0} the trophies command is on cooldown for {1} seconds"
             self.CheckTrophiesWhisperCooldown = 60.0
             self.CheckTrophiesChatCooldown = 300.0
+            self.EquipCommand = "!equip"
+            self.EquipResponseSuccess = "{0} has successfully been equipped"
+            self.EquipResponseItemInvalid = "The item {0} is not a valid item"
+            self.EquipResponseLocationInvalid = "The location {0} is not a valid location for a {1}"
+            self.EquipCooldownResponse = "{0} the equip command is on cooldown for {1} seconds"
+            self.EquipCooldown = 5
             self.BattleCommand = "!battle"
             self.BattleResponse = "{0} {1} {2} {3}"
             self.BattleCooldownResponse = "Battle command is on cooldown"
@@ -222,6 +233,12 @@ class Encounter:
     trophies = ""
     loot = ""
 
+class Item:
+    name = ""
+    location = ""
+    offence = 0
+    defence = 0
+
 # ---------------------------------------
 # Functions used for user creation/modification
 # ---------------------------------------
@@ -251,12 +268,6 @@ def DetermineRank(level):
 def AddToFile(filepath, addme):
     with open(filepath, "a") as outfile:
         json.dump(addme, outfile, indent=4)
-    #with open(filepath, "a+") as f:
-        #f.seek(0)
-        #data = f.read(100)
-        #if len(data) > 0:
-            #f.write("\n")
-        #f.write(addme)
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -440,6 +451,68 @@ def AssignLoot(lootString):
     return assignedLoot
 
 # ---------------------------------------
+# Functions used for the equip command
+# ---------------------------------------
+
+#This function checks to see if the word is a location or not
+def WordIsLocation(location):
+    for loc in locationList:
+        if location == loc:
+            return True
+    return False
+
+#This function takes the name of the item and retrieves it's data from the items list
+def RetrieveItem(itemName):
+    item = Item()
+    validItem = False
+    with open(ItemsFile) as json_file:
+        itemList = json.load(json_file)
+        for i in itemList['items']:
+            if i['name'].lower() == itemName.lower():
+                validItem = True
+                item.name = itemName
+                item.location = i['location']
+                item.offence = i['offence']
+                item.defence = i['defence']
+                break
+    return item
+
+# This function applies the changes required when a new item is being equipped
+# It modifies the offence and defence statistics and equips the item to the correct slot
+def AssignItem(userJson, item, location):
+    equipment = userJson['equipment']
+    oldItem = Item()
+    if location == "right":
+        oldItem = RetrieveItem(equipment['right hand'])
+        equipment['right hand'] = item.name
+    elif location == "left":
+        oldItem = RetrieveItem(equipment['left hand'])
+        equipment['left hand'] = item.name
+    elif location == "head":
+        oldItem = RetrieveItem(equipment['head'])
+        equipment['head'] = item.name
+    elif location == "body":
+        oldItem = RetrieveItem(equipment['body'])
+        equipment['body'] = item.name
+    elif location == "hands":
+        oldItem = RetrieveItem(equipment['hands'])
+        equipment['hands'] = item.name
+    elif location == "legs":
+        oldItem = RetrieveItem(equipment['legs'])
+        equipment['legs'] = item.name
+    elif location == "feet":
+        oldItem = RetrieveItem(equipment['feet'])
+        equipment['feet'] = item.name
+    elif location == "back":
+        oldItem = RetrieveItem(equipment['back'])
+        equipment['back'] = item.name
+
+    userJson['offence'] = userJson['offence'] - oldItem.offence + item.offence
+    userJson['defence'] = userJson['defence'] - oldItem.defence + item.defence
+    userJson['equipment'] = equipment
+    return userJson
+
+# ---------------------------------------
 # Functions used to get random string from data files
 # ---------------------------------------
 
@@ -481,6 +554,7 @@ def GetRandomLocation():
 def GetRandomNPC():
     return random.choice(ReadLinesFile(NPCFile))
 
+
 # ---------------------------
 #   [Required] Initialize Data (Only called on load)
 # ---------------------------
@@ -508,6 +582,8 @@ def Execute(data):
     UserStarted = "test"
     TargetOf = "test"
     userpath = UsersMonFolder + data.UserName + ".txt"
+    # THIS VARIABLE NAME IS MISS LEADING AND SHOULD BE CHANGED COMPLETELY
+    # IT SHOULDN'T BE FOR THE ENCOUNTER PATH, BUT INSTEAD FOR THE USERS DATA
     userencounterpath = EncounterFolder + data.UserName + ".json"
 
     random.seed()
@@ -580,6 +656,8 @@ def Execute(data):
             #{
             #   "exp": int,
             #   "level": int,
+            #   "offence": int,
+            #   "defence": int,
             #   "rank": string,
             #   "equipment": [string],
             #   "treasure": [string],
@@ -598,6 +676,8 @@ def Execute(data):
                 data2['level'] = DetermineLevel(data2['exp'])
                 # Assign a rank to the user
                 data2['rank'] = DetermineRank(data2['level'])
+                data2['offence'] = 0
+                data2['defence'] = 0
                 # Assign equipment to the user
                 equipment = {}
                 equipment['head'] = "Leather Helmet"
@@ -630,9 +710,6 @@ def Execute(data):
                     data2['level'] = DetermineLevel(data2['exp'])
                     # Update the users rank
                     data2['rank'] = DetermineRank(data2['level'])
-                    # No equipment should be assigned by the encounter script.
-                    # This should only be done manually by the user
-
                     # Add treasure to the user
                     treasureValue = data2['treasure'] + RandomEncounter.treasure
                     data2['treasure'] = treasureValue
@@ -842,6 +919,65 @@ def Execute(data):
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckTrophiesCommand, data.User)
             message = MySet.CheckTrophiesCooldownResponse.format(data.UserName, cooldownduration)
+            SendMessage(str(message))
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Equip
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+            0).lower() == MySet.EquipCommand.lower() and LiveCheck() and MySet.TurnOnEquip:
+        if not Parent.IsOnUserCooldown(ScriptName, MySet.EquipCommand, data.User):
+
+            itemName = ""
+            numberOfParams = data.GetParamCount()
+
+            for i in range (1, numberOfParams):
+                word = data.GetParam(i)
+                if not WordIsLocation(word):
+                    if i != 1:
+                        itemName += " "
+                    itemName += word
+
+            item = RetrieveItem(itemName)
+            itemIsValid = True
+            if item.name == "":
+                itemIsValid = False
+
+            if itemIsValid:
+                location = data.GetParam(numberOfParams - 1).lower()
+                locationIsValid = True
+
+                with open(userencounterpath) as json_file:
+                    data2 = json.load(json_file)
+                    hasLocation = WordIsLocation(location)
+                    # If a location is specified use that location
+                    #  otherwise use the first location in the array
+                    if hasLocation == True:
+                        for loc in item.location:
+                            if location == loc:
+                                locationIsValid = True
+                                data2 = AssignItem(data2, item, location)
+                                break
+                            else:
+                                locationIsValid = False
+                    else:
+                        data2 = AssignItem(data2, item, item.location[0])
+
+                # If the item and location is valid, update the users files
+                if locationIsValid:
+                    if os.path.exists(userencounterpath):
+                        os.remove(userencounterpath)
+                    AddToFile(userencounterpath, data2)
+                    Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
+                    SendWhisper(data.UserName, str(MySet.EquipResponseSuccess.format(itemName)))
+                else:
+                    SendWhisper(data.UserName, str(MySet.EquipResponseLocationInvalid.format(location, itemName)))
+            else:
+                SendWhisper(data.UserName, str(MySet.EquipResponseItemInvalid.format(itemName)))
+        else:
+            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipCommand, data.User)
+            message = MySet.EquipCooldownResponse.format(data.UserName, cooldownduration)
             SendMessage(str(message))
 
     # -----------------------------------------------------------------------------------------------------------------------

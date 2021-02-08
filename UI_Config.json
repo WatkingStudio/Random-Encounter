@@ -70,6 +70,13 @@
 		"tooltip": "Turn on the Check Trophies Command",
 		"group": "General"
 	},
+	"TurnOnEquip":{
+		"type": "checkbox",
+		"value": true,
+		"label": "Turn On Equip",
+		"tooltip": "Turn on the Equip Command",
+		"group": "General"
+	},
   	"TurnOnCatch": {
 	    "type": "checkbox",
 	    "value": false,
@@ -417,7 +424,7 @@
 		"max": 300,
 		"ticks": 1,
 		"label": "Check Trophies Whisper Cooldown (seconds)",
-		"tooltip": "How long the command should go on cooldown for in (seconds) after sending in a whisper",
+		"tooltip": "How long the command should go on cooldown for(seconds) after sending in a whisper",
 		"group": "Check Trophies"
 	},
 	"CheckTrophiesChatCooldown":{
@@ -427,8 +434,53 @@
 		"max": 300,
 		"ticks": 1,
 		"label": "Check Trophies Chat Cooldown (seconds)",
-		"tooltip": "How long the command should go on cooldown for in (seconds) after sending in the chat",
+		"tooltip": "How long the command should go on cooldown for(seconds) after sending in the chat",
 		"group": "Check Trophies"
+	},
+	"EquipCommand":{
+		"type": "textbox",
+		"value": "!equip",
+		"label": "Equip Command",
+		"tooltip": "Equip Command",
+		"group": "Equip"
+	},
+	"EquipResponseSuccess":{
+		"type": "textbox",
+		"value": "{0} has been successfully been equipped to your {1} slot",
+		"label": "Equip Response Success",
+		"tooltip": "Equip Response Success",
+		"group": "Equip"
+	},
+	"EquipResponseItemInvalid":{
+		"type": "textbox",
+		"value": "The item {0} is not a valid item",
+		"label": "Equip Response Item Invalid",
+		"tooltip": "Equip Response Item Invalid",
+		"group": "Equip"
+	},
+	"EquipResponseLocationInvalid":{
+		"type": "textbox",
+		"value": "The location {0} is not a valid location",
+		"label": "Equip Response Location Invalid",
+		"tooltip": "Equip Response Location Invalid",
+		"group": "Equip"
+	},
+	"EquipCooldownResponse":{
+		"type": "textbox",
+		"value": "{0} the equip command is on cooldown for {1} seconds",
+		"label": "Equip Cooldown Response",
+		"tooltip": "Equip Cooldown Response",
+		"group": "Equip"
+	},
+	"EquipCooldown":{
+		"type": "slider",
+		"value": 5, 
+		"min": 1,
+		"max": 300,
+		"ticks": 1,
+		"label": "Equip Cooldown (seconds)",
+		"tooltip": "How long the command should go on cooldown for(seconds)",
+		"group": "Equip"
 	},
     "CatchCommand": {
         "type": "textbox",
