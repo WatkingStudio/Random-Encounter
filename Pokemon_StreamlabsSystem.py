@@ -442,14 +442,14 @@ def GetTrophyCondition():
 def FormatTrophy(trophyString, monster):
     formattedTrophy = trophyString.replace('{0}', monster)\
         .replace('{1}', GetTrophyCondition())
-    return formattedTrophy
+    return formattedTrophy.lower()
 
 def GetRandomLoot():
     return random.choice(ReadLinesFile(LootListFile))
 
 def AssignLoot(lootString):
     assignedLoot = lootString.replace('{0}', GetRandomLoot())
-    return assignedLoot
+    return assignedLoot.lower()
 
 # ---------------------------------------
 # Functions used for the equip command
@@ -471,7 +471,7 @@ def RetrieveItem(itemName):
         for i in itemList['items']:
             if i['name'].lower() == itemName.lower():
                 validItem = True
-                item.name = itemName
+                item.name = itemName.lower()
                 item.location = i['location']
                 item.offence = i['offence']
                 item.defence = i['defence']
@@ -487,31 +487,31 @@ def AssignItem(userJson, item, location):
     oldItem = Item()
     if location == "right":
         oldItem = RetrieveItem(equipment['right hand'])
-        equipment['right hand'] = item.name
+        equipment['right hand'] = item.name.lower()
     elif location == "left":
         oldItem = RetrieveItem(equipment['left hand'])
-        equipment['left hand'] = item.name
+        equipment['left hand'] = item.name.lower()
     elif location == "head":
         oldItem = RetrieveItem(equipment['head'])
-        equipment['head'] = item.name
+        equipment['head'] = item.name.lower()
     elif location == "body":
         oldItem = RetrieveItem(equipment['body'])
-        equipment['body'] = item.name
+        equipment['body'] = item.name.lower()
     elif location == "hands":
         oldItem = RetrieveItem(equipment['hands'])
-        equipment['hands'] = item.name
+        equipment['hands'] = item.name.lower()
     elif location == "legs":
         oldItem = RetrieveItem(equipment['legs'])
-        equipment['legs'] = item.name
+        equipment['legs'] = item.name.lower()
     elif location == "feet":
         oldItem = RetrieveItem(equipment['feet'])
-        equipment['feet'] = item.name
+        equipment['feet'] = item.name.lower()
     elif location == "back":
         oldItem = RetrieveItem(equipment['back'])
-        equipment['back'] = item.name
+        equipment['back'] = item.name.lower()
 
-    loot.remove(item.name)
-    loot.append(oldItem.name)
+    loot.remove(item.name.lower())
+    loot.append(oldItem.name.lower())
 
     userJson['offence'] = userJson['offence'] - oldItem.offence + item.offence
     userJson['defence'] = userJson['defence'] - oldItem.defence + item.defence
@@ -687,14 +687,14 @@ def Execute(data):
                 data2['defence'] = 0
                 # Assign equipment to the user
                 equipment = {}
-                equipment['head'] = "Leather Helmet"
-                equipment['body'] = "Cloth Shirt"
-                equipment['legs'] = "Leather Trousers"
-                equipment['feet'] = "Leather Boots"
-                equipment['hands'] = "Empty"
-                equipment['right hand'] = "Sword"
-                equipment['left hand'] = "Shield"
-                equipment['back'] = "Bow"
+                equipment['head'] = "leather helmet"
+                equipment['body'] = "cloth shirt"
+                equipment['legs'] = "leather trousers"
+                equipment['feet'] = "leather boots"
+                equipment['hands'] = "empty"
+                equipment['right hand'] = "sword"
+                equipment['left hand'] = "shield"
+                equipment['back'] = "bow"
                 data2['equipment'] = equipment
                 # Assign treasure to the user
                 data2['treasure'] = RandomEncounter.treasure
@@ -946,7 +946,7 @@ def Execute(data):
                         itemName += " "
                     itemName += word
 
-            item = RetrieveItem(itemName)
+            item = RetrieveItem(itemName.lower())
             itemIsValid = True
             if item.name == "":
                 itemIsValid = False
@@ -954,18 +954,17 @@ def Execute(data):
             if itemIsValid:
                 location = data.GetParam(numberOfParams - 1).lower()
                 locationIsValid = True
-                itemOwned = False
+                itemIsOwned = False
 
                 with open(userencounterpath) as json_file:
                     data2 = json.load(json_file)
 
-                    loot = data2['loot']
-                    for i in loot:
+                    for i in data2['loot']:
                         if i.lower() == item.name.lower():
-                            itemOwned = True
+                            itemIsOwned = True
                             break
 
-                    if itemOwned:
+                    if itemIsOwned:
                         hasLocation = WordIsLocation(location)
                         # If a location is specified use that location
                         #  otherwise use the first location in the array
@@ -981,13 +980,13 @@ def Execute(data):
                             data2 = AssignItem(data2, item, item.location[0])
 
                 # If the item and location is valid, update the users files
-                if locationIsValid and itemOwned:
+                if locationIsValid and itemIsOwned:
                     if os.path.exists(userencounterpath):
                         os.remove(userencounterpath)
                     AddToFile(userencounterpath, data2)
                     Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
                     SendWhisper(data.UserName, str(MySet.EquipResponseSuccess.format(itemName)))
-                elif not itemOwned:
+                elif not itemIsOwned:
                     SendWhisper(data.UserName, str(MySet.EquipResponseItemNotOwned.format(itemName)))
                 else:
                     SendWhisper(data.UserName, str(MySet.EquipResponseLocationInvalid.format(location, itemName)))
