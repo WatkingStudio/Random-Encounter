@@ -59,6 +59,7 @@
   "EquipResponseSuccess": "{0} has successfully been equipped",
   "EquipResponseItemInvalid": "The item {0} is not a valid item",
   "EquipResponseLocationInvalid": "The location {0} is not a valid location for a {1}",
+  "EquipResponseItemNotOwned": "You do not currently own the item '{0}' so you are not able to equip it",
   "EquipCooldownResponse": "{0} the equip command is on cooldown for {1} seconds",
   "EquipCooldown": 5,
   "BattleCommand": "!battle",

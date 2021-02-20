@@ -465,6 +465,13 @@
 		"tooltip": "Equip Response Location Invalid",
 		"group": "Equip"
 	},
+	"EquipResponseItemNotOwned":{
+		"type": "textbox",
+		"value": "You do not currently own the item '{0}' so you are not able to equip it",
+		"label": "Equip Response Item Not Owned",
+		"tooltip": "Equip Response Item Not Owned",
+		"group": "Equip"
+	},
 	"EquipCooldownResponse":{
 		"type": "textbox",
 		"value": "{0} the equip command is on cooldown for {1} seconds",

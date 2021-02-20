@@ -155,6 +155,7 @@ class Settings:
             self.EquipResponseSuccess = "{0} has successfully been equipped"
             self.EquipResponseItemInvalid = "The item {0} is not a valid item"
             self.EquipResponseLocationInvalid = "The location {0} is not a valid location for a {1}"
+            self.EquipResponseItemNotOwned = "You do not currently own the item '{0}' so you are not able to equip it"
             self.EquipCooldownResponse = "{0} the equip command is on cooldown for {1} seconds"
             self.EquipCooldown = 5
             self.BattleCommand = "!battle"
@@ -481,6 +482,8 @@ def RetrieveItem(itemName):
 # It modifies the offence and defence statistics and equips the item to the correct slot
 def AssignItem(userJson, item, location):
     equipment = userJson['equipment']
+    loot = userJson['loot']
+
     oldItem = Item()
     if location == "right":
         oldItem = RetrieveItem(equipment['right hand'])
@@ -507,9 +510,13 @@ def AssignItem(userJson, item, location):
         oldItem = RetrieveItem(equipment['back'])
         equipment['back'] = item.name
 
+    loot.remove(item.name)
+    loot.append(oldItem.name)
+
     userJson['offence'] = userJson['offence'] - oldItem.offence + item.offence
     userJson['defence'] = userJson['defence'] - oldItem.defence + item.defence
     userJson['equipment'] = equipment
+
     return userJson
 
 # ---------------------------------------
@@ -947,30 +954,41 @@ def Execute(data):
             if itemIsValid:
                 location = data.GetParam(numberOfParams - 1).lower()
                 locationIsValid = True
+                itemOwned = False
 
                 with open(userencounterpath) as json_file:
                     data2 = json.load(json_file)
-                    hasLocation = WordIsLocation(location)
-                    # If a location is specified use that location
-                    #  otherwise use the first location in the array
-                    if hasLocation == True:
-                        for loc in item.location:
-                            if location == loc:
-                                locationIsValid = True
-                                data2 = AssignItem(data2, item, location)
-                                break
-                            else:
-                                locationIsValid = False
-                    else:
-                        data2 = AssignItem(data2, item, item.location[0])
+
+                    loot = data2['loot']
+                    for i in loot:
+                        if i.lower() == item.name.lower():
+                            itemOwned = True
+                            break
+
+                    if itemOwned:
+                        hasLocation = WordIsLocation(location)
+                        # If a location is specified use that location
+                        #  otherwise use the first location in the array
+                        if hasLocation == True:
+                            for loc in item.location:
+                                if location == loc:
+                                    locationIsValid = True
+                                    data2 = AssignItem(data2, item, location)
+                                    break
+                                else:
+                                    locationIsValid = False
+                        else:
+                            data2 = AssignItem(data2, item, item.location[0])
 
                 # If the item and location is valid, update the users files
-                if locationIsValid:
+                if locationIsValid and itemOwned:
                     if os.path.exists(userencounterpath):
                         os.remove(userencounterpath)
                     AddToFile(userencounterpath, data2)
                     Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
                     SendWhisper(data.UserName, str(MySet.EquipResponseSuccess.format(itemName)))
+                elif not itemOwned:
+                    SendWhisper(data.UserName, str(MySet.EquipResponseItemNotOwned.format(itemName)))
                 else:
                     SendWhisper(data.UserName, str(MySet.EquipResponseLocationInvalid.format(location, itemName)))
             else:
