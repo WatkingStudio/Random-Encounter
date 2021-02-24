@@ -517,6 +517,31 @@
 		"tooltip": "Quest Response",
 		"group": "Quest"
 	},
+	"QuestActiveMessage":{
+		"type": "textbox",
+		"value": "There is currently an active quest with {0} seconds left to join the questing party",
+		"label": "Quest Active Message",
+		"tooltip": "Quest Active Message",
+		"group": "Quest"
+	},
+    "QuestCountdownMessage":
+	{
+		"type": "textbox",
+		"value": "You have {0} seconds to join the questing party",
+		"label": "Quest Cooldown Message",
+		"tooltip": "Quest Cooldown Message",
+		"group": "Quest"
+	},
+    "QuestCountdown":{
+		"type": "slider",
+		"value": 60,
+		"min": 20,
+		"max": 300,
+		"ticks": 1,
+		"label": "Quest Countdown (seconds)",
+		"tooltip": "How long the until the quest will begin",
+		"group": "Quest"
+	},
 	"QuestPermisson":{
 		"type": "dropdown",
         "value": "Moderator",
@@ -537,6 +562,13 @@
 		"value": "$user -> only $permission ($permissioninfo) and higher can use this command",
 		"label": "Quest Permission Response",
 		"tooltip": "Quest Permission Response",
+		"group": "Quest"
+	},
+    "QuestInvalidMonsterResponse":{ 
+		"type": "textbox",
+		"value": "Invalid Monster Named, Selecting Random Monster",
+		"label": "Quest Invalid Monster Response",
+		"tooltip": "Quest Invalid Monster Response",
 		"group": "Quest"
 	},
 	"QuestCooldownResponse":{
@@ -577,6 +609,13 @@
 		"tooltip": "Join Response No Quest",
 		"group": "Join"
 	},
+    "JoinResponseFailed":{
+		"type": "textbox",
+		"value": "{0} is already a member of the questing party.",
+		"label": "Join Response Failed",
+		"tooltip": "Join Response Failed",
+		"group": "Join"
+	},
 	"JoinCooldownResponse":{
 		"type": "textbox",
 		"value": "{0} the join command is currently on cooldown for {1} seconds",
@@ -586,7 +625,7 @@
 	},
 	"JoinCooldown":{
 		"type": "slider",
-		"value": 5,
+		"value": 30,
 		"min": 1,
 		"max": 300,
 		"ticks": 1,

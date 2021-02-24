@@ -9,6 +9,7 @@ import codecs
 import random
 import re
 import ctypes
+import time
 
 codecs.BOM_UTF8
 '\xef\xbb\xbf'
@@ -46,6 +47,8 @@ OpenDuelsFolder = FilePath + "OpenDuels\\"
 # ---------------------------------------
 # Global Filepath Variables
 # ---------------------------------------
+global ActiveQuestPath
+ActiveQuestPath = "Services\\Scripts\\Random-Encounter\\ActiveQuest.json"
 global ListFilePath
 ListFilePath = "Services\\Scripts\\Random-Encounter\\Lists\\"
 global BodyPartFile
@@ -79,6 +82,10 @@ settingsFile = os.path.join(os.path.dirname(__file__), "Settings\settings.json")
 MessageBox = ctypes.windll.user32.MessageBoxW
 global locationList
 locationList = ["head", "body", "hands", "legs", "feet", "right", "left", "back"]
+global IsActiveQuest
+IsActiveQuest = False
+global QuestCurrentCountdown
+QuestCurrentCountdown = 0
 
 # ---------------------------------------
 # Classes
@@ -162,16 +169,21 @@ class Settings:
             self.EquipCooldown = 5
             self.QuestCommand = "!quest"
             self.QuestResponse = "A quest has been started to hunt down a {0}. Type '!join' in the chat to join the quest."
+            self.QuestActiveMessage = "There is currently an active quest with {0} seconds left to join the questing party"
+            self.QuestCountdownMessage = "You have {0} seconds to join the questing party"
+            self.QuestCountdown = 60
             self.QuestPermission = "Moderator"
             self.QuestPermissionInfo = "Moderator"
             self.QuestPermissionResponse = "$user -> only $permission ($permissioninfo) and higher can use this command"
+            self.QuestInvalidMonsterResponse = "Invalid Monster Named, Selecting Random Monster"
             self.QuestCooldownResponse = "{0} the quest command is currently on cooldown for {1} seconds"
             self.QuestCooldown = 300
             self.JoinCommand = "!join"
             self.JoinResponseSuccess = "{0} has joined the questing party"
             self.JoinResponseNoQuest = "{0} there is currently no active quest"
+            self.JoinResponseFailed = "{0} is already a member of the questing party."
             self.JoinCooldownResponse = "{0} the join command is currently on cooldown for {1} seconds"
-            self.JoinCooldown = 5
+            self.JoinCooldown = 30
             self.BattleCommand = "!battle"
             self.BattleResponse = "{0} {1} {2} {3}"
             self.BattleCooldownResponse = "Battle command is on cooldown"
@@ -532,6 +544,34 @@ def AssignItem(userJson, item, location):
     userJson['equipment'] = equipment
 
     return userJson
+
+# ---------------------------------------
+# Functions used for the quest command
+# ---------------------------------------
+
+def IsCurrentlyActiveQuest():
+    return IsActiveQuest
+
+def ToggleActiveQuest():
+    if IsActiveQuest:
+        global IsActiveQuest
+        IsActiveQuest = False
+    else:
+        global IsActiveQuest
+        IsActiveQuest = True
+
+def DetermineQuestResult():
+    SendMessage("Quest Is Over")
+
+# When the cooldown is complete
+# Calculate strength of questing party
+# Calculate strength of monster
+# Determine Victor
+# If questing party win
+# Award questing party with exp
+# Award questing party with loot
+# If questing party loose
+# Apply loss punishment
 
 # ---------------------------------------
 # Functions used to get random string from data files
@@ -1018,27 +1058,35 @@ def Execute(data):
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.QuestCommand.lower() and LiveCheck() and MySet.TurnOnQuest:
         if not Parent.IsOnUserCooldown(ScriptName, MySet.QuestCommand, data.User):
-            SendMessage(str(MySet.QuestResponse.format("Troll")))
+            if IsCurrentlyActiveQuest():
+                SendMessage(str(MySet.QuestActiveMessage.format(QuestCurrentCountdown)))
+            else:
+                numberOfParams = data.GetParamCount()
+                monsterName = ""
+                if numberOfParams > 1:
+                    monsterName = data.GetParam(1)
+                    if not CheckMonsterExists(MonsterFile, monsterName):
+                        SendMessage(str(MySet.QuestInvalidMonsterResponse))
+                        monsterName = GetRandomMonster()
+                else:
+                    monsterName = GetRandomMonster()
 
-            #Check if there is an active quest
-            #If there is an active quest
-                #Send message in chat about live quest
-                #Post message in chat with quest countdown
-            #If there is no active quest
-                #Start new quest
-                #If specified monster launch a quest for that monster
-                #If no specified monster lauch a quest for a random monster
+                if os.path.exists(ActiveQuestPath):
+                    with open(ActiveQuestPath) as json_file:
+                        questData = json.load(json_file)
+                        questData['Monster'] = monsterName
+                        questData['Party'] = []
+                    os.remove(ActiveQuestPath)
+                    AddToFile(ActiveQuestPath, questData)
 
-                #Start a quest join cooldown
-                #When the cooldown is complete
-                    #Calculate strength of questing party
-                    #Calculate strength of monster
-                    #Determine Victor
-                    #If questing party win
-                        #Award questing party with exp
-                        #Award questing party with loot
-                    #If questing party loose
-                        #Apply loss punishment
+                ToggleActiveQuest()
+                global QuestCurrentCountdown
+                QuestCurrentCountdown = MySet.QuestCountdown
+                global QuestStarted
+                QuestStarted = time.time()
+
+                SendMessage(str(MySet.QuestResponse.format(monsterName)))
+                SendMessage(str(MySet.QuestCountdownMessage.format(MySet.QuestCountdown)))
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.QuestCommand, data.User)
             message = MySet.QuestCooldownResponse.format(data.UserName, cooldownduration)
@@ -1052,21 +1100,34 @@ def Execute(data):
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.JoinCommand.lower() and LiveCheck() and MySet.TurnOnJoin:
         if not Parent.IsOnUserCooldown(ScriptName, MySet.JoinCommand, data.User):
-            SendMessage(str(MySet.JoinResponseSuccess.format(data.UserName)))
-
             #Check if there is an active quest
-            #If there is no active quest
-                #Send message saying there is no quest
-            #If there is an active quest
-                #Check if the user is in the questing party
-                #If they are in the party
-                    #Send message saying they are already part of the questing party
-                #If they are not
-                    #Add the user to the questing party
-                    #Send message saying that they have joined the questing party
+            if IsCurrentlyActiveQuest():
+                if os.path.exists(ActiveQuestPath):
+                    updateQuestFile = True
+                    with open(ActiveQuestPath) as json_file:
+                        questData = json.load(json_file)
+                        party = questData['Party']
+                        for member in party:
+                            if member == data.UserName:
+                                updateQuestFile = False
+                                SendMessage(MySet.JoinResponseFailed.format(data.UserName))
+                                break
+                        if updateQuestFile:
+                            SendMessage(str(MySet.JoinResponseSuccess.format(data.UserName)))
+                            party.append(data.UserName)
+                            questData['Party'] = party
+
+                    if updateQuestFile:
+                        os.remove(ActiveQuestPath)
+                        AddToFile(ActiveQuestPath, questData)
+            else:
+                SendMessage(MySet.JoinResponseNoQuest.format(data.UserName))
+
+            Parent.AddUserCooldown(ScriptName, MySet.JoinCommand, data.User, MySet.JoinCooldown)
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.JoinCommand, data.User)
-            message = MySet.JoinCool
+            message = MySet.JoinCooldownResponse.format(data.UserName, cooldownduration)
+            SendMessage(str(message))
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Catch
@@ -1520,6 +1581,16 @@ def Execute(data):
 #   [Required] Tick method (Gets called during every iteration even when there is no incoming data)
 # ---------------------------
 def Tick():
+    #if QuestCurrentCountdown > 0:
+        #QuestCurrentCountdown -= 1
+        #Log("CountdownLower")
+    global QuestCurrentCountdown
+    if IsActiveQuest:
+        if QuestStarted + MySet.QuestCountdown > time.time():
+            QuestCurrentCountdown = (QuestStarted + MySet.QuestCountdown) - time.time()
+        else:
+            DetermineQuestResult()
+            ToggleActiveQuest()
     return
 
 
