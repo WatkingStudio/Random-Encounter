@@ -77,6 +77,20 @@
 		"tooltip": "Turn on the Equip Command",
 		"group": "General"
 	},
+	"TurnOnQuest":{
+		"type": "checkbox",
+		"value": true,
+		"label": "Turn On Quest",
+		"tooltip": "Turn on the Quest Command",
+		"group": "General"
+	},
+	"TurnOnJoin":{
+		"type": "checkbox",
+		"value": true,
+		"label": "Turn On Join",
+		"tooltip": "Turn on the Join Command", 
+		"group": "General"
+	},
   	"TurnOnCatch": {
 	    "type": "checkbox",
 	    "value": false,
@@ -488,6 +502,97 @@
 		"label": "Equip Cooldown (seconds)",
 		"tooltip": "How long the command should go on cooldown for(seconds)",
 		"group": "Equip"
+	},
+	"QuestCommand":{
+		"type": "textbox",
+		"value": "!quest",
+		"label": "Quest Command",
+		"tooltip": "Quest Command",
+		"group": "Quest"
+	},
+	"QuestResponse":{
+		"type": "textbox",
+		"value": "A quest has been started to hunt down a {0}. Type '!join' in the chat to join the quest.",
+		"label": "Quest Response",
+		"tooltip": "Quest Response",
+		"group": "Quest"
+	},
+	"QuestPermisson":{
+		"type": "dropdown",
+        "value": "Moderator",
+        "items": ["Everyone","Regular","Subscriber","Moderator","Editor","Caster"],
+        "label": "Quest Permission Level",
+        "tooltip": "Quest Permission Level",
+        "group": "Quest"
+	},
+	"QuestPermissionInfo":{
+		"type": "textbox",
+		"value": "Moderator",
+		"label": "Quest Permission Info",
+		"tooltip": "Quest Permission Info",
+		"group": "Quest"
+	},
+	"QuestPermissionResponse":{
+		"type": "textbox",
+		"value": "$user -> only $permission ($permissioninfo) and higher can use this command",
+		"label": "Quest Permission Response",
+		"tooltip": "Quest Permission Response",
+		"group": "Quest"
+	},
+	"QuestCooldownResponse":{
+		"type": "textbox",
+		"value": "{0} the quest command is currently on cooldown for {1} seconds",
+		"label": "Quest Cooldown Response",
+		"tooltip": "Quest Cooldown Response",
+		"group": "Quest"
+	},
+	"QuestCooldown":{
+		"type": "slider",
+		"value": 300,
+		"min": 1,
+		"max": 600,
+		"ticks": 1,
+		"label": "Quest Cooldown (seconds)",
+		"tooltip": "How long the command should go on cooldown for (seconds)",
+		"group": "Quest"
+	},
+	"JoinCommand":{
+		"type": "textbox",
+		"value": "!join",
+		"label": "Join Command",
+		"tooltip": "Join Command",
+		"group": "Join"
+	},
+	"JoinResponseSuccess":{
+		"type": "textbox",
+		"value": "{0} has joined the questing party",
+		"label": "Join Response Success",
+		"tooltip": "Join Response Success",
+		"group": "Join"
+	},
+	"JoinResponseNoQuest":{
+		"type": "textbox",
+		"value": "{0} there is currently no active quest",
+		"label": "Join Response No Quest",
+		"tooltip": "Join Response No Quest",
+		"group": "Join"
+	},
+	"JoinCooldownResponse":{
+		"type": "textbox",
+		"value": "{0} the join command is currently on cooldown for {1} seconds",
+		"label": "Join Cooldown Response",
+		"tooltip": "Join Cooldown Response",
+		"group": "Join"
+	},
+	"JoinCooldown":{
+		"type": "slider",
+		"value": 5,
+		"min": 1,
+		"max": 300,
+		"ticks": 1,
+		"label": "Join Cooldown (seconds)",
+		"tooltip": "How long the command should go on cooldown for (seconds)",
+		"group": "Join"
 	},
     "CatchCommand": {
         "type": "textbox",

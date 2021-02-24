@@ -102,6 +102,8 @@ class Settings:
             self.TurnOnCheckLoot = True
             self.TurnOnCheckTrophies = True
             self.TurnOnEquip = True
+            self.TurnOnQuest = True
+            self.TurnOnJoin = True
             self.TurnOnCatch = True
             self.TurnOnBattle = True
             self.TurnOnRelease = True
@@ -158,6 +160,18 @@ class Settings:
             self.EquipResponseItemNotOwned = "You do not currently own the item '{0}' so you are not able to equip it"
             self.EquipCooldownResponse = "{0} the equip command is on cooldown for {1} seconds"
             self.EquipCooldown = 5
+            self.QuestCommand = "!quest"
+            self.QuestResponse = "A quest has been started to hunt down a {0}. Type '!join' in the chat to join the quest."
+            self.QuestPermission = "Moderator"
+            self.QuestPermissionInfo = "Moderator"
+            self.QuestPermissionResponse = "$user -> only $permission ($permissioninfo) and higher can use this command"
+            self.QuestCooldownResponse = "{0} the quest command is currently on cooldown for {1} seconds"
+            self.QuestCooldown = 300
+            self.JoinCommand = "!join"
+            self.JoinResponseSuccess = "{0} has joined the questing party"
+            self.JoinResponseNoQuest = "{0} there is currently no active quest"
+            self.JoinCooldownResponse = "{0} the join command is currently on cooldown for {1} seconds"
+            self.JoinCooldown = 5
             self.BattleCommand = "!battle"
             self.BattleResponse = "{0} {1} {2} {3}"
             self.BattleCooldownResponse = "Battle command is on cooldown"
@@ -996,6 +1010,63 @@ def Execute(data):
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipCommand, data.User)
             message = MySet.EquipCooldownResponse.format(data.UserName, cooldownduration)
             SendMessage(str(message))
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Quest
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+            0).lower() == MySet.QuestCommand.lower() and LiveCheck() and MySet.TurnOnQuest:
+        if not Parent.IsOnUserCooldown(ScriptName, MySet.QuestCommand, data.User):
+            SendMessage(str(MySet.QuestResponse.format("Troll")))
+
+            #Check if there is an active quest
+            #If there is an active quest
+                #Send message in chat about live quest
+                #Post message in chat with quest countdown
+            #If there is no active quest
+                #Start new quest
+                #If specified monster launch a quest for that monster
+                #If no specified monster lauch a quest for a random monster
+
+                #Start a quest join cooldown
+                #When the cooldown is complete
+                    #Calculate strength of questing party
+                    #Calculate strength of monster
+                    #Determine Victor
+                    #If questing party win
+                        #Award questing party with exp
+                        #Award questing party with loot
+                    #If questing party loose
+                        #Apply loss punishment
+        else:
+            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.QuestCommand, data.User)
+            message = MySet.QuestCooldownResponse.format(data.UserName, cooldownduration)
+            SendMessage(str(message))
+
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Join
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+            0).lower() == MySet.JoinCommand.lower() and LiveCheck() and MySet.TurnOnJoin:
+        if not Parent.IsOnUserCooldown(ScriptName, MySet.JoinCommand, data.User):
+            SendMessage(str(MySet.JoinResponseSuccess.format(data.UserName)))
+
+            #Check if there is an active quest
+            #If there is no active quest
+                #Send message saying there is no quest
+            #If there is an active quest
+                #Check if the user is in the questing party
+                #If they are in the party
+                    #Send message saying they are already part of the questing party
+                #If they are not
+                    #Add the user to the questing party
+                    #Send message saying that they have joined the questing party
+        else:
+            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.JoinCommand, data.User)
+            message = MySet.JoinCool
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Catch
