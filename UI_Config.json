@@ -534,7 +534,7 @@
 	},
     "QuestCountdown":{
 		"type": "slider",
-		"value": 60,
+		"value": 20,
 		"min": 20,
 		"max": 300,
 		"ticks": 1,

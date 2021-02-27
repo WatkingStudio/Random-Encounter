@@ -561,7 +561,72 @@ def ToggleActiveQuest():
         IsActiveQuest = True
 
 def DetermineQuestResult():
-    SendMessage("Quest Is Over")
+    #SendMessage("Quest Is Over")
+
+    if os.path.exists(ActiveQuestPath):
+        with open(ActiveQuestPath) as json_file:
+            questData = json.load(json_file)
+            party = questData['Party']
+            partyOffence = 0
+            partyDefence = 0
+            for member in party:
+                memberPath = EncounterFolder + member + ".json"
+                with open(memberPath) as json_file:
+                    player = json.load(json_file)
+                    partyOffence = partyOffence + player['offence'] + player['level']
+                    partyDefence = partyDefence + player['defence'] + player['level']
+            monster = questData['Monster']
+            monsterOffence = 0
+            monsterDefence = 0
+
+            if partyOffence > monsterDefence:
+                if partyDefence > monsterOffence:
+                    if QuestCalculation("High"):
+                        QuestSuccessful(monster)
+                    else:
+                        QuestFailed(monster)
+                else:
+                    if QuestCalculation("Medium"):
+                        QuestSuccessful(monster)
+                    else:
+                        QuestFailed(monster)
+            else:
+                if partyDefence > monsterOffence:
+                    if QuestCalculation("Medium"):
+                        QuestSuccessful(monster)
+                    else:
+                        QuestFailed(monster)
+                else:
+                    if QuestCalculation("Low"):
+                        QuestSuccessful(monster)
+                    else:
+                        QuestFailed(monster)
+    else:
+        Log("ERROR: Active Quest Path Missing")
+
+def QuestCalculation(chance):
+    percent = random.random()
+    if chance == "High":
+        if percent > 0.25:
+            return True
+        else:
+            return False
+    elif chance == "Medium":
+        if percent > 0.50:
+            return True
+        else:
+            return False
+    elif chance == "Low":
+        if percent > 0.75:
+            return True
+        else:
+            return False
+
+def QuestSuccessful(monster):
+    Log("Quest Successful")
+
+def QuestFailed(monster):
+    Log("Quest Failed")
 
 # When the cooldown is complete
 # Calculate strength of questing party
@@ -1581,16 +1646,14 @@ def Execute(data):
 #   [Required] Tick method (Gets called during every iteration even when there is no incoming data)
 # ---------------------------
 def Tick():
-    #if QuestCurrentCountdown > 0:
-        #QuestCurrentCountdown -= 1
-        #Log("CountdownLower")
     global QuestCurrentCountdown
     if IsActiveQuest:
         if QuestStarted + MySet.QuestCountdown > time.time():
             QuestCurrentCountdown = (QuestStarted + MySet.QuestCountdown) - time.time()
         else:
             DetermineQuestResult()
-            ToggleActiveQuest()
+            global IsActiveQuest
+            IsActiveQuest = False
     return
 
 
