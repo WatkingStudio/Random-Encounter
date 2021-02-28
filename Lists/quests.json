@@ -1,0 +1,10 @@
+{
+"monsters":[
+	{
+		"name": "Drake",
+		"reward": "Drake Fang",
+		"offence": 2,
+		"defence": 0,
+		"unique": "Diamond"
+	}]
+}

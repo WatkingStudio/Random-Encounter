@@ -67,6 +67,8 @@ global MonsterFile
 MonsterFile = ListFilePath + "monsters.txt"
 global NPCFile
 NPCFile = ListFilePath + "npc.txt"
+global QuestFile
+QuestFile = ListFilePath + "quests.json"
 global SpellsFile
 SpellsFile = ListFilePath + "spells.txt"
 global TreasureFile
@@ -477,6 +479,19 @@ def AssignLoot(lootString):
     assignedLoot = lootString.replace('{0}', GetRandomLoot())
     return assignedLoot.lower()
 
+def GivePlayerLoot(lootString, player):
+    playerPath = EncounterFolder + player + ".json"
+    playerData = ""
+    if os.path.exists(playerPath):
+        with open(playerPath) as json_file:
+            playerData = json.load(json_file)
+            playerData['trophies'].append(lootString)
+
+    if os.path.exists(playerPath):
+        os.remove(playerPath)
+    SendMessage(player + " has been rewarded with a " + lootString)
+    AddToFile(playerPath, playerData)
+
 # ---------------------------------------
 # Functions used for the equip command
 # ---------------------------------------
@@ -561,8 +576,6 @@ def ToggleActiveQuest():
         IsActiveQuest = True
 
 def DetermineQuestResult():
-    #SendMessage("Quest Is Over")
-
     if os.path.exists(ActiveQuestPath):
         with open(ActiveQuestPath) as json_file:
             questData = json.load(json_file)
@@ -575,34 +588,51 @@ def DetermineQuestResult():
                     player = json.load(json_file)
                     partyOffence = partyOffence + player['offence'] + player['level']
                     partyDefence = partyDefence + player['defence'] + player['level']
-            monster = questData['Monster']
-            monsterOffence = 0
-            monsterDefence = 0
+            monster = GetQuestMonster(questData['Monster'])
+            Log(monster)
+            if not monster == "None":
+                monsterOffence = monster['offence']
+                monsterDefence = monster['defence']
 
-            if partyOffence > monsterDefence:
-                if partyDefence > monsterOffence:
-                    if QuestCalculation("High"):
-                        QuestSuccessful(monster)
+                randnum = Parent.GetRandom(0, len(party))
+                randomPartyMember = party[randnum]
+
+                if partyOffence > monsterDefence:
+                    if partyDefence > monsterOffence:
+                        if QuestCalculation("High"):
+                            QuestSuccessful(monster, randomPartyMember)
+                        else:
+                            QuestFailed(monster, randomPartyMember)
                     else:
-                        QuestFailed(monster)
+                        if QuestCalculation("Medium"):
+                            QuestSuccessful(monster, randomPartyMember)
+                        else:
+                            QuestFailed(monster, randomPartyMember)
                 else:
-                    if QuestCalculation("Medium"):
-                        QuestSuccessful(monster)
+                    if partyDefence > monsterOffence:
+                        if QuestCalculation("Medium"):
+                            QuestSuccessful(monster, randomPartyMember)
+                        else:
+                            QuestFailed(monster, randomPartyMember)
                     else:
-                        QuestFailed(monster)
+                        if QuestCalculation("Low"):
+                            QuestSuccessful(monster, randomPartyMember)
+                        else:
+                            QuestFailed(monster, randomPartyMember)
             else:
-                if partyDefence > monsterOffence:
-                    if QuestCalculation("Medium"):
-                        QuestSuccessful(monster)
-                    else:
-                        QuestFailed(monster)
-                else:
-                    if QuestCalculation("Low"):
-                        QuestSuccessful(monster)
-                    else:
-                        QuestFailed(monster)
+                SendMessage("Invalid Quest Monster: " + questData['Monster'])
     else:
         Log("ERROR: Active Quest Path Missing")
+
+def GetQuestMonster(monsterName):
+    if os.path.exists(QuestFile):
+        with open(QuestFile) as json_file:
+            monsterList = json.load(json_file)
+            for monster in monsterList['monsters']:
+                val = monster['name'].lower()
+                val2 = monsterName.lower()
+                if val == val2:
+                    return monster
 
 def QuestCalculation(chance):
     percent = random.random()
@@ -622,11 +652,24 @@ def QuestCalculation(chance):
         else:
             return False
 
-def QuestSuccessful(monster):
-    Log("Quest Successful")
+def QuestSuccessful(monster, randomPlayer):
+    SendMessage("Quest has been successful!")
+    percent = random.random()
 
-def QuestFailed(monster):
-    Log("Quest Failed")
+    if not monster['unique'] == "":
+        Log("One")
+        if percent > 0.75:
+            Log("Two")
+            GivePlayerLoot(monster['unique'], randomPlayer)
+        else:
+            Log("Three")
+            GivePlayerLoot(monster['reward'], randomPlayer)
+    else:
+        Log("Four")
+        GivePlayerLoot(monster['reward'], randomPlayer)
+
+def QuestFailed(monster, randomPlayer):
+    SendMessage("The quest has failed")
 
 # When the cooldown is complete
 # Calculate strength of questing party
