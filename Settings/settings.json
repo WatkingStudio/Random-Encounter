@@ -77,6 +77,7 @@
   "QuestInvalidMonsterResponse": "Invalid Monster Named, Selecting Random Monster",
   "QuestSuccessResponse": "The quest to slay the {0} has been successful. The questing party returns victorious!",
   "QuestFailedResponse": "The quest to slay the {0} has failed. The questing party managed to escape with their lives but return defeated.",
+  "QuestCancelResponse": "The current quest has been cancelled.",
   "QuestCooldownResponse": "{0} the quest command is currently on cooldown for {1} seconds",
   "QuestCooldown": 300.0,
   "JoinCommand": "!join",

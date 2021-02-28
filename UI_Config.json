@@ -592,6 +592,13 @@
 		"tooltip": "Quest Failed Response",
 		"group": "Quest"
 	},
+	"QuestCancelResponse": {
+		"type": "textbox",
+		"value": "The current quest has been cancelled.",
+		"label": "Quest Cancel Response",
+		"tooltip": "Quest Cancel Response",
+		"group": "Quest"
+	},
 	"QuestCooldownResponse":{
 		"type": "textbox",
 		"value": "{0} the quest command is currently on cooldown for {1} seconds",

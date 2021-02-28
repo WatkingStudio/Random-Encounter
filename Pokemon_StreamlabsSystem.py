@@ -181,6 +181,7 @@ class Settings:
             self.QuestInvalidMonsterResponse = "Invalid Monster Named, Selecting Random Monster"
             self.QuestSuccessResponse = "The quest to slay the {0} has been successful. The questing party returns victorious!"
             self.QuestFailedResponse = "The quest to slay the {0} has failed. The questing party managed to escape with their lives but return defeated."
+            self.QuestCancelResponse = "The current quest has been cancelled."
             self.QuestCooldownResponse = "{0} the quest command is currently on cooldown for {1} seconds"
             self.QuestCooldown = 300
             self.JoinCommand = "!join"
@@ -672,31 +673,17 @@ def QuestSuccessful(monster, party):
         ModifyPlayerExperience(1, member)
 
     if not monster['unique'] == "":
-        Log("One")
         if percent > 0.75:
-            Log("Two")
             GivePlayerLoot(monster['unique'], randomPartyMember)
         else:
-            Log("Three")
             GivePlayerLoot(monster['reward'], randomPartyMember)
     else:
-        Log("Four")
         GivePlayerLoot(monster['reward'], randomPartyMember)
 
 def QuestFailed(monster, party):
     SendMessage(str(MySet.QuestFailedResponse.format(monster['name'])))
     for member in party:
         ModifyPlayerExperience(-1, member)
-
-# When the cooldown is complete
-# Calculate strength of questing party
-# Calculate strength of monster
-# Determine Victor
-# If questing party win
-# Award questing party with exp
-# Award questing party with loot
-# If questing party loose
-# Apply loss punishment
 
 # ---------------------------------------
 # Functions used to get random string from data files
@@ -1182,7 +1169,11 @@ def Execute(data):
 
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.QuestCommand.lower() and LiveCheck() and MySet.TurnOnQuest:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.QuestCommand, data.User):
+        if data.GetParam(1) == "cancel":
+            SendMessage(str(MySet.QuestCancelResponse))
+            global IsActiveQuest
+            IsActiveQuest = False
+        else:
             if IsCurrentlyActiveQuest():
                 SendMessage(str(MySet.QuestActiveMessage.format(QuestCurrentCountdown)))
             else:
@@ -1212,10 +1203,6 @@ def Execute(data):
 
                 SendMessage(str(MySet.QuestResponse.format(monsterName)))
                 SendMessage(str(MySet.QuestCountdownMessage.format(MySet.QuestCountdown)))
-        else:
-            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.QuestCommand, data.User)
-            message = MySet.QuestCooldownResponse.format(data.UserName, cooldownduration)
-            SendMessage(str(message))
 
 
     # -----------------------------------------------------------------------------------------------------------------------
