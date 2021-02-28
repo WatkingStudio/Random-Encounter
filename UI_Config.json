@@ -147,6 +147,13 @@
 	    "tooltip": "Turn on AcceptDuel Command",
 	    "group": "General"
 	},
+	"GiveLootResponse": {
+		"type": "textbox",
+		"value": "{0} has been rewarded with a {1}",
+		"label": "Give Loot Response",
+		"tooltip": "Give Loot Response",
+		"group": "General"
+	},
     "EncounterCommand": {
         "type": "textbox",
         "value": "!encounter",
@@ -569,6 +576,20 @@
 		"value": "Invalid Monster Named, Selecting Random Monster",
 		"label": "Quest Invalid Monster Response",
 		"tooltip": "Quest Invalid Monster Response",
+		"group": "Quest"
+	},
+	"QuestSuccessResponse":{
+		"type": "textbox",
+		"value": "The quest to slay the {0} has been successful. The questing party returns victorious!",
+		"label": "Quest Success Response",
+		"tooltip": "Quest Success Response",
+		"group": "Quest"
+	},
+	"QuestFailedResponse": {
+		"type": "textbox",
+		"value": "The quest to slay the {0} has failed. The questing party managed to escape with their lives but return defeated.",
+		"label": "Quest Failed Response",
+		"tooltip": "Quest Failed Response",
 		"group": "Quest"
 	},
 	"QuestCooldownResponse":{

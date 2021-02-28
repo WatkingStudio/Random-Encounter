@@ -123,6 +123,7 @@ class Settings:
             self.TurnOnAcceptDuel = True
             self.PointsName = "Street Rep"
             self.InvalidDataResponse = "{0} does not have a valid data file"
+            self.GiveLootResponse = "{0} has been rewarded with a {1}"
             self.EncounterCommand = "!encounter"
             self.EncounterResponse = "caught pokemon"
             self.EncounterCooldownResponse = "{0}, the encounter command on cooldown for {1}"
@@ -178,6 +179,8 @@ class Settings:
             self.QuestPermissionInfo = "Moderator"
             self.QuestPermissionResponse = "$user -> only $permission ($permissioninfo) and higher can use this command"
             self.QuestInvalidMonsterResponse = "Invalid Monster Named, Selecting Random Monster"
+            self.QuestSuccessResponse = "The quest to slay the {0} has been successful. The questing party returns victorious!"
+            self.QuestFailedResponse = "The quest to slay the {0} has failed. The questing party managed to escape with their lives but return defeated."
             self.QuestCooldownResponse = "{0} the quest command is currently on cooldown for {1} seconds"
             self.QuestCooldown = 300
             self.JoinCommand = "!join"
@@ -489,7 +492,19 @@ def GivePlayerLoot(lootString, player):
 
     if os.path.exists(playerPath):
         os.remove(playerPath)
-    SendMessage(player + " has been rewarded with a " + lootString)
+    SendMessage(str(MySet.GiveLootResponse.format(player, lootString)))
+    AddToFile(playerPath, playerData)
+
+def ModifyPlayerExperience(value, player):
+    playerPath = EncounterFolder + player + ".json"
+    playerData = ""
+    if os.path.exists(playerPath):
+        with open(playerPath) as json_file:
+            playerData = json.load(json_file)
+            playerData['exp'] = playerData['exp'] + value
+
+    if os.path.exists(playerPath):
+        os.remove(playerPath)
     AddToFile(playerPath, playerData)
 
 # ---------------------------------------
@@ -589,38 +604,33 @@ def DetermineQuestResult():
                     partyOffence = partyOffence + player['offence'] + player['level']
                     partyDefence = partyDefence + player['defence'] + player['level']
             monster = GetQuestMonster(questData['Monster'])
-            Log(monster)
+
             if not monster == "None":
                 monsterOffence = monster['offence']
                 monsterDefence = monster['defence']
 
-                randnum = Parent.GetRandom(0, len(party))
-                randomPartyMember = party[randnum]
-
                 if partyOffence > monsterDefence:
                     if partyDefence > monsterOffence:
                         if QuestCalculation("High"):
-                            QuestSuccessful(monster, randomPartyMember)
+                            QuestSuccessful(monster, party)
                         else:
-                            QuestFailed(monster, randomPartyMember)
+                            QuestFailed(monster, party)
                     else:
                         if QuestCalculation("Medium"):
-                            QuestSuccessful(monster, randomPartyMember)
+                            QuestSuccessful(monster, party)
                         else:
-                            QuestFailed(monster, randomPartyMember)
+                            QuestFailed(monster, party)
                 else:
                     if partyDefence > monsterOffence:
                         if QuestCalculation("Medium"):
-                            QuestSuccessful(monster, randomPartyMember)
+                            QuestSuccessful(monster, party)
                         else:
-                            QuestFailed(monster, randomPartyMember)
+                            QuestFailed(monster, party)
                     else:
                         if QuestCalculation("Low"):
-                            QuestSuccessful(monster, randomPartyMember)
+                            QuestSuccessful(monster, party)
                         else:
-                            QuestFailed(monster, randomPartyMember)
-            else:
-                SendMessage("Invalid Quest Monster: " + questData['Monster'])
+                            QuestFailed(monster, party)
     else:
         Log("ERROR: Active Quest Path Missing")
 
@@ -652,24 +662,31 @@ def QuestCalculation(chance):
         else:
             return False
 
-def QuestSuccessful(monster, randomPlayer):
-    SendMessage("Quest has been successful!")
+def QuestSuccessful(monster, party):
+    randnum = Parent.GetRandom(0, len(party))
+    randomPartyMember = party[randnum]
+    SendMessage(str(MySet.QuestSuccessResponse.format(monster['name'])))
     percent = random.random()
+
+    for member in party:
+        ModifyPlayerExperience(1, member)
 
     if not monster['unique'] == "":
         Log("One")
         if percent > 0.75:
             Log("Two")
-            GivePlayerLoot(monster['unique'], randomPlayer)
+            GivePlayerLoot(monster['unique'], randomPartyMember)
         else:
             Log("Three")
-            GivePlayerLoot(monster['reward'], randomPlayer)
+            GivePlayerLoot(monster['reward'], randomPartyMember)
     else:
         Log("Four")
-        GivePlayerLoot(monster['reward'], randomPlayer)
+        GivePlayerLoot(monster['reward'], randomPartyMember)
 
-def QuestFailed(monster, randomPlayer):
-    SendMessage("The quest has failed")
+def QuestFailed(monster, party):
+    SendMessage(str(MySet.QuestFailedResponse.format(monster['name'])))
+    for member in party:
+        ModifyPlayerExperience(-1, member)
 
 # When the cooldown is complete
 # Calculate strength of questing party
