@@ -599,6 +599,13 @@
 		"tooltip": "Quest Cancel Response",
 		"group": "Quest"
 	},
+	"QuestErrorResponse": {
+		"type": "textbox",
+		"value": "There has been an error with this quest, please check the log files.",
+		"label": "Quest Error Response",
+		"tooltip": "Quest Error Response",
+		"group": "Quest"
+	},
 	"JoinCommand":{
 		"type": "textbox",
 		"value": "!join",

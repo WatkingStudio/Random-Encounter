@@ -39,6 +39,7 @@ UsersMonLevelsFolder = FilePath + "UserMonLevels\\"
 global OpenTradesFolder
 OpenTradesFolder = FilePath + "OpenTrades\\"
 global OpenTradesFolder
+global EncounterFolder
 EncounterFolder = FilePath + "Encounter\\"
 global PointsFolder
 PointsFolder = FilePath + "Points\\"
@@ -180,6 +181,7 @@ class Settings:
             self.QuestSuccessResponse = "The quest to slay the {0} has been successful. The questing party returns victorious!"
             self.QuestFailedResponse = "The quest to slay the {0} has failed. The questing party managed to escape with their lives but return defeated."
             self.QuestCancelResponse = "The current quest has been cancelled."
+            self.QuestErrorResponse =  "There has been an error with this quest, please check the log files."
             self.JoinCommand = "!join"
             self.JoinResponseSuccess = "{0} has joined the questing party"
             self.JoinResponseNoQuest = "{0} there is currently no active quest"
@@ -441,6 +443,12 @@ def ReadLinesFile(Path):
 
 # -----------------------------------------------------------------------------------------------------------------------
 
+def CreatePlayerPath(player):
+    playerPath = EncounterFolder + player + ".json"
+    return playerPath
+
+# -----------------------------------------------------------------------------------------------------------------------
+
 def GetTmpPath(filepath):
     tmp_filepath = str(filepath).replace(".txt","tmp.txt")
     return tmp_filepath
@@ -491,7 +499,7 @@ def IsItemLoot(lootString):
 def GivePlayerLoot(lootString, player):
     if not lootString == "":
         playerData = ""
-        playerPath = EncounterFolder + player + ".json"
+        playerPath = CreatePlayerPath(player)
         if os.path.exists(playerPath):
             with open(playerPath) as json_file:
                 playerData = json.load(json_file)
@@ -504,9 +512,11 @@ def GivePlayerLoot(lootString, player):
             os.remove(playerPath)
         SendMessage(str(MySet.GiveLootResponse.format(player, lootString)))
         AddToFile(playerPath, playerData)
+    else:
+        Log("LOG MESSAGE: No lootString has been given to " + player)
 
 def ModifyPlayerExperience(value, player):
-    playerPath = EncounterFolder + player + ".json"
+    playerPath = CreatePlayerPath(player)
     playerData = ""
     if os.path.exists(playerPath):
         with open(playerPath) as json_file:
@@ -593,12 +603,8 @@ def IsCurrentlyActiveQuest():
     return IsActiveQuest
 
 def ToggleActiveQuest():
-    if IsActiveQuest:
-        global IsActiveQuest
-        IsActiveQuest = False
-    else:
-        global IsActiveQuest
-        IsActiveQuest = True
+    global IsActiveQuest
+    IsActiveQuest = not IsActiveQuest
 
 def DetermineQuestResult():
     if os.path.exists(ActiveQuestPath):
@@ -608,14 +614,14 @@ def DetermineQuestResult():
             partyOffence = 0
             partyDefence = 0
             for member in party:
-                memberPath = EncounterFolder + member + ".json"
+                memberPath = CreatePlayerPath(member)
                 with open(memberPath) as json_file:
                     player = json.load(json_file)
                     partyOffence = partyOffence + player['offence'] + player['level']
                     partyDefence = partyDefence + player['defence'] + player['level']
             monster = GetQuestMonster(questData['Monster'])
 
-            if not monster == "None":
+            if not monster == None:
                 monsterOffence = monster['offence']
                 monsterDefence = monster['defence']
 
@@ -626,28 +632,23 @@ def DetermineQuestResult():
                 Log("Party Offence: " + str(partyOffence))
                 Log("Party Defence: " + str(partyDefence))
 
-                if partyOffence > monsterDefence:
-                    if partyDefence > monsterOffence:
-                        if QuestCalculation("High"):
-                            QuestSuccessful(monster, party)
-                        else:
-                            QuestFailed(monster, party)
-                    else:
-                        if QuestCalculation("Medium"):
-                            QuestSuccessful(monster, party)
-                        else:
-                            QuestFailed(monster, party)
+                difficulty = 0
+                if partyOffence < monsterDefence:
+                    difficulty += 1
                 else:
-                    if partyDefence > monsterOffence:
-                        if QuestCalculation("Medium"):
-                            QuestSuccessful(monster, party)
-                        else:
-                            QuestFailed(monster, party)
-                    else:
-                        if QuestCalculation("Low"):
-                            QuestSuccessful(monster, party)
-                        else:
-                            QuestFailed(monster, party)
+                    difficulty -= 1
+                if partyDefence < monsterOffence:
+                    difficulty += 1
+                else:
+                    difficulty -= 1
+
+                if QuestCalculation(difficulty):
+                    QuestSuccessful(monster, party, difficulty)
+                else:
+                    QuestFailed(monster, party)
+            else:
+                Log("ERROR MESSAGE: Input monster is not valid.")
+                SendMessage(MySet.QuestErrorResponse)
     else:
         Log("ERROR: Active Quest Path Missing")
 
@@ -668,45 +669,57 @@ def GetRandomQuestMonster():
             monster = random.choice(questMonsterList['monsters'])
             return monster['name']
 
-def QuestCalculation(chance):
+def QuestCalculation(difficulty):
     percent = random.random()
-    if chance == "High":
-        if percent > 0.25:
-            return True
-        else:
-            return False
-    elif chance == "Medium":
-        if percent > 0.50:
-            return True
-        else:
-            return False
-    elif chance == "Low":
-        if percent > 0.75:
-            return True
-        else:
-            return False
 
-def QuestSuccessful(monster, party):
+    if difficulty == -2:
+        if percent > 0.17:
+            return True
+    elif difficulty == -1:
+        if percent > 0.34:
+            return True
+    elif difficulty == 0:
+        if percent > 0.5:
+            return True
+    elif difficulty == 1:
+        if percent > 0.67:
+            return True
+    elif difficulty == 2:
+        if percent > 0.84:
+            return True
+
+    return False
+
+def QuestSuccessful(monster, party, difficulty):
     randnum = Parent.GetRandom(0, len(party))
     randomPartyMember = party[randnum]
     SendMessage(str(MySet.QuestSuccessResponse.format(monster['name'])))
     percent = random.random()
 
     for member in party:
-        ModifyPlayerExperience(1, member)
+        ModifyPlayerExperience(difficulty + 3, member)
 
     if not monster['unique'] == "":
         if percent > 0.75:
             GivePlayerLoot(monster['unique'], randomPartyMember)
-        else:
+        elif not monster['loot'] == "":
             GivePlayerLoot(monster['reward'], randomPartyMember)
-    else:
+    elif not monster['loot'] == "":
         GivePlayerLoot(monster['reward'], randomPartyMember)
 
 def QuestFailed(monster, party):
     SendMessage(str(MySet.QuestFailedResponse.format(monster['name'])))
     for member in party:
         ModifyPlayerExperience(-1, member)
+
+def CheckQuestMonsterExists(monsterName):
+    if os.path.exists(QuestFile):
+        with open(QuestFile) as json_file:
+            questMonsterList = json.load(json_file)
+            for monster in questMonsterList['monsters']:
+                if monsterName.lower() == monster['name'].lower():
+                    return True
+    return False
 
 # ---------------------------------------
 # Functions used to get random string from data files
@@ -780,7 +793,7 @@ def Execute(data):
     userpath = UsersMonFolder + data.UserName + ".txt"
     # THIS VARIABLE NAME IS MISS LEADING AND SHOULD BE CHANGED COMPLETELY
     # IT SHOULDN'T BE FOR THE ENCOUNTER PATH, BUT INSTEAD FOR THE USERS DATA
-    userencounterpath = EncounterFolder + data.UserName + ".json"
+    userencounterpath = CreatePlayerPath(data.UserName)
 
     random.seed()
 
@@ -998,7 +1011,6 @@ def Execute(data):
 
             Parent.SendStreamMessage(str(response))
             Parent.AddUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User, MySet.CheckTreasureCooldown)
-            Log(MySet.CheckTreasureCooldown)
 
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckTreasureCommand, data.User)
@@ -1189,6 +1201,13 @@ def Execute(data):
     #   Quest
     # -----------------------------------------------------------------------------------------------------------------------
 
+            for i in range (1, numberOfParams):
+                word = data.GetParam(i)
+                if not WordIsLocation(word):
+                    if i != 1:
+                        itemName += " "
+                    itemName += word
+
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.QuestCommand.lower() and LiveCheck() and MySet.TurnOnQuest:
         if data.GetParam(1) == "cancel":
@@ -1202,8 +1221,13 @@ def Execute(data):
                 numberOfParams = data.GetParamCount()
                 monsterName = ""
                 if numberOfParams > 1:
-                    monsterName = data.GetParam(1)
-                    if not CheckMonsterExists(QuestFile, monsterName):
+                    for i in range(1, numberOfParams):
+                        word = data.GetParam(i)
+                        if i != 1:
+                            monsterName += " "
+                        monsterName += word
+                    if not CheckQuestMonsterExists(monsterName):
+                        Log(monsterName + ".")
                         SendMessage(str(MySet.QuestInvalidMonsterResponse))
                         monsterName = GetRandomQuestMonster()
                 else:
@@ -1715,9 +1739,9 @@ def Execute(data):
 #   [Required] Tick method (Gets called during every iteration even when there is no incoming data)
 # ---------------------------
 def Tick():
-    global QuestCurrentCountdown
     if IsActiveQuest:
         if QuestStarted + MySet.QuestCountdown > time.time():
+            global QuestCurrentCountdown
             QuestCurrentCountdown = (QuestStarted + MySet.QuestCountdown) - time.time()
         else:
             DetermineQuestResult()
