@@ -9,6 +9,7 @@ import codecs
 import random
 import re
 import ctypes
+import time
 
 codecs.BOM_UTF8
 '\xef\xbb\xbf'
@@ -38,6 +39,7 @@ UsersMonLevelsFolder = FilePath + "UserMonLevels\\"
 global OpenTradesFolder
 OpenTradesFolder = FilePath + "OpenTrades\\"
 global OpenTradesFolder
+global EncounterFolder
 EncounterFolder = FilePath + "Encounter\\"
 global PointsFolder
 PointsFolder = FilePath + "Points\\"
@@ -46,24 +48,26 @@ OpenDuelsFolder = FilePath + "OpenDuels\\"
 # ---------------------------------------
 # Global Filepath Variables
 # ---------------------------------------
+global ActiveQuestPath
+ActiveQuestPath = "Services\\Scripts\\Random-Encounter\\ActiveQuest.json"
 global ListFilePath
 ListFilePath = "Services\\Scripts\\Random-Encounter\\Lists\\"
 global BodyPartFile
 BodyPartFile = ListFilePath + "bodypart.txt"
 global EncounterFile
 EncounterFile =  ListFilePath + "encounter.json"
-global ItemsFile
-ItemsFile = ListFilePath + "items.json"
 global LocationFile
 LocationFile = ListFilePath + "location.txt"
 global LootDataFile
-LootDataFile = ListFilePath + "lootData.txt"
+LootDataFile = ListFilePath + "lootData.json"
 global LootListFile
 LootListFile = ListFilePath + "lootList.txt"
 global MonsterFile
 MonsterFile = ListFilePath + "monsters.txt"
 global NPCFile
 NPCFile = ListFilePath + "npc.txt"
+global QuestFile
+QuestFile = ListFilePath + "quests.json"
 global SpellsFile
 SpellsFile = ListFilePath + "spells.txt"
 global TreasureFile
@@ -79,6 +83,10 @@ settingsFile = os.path.join(os.path.dirname(__file__), "Settings\settings.json")
 MessageBox = ctypes.windll.user32.MessageBoxW
 global locationList
 locationList = ["head", "body", "hands", "legs", "feet", "right", "left", "back"]
+global IsActiveQuest
+IsActiveQuest = False
+global QuestCurrentCountdown
+QuestCurrentCountdown = 0
 
 # ---------------------------------------
 # Classes
@@ -102,6 +110,8 @@ class Settings:
             self.TurnOnCheckLoot = True
             self.TurnOnCheckTrophies = True
             self.TurnOnEquip = True
+            self.TurnOnQuest = True
+            self.TurnOnJoin = True
             self.TurnOnCatch = True
             self.TurnOnBattle = True
             self.TurnOnRelease = True
@@ -112,6 +122,7 @@ class Settings:
             self.TurnOnAcceptDuel = True
             self.PointsName = "Street Rep"
             self.InvalidDataResponse = "{0} does not have a valid data file"
+            self.GiveLootResponse = "{0} has been rewarded with a {1}"
             self.EncounterCommand = "!encounter"
             self.EncounterResponse = "caught pokemon"
             self.EncounterCooldownResponse = "{0}, the encounter command on cooldown for {1}"
@@ -158,6 +169,25 @@ class Settings:
             self.EquipResponseItemNotOwned = "You do not currently own the item '{0}' so you are not able to equip it"
             self.EquipCooldownResponse = "{0} the equip command is on cooldown for {1} seconds"
             self.EquipCooldown = 5
+            self.QuestCommand = "!quest"
+            self.QuestResponse = "A quest has been started to hunt down a {0}. Type '!join' in the chat to join the quest."
+            self.QuestActiveMessage = "There is currently an active quest with {0} seconds left to join the questing party"
+            self.QuestCountdownMessage = "You have {0} seconds to join the questing party"
+            self.QuestCountdown = 60
+            self.QuestPermission = "Moderator"
+            self.QuestPermissionInfo = "Moderator"
+            self.QuestPermissionResponse = "$user -> only $permission ($permissioninfo) and higher can use this command"
+            self.QuestInvalidMonsterResponse = "Invalid Monster Named, Selecting Random Monster"
+            self.QuestSuccessResponse = "The quest to slay the {0} has been successful. The questing party returns victorious!"
+            self.QuestFailedResponse = "The quest to slay the {0} has failed. The questing party managed to escape with their lives but return defeated."
+            self.QuestCancelResponse = "The current quest has been cancelled."
+            self.QuestErrorResponse =  "There has been an error with this quest, please check the log files."
+            self.JoinCommand = "!join"
+            self.JoinResponseSuccess = "{0} has joined the questing party"
+            self.JoinResponseNoQuest = "{0} there is currently no active quest"
+            self.JoinResponseFailed = "{0} is already a member of the questing party."
+            self.JoinCooldownResponse = "{0} the join command is currently on cooldown for {1} seconds"
+            self.JoinCooldown = 30
             self.BattleCommand = "!battle"
             self.BattleResponse = "{0} {1} {2} {3}"
             self.BattleCooldownResponse = "Battle command is on cooldown"
@@ -413,6 +443,12 @@ def ReadLinesFile(Path):
 
 # -----------------------------------------------------------------------------------------------------------------------
 
+def CreatePlayerPath(player):
+    playerPath = EncounterFolder + player + ".json"
+    return playerPath
+
+# -----------------------------------------------------------------------------------------------------------------------
+
 def GetTmpPath(filepath):
     tmp_filepath = str(filepath).replace(".txt","tmp.txt")
     return tmp_filepath
@@ -451,6 +487,46 @@ def AssignLoot(lootString):
     assignedLoot = lootString.replace('{0}', GetRandomLoot())
     return assignedLoot.lower()
 
+def IsItemLoot(lootString):
+    with open(LootDataFile) as json_file:
+        itemList = json.load(json_file)
+        for i in itemList['items']:
+            if i['name'].lower() == lootString.lower():
+                return True
+
+        return False
+
+def GivePlayerLoot(lootString, player):
+    if not lootString == "":
+        playerData = ""
+        playerPath = CreatePlayerPath(player)
+        if os.path.exists(playerPath):
+            with open(playerPath) as json_file:
+                playerData = json.load(json_file)
+                if IsItemLoot(lootString):
+                    playerData['loot'].append(lootString)
+                else:
+                    playerData['trophies'].append(lootString)
+
+        if os.path.exists(playerPath):
+            os.remove(playerPath)
+        SendMessage(str(MySet.GiveLootResponse.format(player, lootString)))
+        AddToFile(playerPath, playerData)
+    else:
+        Log("LOG MESSAGE: No lootString has been given to " + player)
+
+def ModifyPlayerExperience(value, player):
+    playerPath = CreatePlayerPath(player)
+    playerData = ""
+    if os.path.exists(playerPath):
+        with open(playerPath) as json_file:
+            playerData = json.load(json_file)
+            playerData['exp'] = playerData['exp'] + value
+
+    if os.path.exists(playerPath):
+        os.remove(playerPath)
+    AddToFile(playerPath, playerData)
+
 # ---------------------------------------
 # Functions used for the equip command
 # ---------------------------------------
@@ -466,7 +542,7 @@ def WordIsLocation(location):
 def RetrieveItem(itemName):
     item = Item()
     validItem = False
-    with open(ItemsFile) as json_file:
+    with open(LootDataFile) as json_file:
         itemList = json.load(json_file)
         for i in itemList['items']:
             if i['name'].lower() == itemName.lower():
@@ -518,6 +594,132 @@ def AssignItem(userJson, item, location):
     userJson['equipment'] = equipment
 
     return userJson
+
+# ---------------------------------------
+# Functions used for the quest command
+# ---------------------------------------
+
+def IsCurrentlyActiveQuest():
+    return IsActiveQuest
+
+def ToggleActiveQuest():
+    global IsActiveQuest
+    IsActiveQuest = not IsActiveQuest
+
+def DetermineQuestResult():
+    if os.path.exists(ActiveQuestPath):
+        with open(ActiveQuestPath) as json_file:
+            questData = json.load(json_file)
+            party = questData['Party']
+            partyOffence = 0
+            partyDefence = 0
+            for member in party:
+                memberPath = CreatePlayerPath(member)
+                with open(memberPath) as json_file:
+                    player = json.load(json_file)
+                    partyOffence = partyOffence + player['offence'] + player['level']
+                    partyDefence = partyDefence + player['defence'] + player['level']
+            monster = GetQuestMonster(questData['Monster'])
+
+            if not monster == None:
+                monsterOffence = monster['offence']
+                monsterDefence = monster['defence']
+
+                Log(monster['name'])
+                Log("Monster Offence: " + str(monsterOffence))
+                Log("Monster Defence: " + str(monsterDefence))
+                Log("Party Size: " + str(len(party)))
+                Log("Party Offence: " + str(partyOffence))
+                Log("Party Defence: " + str(partyDefence))
+
+                difficulty = 0
+                if partyOffence < monsterDefence:
+                    difficulty += 1
+                else:
+                    difficulty -= 1
+                if partyDefence < monsterOffence:
+                    difficulty += 1
+                else:
+                    difficulty -= 1
+
+                if QuestCalculation(difficulty):
+                    QuestSuccessful(monster, party, difficulty)
+                else:
+                    QuestFailed(monster, party)
+            else:
+                Log("ERROR MESSAGE: Input monster is not valid.")
+                SendMessage(MySet.QuestErrorResponse)
+    else:
+        Log("ERROR: Active Quest Path Missing")
+
+def GetQuestMonster(monsterName):
+    if os.path.exists(QuestFile):
+        with open(QuestFile) as json_file:
+            monsterList = json.load(json_file)
+            for monster in monsterList['monsters']:
+                val = monster['name'].lower()
+                val2 = monsterName.lower()
+                if val == val2:
+                    return monster
+
+def GetRandomQuestMonster():
+    if os.path.exists(QuestFile):
+        with open(QuestFile) as json_file:
+            questMonsterList = json.load(json_file)
+            monster = random.choice(questMonsterList['monsters'])
+            return monster['name']
+
+def QuestCalculation(difficulty):
+    percent = random.random()
+
+    if difficulty == -2:
+        if percent > 0.17:
+            return True
+    elif difficulty == -1:
+        if percent > 0.34:
+            return True
+    elif difficulty == 0:
+        if percent > 0.5:
+            return True
+    elif difficulty == 1:
+        if percent > 0.67:
+            return True
+    elif difficulty == 2:
+        if percent > 0.84:
+            return True
+
+    return False
+
+def QuestSuccessful(monster, party, difficulty):
+    randnum = Parent.GetRandom(0, len(party))
+    randomPartyMember = party[randnum]
+    SendMessage(str(MySet.QuestSuccessResponse.format(monster['name'])))
+    percent = random.random()
+
+    for member in party:
+        ModifyPlayerExperience(difficulty + 3, member)
+
+    if not monster['unique'] == "":
+        if percent > 0.75:
+            GivePlayerLoot(monster['unique'], randomPartyMember)
+        elif not monster['loot'] == "":
+            GivePlayerLoot(monster['reward'], randomPartyMember)
+    elif not monster['loot'] == "":
+        GivePlayerLoot(monster['reward'], randomPartyMember)
+
+def QuestFailed(monster, party):
+    SendMessage(str(MySet.QuestFailedResponse.format(monster['name'])))
+    for member in party:
+        ModifyPlayerExperience(-1, member)
+
+def CheckQuestMonsterExists(monsterName):
+    if os.path.exists(QuestFile):
+        with open(QuestFile) as json_file:
+            questMonsterList = json.load(json_file)
+            for monster in questMonsterList['monsters']:
+                if monsterName.lower() == monster['name'].lower():
+                    return True
+    return False
 
 # ---------------------------------------
 # Functions used to get random string from data files
@@ -591,7 +793,7 @@ def Execute(data):
     userpath = UsersMonFolder + data.UserName + ".txt"
     # THIS VARIABLE NAME IS MISS LEADING AND SHOULD BE CHANGED COMPLETELY
     # IT SHOULDN'T BE FOR THE ENCOUNTER PATH, BUT INSTEAD FOR THE USERS DATA
-    userencounterpath = EncounterFolder + data.UserName + ".json"
+    userencounterpath = CreatePlayerPath(data.UserName)
 
     random.seed()
 
@@ -603,8 +805,6 @@ def Execute(data):
             0).lower() == MySet.EncounterCommand.lower() and LiveCheck() and MySet.TurnOnEncounter:
         if not Parent.IsOnUserCooldown(ScriptName, MySet.EncounterCommand, data.User):
             # if the user doesn't have anything captured, then create an empty file
-            #if not os.path.exists(userpath):
-            #    create = open(userpath, "w+")
             if not os.path.exists(userpath):
                 create = open(userpath, "w+")
 
@@ -995,6 +1195,96 @@ def Execute(data):
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipCommand, data.User)
             message = MySet.EquipCooldownResponse.format(data.UserName, cooldownduration)
+            SendMessage(str(message))
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Quest
+    # -----------------------------------------------------------------------------------------------------------------------
+
+            for i in range (1, numberOfParams):
+                word = data.GetParam(i)
+                if not WordIsLocation(word):
+                    if i != 1:
+                        itemName += " "
+                    itemName += word
+
+    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+            0).lower() == MySet.QuestCommand.lower() and LiveCheck() and MySet.TurnOnQuest:
+        if data.GetParam(1) == "cancel":
+            SendMessage(str(MySet.QuestCancelResponse))
+            global IsActiveQuest
+            IsActiveQuest = False
+        else:
+            if IsCurrentlyActiveQuest():
+                SendMessage(str(MySet.QuestActiveMessage.format(QuestCurrentCountdown)))
+            else:
+                numberOfParams = data.GetParamCount()
+                monsterName = ""
+                if numberOfParams > 1:
+                    for i in range(1, numberOfParams):
+                        word = data.GetParam(i)
+                        if i != 1:
+                            monsterName += " "
+                        monsterName += word
+                    if not CheckQuestMonsterExists(monsterName):
+                        Log(monsterName + ".")
+                        SendMessage(str(MySet.QuestInvalidMonsterResponse))
+                        monsterName = GetRandomQuestMonster()
+                else:
+                    monsterName = GetRandomQuestMonster()
+
+                if os.path.exists(ActiveQuestPath):
+                    with open(ActiveQuestPath) as json_file:
+                        questData = json.load(json_file)
+                        questData['Monster'] = monsterName
+                        questData['Party'] = []
+                    os.remove(ActiveQuestPath)
+                    AddToFile(ActiveQuestPath, questData)
+
+                ToggleActiveQuest()
+                global QuestCurrentCountdown
+                QuestCurrentCountdown = MySet.QuestCountdown
+                global QuestStarted
+                QuestStarted = time.time()
+
+                SendMessage(str(MySet.QuestResponse.format(monsterName)))
+                SendMessage(str(MySet.QuestCountdownMessage.format(MySet.QuestCountdown)))
+
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Join
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+            0).lower() == MySet.JoinCommand.lower() and LiveCheck() and MySet.TurnOnJoin:
+        if not Parent.IsOnUserCooldown(ScriptName, MySet.JoinCommand, data.User):
+            #Check if there is an active quest
+            if IsCurrentlyActiveQuest():
+                if os.path.exists(ActiveQuestPath):
+                    updateQuestFile = True
+                    with open(ActiveQuestPath) as json_file:
+                        questData = json.load(json_file)
+                        party = questData['Party']
+                        for member in party:
+                            if member == data.UserName:
+                                updateQuestFile = False
+                                SendMessage(MySet.JoinResponseFailed.format(data.UserName))
+                                break
+                        if updateQuestFile:
+                            SendMessage(str(MySet.JoinResponseSuccess.format(data.UserName)))
+                            party.append(data.UserName)
+                            questData['Party'] = party
+
+                    if updateQuestFile:
+                        os.remove(ActiveQuestPath)
+                        AddToFile(ActiveQuestPath, questData)
+            else:
+                SendMessage(MySet.JoinResponseNoQuest.format(data.UserName))
+
+            Parent.AddUserCooldown(ScriptName, MySet.JoinCommand, data.User, MySet.JoinCooldown)
+        else:
+            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.JoinCommand, data.User)
+            message = MySet.JoinCooldownResponse.format(data.UserName, cooldownduration)
             SendMessage(str(message))
 
     # -----------------------------------------------------------------------------------------------------------------------
@@ -1449,6 +1739,14 @@ def Execute(data):
 #   [Required] Tick method (Gets called during every iteration even when there is no incoming data)
 # ---------------------------
 def Tick():
+    if IsActiveQuest:
+        if QuestStarted + MySet.QuestCountdown > time.time():
+            global QuestCurrentCountdown
+            QuestCurrentCountdown = (QuestStarted + MySet.QuestCountdown) - time.time()
+        else:
+            DetermineQuestResult()
+            global IsActiveQuest
+            IsActiveQuest = False
     return
 
 

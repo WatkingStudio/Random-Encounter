@@ -77,6 +77,20 @@
 		"tooltip": "Turn on the Equip Command",
 		"group": "General"
 	},
+	"TurnOnQuest":{
+		"type": "checkbox",
+		"value": true,
+		"label": "Turn On Quest",
+		"tooltip": "Turn on the Quest Command",
+		"group": "General"
+	},
+	"TurnOnJoin":{
+		"type": "checkbox",
+		"value": true,
+		"label": "Turn On Join",
+		"tooltip": "Turn on the Join Command", 
+		"group": "General"
+	},
   	"TurnOnCatch": {
 	    "type": "checkbox",
 	    "value": false,
@@ -132,6 +146,13 @@
 	    "label": "Turn on AcceptDuel",
 	    "tooltip": "Turn on AcceptDuel Command",
 	    "group": "General"
+	},
+	"GiveLootResponse": {
+		"type": "textbox",
+		"value": "{0} has been rewarded with a {1}",
+		"label": "Give Loot Response",
+		"tooltip": "Give Loot Response",
+		"group": "General"
 	},
     "EncounterCommand": {
         "type": "textbox",
@@ -488,6 +509,147 @@
 		"label": "Equip Cooldown (seconds)",
 		"tooltip": "How long the command should go on cooldown for(seconds)",
 		"group": "Equip"
+	},
+	"QuestCommand":{
+		"type": "textbox",
+		"value": "!quest",
+		"label": "Quest Command",
+		"tooltip": "Quest Command",
+		"group": "Quest"
+	},
+	"QuestResponse":{
+		"type": "textbox",
+		"value": "A quest has been started to hunt down a {0}. Type '!join' in the chat to join the quest.",
+		"label": "Quest Response",
+		"tooltip": "Quest Response",
+		"group": "Quest"
+	},
+	"QuestActiveMessage":{
+		"type": "textbox",
+		"value": "There is currently an active quest with {0} seconds left to join the questing party",
+		"label": "Quest Active Message",
+		"tooltip": "Quest Active Message",
+		"group": "Quest"
+	},
+    "QuestCountdownMessage":
+	{
+		"type": "textbox",
+		"value": "You have {0} seconds to join the questing party",
+		"label": "Quest Cooldown Message",
+		"tooltip": "Quest Cooldown Message",
+		"group": "Quest"
+	},
+    "QuestCountdown":{
+		"type": "slider",
+		"value": 20,
+		"min": 20,
+		"max": 300,
+		"ticks": 1,
+		"label": "Quest Countdown (seconds)",
+		"tooltip": "How long the until the quest will begin",
+		"group": "Quest"
+	},
+	"QuestPermisson":{
+		"type": "dropdown",
+        "value": "Moderator",
+        "items": ["Everyone","Regular","Subscriber","Moderator","Editor","Caster"],
+        "label": "Quest Permission Level",
+        "tooltip": "Quest Permission Level",
+        "group": "Quest"
+	},
+	"QuestPermissionInfo":{
+		"type": "textbox",
+		"value": "Moderator",
+		"label": "Quest Permission Info",
+		"tooltip": "Quest Permission Info",
+		"group": "Quest"
+	},
+	"QuestPermissionResponse":{
+		"type": "textbox",
+		"value": "$user -> only $permission ($permissioninfo) and higher can use this command",
+		"label": "Quest Permission Response",
+		"tooltip": "Quest Permission Response",
+		"group": "Quest"
+	},
+    "QuestInvalidMonsterResponse":{ 
+		"type": "textbox",
+		"value": "Invalid Monster Named, Selecting Random Monster",
+		"label": "Quest Invalid Monster Response",
+		"tooltip": "Quest Invalid Monster Response",
+		"group": "Quest"
+	},
+	"QuestSuccessResponse":{
+		"type": "textbox",
+		"value": "The quest to slay the {0} has been successful. The questing party returns victorious!",
+		"label": "Quest Success Response",
+		"tooltip": "Quest Success Response",
+		"group": "Quest"
+	},
+	"QuestFailedResponse": {
+		"type": "textbox",
+		"value": "The quest to slay the {0} has failed. The questing party managed to escape with their lives but return defeated.",
+		"label": "Quest Failed Response",
+		"tooltip": "Quest Failed Response",
+		"group": "Quest"
+	},
+	"QuestCancelResponse": {
+		"type": "textbox",
+		"value": "The current quest has been cancelled.",
+		"label": "Quest Cancel Response",
+		"tooltip": "Quest Cancel Response",
+		"group": "Quest"
+	},
+	"QuestErrorResponse": {
+		"type": "textbox",
+		"value": "There has been an error with this quest, please check the log files.",
+		"label": "Quest Error Response",
+		"tooltip": "Quest Error Response",
+		"group": "Quest"
+	},
+	"JoinCommand":{
+		"type": "textbox",
+		"value": "!join",
+		"label": "Join Command",
+		"tooltip": "Join Command",
+		"group": "Join"
+	},
+	"JoinResponseSuccess":{
+		"type": "textbox",
+		"value": "{0} has joined the questing party",
+		"label": "Join Response Success",
+		"tooltip": "Join Response Success",
+		"group": "Join"
+	},
+	"JoinResponseNoQuest":{
+		"type": "textbox",
+		"value": "{0} there is currently no active quest",
+		"label": "Join Response No Quest",
+		"tooltip": "Join Response No Quest",
+		"group": "Join"
+	},
+    "JoinResponseFailed":{
+		"type": "textbox",
+		"value": "{0} is already a member of the questing party.",
+		"label": "Join Response Failed",
+		"tooltip": "Join Response Failed",
+		"group": "Join"
+	},
+	"JoinCooldownResponse":{
+		"type": "textbox",
+		"value": "{0} the join command is currently on cooldown for {1} seconds",
+		"label": "Join Cooldown Response",
+		"tooltip": "Join Cooldown Response",
+		"group": "Join"
+	},
+	"JoinCooldown":{
+		"type": "slider",
+		"value": 1,
+		"min": 1,
+		"max": 300,
+		"ticks": 1,
+		"label": "Join Cooldown (seconds)",
+		"tooltip": "How long the command should go on cooldown for (seconds)",
+		"group": "Join"
 	},
     "CatchCommand": {
         "type": "textbox",

@@ -1,28 +1,39 @@
 {
-"lootData":[
+"items":[
 	{
-		"name": "default",
-		"type": "default",
-		"Offence": 0,
-		"Defence": 0
+		"name": "Axe",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 1
 	},
 	{
-	    "name":"Fey Sword",
-		"type":"Sword",
-		"Offence":2,
-		"Defence":0
+		"name": "Diamond Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 1
 	},
 	{
-		"name":"Steel Sword",
-		"type":"Sword",
-		"Offence":1,
-		"Defence":0
+		"name": "Flaming Whip",
+		"location": ["right", "left"],
+		"offence": 3
+		"defence": 0
 	},
 	{
-		"name": "Iron Helmet",
-		"type": "Helmet",
-		"Offence": 0,
-		"Defence": 1
-	}
-	]
+		"name": "Poison Blade",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Sword",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Sword of Vengence",
+		"location": ["right","left"],
+		"offence": 2,
+		"defence": 0
+	}]
 }
