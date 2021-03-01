@@ -599,23 +599,6 @@
 		"tooltip": "Quest Cancel Response",
 		"group": "Quest"
 	},
-	"QuestCooldownResponse":{
-		"type": "textbox",
-		"value": "{0} the quest command is currently on cooldown for {1} seconds",
-		"label": "Quest Cooldown Response",
-		"tooltip": "Quest Cooldown Response",
-		"group": "Quest"
-	},
-	"QuestCooldown":{
-		"type": "slider",
-		"value": 300,
-		"min": 1,
-		"max": 600,
-		"ticks": 1,
-		"label": "Quest Cooldown (seconds)",
-		"tooltip": "How long the command should go on cooldown for (seconds)",
-		"group": "Quest"
-	},
 	"JoinCommand":{
 		"type": "textbox",
 		"value": "!join",

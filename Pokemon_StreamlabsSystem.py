@@ -55,12 +55,10 @@ global BodyPartFile
 BodyPartFile = ListFilePath + "bodypart.txt"
 global EncounterFile
 EncounterFile =  ListFilePath + "encounter.json"
-global ItemsFile
-ItemsFile = ListFilePath + "items.json"
 global LocationFile
 LocationFile = ListFilePath + "location.txt"
 global LootDataFile
-LootDataFile = ListFilePath + "lootData.txt"
+LootDataFile = ListFilePath + "lootData.json"
 global LootListFile
 LootListFile = ListFilePath + "lootList.txt"
 global MonsterFile
@@ -182,8 +180,6 @@ class Settings:
             self.QuestSuccessResponse = "The quest to slay the {0} has been successful. The questing party returns victorious!"
             self.QuestFailedResponse = "The quest to slay the {0} has failed. The questing party managed to escape with their lives but return defeated."
             self.QuestCancelResponse = "The current quest has been cancelled."
-            self.QuestCooldownResponse = "{0} the quest command is currently on cooldown for {1} seconds"
-            self.QuestCooldown = 300
             self.JoinCommand = "!join"
             self.JoinResponseSuccess = "{0} has joined the questing party"
             self.JoinResponseNoQuest = "{0} there is currently no active quest"
@@ -483,18 +479,31 @@ def AssignLoot(lootString):
     assignedLoot = lootString.replace('{0}', GetRandomLoot())
     return assignedLoot.lower()
 
-def GivePlayerLoot(lootString, player):
-    playerPath = EncounterFolder + player + ".json"
-    playerData = ""
-    if os.path.exists(playerPath):
-        with open(playerPath) as json_file:
-            playerData = json.load(json_file)
-            playerData['trophies'].append(lootString)
+def IsItemLoot(lootString):
+    with open(LootDataFile) as json_file:
+        itemList = json.load(json_file)
+        for i in itemList['items']:
+            if i['name'].lower() == lootString.lower():
+                return True
 
-    if os.path.exists(playerPath):
-        os.remove(playerPath)
-    SendMessage(str(MySet.GiveLootResponse.format(player, lootString)))
-    AddToFile(playerPath, playerData)
+        return False
+
+def GivePlayerLoot(lootString, player):
+    if not lootString == "":
+        playerData = ""
+        playerPath = EncounterFolder + player + ".json"
+        if os.path.exists(playerPath):
+            with open(playerPath) as json_file:
+                playerData = json.load(json_file)
+                if IsItemLoot(lootString):
+                    playerData['loot'].append(lootString)
+                else:
+                    playerData['trophies'].append(lootString)
+
+        if os.path.exists(playerPath):
+            os.remove(playerPath)
+        SendMessage(str(MySet.GiveLootResponse.format(player, lootString)))
+        AddToFile(playerPath, playerData)
 
 def ModifyPlayerExperience(value, player):
     playerPath = EncounterFolder + player + ".json"
@@ -523,7 +532,7 @@ def WordIsLocation(location):
 def RetrieveItem(itemName):
     item = Item()
     validItem = False
-    with open(ItemsFile) as json_file:
+    with open(LootDataFile) as json_file:
         itemList = json.load(json_file)
         for i in itemList['items']:
             if i['name'].lower() == itemName.lower():
@@ -610,6 +619,13 @@ def DetermineQuestResult():
                 monsterOffence = monster['offence']
                 monsterDefence = monster['defence']
 
+                Log(monster['name'])
+                Log("Monster Offence: " + str(monsterOffence))
+                Log("Monster Defence: " + str(monsterDefence))
+                Log("Party Size: " + str(len(party)))
+                Log("Party Offence: " + str(partyOffence))
+                Log("Party Defence: " + str(partyDefence))
+
                 if partyOffence > monsterDefence:
                     if partyDefence > monsterOffence:
                         if QuestCalculation("High"):
@@ -644,6 +660,13 @@ def GetQuestMonster(monsterName):
                 val2 = monsterName.lower()
                 if val == val2:
                     return monster
+
+def GetRandomQuestMonster():
+    if os.path.exists(QuestFile):
+        with open(QuestFile) as json_file:
+            questMonsterList = json.load(json_file)
+            monster = random.choice(questMonsterList['monsters'])
+            return monster['name']
 
 def QuestCalculation(chance):
     percent = random.random()
@@ -769,8 +792,6 @@ def Execute(data):
             0).lower() == MySet.EncounterCommand.lower() and LiveCheck() and MySet.TurnOnEncounter:
         if not Parent.IsOnUserCooldown(ScriptName, MySet.EncounterCommand, data.User):
             # if the user doesn't have anything captured, then create an empty file
-            #if not os.path.exists(userpath):
-            #    create = open(userpath, "w+")
             if not os.path.exists(userpath):
                 create = open(userpath, "w+")
 
@@ -977,6 +998,7 @@ def Execute(data):
 
             Parent.SendStreamMessage(str(response))
             Parent.AddUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User, MySet.CheckTreasureCooldown)
+            Log(MySet.CheckTreasureCooldown)
 
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckTreasureCommand, data.User)
@@ -1181,11 +1203,11 @@ def Execute(data):
                 monsterName = ""
                 if numberOfParams > 1:
                     monsterName = data.GetParam(1)
-                    if not CheckMonsterExists(MonsterFile, monsterName):
+                    if not CheckMonsterExists(QuestFile, monsterName):
                         SendMessage(str(MySet.QuestInvalidMonsterResponse))
-                        monsterName = GetRandomMonster()
+                        monsterName = GetRandomQuestMonster()
                 else:
-                    monsterName = GetRandomMonster()
+                    monsterName = GetRandomQuestMonster()
 
                 if os.path.exists(ActiveQuestPath):
                     with open(ActiveQuestPath) as json_file:
