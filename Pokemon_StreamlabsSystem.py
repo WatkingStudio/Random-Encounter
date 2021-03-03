@@ -1291,11 +1291,11 @@ def Execute(data):
         IsModerator = (Parent.HasPermission(data.User, "Moderator", ""))
         if IsModerator is True:
             _, _, playerFilePaths = next(walk(EncounterFolderPath))
-            for playerPath in playerFilePaths:
-                pathThing = EncounterFolderPath + playerPath
-                if os.path.exists(pathThing):
+            for playerFilePath in playerFilePaths:
+                playerPath = EncounterFolderPath + playerFilePath
+                if os.path.exists(playerPath):
                     playerData = ""
-                    with open(pathThing) as json_file:
+                    with open(playerPath) as json_file:
                         playerData = json.load(json_file)
                         playerData['offence'] = 0
                         playerData['defence'] = 0
@@ -1317,8 +1317,8 @@ def Execute(data):
                                                 + RetrieveItem(equipment['feet']).defence \
                                                 + RetrieveItem(equipment['legs']).defence \
                                                 + RetrieveItem(equipment['head']).defence
-                    os.remove(pathThing)
-                    AddToFile(pathThing, playerData)
+                    os.remove(playerPath)
+                    AddToFile(playerPath, playerData)
             SendMessage(MySet.RebalanceResponse)
         else:
             SendMessage(str(MySet.RebalancePermissionResponse.format(data.UserName, MySet.RebalancePermissionInfo)))
