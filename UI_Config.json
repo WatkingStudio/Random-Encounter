@@ -556,7 +556,7 @@
 		"tooltip": "How long the until the quest will begin",
 		"group": "Quest"
 	},
-	"QuestPermisson":{
+	"QuestPermission":{
 		"type": "dropdown",
         "value": "Moderator",
         "items": ["Everyone","Regular","Subscriber","Moderator","Editor","Caster"],

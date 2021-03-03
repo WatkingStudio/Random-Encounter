@@ -1,4 +1,6 @@
 {
-    "Party": [], 
-    "Monster": "Flame Demon"
+    "Party": [
+        "Mr_Snoblar"
+    ], 
+    "Monster": "Hag"
 }
