@@ -75,7 +75,7 @@ WeaponFile = ListFolderPath + "weapons.txt"
 settingsFile = os.path.join(os.path.dirname(__file__), "Settings\settings.json")
 MessageBox = ctypes.windll.user32.MessageBoxW
 global locationList
-locationList = ["head", "body", "hands", "legs", "feet", "right", "left", "back"]
+locationList = ["head", "body", "hands", "legs", "feet", "right", "left"]
 global IsActiveQuest
 IsActiveQuest = False
 global QuestCurrentCountdown
@@ -138,7 +138,7 @@ class Settings:
             self.CheckTreasureCooldown = 60.0
             self.EquipmentCommand = "!equipment"
             self.EquipmentWhisperResponse = "{0} check your twitch inbox for your equipment info, you may need to refresh."
-            self.EquipmentMessage = "{0} has the following equipped: (head) {1}, (body) {2}, (hands) {3}, (legs) {4}, (feet) {5}, (right hand) {6}, (left hand) {7}, (back) {8}"
+            self.EquipmentMessage = "{0} has the following equipped: (head) {1}, (body) {2}, (hands) {3}, (legs) {4}, (feet) {5}, (right hand) {6}, (left hand) {7}"
             self.EquipmentSpecificResponse = "{0} has a {1} equipped on their {2}"
             self.EquipmentCooldownResponse = "{0} the equipment command is on cooldown for {1} seconds"
             self.EquipmentWhisperCooldown = 60.0
@@ -519,7 +519,9 @@ def ModifyPlayerExperience(value, player):
     if os.path.exists(playerPath):
         with open(playerPath) as json_file:
             playerData = json.load(json_file)
-            playerData['exp'] = playerData['exp'] + value
+            newExp = playerData['exp'] + value
+            if newExp >= 0:
+                playerData['exp'] = newExp
 
     if os.path.exists(playerPath):
         os.remove(playerPath)
@@ -580,16 +582,12 @@ def AssignItem(userJson, item, location):
     elif location == "feet":
         oldItem = RetrieveItem(equipment['feet'])
         equipment['feet'] = item.name.lower()
-    elif location == "back":
-        oldItem = RetrieveItem(equipment['back'])
-        equipment['back'] = item.name.lower()
 
     loot.remove(item.name.lower())
     loot.append(oldItem.name.lower())
 
-    if location != "back":
-        userJson['offence'] = userJson['offence'] - oldItem.offence + item.offence
-        userJson['defence'] = userJson['defence'] - oldItem.defence + item.defence
+    userJson['offence'] = userJson['offence'] - oldItem.offence + item.offence
+    userJson['defence'] = userJson['defence'] - oldItem.defence + item.defence
     userJson['equipment'] = equipment
 
     return userJson
@@ -893,7 +891,6 @@ def Execute(data):
                 equipment['hands'] = "empty"
                 equipment['right hand'] = "sword"
                 equipment['left hand'] = "shield"
-                equipment['back'] = "bow"
                 data2['equipment'] = equipment
                 # Assign treasure to the user
                 data2['treasure'] = RandomEncounter.treasure
@@ -911,7 +908,8 @@ def Execute(data):
                     data2 = json.load(json_file)
                     # Add the Experience from the encounter
                     value = data2['exp'] + RandomEncounter.exp
-                    data2['exp'] = value
+                    if value >= 0:
+                        data2['exp'] = value
                     # Update the users level
                     data2['level'] = DetermineLevel(data2['exp'])
                     # Update the users rank
@@ -1044,12 +1042,10 @@ def Execute(data):
                         response = MySet.EquipmentSpecificResponse.format(data.UserName, equipment['right hand'], "right hand")
                     elif(data.GetParam(1).lower() == 'lefthand' or data.GetParam(2).lower() == 'lefthand'):
                         response = MySet.EquipmentSpecificResponse.format(data.UserName, equipment['left hand'], "left hand")
-                    elif(data.GetParam(1).lower() == 'back' or data.GetParam(2).lower() == 'back'):
-                        response = MySet.EquipmentSpecificResponse.format(data.UserName, equipment['back'], "back")
                     else:
                         response = MySet.EquipmentMessage.format(data.UserName, equipment['head'], equipment['body'],
                                                               equipment['hands'], equipment['legs'], equipment['feet'],
-                                                              equipment['right hand'], equipment['left hand'], equipment['back'])
+                                                              equipment['right hand'], equipment['left hand'])
             else:
                 response = MySet.InvalidDataResponse.format(data.UserName)
 

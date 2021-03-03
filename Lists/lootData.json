@@ -8,7 +8,7 @@
 	},
 	{
 		"name": "Bow",
-		"location": ["right", "left", "back"],
+		"location": ["right", "left"],
 		"offence": 1,
 		"defence": 0
 	},
@@ -50,25 +50,25 @@
 	},
 	{
 		"name": "Poison Blade",
-		"location": ["right", "left", "back"],
+		"location": ["right", "left"],
 		"offence": 2,
 		"defence": 0
 	},
 	{
 		"name": "Shield",
-		"location": ["left", "right", "back"],
+		"location": ["left", "right"],
 		"offence": 0,
 		"defence": 0
 	},
 	{
 		"name": "Sword",
-		"location": ["right", "left", "back"],
+		"location": ["right", "left"],
 		"offence": 1,
 		"defence": 0
 	},
 	{
 		"name": "Sword of Vengence",
-		"location": ["right","left", "back"],
+		"location": ["right","left"],
 		"offence": 2,
 		"defence": 0
 	}]
