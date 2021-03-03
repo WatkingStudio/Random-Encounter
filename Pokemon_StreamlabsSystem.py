@@ -28,54 +28,46 @@ Version = "1.0.0.0"
 # Twitch Channel = https://www.twitch.tv/mr_snoblar
 
 # ---------------------------
-#   Define Global Variables
+#   Define Global FilePaths
 # ---------------------------
-global FilePath
-FilePath = "Services\\Scripts\\Random-Encounter\\UserData\\"
-global UsersMonFolder
-UsersMonFolder = FilePath + "UserMon\\"
-global UsersMonLevelsFolder
-UsersMonLevelsFolder = FilePath + "UserMonLevels\\"
-global OpenTradesFolder
-OpenTradesFolder = FilePath + "OpenTrades\\"
-global OpenTradesFolder
-global EncounterFolder
-EncounterFolder = FilePath + "Encounter\\"
-global PointsFolder
-PointsFolder = FilePath + "Points\\"
-global OpenDuelsFolder
-OpenDuelsFolder = FilePath + "OpenDuels\\"
+global BaseFilePath
+BaseFilePath = "Services\\Scripts\\Random-Encounter\\"
+global UserDataFolderPath
+UserDataPath = FilePath + "UserData\\"
+global ListFolderPath
+ListFolderPath = BaseFilePath + "Lists\\"
+global EncounterFolderPath
+EncounterFolderPath = UserDataFolderPath + "Encounter\\"
+
 # ---------------------------------------
 # Global Filepath Variables
 # ---------------------------------------
 global ActiveQuestPath
-ActiveQuestPath = "Services\\Scripts\\Random-Encounter\\ActiveQuest.json"
-global ListFilePath
-ListFilePath = "Services\\Scripts\\Random-Encounter\\Lists\\"
+ActiveQuestPath = BaseFilePath + "ActiveQuest.json"
 global BodyPartFile
-BodyPartFile = ListFilePath + "bodypart.txt"
+BodyPartFile = ListFolderPath + "bodypart.txt"
 global EncounterFile
-EncounterFile =  ListFilePath + "encounter.json"
+EncounterFile =  ListFolderPath + "encounter.json"
 global LocationFile
-LocationFile = ListFilePath + "location.txt"
+LocationFile = ListFolderPath + "location.txt"
 global LootDataFile
-LootDataFile = ListFilePath + "lootData.json"
+LootDataFile = ListFolderPath + "lootData.json"
 global LootListFile
-LootListFile = ListFilePath + "lootList.txt"
+LootListFile = ListFolderPath + "lootList.txt"
 global MonsterFile
-MonsterFile = ListFilePath + "monsters.txt"
+MonsterFile = ListFolderPath + "monsters.txt"
 global NPCFile
-NPCFile = ListFilePath + "npc.txt"
+NPCFile = ListFolderPath + "npc.txt"
 global QuestFile
-QuestFile = ListFilePath + "quests.json"
+QuestFile = ListFolderPath + "quests.json"
 global SpellsFile
-SpellsFile = ListFilePath + "spells.txt"
+SpellsFile = ListFolderPath + "spells.txt"
 global TreasureFile
-TreasureFile = ListFilePath + "treasure.txt"
+TreasureFile = ListFolderPath + "treasure.txt"
 global TrophyConditionFile
-TrophyConditionFile = ListFilePath + "trophy-condition.txt"
+TrophyConditionFile = ListFolderPath + "trophy-condition.txt"
 global WeaponFile
-WeaponFile = ListFilePath + "weapons.txt"
+WeaponFile = ListFolderPath + "weapons.txt"
 # ---------------------------------------
 # Variables
 # ---------------------------------------
@@ -444,7 +436,7 @@ def ReadLinesFile(Path):
 # -----------------------------------------------------------------------------------------------------------------------
 
 def CreatePlayerPath(player):
-    playerPath = EncounterFolder + player + ".json"
+    playerPath = EncounterFolderPath + player + ".json"
     return playerPath
 
 # -----------------------------------------------------------------------------------------------------------------------
@@ -1201,13 +1193,6 @@ def Execute(data):
     #   Quest
     # -----------------------------------------------------------------------------------------------------------------------
 
-            for i in range (1, numberOfParams):
-                word = data.GetParam(i)
-                if not WordIsLocation(word):
-                    if i != 1:
-                        itemName += " "
-                    itemName += word
-
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.QuestCommand.lower() and LiveCheck() and MySet.TurnOnQuest:
         if data.GetParam(1) == "cancel":
@@ -1249,7 +1234,6 @@ def Execute(data):
 
                 SendMessage(str(MySet.QuestResponse.format(monsterName)))
                 SendMessage(str(MySet.QuestCountdownMessage.format(MySet.QuestCountdown)))
-
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Join
