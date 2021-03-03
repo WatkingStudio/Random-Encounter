@@ -90,6 +90,13 @@
 		"label": "Turn On Join",
 		"tooltip": "Turn on the Join Command", 
 		"group": "General"
+	},	
+	"TurnOnRebalance": {
+		"type": "checkbox",
+		"value": true,
+		"label": "Turn On Rebalance",
+		"tooltip": "Turn On Rebalance Command",
+		"group": "General"
 	},
   	"TurnOnCatch": {
 	    "type": "checkbox",
@@ -650,6 +657,42 @@
 		"label": "Join Cooldown (seconds)",
 		"tooltip": "How long the command should go on cooldown for (seconds)",
 		"group": "Join"
+	},	
+	"RebalanceCommand": {
+		"type": "textbox",
+		"value": "!rebalance",
+		"label": "Rebalance Command",
+		"tooltip": "Rebalance Command",
+		"group": "Rebalance"
+	},
+	"RebalanceResponse": {
+		"type": "textbox",
+		"value": "Rebalancing Complete",
+		"label": "Rebalance Response",
+		"tooltip": "Rebalance Response",
+		"group": "Rebalance"
+	},
+	"RebalancePermission": {
+		"type": "dropdown",
+        "value": "Moderator",
+        "items": ["Everyone","Regular","Subscriber","Moderator","Editor","Caster"],
+        "label": "Rebalance Permission Level",
+        "tooltip": "Rebalance Permission Level",
+        "group": "Rebalance"
+	},
+	"RebalancePermissionInfo": {
+		"type": "textbox",
+		"value": "Moderator",
+		"label": "Rebalance Permission Info",
+		"tooltip": "Rebalance Permission Info",
+		"group": "Rebalance"
+	},
+	"RebalancePermissionResp": {
+		"type": "textbox",
+		"value": "{0} -> only $permission ({1}) and higher can use this command",
+		"label": "Rebalance Permission Response",
+		"tooltip": "Rebalance Permission Response",
+		"group": "Rebalance"
 	},
     "CatchCommand": {
         "type": "textbox",
