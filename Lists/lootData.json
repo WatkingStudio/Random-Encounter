@@ -4,35 +4,71 @@
 		"name": "Axe",
 		"location": ["right", "left"],
 		"offence": 1,
-		"defence": 1
+		"defence": 0
+	},
+	{
+		"name": "Bow",
+		"location": ["right", "left", "back"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Cloth Shirt",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 0
 	},
 	{
 		"name": "Diamond Helmet",
 		"location": ["head"],
 		"offence": 0,
-		"defence": 1
+		"defence": 2
 	},
 	{
 		"name": "Flaming Whip",
 		"location": ["right", "left"],
-		"offence": 3
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Leather Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 0
+	},
+	{
+		"name": "Leather Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 0
+	},
+	{
+		"name": "Leather Trousers",
+		"location": ["legs"],
+		"offence": 0,
 		"defence": 0
 	},
 	{
 		"name": "Poison Blade",
-		"location": ["right", "left"],
+		"location": ["right", "left", "back"],
 		"offence": 2,
 		"defence": 0
 	},
 	{
+		"name": "Shield",
+		"location": ["left", "right", "back"],
+		"offence": 0,
+		"defence": 0
+	},
+	{
 		"name": "Sword",
-		"location": ["right", "left"],
+		"location": ["right", "left", "back"],
 		"offence": 1,
 		"defence": 0
 	},
 	{
 		"name": "Sword of Vengence",
-		"location": ["right","left"],
+		"location": ["right","left", "back"],
 		"offence": 2,
 		"defence": 0
 	}]

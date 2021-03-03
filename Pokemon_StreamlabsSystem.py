@@ -10,6 +10,7 @@ import random
 import re
 import ctypes
 import time
+from os import walk
 
 codecs.BOM_UTF8
 '\xef\xbb\xbf'
@@ -33,7 +34,7 @@ Version = "1.0.0.0"
 global BaseFilePath
 BaseFilePath = "Services\\Scripts\\Random-Encounter\\"
 global UserDataFolderPath
-UserDataPath = FilePath + "UserData\\"
+UserDataFolderPath = BaseFilePath + "UserData\\"
 global ListFolderPath
 ListFolderPath = BaseFilePath + "Lists\\"
 global EncounterFolderPath
@@ -180,6 +181,11 @@ class Settings:
             self.JoinResponseFailed = "{0} is already a member of the questing party."
             self.JoinCooldownResponse = "{0} the join command is currently on cooldown for {1} seconds"
             self.JoinCooldown = 30
+            self.RebalanceCommand = "!rebalance"
+            self.RebalanceResponse = "Rebalancing Complete"
+            self.RebalancePermission = "Moderator"
+            self.RebalancePermissionInfo = "Moderator"
+            self.RebalancePermissionResp = "{0} -> only $permission ({1}) and higher can use this command"
             self.BattleCommand = "!battle"
             self.BattleResponse = "{0} {1} {2} {3}"
             self.BattleCooldownResponse = "Battle command is on cooldown"
@@ -581,8 +587,9 @@ def AssignItem(userJson, item, location):
     loot.remove(item.name.lower())
     loot.append(oldItem.name.lower())
 
-    userJson['offence'] = userJson['offence'] - oldItem.offence + item.offence
-    userJson['defence'] = userJson['defence'] - oldItem.defence + item.defence
+    if location != "back":
+        userJson['offence'] = userJson['offence'] - oldItem.offence + item.offence
+        userJson['defence'] = userJson['defence'] - oldItem.defence + item.defence
     userJson['equipment'] = equipment
 
     return userJson
@@ -782,7 +789,7 @@ def Execute(data):
     Pokemon = "test"
     UserStarted = "test"
     TargetOf = "test"
-    userpath = UsersMonFolder + data.UserName + ".txt"
+    userpath = EncounterFolderPath + data.UserName + ".txt"
     # THIS VARIABLE NAME IS MISS LEADING AND SHOULD BE CHANGED COMPLETELY
     # IT SHOULDN'T BE FOR THE ENCOUNTER PATH, BUT INSTEAD FOR THE USERS DATA
     userencounterpath = CreatePlayerPath(data.UserName)
@@ -1195,45 +1202,49 @@ def Execute(data):
 
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.QuestCommand.lower() and LiveCheck() and MySet.TurnOnQuest:
-        if data.GetParam(1) == "cancel":
-            SendMessage(str(MySet.QuestCancelResponse))
-            global IsActiveQuest
-            IsActiveQuest = False
-        else:
-            if IsCurrentlyActiveQuest():
-                SendMessage(str(MySet.QuestActiveMessage.format(QuestCurrentCountdown)))
+        IsModerator = (Parent.HasPermission(data.User, "Moderator", ""))
+        if IsModerator is True:
+            if data.GetParam(1) == "cancel":
+                SendMessage(str(MySet.QuestCancelResponse))
+                global IsActiveQuest
+                IsActiveQuest = False
             else:
-                numberOfParams = data.GetParamCount()
-                monsterName = ""
-                if numberOfParams > 1:
-                    for i in range(1, numberOfParams):
-                        word = data.GetParam(i)
-                        if i != 1:
-                            monsterName += " "
-                        monsterName += word
-                    if not CheckQuestMonsterExists(monsterName):
-                        Log(monsterName + ".")
-                        SendMessage(str(MySet.QuestInvalidMonsterResponse))
-                        monsterName = GetRandomQuestMonster()
+                if IsCurrentlyActiveQuest():
+                    SendMessage(str(MySet.QuestActiveMessage.format(QuestCurrentCountdown)))
                 else:
-                    monsterName = GetRandomQuestMonster()
+                    numberOfParams = data.GetParamCount()
+                    monsterName = ""
+                    if numberOfParams > 1:
+                        for i in range(1, numberOfParams):
+                            word = data.GetParam(i)
+                            if i != 1:
+                                monsterName += " "
+                            monsterName += word
+                        if not CheckQuestMonsterExists(monsterName):
+                            Log(monsterName + ".")
+                            SendMessage(str(MySet.QuestInvalidMonsterResponse))
+                            monsterName = GetRandomQuestMonster()
+                    else:
+                        monsterName = GetRandomQuestMonster()
 
-                if os.path.exists(ActiveQuestPath):
-                    with open(ActiveQuestPath) as json_file:
-                        questData = json.load(json_file)
-                        questData['Monster'] = monsterName
-                        questData['Party'] = []
-                    os.remove(ActiveQuestPath)
-                    AddToFile(ActiveQuestPath, questData)
+                    if os.path.exists(ActiveQuestPath):
+                        with open(ActiveQuestPath) as json_file:
+                            questData = json.load(json_file)
+                            questData['Monster'] = monsterName
+                            questData['Party'] = []
+                        os.remove(ActiveQuestPath)
+                        AddToFile(ActiveQuestPath, questData)
 
-                ToggleActiveQuest()
-                global QuestCurrentCountdown
-                QuestCurrentCountdown = MySet.QuestCountdown
-                global QuestStarted
-                QuestStarted = time.time()
+                    ToggleActiveQuest()
+                    global QuestCurrentCountdown
+                    QuestCurrentCountdown = MySet.QuestCountdown
+                    global QuestStarted
+                    QuestStarted = time.time()
 
-                SendMessage(str(MySet.QuestResponse.format(monsterName)))
-                SendMessage(str(MySet.QuestCountdownMessage.format(MySet.QuestCountdown)))
+                    SendMessage(str(MySet.QuestResponse.format(monsterName)))
+                    SendMessage(str(MySet.QuestCountdownMessage.format(MySet.QuestCountdown)))
+        else:
+            SendMessage(str(MySet.QuestPermissionResponse.format(data.UserName, MySet.QuestPermissionInfo)))
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Join
@@ -1270,6 +1281,47 @@ def Execute(data):
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.JoinCommand, data.User)
             message = MySet.JoinCooldownResponse.format(data.UserName, cooldownduration)
             SendMessage(str(message))
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Rebalance
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+           0).lower() == MySet.RebalanceCommand.lower() and LiveCheck() and MySet.TurnOnRebalance:
+        IsModerator = (Parent.HasPermission(data.User, "Moderator", ""))
+        if IsModerator is True:
+            _, _, playerFilePaths = next(walk(EncounterFolderPath))
+            for playerFilePath in playerFilePaths:
+                playerPath = EncounterFolderPath + playerFilePath
+                if os.path.exists(playerPath):
+                    playerData = ""
+                    with open(playerPath) as json_file:
+                        playerData = json.load(json_file)
+                        playerData['offence'] = 0
+                        playerData['defence'] = 0
+                        playerData['level'] = DetermineLevel(playerData['exp'])
+                        playerData['rank'] = DetermineRank(playerData['level'])
+
+                        equipment = playerData['equipment']
+                        playerData['offence'] = RetrieveItem(equipment['right hand']).offence \
+                                                + RetrieveItem(equipment['left hand']).offence \
+                                                + RetrieveItem(equipment['hands']).offence \
+                                                + RetrieveItem(equipment['body']).offence \
+                                                + RetrieveItem(equipment['feet']).offence \
+                                                + RetrieveItem(equipment['legs']).offence \
+                                                + RetrieveItem(equipment['head']).offence
+                        playerData['defence'] = RetrieveItem(equipment['right hand']).defence \
+                                                + RetrieveItem(equipment['left hand']).defence \
+                                                + RetrieveItem(equipment['hands']).defence \
+                                                + RetrieveItem(equipment['body']).defence \
+                                                + RetrieveItem(equipment['feet']).defence \
+                                                + RetrieveItem(equipment['legs']).defence \
+                                                + RetrieveItem(equipment['head']).defence
+                    os.remove(playerPath)
+                    AddToFile(playerPath, playerData)
+            SendMessage(MySet.RebalanceResponse)
+        else:
+            SendMessage(str(MySet.RebalancePermissionResponse.format(data.UserName, MySet.RebalancePermissionInfo)))
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Catch
