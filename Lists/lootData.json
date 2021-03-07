@@ -1,15 +1,500 @@
 {
 "items":[
 	{
+		"name": "Adamantine Axe",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Adamantine Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Adamantine Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Adamantine Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Adamantine Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Adamantine Greataxe",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Adamantine Greatsword",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Adamantine Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Adamantine Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Adamantine Mace",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Adamantine Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Aegis Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},{
+		"name": "Ancient Axe",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Ancient Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ancient Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ancient Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Ancient Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ancient Greataxe",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Ancient Greatsword",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Ancient Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ancient Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ancient Mace",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Ancient Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Aegis Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Angelic Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Angelic Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Angelic Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Angelic Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Angelic Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Ansestral Blade",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Armour of Adain",
+		"location": [""],
+		"offence": 0,
+		"defence": 0
+	},
+	{
+		"name": "Armour of Fenris",
+		"location": ["body"],
+		"offence": 2,
+		"defence": 2
+	},
+	{
+		"name": "Armour of Fortune",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Armour of Thorns",
+		"location": ["body"],
+		"offence": 2,
+		"defence": 2
+	},
+	{
+		"name": "Avalance Hammer",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
 		"name": "Axe",
 		"location": ["right", "left"],
 		"offence": 1,
 		"defence": 0
 	},
 	{
+		"name": "Axe of Bloodletting",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Axe of Chopping",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Axe of Might",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Axe of Slaying",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Bane Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Barbarian Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Barbarian Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Barbarian Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Barbarian Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Barbarian Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Battle Armour",
+		"location": ["body"],
+		"offence": 1,
+		"defence": 2
+	},
+	{
+		"name": "Battleaxe",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Berserker Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Biting Blade",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Blade of Eldritch Power",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Blade of Leaping Copper",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Blade of Leaping Copper",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Blade of Olympus",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Blade of Slicing",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Blade of Warding",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 1
+	},
+	{
+		"name": "Bladed Shield",
+		"location": ["left", "right"],
+		"offence": 2,
+		"defence": 2
+	},
+	{
+		"name": "Blessed Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Blood Blade",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Blue Mail Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Blue Mail Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Blue Mail Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Blue Mail Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Blue Mail Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Bone Blade",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Boomerang Machete",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Boots of Battle",
+		"location": ["feet"],
+		"offence": 1,
+		"defence": 1
+	},
+	{
+		"name": "Boots of Flight",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Boots of Leaping",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Boots of Swiftness",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
 		"name": "Bow",
 		"location": ["right", "left"],
 		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Bow of Asgard",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Bow of Loren",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Bow of Mirkwood",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Bow of Radiance",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Breastplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 1
+	},
+	{
+		"name": "Burial Blade",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Centurion Spear",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Chain Shirt",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 1
+	},
+	{
+		"name": "Chaos Blade",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Chillrend",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Chromatic Spear",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 1
+	},
+	{
+		"name": "Cleaving Blade",
+		"location": ["right"],
+		"offence": 3,
 		"defence": 0
 	},
 	{
@@ -19,15 +504,1119 @@
 		"defence": 0
 	},
 	{
-		"name": "Diamond Helmet",
+		"name": "Club",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Colossus Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Colossus Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Colossus Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Colossus Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Colossus Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Comet Bow",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Copper Dragon Rapier",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Crown of Night",
 		"location": ["head"],
 		"offence": 0,
 		"defence": 2
 	},
 	{
-		"name": "Flaming Whip",
+		"name": "Crown of Sorcery",
+		"location": ["head"],
+		"offence": 1,
+		"defence": 2
+	},
+	{
+		"name": "Cutlass",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Dagger",
+		"location": ["left", "right"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Dagger of Shadows",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 1
+	},
+	{
+		"name": "Dagger of the Abyss",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Daggermasters Blade",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Dark Steel Axe",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Dark Steel Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Dark Steel Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Dark Steel Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Dark Steel Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Dark Steel Greataxe",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Dark Steel Greatsword",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Dark Steel Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Dark Steel Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Dark Steel Mace",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Dark Steel Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Darting Steel Blades",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 1
+	},
+	{
+		"name": "Dawnbreaker",
 		"location": ["right", "left"],
 		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Dawnbringer",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Deathcleaver",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Deathsword",
+		"location": ["right", "left"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Demon Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Demon Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Demon Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Demon Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Demon Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Demon Slayer",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Devils Knife",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Diamond Plated Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Diamond Plated Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Diamond Plated Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Diamond Plated Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Diamond Plated Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Divine Rapier",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Dragon Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Dragon Glass Axe",
+		"location": ["right", "left"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Dragon Glass Dagger",
+		"location": ["right", "left"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Dragon Glass Sword",
+		"location": ["right", "left"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Dragonbone Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dragonbone Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dragonbone Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dragonbone Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dragonbone Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dragonhelm",
+		"location": ["head"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Dragonscale Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dragonscale Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dragonscale Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dragonscale Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dragonscale Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dreadbow",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Dreadnought Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dreadnought Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dreadnought Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dreadnought Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Dreadnought Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Duskbreaker",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Duskbringer",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Eagle Bow",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Ebony Blade",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Ebony Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Ebony Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Ebony Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Ebony Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Ebony Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Eltharion's Bow",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Emerald Axe",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Emerald Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Emerald Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Emerald Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Emerald Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Emerald Greataxe",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Emerald Greatsword",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Emerald Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Emerald Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Emerald Mace",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Emerald Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Enchanted Shield",
+		"location": ["left", "right"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Ethereal Bow",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Excalibur",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Falcon Bow",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Fan of Blades",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 1
+	},
+	{
+		"name": "Feline Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Feline Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Feline Crossbow",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Feline Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Feline Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Feline Silver Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Feline Steel Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Feline Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Firedart Javalin",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Flail",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Flaming Axe",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Flaming Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Flaming Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Flaming Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Flaming Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Flaming Greataxe",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Flaming Greatsword",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Flaming Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Flaming Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Flaming Mace",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Flaming Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Flaming Whip",
+		"location": ["right", "left"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Flaying Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Flurry Bow",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Force Blade",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Frostblade",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Frostbite Axe",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Frying Pan",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 1
+	},
+	{
+		"name": "Gauntlet of the Damned",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Glaive",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Godsblade",
+		"location": ["right"],
+		"offence": 5,
+		"defence": 0
+	},
+	{
+		"name": "Goredrinker",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 1
+	},
+	{
+		"name": "Greataxe",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Greatclub",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Great Scimitar",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Grey Armour of Eshkalon",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Griffin Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Griffin Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Griffin Crossbow",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Griffin Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Griffin Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Griffin Silver Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Griffin Steel Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Griffin Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Gromril Blade",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Guardian Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Guiding Bow",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Halberd",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Handaxe",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Hammer of the Holy Forge",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Hearthlance",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Hellfire Sword",
+		"location": ["right", "left"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Hellforged Axe",
+		"location": ["right", "left"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Hellforged Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 4
+	},
+	{
+		"name": "Hellforged Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 4
+	},
+	{
+		"name": "Hellforged Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 4
+	},
+	{
+		"name": "Hellforged Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 4
+	},
+	{
+		"name": "Hellforged Greataxe",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Hellforged Greatsword",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Hellforged Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 4
+	},
+	{
+		"name": "Hellforged Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 4
+	},
+	{
+		"name": "Hellforged Mace",
+		"location": ["right", "left"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Hellforged Sword",
+		"location": ["right", "left"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Helmet of Farseeing",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Holy Hammer",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Holy Protector",
+		"location": ["left", "right"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Hornet Glaive",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Hunters Hide",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Hurricane Blade",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 1
+	},
+	{
+		"name": "Hydra Sword",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Ice Axe",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Ice Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ice Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ice Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Ice Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ice Greataxe",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Ice Greatsword",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Ice Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ice Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ice Mace",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Ice Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Immortals Scimitar",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 2
+	},
+	{
+		"name": "Infused Leather Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Infused Leather Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Infused Leather Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Infused Leather Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Infused Leather Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Javelin",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Juggernaut Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Juggernaut Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Juggernaut Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Juggernaut Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Juggernaut Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Keyblade",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Lance",
+		"location": ["right"],
+		"offence": 2,
 		"defence": 0
 	},
 	{
@@ -49,15 +1638,999 @@
 		"defence": 0
 	},
 	{
-		"name": "Poison Blade",
+		"name": "Leviathan Axe",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Leviathans Bane",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Life-Steal Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 2
+	},
+	{
+		"name": "Light Hammer",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Lightning Axe",
 		"location": ["right", "left"],
 		"offence": 2,
 		"defence": 0
 	},
 	{
+		"name": "Lightning Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Lightning Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Lightning Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Lightning Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Lightning Greataxe",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Lightning Greatsword",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Lightning Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Lightning Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Lightning Mace",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Lightning Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Longsword",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Mace",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Mace of Bashing",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Mace of Molag Bal",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Magma Mace",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Magic Sword",
+		"location": ["right", "left"],
+		"offence": 0,
+		"defence": 0
+	},
+	{
+		"name": "Manticore Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Manticore Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Manticore Crossbow",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Manticore Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Manticore Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Manticore Silver Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Manticore Steel Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Manticore Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Masque of Clavicus Vile",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Mastercrafted Axe",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Mastercrafted Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Mastercrafted Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Mastercrafted Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Mastercrafted Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Mastercrafted Greataxe",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Mastercrafted Greatsword",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Mastercrafted Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Mastercrafted Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Mastercrafted Mace",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Mastercrafted Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Maul",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Mehrunes' Razor",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Meteor Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Meteorite Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Meteorite Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Meteorite Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Meteorite Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Meteorite Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Mithril Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Mithril Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Mithril Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Mithril Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Mithril Shirt",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Morningstar",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Nemean Lion Skin",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 5
+	},
+	{
+		"name": "Nova Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Nova Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Nova Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Nova Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Nova Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Nox's Bow",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Quarterstaff",
+		"location": ["right", "left"],
+		"offence": 0,
+		"defence": 0
+	},
+	{
+		"name": "Obsidian Blade",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Odin's Axe",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Ogre Blade",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Onyx Blade",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Padded Leather Shirt",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 1
+	},
+	{
+		"name": "Paladin Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Paladin Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Paladin Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Paladin Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Paladin Shirt",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Parrying Blade",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 1
+	},
+	{
+		"name": "Pike",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Platemail",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Poison Blade",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Poisoned Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Rapier",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 1
+	},
+	{
+		"name": "Ravager",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Raven Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Red Iron Axe",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Red Iron Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Red Iron Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Red Iron Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Red Iron Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Red Iron Greataxe",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Red Iron Greatsword",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Red Iron Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Red Iron Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Red Iron Mace",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Red Iron Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Red Leather Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Red Leather Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Red Leather Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Red Leather Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Red Leather Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Relic Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Rending Axe",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Rending Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Ring Mail Shirt",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 1
+	},
+	{
+		"name": "Ruby Axe",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Ruby Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ruby Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ruby Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Ruby Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ruby Greataxe",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Ruby Greatsword",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Ruby Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ruby Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Ruby Mace",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Ruby Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Sanguine Rose",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Sapphire Axe",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Sapphire Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Sapphire Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Sapphire Dagger",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Sapphire Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Sapphire Greataxe",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Sapphire Greatsword",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Sapphire Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Sapphire Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Sapphire Mace",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Sapphire Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Saviors Hide",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Scale Mail",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 1
+	},
+	{
+		"name": "Scimitar",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Scissor Blade",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Serated Dirk",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Shadow Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Shadow Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Shadow Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Shadow Glass Blade",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Shadow Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Shadow Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Shardblade",
+		"location": ["right"],
+		"offence": 5,
+		"defence": 0
+	},
+	{
+		"name": "Shardplate Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 5
+	},
+	{
+		"name": "Shardplate Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 5
+	},
+	{
+		"name": "Shardplate Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 5
+	},
+	{
+		"name": "Shardplate Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 5
+	},
+	{
+		"name": "Shardplate Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 5
+	},
+	{
 		"name": "Shield",
 		"location": ["left", "right"],
 		"offence": 0,
+		"defence": 0
+	},
+	{
+		"name": "Shield of Cthulu",
+		"location": ["left", "right"],
+		"offence": 0,
+		"defence": 5
+	},
+	{
+		"name": "Sickle",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Siege Breaker",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Skull Hammer",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Skull of Corruption",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Sky Cleaver",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Soul Eater",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Spear",
+		"location": ["right", "left"],
+		"offence": 0,
+		"defence": 0
+	},
+	{
+		"name": "Spear of Akatosh",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Spectral Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Spectral Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Spectral Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Spectral Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Spectral Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Spellbinder",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Spellbreak",
+		"location": ["left", "right"],
+		"offence": 0,
+		"defence": 2
+	},
+	{
+		"name": "Staff of Command",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Steelbrand",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Studded Leather Chest",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 1
+	},
+	{
+		"name": "Studded Leather Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 1
+	},
+	{
+		"name": "Studded Leather Leggings",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 1
+	},
+	{
+		"name": "Sun's Wrath",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Sunfire Bow",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Swift Rapier",
+		"location": ["right", "left"],
+		"offence": 2,
 		"defence": 0
 	},
 	{
@@ -67,9 +2640,351 @@
 		"defence": 0
 	},
 	{
-		"name": "Sword of Vengence",
-		"location": ["right","left"],
+		"name": "Sword of Destruction",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Sword of Heroes",
+		"location": ["right", "left"],
 		"offence": 2,
 		"defence": 0
+	},
+	{
+		"name": "Sword of Might",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Sword of Resilience",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 2
+	},
+	{
+		"name": "Sword of Slashing",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Sword of Stone",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Sword of Vengence",
+		"location": ["right","left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Talons Bane",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "The Hammer of Sigmar",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Thundersword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Tiamat's Dagger",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Trident",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Trident of Atlantis",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Twilight Scimitar",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Ursine Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Ursine Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Ursine Crossbow",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Ursine Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Ursine Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Ursine Silver Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Ursine Steel Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Ursine Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Undead Bane",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Vampiric Blade",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 2
+	},
+	{
+		"name": "Viper Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Viper Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Viper Crossbow",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Viper Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Viper Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Viper Silver Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Viper Steel Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Viper Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Viridian Blade",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Volendrung",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Wabbajack",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Walking Stick",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Wand of Blasting",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Wand of Jade",
+		"location": ["right", "left"],
+		"offence": 0,
+		"defence": 0
+	},
+	{
+		"name": "War Pick",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Warhammer",
+		"location": ["right"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Warp Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Weapon of Armageddon",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Weapon of Champions",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Weapon of Glory",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Weapon of Lifestealing",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 2
+	},
+	{
+		"name": "Weapon of Phoenix",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Weapon of Wonder",
+		"location": ["right"],
+		"offence": 4,
+		"defence": 0
+	},
+	{
+		"name": "Whip",
+		"location": ["right", "left"],
+		"offence": 1,
+		"defence": 0
+	},
+	{
+		"name": "Windslicer",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Wolfs Fang",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
+		"name": "Wolven Boots",
+		"location": ["feet"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Wolven Chestplate",
+		"location": ["body"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Wolven Crossbow",
+		"location": ["right"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Wolven Gauntlet",
+		"location": ["hands"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Wolven Greaves",
+		"location": ["legs"],
+		"offence": 0,
+		"defence": 3
+	},
+	{
+		"name": "Wolven Silver Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Wolven Steel Sword",
+		"location": ["right", "left"],
+		"offence": 3,
+		"defence": 0
+	},
+	{
+		"name": "Wolven Helmet",
+		"location": ["head"],
+		"offence": 0,
+		"defence": 3
 	}]
 }
