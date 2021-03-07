@@ -844,6 +844,9 @@ def Execute(data):
             # {9} - NPC
 
             randomMonster = GetRandomMonster()
+            randomLoot = "null"
+            if not RandomEncounter.loot == "null":
+                randomLoot = AssignLoot(RandomEncounter.loot)
 
             formattedEncounter = RandomEncounter.encounter.replace('{0}', data.UserName)\
                 .replace('{1}', randomMonster)\
@@ -851,7 +854,7 @@ def Execute(data):
                 .replace('{3}', str(GetRandomTime()))\
                 .replace('{4}', GetRandomWeapon())\
                 .replace('{5}', GetRandomSpell())\
-                .replace('{6}', GetRandomTreasure())\
+                .replace('{6}', randomLoot)\
                 .replace('{7}', GetRandomBodyPart())\
                 .replace('{8}', GetRandomLocation())\
                 .replace('{9}', GetRandomNPC())
@@ -904,7 +907,7 @@ def Execute(data):
                 # Assign Loot to the user
                 data2['loot'] = []
                 if not RandomEncounter.loot == "null":
-                    data2['loot'].append(AssignLoot(RandomEncounter.loot))
+                    data2['loot'].append(randomLoot)
             # If the user already has a .json file, open it and add the new data to it
             else:
                 with open(userencounterpath) as json_file:
@@ -925,7 +928,7 @@ def Execute(data):
                         data2['trophies'].append(FormatTrophy(RandomEncounter.trophies, randomMonster))
                     # Add Loot from the encounter
                     if not RandomEncounter.loot == "null":
-                        data2['loot'].append(AssignLoot(RandomEncounter.loot))
+                        data2['loot'].append(randomLoot)
 
 
             if os.path.exists(userencounterpath):
