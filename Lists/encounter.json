@@ -5,6 +5,69 @@
 		"exp":1,
 		"treasure":1,
 		"trophies":"{0} Head",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} went on an epic quest to slay a {1}.",
+		"exp":2,
+		"treasure":0,
+		"trophies":"null",
 		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} was ambushed by a {1}, {0} was defeated and was left to die.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} saved the village from an invasion of {1}s.",
+		"exp":2,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} entered a local duelling contest. After several tough matches {0} was victorious.",
+		"exp":1,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} won a plush {1} at the local carnival.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"{0} Plush",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} takes part in a cult sacrifice summoning the god of {1}s",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} nearly gets run over by a stampede of {1}s.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} joins a Fey hunt, tracking down the legendary {1} found in the region. {0} deals the final blow to the {1} and is rewarded with a feast in their name.",
+		"exp":2,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"Fey Sword"
+	},
+	{
+	    "encounter":"{0} went out for a gentle stroll and ran into a group of {1}s.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
 	}]
 }
