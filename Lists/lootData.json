@@ -1098,6 +1098,12 @@
 		"defence": 3
 	},
 	{
+		"name": "Fey Sword",
+		"location": ["right", "left"],
+		"offence": 2,
+		"defence": 0
+	},
+	{
 		"name": "Firedart Javalin",
 		"location": ["right", "left"],
 		"offence": 2,
