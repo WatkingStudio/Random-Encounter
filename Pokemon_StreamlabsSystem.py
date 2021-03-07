@@ -53,8 +53,6 @@ global LocationFile
 LocationFile = ListFolderPath + "location.txt"
 global LootDataFile
 LootDataFile = ListFolderPath + "lootData.json"
-global LootListFile
-LootListFile = ListFolderPath + "lootList.txt"
 global MonsterFile
 MonsterFile = ListFolderPath + "monsters.txt"
 global NPCFile
@@ -479,7 +477,12 @@ def FormatTrophy(trophyString, monster):
     return formattedTrophy.lower()
 
 def GetRandomLoot():
-    return random.choice(ReadLinesFile(LootListFile))
+    itemName = ""
+    with open(LootDataFile) as json_file:
+        itemList = json.load(json_file)
+        randomItemNumber = Parent.GetRandom(0, len(itemList['items']))
+        itemName = itemList['items'][randomItemNumber]['name']
+    return itemName
 
 def AssignLoot(lootString):
     assignedLoot = lootString.replace('{0}', GetRandomLoot())
