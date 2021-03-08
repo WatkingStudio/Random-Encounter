@@ -487,7 +487,7 @@ def DetermineQuestResult():
                 monsterOffence = monster['offence']
                 monsterDefence = monster['defence']
 
-                # Currently this s
+                # Currently this data is logged to check for quest balance
                 Log(monster['name'])
                 Log("Monster Offence: " + str(monsterOffence))
                 Log("Monster Defence: " + str(monsterDefence))
