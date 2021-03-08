@@ -103,14 +103,7 @@ class Settings:
             self.TurnOnEquip = True
             self.TurnOnQuest = True
             self.TurnOnJoin = True
-            self.TurnOnCatch = True
-            self.TurnOnBattle = True
-            self.TurnOnRelease = True
-            self.TurnOnTrade = True
-            self.TurnOnAcceptTrade = True
-            self.TurnOnRefuse = True
-            self.TurnOnDuel = True
-            self.TurnOnAcceptDuel = True
+            self.TurnOnRebalance = True
             self.PointsName = "Street Rep"
             self.InvalidDataResponse = "{0} does not have a valid data file"
             self.GiveLootResponse = "{0} has been rewarded with a {1}"
@@ -184,57 +177,7 @@ class Settings:
             self.RebalancePermission = "Moderator"
             self.RebalancePermissionInfo = "Moderator"
             self.RebalancePermissionResp = "{0} -> only $permission ({1}) and higher can use this command"
-            self.BattleCommand = "!battle"
-            self.BattleResponse = "{0} {1} {2} {3}"
-            self.BattleCooldownResponse = "Battle command is on cooldown"
-            self.BattleWinChance = 50.0
-            self.BattleDeathChance = "0.1"
-            self.BattlePointsWin = 10
-            self.BattlePointsLoss = 10
-            self.BattleMaxLevel = 100
-            self.BattleCooldown = 60.0
-            self.ReleaseCommand = "!release"
-            self.ReleaseResponse = "released {1}"
-            self.ReleaseFailedResponse = "does not have a {1}"
-            self.ReleaseOnCooldownResponse = "{0} the release command is on cooldown for {1} seconds"
-            self.ReleaseCooldown = 60.0
-            self.TradeCommand = "!trade"
-            self.TradeResponse = "Trade Successful"
-            self.TradeUserNotThatMonResponse = "{0} does not have a "
-            self.TradeOnCooldownResponse = "{0} the trade command is on cooldown for {1} seconds"
-            self.TradeCooldown = 60.0
-            self.AcceptTradeCommand = "!accepttrade"
-            self.AcceptTradeResponse = "{0} has accepted their trade with {1}"
-            self.AcceptTradeMissingMonResponse = "{0} doesn't have a {1}"
-            self.AcceptTradeNoTradeFoundResponse = "{0} and {1} doesn't have an trade pending"
-            self.AcceptTradeOnCooldownResponse = "{0} the accepttrade command is on cooldown for {1} seconds"
-            self.AcceptTradeCooldown = 60.0
-            self.RefuseCommand = "!refuse"
-            self.RefuseResponse = "{0} refused to trade with {1}"
-            self.RefuseNotFoundResponse = "{0} and {1} doesn't have an trade pending"
-            self.RefuseCooldownResponse = "{0} the refuse command is on cooldown for {1} seconds"
-            self.RefuseCooldown = 60.0
-            self.CatchCommand = "!catch"
-            self.CatchResponse = "{0} {1} {2}"
-            self.CatchNotFoundresponse = "{0} didnt encounter a {1}"
-            self.CatchCooldownResponse = "{0} the catch command is on cooldown for {1} seconds"
-            self.CatchCooldown = 60.0
-            self.CatchMaxAmount = 10
-            self.CatchMaxAmountResponse = "{0} already has {1} Pokemon!"
-            self.DuelCommand = "!duel"
-            self.DuelResponse = "{0}'s {1} has challenged {2}'s {3} to a duel!"
-            self.DuelPointsBasedOnLevel = True
-            self.DuelPointsForWin = "1.5"
-            self.DuelPointsForLoss = "0.5"
-            self.DuelCooldownResponse = "{0} the duel command is on cooldown for {1} seconds"
-            self.DuelCooldown = 60.0
-            self.AcceptDuelCommand = "!acceptduel"
-            self.AcceptDuelResponse = "{0} has accepted their duel with {1}"
-            self.AcceptDuelOutcomeResponse = "{0} and their {2} absolutely demolished {1} and their {3}!"
-            self.AcceptDuelMissingMonResponse = "{0} doesn't have a {1}"
-            self.AcceptDuelNoDuelFoundResponse = "{0} and {1} doesn't have an duel pending"
-            self.AcceptDuelOnCooldownResponse = "{0} the acceptduel command is on cooldown for {1} seconds"
-            self.AcceptDuelCooldown = 60.0
+
 
     # ---------------------------
     #   [Optional] Reload Settings (Called when a user clicks the Save Settings button in the Chatbot UI)
@@ -275,8 +218,14 @@ def DetermineLevel(exp):
         return 1
     elif exp <= 20:
         return 2
-    else:
+    elif exp <= 30:
         return 3
+    elif exp <= 40:
+        return 4
+    elif exp <= 50:
+        return 5
+    else:
+        return 6
 
 #------------------------------------------------------------------------------------------------------------------------
 
@@ -285,6 +234,12 @@ def DetermineRank(level):
         return "Grunt"
     elif level <= 2:
         return "Warrior"
+    elif level <= 3:
+        return "Veteran"
+    elif level <= 4:
+        return "Champion"
+    elif level <= 5:
+        return "Hero"
     else:
         return "God"
 
@@ -298,17 +253,6 @@ def AddToFile(filepath, addme):
 
 # -----------------------------------------------------------------------------------------------------------------------
 
-def OverwriteNumberInFile(filepath, howmuchtoadd):
-    if int(GetNumberFromFile(filepath)) != 0:
-        newlevel = str(int(GetNumberFromFile(filepath)) + howmuchtoadd)
-    else:
-        newlevel = str(howmuchtoadd)
-    with codecs.open(filepath, "a+", encoding="utf-8-sig") as f:
-        f.seek(0)
-        f.write(newlevel)
-
-# -----------------------------------------------------------------------------------------------------------------------
-
 def HasPermission(data):
     #Return true if user has permission and false if the user doesn't
     if not Parent.HasPermission(data.User, MySet.MonsterPermission, MySet.PermissionInfo):
@@ -316,24 +260,6 @@ def HasPermission(data):
         SendResp(data, message)
         return False
     return True
-
-# -----------------------------------------------------------------------------------------------------------------------
-
-def GetUserPokemon(username):
-    if os.path.exists(UsersMonFolder + username + ".txt"):
-        response = ReadLinesFile(UsersMonFolder + username + ".txt")
-    else:
-        response = False
-    return response
-
-# -----------------------------------------------------------------------------------------------------------------------
-
-def GetNumberFromFile(filepath):
-    if os.path.exists(filepath):
-        response = ReadLineFile(filepath)
-    else:
-        response = 0
-    return response
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -345,16 +271,6 @@ def CheckMonsterExists(filepath, monster):
             if line == monster:
                 MonsterExists = True
     return MonsterExists
-
-# -----------------------------------------------------------------------------------------------------------------------
-
-def ExistsInFile(username, meexists):
-    PokemonExists = False
-    if GetUserPokemon(username):
-        for line in GetUserPokemon(username):
-            if line == meexists:
-                PokemonExists = True
-    return PokemonExists
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -383,19 +299,6 @@ def LiveCheck():
         return False
     else:
         return True
-
-# -----------------------------------------------------------------------------------------------------------------------
-
-def GetRandomLine(filepath):
-    # i've had to get random line a really roundabout way, random.sample isnt picking up last line in file
-    randnum = Parent.GetRandom(0, CountLines(filepath))
-    lines_to_read = [
-        randnum]  # this could be [0,1] and it'd return more than one line, if you did print lines or put into a list of something
-
-    a_file = codecs.open(filepath, "r", encoding="utf-8-sig")
-    for position, line in enumerate(a_file):
-        if position in lines_to_read:
-            return line
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -442,25 +345,6 @@ def ReadLinesFile(Path):
 def CreatePlayerPath(player):
     playerPath = EncounterFolderPath + player + ".json"
     return playerPath
-
-# -----------------------------------------------------------------------------------------------------------------------
-
-def GetTmpPath(filepath):
-    tmp_filepath = str(filepath).replace(".txt","tmp.txt")
-    return tmp_filepath
-
-# needed to create this pokemon as it was hardcoding an initial value of test, so needed it to create this path at run time..
-def GetLevelPath(username,Pokemon):
-    return UsersMonLevelsFolder + username + "_" + Pokemon + ".txt"
-
-def GetLevel(username,Pokemon):
-    return GetNumberFromFile(GetLevelPath(username,Pokemon))
-
-def GetUserPointsPath(UserStarted):
-    return PointsFolder + UserStarted + ".txt"
-    
-def GetTargetPointsPath(TargetOf):
-    return PointsFolder + TargetOf + ".txt"
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -1330,454 +1214,6 @@ def Execute(data):
         else:
             SendMessage(str(MySet.RebalancePermissionResponse.format(data.UserName, MySet.RebalancePermissionInfo)))
 
-    # -----------------------------------------------------------------------------------------------------------------------
-    #   Catch
-    # -----------------------------------------------------------------------------------------------------------------------
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.CatchCommand.lower() and LiveCheck() and MySet.TurnOnCatch:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.CatchCommand, data.User):
-
-            #- check to see how many mon users have, if more than allowed amount, stop and send response
-            if CountLines(userpath) >= int(MySet.CatchMaxAmount):
-                message = MySet.CatchMaxAmountResponse.format(data.UserName, MySet.CatchMaxAmount)
-                Parent.SendStreamMessage(str(message))
-
-            else:
-                # vars -----------------------------------------------------------------------------------------------
-                arg1 = data.GetParam(1)
-                Pokemon = arg1.capitalize()
-                # vars -----------------------------------------------------------------------------------------------
-
-                if os.path.exists(userencounterpath):                                                           # if they've encountered a mon in !encounter
-                    if Pokemon in ReadLinesFile(userencounterpath):                                             # and the !catch mon is in there
-                        AddToFile(userpath, Pokemon)                                                            # add mon to their list
-                        OverwriteNumberInFile(GetLevelPath(data.UserName,Pokemon), 1)                                                 # add mon level
-                        os.remove(userencounterpath)                                                            # remove from encounter folder for this user
-                        SendMessage(MySet.CatchResponse.format(data.UserName, "caught a", Pokemon))             # send success message
-                        Parent.AddUserCooldown(ScriptName, MySet.CatchCommand, data.User, MySet.CatchCooldown)  # add cd
-                    else:
-                        SendMessage(MySet.CatchNotFoundResponse.format(data.UserName, Pokemon))
-        else:
-            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CatchCommand, data.User)
-            message = MySet.CatchCooldownResponse.format(data.UserName, cooldownduration)
-            Parent.SendStreamMessage(str(message))
-
-    # -----------------------------------------------------------------------------------------------------------------------
-    #   Battle
-    # -----------------------------------------------------------------------------------------------------------------------
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.BattleCommand.lower() and LiveCheck() and MySet.TurnOnBattle:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.BattleCommand, data.User):
-
-            # if they've supplied a parameter, use that as the Mon, else get a random Mon from the list of users pokemon
-            if len(data.GetParam(1)) > 0:
-                reRandomUserPokemon = data.GetParam(1)
-            else:
-                reRandomUserPokemon = GetRandomLine(userpath)
-            Pokemon = reRandomUserPokemon.capitalize().strip()
-
-            # if supplied Mon parameter isn;t a pokemon they have, send error otherwise continue
-            if ExistsInFile(data.UserName, Pokemon) == False:
-                return Parent.SendStreamMessage("User does not have that Pokemon")
-            else:
-                # vars -----------------------------------------------------------------------------------------------
-                # dont know why but this multiplier max seems to be 1.5 when i put 2.5
-                Multiplier = random.uniform(0.5, 2.5)
-                RandomMonster = random.choice(ReadLinesFile(MonsterFile))
-                RandomPokemonLevel = int((int(GetLevel(data.UserName,Pokemon)) * Multiplier )) + 1
-                deathflag = False
-                
-                # vars -----------------------------------------------------------------------------------------------
-
-                # if user won, then use the won battle text file, and add a level if they aren't Max Level or above
-                if int(MySet.BattleWinChance) >= Parent.GetRandom(1, 100):
-                    RandomBattleResponse = random.choice(ReadLinesFile(FilePath + "wonbattle.txt"))
-                    OverwriteNumberInFile(GetUserPointsPath(UserStarted), MySet.BattlePointsWin)
-                    if int(GetLevel(data.UserName,Pokemon)) < MySet.BattleMaxLevel:
-                        OverwriteNumberInFile(GetLevelPath(data.UserName,Pokemon), 1)
-
-                # if they didn't win, they lost, if death chance procs, the use deathbattle response and activate death flag
-                elif float(MySet.BattleDeathChance) >= float(Parent.GetRandom(1, 100)):
-                    RandomBattleResponse = random.choice(ReadLinesFile(FilePath + "deathbattle.txt"))
-                    OverwriteNumberInFile(GetUserPointsPath(UserStarted), - MySet.BattlePointsWin)
-                    deathflag = True
-
-                # if they didnt win, or activate death, then its just a loss, no levels gained
-                else:
-                    RandomBattleResponse = random.choice(ReadLinesFile(FilePath + "lostbattle.txt"))
-                    OverwriteNumberInFile(GetUserPointsPath(UserStarted), - MySet.BattlePointsWin)
-
-                # the random opponent level they will fight against, capped at BattleMaxLevel
-                if int(RandomPokemonLevel) >= MySet.BattleMaxLevel:
-                    RandomPokemonLevel = str(MySet.BattleMaxLevel)
-
-
-                # generates the response text, based on whether they won or lost, and the params given in SL chatbot
-                response = MySet.BattleResponse.format(data.UserName                        #{0}
-                                                      , GetLevel(data.UserName,Pokemon)     #{1}
-                                                      , Pokemon                             #{2}
-                                                      , str(RandomPokemonLevel)             #{3}
-                                                      , RandomMonster                       #{4}
-                                                      , str(RandomBattleResponse).format(# the battle response text itself is #{5}, but can use the others
-                                                                                         data.UserName                      #{0}
-                                                                                       , GetLevel(data.UserName,Pokemon)    #{1}
-                                                                                       , Pokemon                            #{2}
-                                                                                       , str(RandomPokemonLevel)            #{3}
-                                                                                       , RandomMonster)                     #{4}
-                                                      )
-
-                # if they proc'd the deathchance, remove that Mon from the userlist of Mon, and from the levels folder
-                if deathflag:
-
-                    RemoveFromFile(userpath, GetTmpPath(userpath), Pokemon)
-                    os.remove(GetLevelPath(data.UserName,Pokemon))
-
-            Parent.SendStreamMessage(str(response))
-            Parent.AddUserCooldown(ScriptName, MySet.BattleCommand, data.User, MySet.BattleCooldown)
-
-        else:
-            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.BattleCommand, data.User)
-            message = MySet.BattleCooldownResponse.format(data.UserName, cooldownduration)
-            Parent.SendStreamMessage(str(message))
-    # -----------------------------------------------------------------------------------------------------------------------
-    #   Release
-    # -----------------------------------------------------------------------------------------------------------------------
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.ReleaseCommand.lower() and LiveCheck() and MySet.TurnOnRelease:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.ReleaseCommand, data.User):
-            # vars -----------------------------------------------------------------------------------------------
-
-            rePokemon = data.GetParam(1)
-            Pokemon = rePokemon.capitalize()
-            UserMon = False
-
-            # vars -----------------------------------------------------------------------------------------------
-
-            # only if pokemon supplied exists does it do this, reads a, writes to b, deletes a, renames b to a
-            if ExistsInFile(data.UserName, Pokemon):
-                # remove from user file
-                RemoveFromFile(userpath, GetTmpPath(userpath), Pokemon)
-                # above fn doesnt remove the file, only removes pokemon
-                os.remove(GetLevelPath(data.UserName,Pokemon))
-                UserMon = True
-            if UserMon:
-                response = MySet.ReleaseResponse.format(data.User, Pokemon)
-            else:
-                response = MySet.ReleaseFailedResponse.format(data.User, Pokemon)
-            SendMessage(response)
-            Parent.AddUserCooldown(ScriptName, MySet.ReleaseCommand, data.User, MySet.ReleaseCooldown)
-        else:
-            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.ReleaseCommand, data.User)
-            message = MySet.ReleaseOnCooldownResponse.format(data.UserName, cooldownduration)
-            SendMessage(str(message))
-    # -----------------------------------------------------------------------------------------------------------------------
-    #   Initiate Trade
-    # -----------------------------------------------------------------------------------------------------------------------
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.TradeCommand.lower() and LiveCheck() and MySet.TurnOnTrade:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.TradeCommand, data.User):
-            # vars -----------------------------------------------------------------------------------------------
-            TargetOf = str(data.GetParam(1)).strip("@")
-            UserStarted = data.UserName
-
-            # have to do two variables because capitalise doesnt seem to work properly otherwise
-            a = data.GetParam(2)
-            b = data.GetParam(3)
-            UserPokemon = a.capitalize()
-            TargetPokemon = b.capitalize()
-
-            # vars -----------------------------------------------------------------------------------------------
-            # checking an open trade doesnt already exist ( user a + user b are considered different trades than user b + user a)
-            for filename in os.listdir(OpenTradesFolder):
-                if UserStarted + "_" + TargetOf in filename:
-                    SendMessage("you both already have an open trade, reject that one first")
-                    return
-
-            # these # below are to search through string and identify the pokemon without having to put in params
-            TradePath = OpenTradesFolder + UserStarted + "_" + TargetOf + "#" + UserPokemon + "#" + TargetPokemon + "#.txt"
-            # check whether user and target they actually have the pokemon, and then whether the trade already exists
-            if not ExistsInFile(UserStarted, UserPokemon):
-                SendMessage(UserStarted + " doesn't have a " + UserPokemon + " to trade!")
-                return
-            if not ExistsInFile(TargetOf, TargetPokemon):
-                SendMessage(TargetOf + " doesn't have a " + TargetPokemon + " to trade!")
-                return
-            if os.path.exists(TradePath):
-                SendMessage(UserStarted + ", that trade is already exists!, " + TargetOf + " needs to accept!")
-                return
-
-            # if doesnt exist, write any content but with the filename defined before.
-            else:
-                with codecs.open(TradePath, "a+", encoding="utf-8-sig") as f:
-                    f.write("1")
-
-            SendMessage(MySet.TradeResponse.format(UserStarted, TargetOf, UserPokemon, TargetPokemon))
-            Parent.AddUserCooldown(ScriptName, MySet.TradeCommand, data.User, MySet.TradeCooldown)
-        else:
-            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.TradeCommand, data.User)
-            message = MySet.TradeOnCooldownResponse.format(data.UserName, cooldownduration)
-            SendMessage(str(message))
-
-    # -----------------------------------------------------------------------------------------------------------------------
-    #   AcceptTrade
-    # -----------------------------------------------------------------------------------------------------------------------
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.AcceptTradeCommand.lower() and LiveCheck() and MySet.TurnOnAcceptTrade:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.AcceptTradeCommand, data.User):
-            # vars -----------------------------------------------------------------------------------------------
-
-            UserStarted = data.GetParam(1).strip("@")
-            TargetOf = data.UserName
-            hash1position = 0
-            hash2position = 0
-            hash3position = 0
-            x = 0
-            filefound = False
-            UserStartedpath = UsersMonFolder + UserStarted + ".txt"
-            Targetpath = UsersMonFolder + TargetOf + ".txt"
-
-            # vars -----------------------------------------------------------------------------------------------
-
-            # Extracting the Mon to trade and tradee from the filename
-            for filename in os.listdir(OpenTradesFolder):
-                if UserStarted + "_" + TargetOf in filename:
-                    filefound = True
-                    # loops through the text of filename, and works out what char indexes contain the hash, which is what in !trade
-                    # we've set as the delimiters , files in format of user1_user2#Mon1#Mon2, so between from 1st #
-                    # to 2nd # is Mon1, 2nd and 3rd # is Mon2
-                    for i in range(len(filename)):
-                        if filename.startswith("#", i):
-                            x += 1
-                            if x == 1:
-                                hash1position = i
-                            elif x == 2:
-                                hash2position = i
-                            elif x == 3:
-                                hash3position = i
-                    UserPokemon = filename[hash1position + 1:hash2position]
-                    TargetPokemon = filename[hash2position + 1:hash3position]
-
-                    # checks whether users and target still have the mon to trade, as could have removed after !trade was initiated
-                    if GetNumberFromFile(UsersMonLevelsFolder + UserStarted + "_" + UserPokemon + ".txt") == False:
-                        SendMessage(MySet.AcceptTradeMissingMonResponse.format(UserStarted, UserPokemon))
-                        return
-                    if GetNumberFromFile(UsersMonLevelsFolder + TargetOf + "_" + TargetPokemon + ".txt") == False:
-                        SendMessage(MySet.AcceptTradeMissingMonResponse.format(TargetOf, TargetPokemon))
-                        return
-
-                    # Removes Pokemon from users
-                    RemoveFromFile(UsersMonFolder + UserStarted + ".txt",
-                                   UsersMonFolder + "tmp_" + UserStarted + ".txt", UserPokemon)
-                    RemoveFromFile(UsersMonFolder + TargetOf + ".txt",
-                                   UsersMonFolder + "tmp_" + TargetOf + ".txt", TargetPokemon)
-                    # Adds new ones
-                    AddToFile(UserStartedpath, TargetPokemon)
-                    AddToFile(Targetpath, UserPokemon)
-                    # swaps the files to swap pokemon levels as well
-                    # right now this fails if you try to trade the same mon, (might want to due to levels)
-                    os.rename(UsersMonLevelsFolder + UserStarted + "_" + UserPokemon + ".txt",
-                              UsersMonLevelsFolder + TargetOf + "_" + UserPokemon + ".txt")
-                    os.rename(UsersMonLevelsFolder + TargetOf + "_" + TargetPokemon + ".txt",
-                              UsersMonLevelsFolder + UserStarted + "_" + TargetPokemon + ".txt")
-                    # removes the trade from the list of trades
-                    os.remove(OpenTradesFolder + filename)
-
-            if filefound:
-                completed_text = MySet.AcceptTradeResponse.format(TargetOf, UserStarted)
-            else:
-                completed_text = MySet.AcceptTradeNoTradeFoundResponse.format(UserStarted, TargetOf)
-
-            SendMessage(completed_text)
-            Parent.AddUserCooldown(ScriptName, MySet.AcceptTradeCommand, data.User, MySet.AcceptTradeCooldown)
-        else:
-            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.AcceptTradeCommand, data.User)
-            message = MySet.AcceptTradeOnCooldownResponse.format(data.UserName, cooldownduration)
-            SendMessage(str(message))
-
-    # -----------------------------------------------------------------------------------------------------------------------
-    #   Refuse Trade
-    # -----------------------------------------------------------------------------------------------------------------------
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.RefuseCommand.lower() and LiveCheck() and MySet.TurnOnRefuse:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.RefuseCommand, data.User):
-            # vars -----------------------------------------------------------------------------------------------
-
-            UserStarted = data.GetParam(1).strip("@")
-            TargetOf = data.UserName
-            tradeexists = False
-
-            # vars -----------------------------------------------------------------------------------------------
-            # checks whether user1_user2 is contained in any filenames, it shouldnt have more than 1 open, as !trade command should have errored
-            for filename in os.listdir(OpenTradesFolder):
-                if UserStarted + "_" + TargetOf in filename:
-                    file = filename
-                    tradeexists = True
-
-            if tradeexists:
-                os.remove(OpenTradesFolder + file)
-            else:
-                SendMessage(MySet.RefuseNotFoundResponse.format(TargetOf, UserStarted))
-                return
-
-            SendMessage(MySet.RefuseResponse.format(TargetOf, UserStarted))
-            Parent.AddUserCooldown(ScriptName, MySet.RefuseCommand, data.User, MySet.RefuseCooldown)
-        else:
-            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.RefuseCommand, data.User)
-            message = MySet.RefuseCooldownResponse.format(data.UserName, cooldownduration)
-            SendMessage(str(message))
-    # -----------------------------------------------------------------------------------------------------------------------
-    #   Initiate Duel
-    # -----------------------------------------------------------------------------------------------------------------------
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.DuelCommand.lower() and LiveCheck() and MySet.TurnOnDuel:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.RefuseCommand, data.User):
-            
-            # vars -----------------------------------------------------------------------------------------------
-            TargetOf = str(data.GetParam(1)).strip("@")
-            UserStarted = data.UserName
-
-            # have to do two variables because capitalise doesnt seem to work properly otherwise
-            a = data.GetParam(2)
-            b = data.GetParam(3)
-            UserPokemon = a.capitalize()
-            TargetPokemon = b.capitalize()
-
-            # vars -----------------------------------------------------------------------------------------------
-            # checking an open duel doesnt already exist ( user a + user b are considered different duel than user b + user a)
-            for filename in os.listdir(OpenDuelsFolder):
-                if UserStarted + "_" + TargetOf in filename:
-                    SendMessage("you both already have an open duel, reject that one first")
-                    return
-
-            # these # below are to search through string and identify the pokemon without having to put in params
-            DuelPath = OpenDuelsFolder + UserStarted + "_" + TargetOf + "#" + UserPokemon + "#" + TargetPokemon + "#.txt"
-            # check whether user and target they actually have the pokemon, and then whether the duel already exists
-            if not ExistsInFile(UserStarted, UserPokemon):
-                SendMessage(UserStarted + " doesn't have a " + UserPokemon + " to duel with!")
-                return
-            if not ExistsInFile(TargetOf, TargetPokemon):
-                SendMessage(TargetOf + " doesn't have a " + TargetPokemon + " to duel with!")
-                return
-            if os.path.exists(DuelPath):
-                SendMessage(
-                    UserStarted + ", that duel is already exists!, " + TargetOf + " needs to accept!")
-                return
-
-            # if doesnt exist, make new one, write any content but with the filename defined before.
-            else:
-                with codecs.open(DuelPath, "a+", encoding="utf-8-sig") as f:
-                    f.write("1")
-
-            SendMessage(
-                MySet.DuelResponse.format(UserStarted, TargetOf, UserPokemon, TargetPokemon))
-            Parent.AddUserCooldown(ScriptName, MySet.DuelCommand, data.User, MySet.DuelCooldown)
-        else:
-            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.DuelCommand, data.User)
-            message = MySet.DuelCooldownResponse.format(data.UserName, cooldownduration)
-            SendMessage(str(message))
-
-        # -----------------------------------------------------------------------------------------------------------------------
-        #   Accept Duel
-        # -----------------------------------------------------------------------------------------------------------------------
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.AcceptDuelCommand.lower() and LiveCheck() and MySet.TurnOnAcceptDuel:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.AcceptDuelCommand, data.User):
-            # vars -----------------------------------------------------------------------------------------------
-
-            UserStarted = data.GetParam(1).strip("@")
-            TargetOf = data.UserName
-            hash1position = 0
-            hash2position = 0
-            hash3position = 0
-            x = 0
-            filefound = False
-            # vars -----------------------------------------------------------------------------------------------
-
-            # Extracting the Mon to duel and duele from the filename
-            for filename in os.listdir(OpenDuelsFolder):
-                if UserStarted + "_" + TargetOf in filename:
-                    filefound = True
-                    filefoundname = filename
-                    # loops through the text of filename, and works out what char indexes contain the hash, which is what in !duel
-                    # we've set as the delimiters , files in format of user1_user2#Mon1#Mon2, so between from 1st #
-                    # to 2nd # is Mon1, 2nd and 3rd # is Mon2
-                    for i in range(len(filename)):
-                        if filename.startswith("#", i):
-                            x += 1
-                            if x == 1:
-                                hash1position = i
-                            elif x == 2:
-                                hash2position = i
-                            elif x == 3:
-                                hash3position = i
-                    UserPokemon = filename[hash1position + 1:hash2position]
-                    TargetPokemon = filename[hash2position + 1:hash3position]
-
-                    UserLevelStartedpath = UsersMonLevelsFolder + UserStarted + "_" + UserPokemon + ".txt"
-                    TargetLevelpath = UsersMonLevelsFolder + TargetOf + "_" + TargetPokemon + ".txt"
-                    UserPokemonLevel = int(GetNumberFromFile(UserLevelStartedpath))
-                    TargetPokemonLevel = int(GetNumberFromFile(TargetLevelpath))
-
-
-                    # checks whether users and target still have the mon to duel, as could have removed after !duel was initiated
-                    if UserPokemonLevel == False:
-                        SendMessage(MySet.AcceptDuelMissingMonResponse.format(UserStarted, UserPokemon))
-                        return
-                    if TargetPokemonLevel == False:
-                        SendMessage(MySet.AcceptDuelMissingMonResponse.format(TargetOf, TargetPokemon))
-                        return
-
-                    WinChance = float(UserPokemonLevel)/ (float(UserPokemonLevel) + float(TargetPokemonLevel)) * 100
-
-            if filefound:
-                start_duel = MySet.AcceptDuelResponse.format(TargetOf, UserStarted)
-                if WinChance >= Parent.GetRandom(1, 100):
-                    winner = UserStarted
-                    winnermon = UserPokemon
-                    loser = TargetOf
-                    losermon = TargetPokemon
-                    if MySet.DuelPointsBasedOnLevel:
-                        winnerpoints = int(TargetPokemonLevel * float(MySet.DuelPointsForWin))
-                        loserpoints = - int(UserPokemonLevel * float(MySet.DuelPointsForLoss))
-                    else:
-                        winnerpoints = int(MySet.DuelPointsForWin)
-                        loserpoints = -int(MySet.DuelPointsForLoss)
-                    OverwriteNumberInFile(GetUserPointsPath(UserStarted), winnerpoints)
-                    OverwriteNumberInFile(GetTargetPointsPath(TargetOf),  loserpoints)
-
-                else:
-                    winner = TargetOf
-                    winnermon = TargetPokemon
-                    loser = UserStarted
-                    losermon = UserPokemon
-
-                    if MySet.DuelPointsBasedOnLevel:
-                        winnerpoints = int(UserPokemonLevel * float(MySet.DuelPointsForWin))
-                        loserpoints = - int(TargetPokemonLevel * float(MySet.DuelPointsForLoss))
-                    else:
-                        winnerpoints = int(MySet.DuelPointsForWin)
-                        loserpoints = int(-MySet.DuelPointsForLoss)
-
-                    OverwriteNumberInFile(GetUserPointsPath(UserStarted), loserpoints)
-                    OverwriteNumberInFile(GetTargetPointsPath(TargetOf), winnerpoints)
-
-            else:
-                SendMessage(MySet.AcceptDuelNoDuelFoundResponse.format(UserStarted, TargetOf))
-                return
-
-            dueloutcome = MySet.AcceptDuelOutcomeResponse.format(winner,loser,winnermon,losermon)
-            os.remove(OpenDuelsFolder + filefoundname)
-            SendMessage(start_duel)
-            SendMessage(dueloutcome)
-            Parent.AddUserCooldown(ScriptName, MySet.AcceptDuelCommand, data.User, MySet.AcceptDuelCooldown)
-        else:
-            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.AcceptDuelCommand, data.User)
-            message = MySet.AcceptDuelOnCooldownResponse.format(data.UserName, cooldownduration)
-            SendMessage(str(message))
-
-    return
-
-
 # ---------------------------
 #   [Required] Tick method (Gets called during every iteration even when there is no incoming data)
 # ---------------------------
@@ -1792,41 +1228,3 @@ def Tick():
             IsActiveQuest = False
     return
 
-
-# ---------------------------
-#   [Optional] Parse method (Allows you to create your own custom $parameters) 
-# ---------------------------
-
-def Parse(parseString, userid, username, targetid, targetname, message):
-    # Gets all of the Users Pokemon
-
-    if "$mypokemon" in parseString:
-        if GetUserPokemon(username) != False:
-            # need to str here because it breaks otherwise, other dependencies on fn cant let me string it there
-            parseString = parseString.replace("$mypokemon", str(GetUserPokemon(username)))
-        else:
-            parseString = username + " has no pokemon"
-
-    # releaseallpokemon parameter
-    if "$releaseallpokemon" in parseString:
-        if GetUserPokemon(username) == False:
-            return username + " has no pokemon"
-        for line in GetUserPokemon(username):
-            os.remove(UsersMonLevelsFolder + username + "_" + line + ".txt")
-        os.remove(userpath)
-
-        parseString = parseString.replace("$releaseallpokemon", username + " has released all their pokemon")
-
-    # Retrieves the level of the pokemon
-    if "$pokemonlvl" in parseString:
-        regexp = re.compile("\$pokemonlvl (\w+)")
-        Pokemon = regexp.search(parseString).group(1)
-        if GetNumberFromFile(GetLevelPath(username,Pokemon)) != 0:
-            parseString = parseString.replace(regexp.search(parseString).group(0), GetNumberFromFile(GetLevelPath(username,Pokemon)))
-        else:
-            parseString = username + " does not have a " + Pokemon
-
-    if "$numberofpokemon" in parseString:
-        parseString = username + " has " + str(CountLines(UsersMonFolder + username + ".txt")) + " Pokemon"
-
-    return parseString
