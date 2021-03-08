@@ -1,18 +1,95 @@
 {
 "encounters":[
 	{
-	    "encounter":"{0} found a {1} by the watering hole. They decided to attack the {1} and quickly defeated it.",
-		"exp":1,
-		"treasure":1,
-		"trophies":"{0} Head",
+	    "encounter":"{0} found a group of {1}s by the watering hole. They noticed {0} and ran.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
 		"loot":"null"
 	},
 	{
-	    "encounter":"{0} went on an epic quest to slay a {1}.",
+	    "encounter":"{0} found a group of {1}s by the watering hole. They noticed {0} and attacked, {0} ran for their life.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} found a group of {1}s by the watering hole. Sneaking forwards {0} manages to jump the {1} killing {3} of them, whilst the rest flee.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} found a {1} by the watering hole. They decided to attack the {1} and quickly defeated it, claiming the {10} as a prize.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"{0} head",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} found a {1} by the watering hole. They noticed {0} and chased them off.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} found a {1} by the watering hole. Sneaking forwards {0} steps on twig alerting the {1}. The {1} attacked {0} before fleeing.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} went out for a gentle stroll and ran into a group of {1}s.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} went on an epic adventure to fight a {1}. Decapitating the {1}, {0} stood their victorious and took their head as a prize.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"{0} head",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} went on an epic quest to fight a {1}, upon reaching the location they saw the {1} and fled in fear.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} went on an epic quest to fight a {1}. Upon reaching the location they find the {1} dead at the feet of a {2}. Enraged that their glory was stolen {0} drew their {4} and attacked the {2}, slaying them and claiming both kills as their own. Amongst the carnage {0} found a {6}.",
 		"exp":2,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} went on an epic quest to fight a {1}. Upon reaching the location they find the {1} dead at the feet of a {2}. Disheartened that they were unable to get the kill {0} returns home, empty handed.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} went on an epic quest to fight a {1}. Upon reaching the location they find the {1} dead at the feet of a {2}. Enraged {0} charges the {2}, who quickly reacts, cutting {0} down and leaving them to die.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} was ambushed by a group of {1}s, {0} was sadly defeated and had to retreat.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
 	},
 	{
 	    "encounter":"{0} was ambushed by a {1}, {0} was defeated and was left to die.",
@@ -22,16 +99,240 @@
 		"loot":"null"
 	},
 	{
-	    "encounter":"{0} saved the village from an invasion of {1}s.",
-		"exp":2,
+	    "encounter":"{0} was ambushed by a group of {1}s, {0} fought them off and found a {10} on the ground.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"shiny gem",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} was ambushed by a {1}, caught off guard {0} was quickly defeated.",
+		"exp":-1,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
 	},
 	{
-	    "encounter":"{0} entered a local duelling contest. After several tough matches {0} was victorious.",
+	    "encounter":"{0} was ambushed by a {1}, prepared for anything {0} fought the {1} off with ease.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} was ambushed by a {1}, after a gruelling fight {0} came out on top, taking the {1}s head as a trophy.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"{0} head",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} saved the village from an invasion of {1}s. The villagers awarded them with some piles of treasure.",
+		"exp":2,
+		"treasure":3,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} helped defend the village from an invasion of {1}s. The villagers awarded them with a pile of treasure.",
 		"exp":1,
 		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} failed to help the village defend against a frenzied {1}. {0} fled in fear.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} failed to help the village defend against a group of {1}s.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} came across an injured {1} and decided to put it out of it's misery.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} came across an injured {1} and helped to nurse it back to health.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} entered a local duelling contest. After several tough matches {0} was victorious, claiming the mighty prize of a {6}, as well as a pile of treasure.",
+		"exp":1,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} entered a local duelling contest. After only one match {0} was defeated.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} entered a local duelling contest. After a few close fights {0} was defeated by a {1}.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} entered a local duelling contest. After a few easy fights {0} was victorious, claiming a pile of treasure.",
+		"exp":1,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} entered a drinking contest against a {1}. After only {3} rounds {0} collapsed defeated.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} entered a drinking contest against a {1}. After a dozen rounds the {1} collapsed to the ground and {0} won a pouch of coins.",
+		"exp":0,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} entered a drinking contest against a {1}. After {3} rounds of strong ale both {0} and the {1} collapsed, making the contest a draw.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} entered a drinking contest against a {1}. After {3} rounds the {1} collapsed to the ground. {0} claimed the winnings of a {6}.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} was caught by surprise by a rabid {1}. Quickly coming to their senses {0} fought off the {1}.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} was caught by surprise by a rabid {1}. They were quickly defeated.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} was caught by surprise by a rabid {1}. After a gruelling fight both parties were left bleeding out on the floor.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} was caught by surprise by a rabid {1}. After an epic confrontation {0} was the victor, taking the {1}s head as a prize.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"{0} head",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} was caught by surprise by a rabid {1}. {0} fled in terror, dropping their weapon in panic.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} was caught by surprise by a rabid {1}. Not having time to draw their weapon {0} quickly grappled the {1} to the floor, before plunging their dagger into the {1}s heart.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} was caught by surprise by a rabid {1}. With no time to draw their weapon {0} let out a roar of rage, causing the {1} to flee in terror.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} decided to visit the local fortune teller. {0} was told to stay clear of ale for the next week.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} decided to visit the local fortune teller. They were told that they would soon meet a dangerous hooded figure, who would turn out to be a long lost friend",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} decided to visit the local fortune teller. Terrified of the news about the future {0} stayed shut up in their room for {3} days.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} decided to visit the local fortune teller. Unimpressed by what they heard, {0} decided to keep their coin, rather than pay.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} got into a dance battle with a {1}. Astonishing the crowd, {0} busted some epic moves, winning the contest easily.",
+		"exp":0,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} used a {1} as target practice for their new bow.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} discovered that they have a trace of {1} blood.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} decided to try a slice of {1}, they were surprised by the taste.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} was taken down by a {1}.",
+		"exp":0,
+		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
 	},
@@ -39,11 +340,193 @@
 	    "encounter":"{0} won a plush {1} at the local carnival.",
 		"exp":0,
 		"treasure":0,
-		"trophies":"{0} Plush",
+		"trophies":"{0} plush",
 		"loot":"null"
 	},
 	{
-	    "encounter":"{0} takes part in a cult sacrifice summoning the god of {1}s",
+	    "encounter":"{0} took part in a multi-race obstacle course. They were beaten by a {1} by seconds.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} took part in a multi-race obstacle course. They won the race by seconds. {0} won a pile of treasure.",
+		"exp":0,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is convinced that {1}s are the most adorable creatures.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} wants nothing more than to give a {1} a hug.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} had the genius idea to mix {1} blood into a new batch of mead. It ruined the whole batch.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} had the genius idea to mix {1} blood into a new batch of mead. It actually didn't taste that bad.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} had the genius idea to mix {1} blood into a new batch of mead. It actually added the taste of cinnamon to the drink.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} allowed the local mage to experiment a new spell on them. The spell turned {0} into a {1} for {3} hours.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} allowed the local mage to experiment a new spell on them. The spell turned {0} into a {1} for {3} hours. When the effects have worn off the mage gave {0} a {6} as payment.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} allowed the local mage to experiment a new spell on them. The spell turned {0} into a {1} for {3} hours. When the effects have worn off the mage gave {0} a pile of treasure as payment.",
+		"exp":0,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} came across an albino {1}. Upon seeing {0} the {1} fled.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} came across a fallen tree in the road, unbeknownst to {0} a group of {1}s was waiting in the nearby trees. The {1}s jumped the unaware {0} knocking them unconscious and stealing their coin.",
+		"exp":0,
+		"treasure":-1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds a survivor from a {1} attack. {0} decides to avenge the survivors comrades, tracking down the {1}s and killing them all.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} takes part in a cult sacrifice summoning the god of {1}",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} comes across a group of {1}s in the middle of the road wearing trench cloaks. They request help repairing their wagon. {0} refuses to help and they curse them.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} comes across a group of {1}s in the middle of the road wearing trench cloaks. They request help repairing their wagon. {0} helps and is rewarded with a pile of treasure.",
+		"exp":0,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} comes across a group of {1}s in the middle of the road wearing trench cloaks. They request help repairing their wagon. {0} offers to help and is rewarded with a {6}",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} finds a recent battleground, scattered across the field are the bodies of fallen {1}s.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds a recent battleground, scattered across the field are the bodies of fallen {1}s. Looking around a nearby group of bodies, {0} manages to collect a pile of treasure.",
+		"exp":0,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds a recent battleground, scattered across the field are the bodies of fallen {1}s. Looking around a nearby pile of bodies, {0} manages to find a {6}",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} is travelling along the road when a caravan of magical meat traders pass by. Starving {0} buys a burger and begins to feast. Upon finishing the meal the caravan tells {0} that the meat was from a {1}.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} discovers a baby {1} learning to juggle. {0} stops off and helps teach the {1}.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} comes across a nest of baby {1}s. Looking to get some easy trophies {0} stalks towards the nest to take them out. Suddenly with a roar the {1}'s mother appears and tears {0} to shreds.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} watches confused as a young {9} boy walks his pet {1} down the road.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} watches confused as a young {9} girl walks her pet {1} down the road.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} watches confused as a young {1} walks their pet {9} down the road.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds a strange formation of {1} bodies in a clearing. {0} decides to leave before what killed the {1} returns.",
 		"exp":0,
 		"treasure":0,
 		"trophies":"null",
@@ -57,14 +540,889 @@
 		"loot":"null"
 	},
 	{
-	    "encounter":"{0} joins a Fey hunt, tracking down the legendary {1} found in the region. {0} deals the final blow to the {1} and is rewarded with a feast in their name.",
-		"exp":2,
+	    "encounter":"{0} is ran over by a stampede of {1}s.",
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
-		"loot":"Fey Sword"
+		"loot":"null"
 	},
 	{
-	    "encounter":"{0} went out for a gentle stroll and ran into a group of {1}s.",
+	    "encounter":"{0} hunts a group of {1}s, slaying them all.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} joins a Fey hunt, tracking down the legendary {1} found in the region. {0} deals the final blow to the {1} and is rewarded with a feast in their name.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} joins a Fey hunt, tracking down the legendary {1} found in the region. {0} deals the final blow to the {1} and is rewarded with a {6}.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} is walking down a forest path when a {1} jumps out in front of them and demands payment for using their path. {0} decides to avoid conflict and pay up.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is walking down a forest path when a {1} jumps out in front of them and demands payment for using their path. {0} draws their weapon and slays the {1}.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is walking down a forest path when a {1} jumps out in front of them and demands payment for using their path. {0} draws their weapon and slays the {1}. Going through the {1}s belongings, {0} collects a pile of treasure.",
+		"exp":1,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is walking down a forest path when a {1} jumps out in front of them and demands payment for using their path. {0} draws their weapon and slays the {1}. Going through the {1} belongings, {0} finds a {6}",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} is walking down a forest path when a {1} jumps out in front of them and demands payment for using their path. {0} draws their weapon, but is quickly slain.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is travelling with a merchant caravan when the wagons axel snaps rendering the wagon useless. {0} spends the next few hours helping to repair the wagon and receives a pile of treasure as a reward.",
+		"exp":0,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} flees from the roar of a terrifying monster. Upon looking over their shoulder {0} sees that it was a {1}. Getting back their whits {0} turns, draws their weapon and charges the foe. After a quick fight the {1} lays dead and {0} continues with their adventure.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is struck by a bolt of lightning while traversing a mountain path. Upon regaining consciousness {0} realises that they have lost all of their clothes and the smell of burning is coming from their hair.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} decides to find an alternative way across the river, rather than paying the toll. Upon finding an alternative route {0} is confronted by a disgruntled {1}. {0} decides it would be easier to fight the {1} than pay the toll. A few swipes with their weapon and the {1} lies dead.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds their path blocked by a sleeping {1}. {0} decides to slowly sneak around the {1} rather than risk waking it.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds their path blocked by a sleeping {1}. {0} decides to take advantage of the situation and sneaks forward slaying the {1} and stealing a pile of treasure.",
+		"exp":1,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds their path blocked by a sleeping {1}. {0} decides to take advantage of the situation and sneaks forward to attack the {1}. Unfortunatly, the {1} was only pretending and quickly retaliates, attacking {0} and bringing them down.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} discovers that a travelling circus has arrived in the city. {0} spends the day enthralled by the performances.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} feels like they are being watched. Looking around carefully {0} notices a group of {1}s are currently following them.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} stops suddenly as the body of a {1} drops out of the sky in front of them. Looking around {0} has no idea where the {1} just fell from.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} quickly ducks out of the way as an arrow whistles past their ear. After cowering behind a nearby tree for half an hour {0} finally realises the arrow has a note attached. The note reads 'Haha, scared you'.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} watches as two {1}s have a wrestling match in the middle of the field.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} watches as a {1} and {2} fight to the death.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} watches as a {1} and {2} fight to the death. Taking advantage of the situation, {0} charges forwards to finish off the victor.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} watches as two wizards duel on the path ahead. They both summon a crystal {1} to fight for them. Upon defeating the other {1} the wizard on the right's {1} explodes shattering crystal everywhere, and killing the wizard on the left.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is approached by an urchin who claims to be a powerful wizard. He says that unless {0} pays him 5 gold they will make them disappear. {0} refuses to pay the urchin, whom then shouts 'PRESTO'. In a flash {0} disappears and finds themselves falling into a trash pile.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} sees a group of guards chasing a thief down the street. {0} attempts to stop the thief, but trips over a stray cat letting the thief escape.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} sees a group of guards chasing a thief down the street. {0} attempts to stop the thief, tackling them to the ground.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} hears a paniced voice coming from a darkened alleyway. Running to help {0} suddenly feels a sharp pain to the back of the head. They wake a few hours later lying in the gutter, their clothes and coin pouch missing.",
+		"exp":0,
+		"treasure":-1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} steps aside as a wild {1} charges down the street. A group of {9} can be seen in the distance chasing after the {1}.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds a potion seller who is selling a potion of {1} strength. Upon drinking the potion {0} immediately begins to turn green.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds a potion seller who is selling a potion of {1} strength. Upon drinking the potion {0} immediately begins to double in size.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds a potion seller who is selling a potion of {1} strength. Upon drinking the potion {0} begins to start vomitting.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds a potion seller who is selling a potion of {1} strength. Upon drinking the potion {0} immediately shrinks to half size.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds a potion seller who is selling a potion of {1} strength. Upon drinking the potion {0}'s sight becomes clearer than ever.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} visits the local fighting pit and gets convinced to fight a {1}. Upon entering the pit {0}'s courage fails them, and they attempt to flee.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} visits the local fighting pit and gets convinced to fight a {1}. Entering the pit to cheers, {0} charges into the fray slaying the {1} and winning a pile of treasure.",
+		"exp":1,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} visits the local fighting pit and gets convinced to fight a {1}. Entering the pit to cheers, {0} charges into the fray slaying the {1} and winning a {6}.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} walks by the stocks and recognizes one of the prisoners. It's the shop keeper that swindled {0} last week, {0} grabs a piece of rotten fruit and hits the shop keeper right between the eyes.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is gifted a pet {1} by a travelling merchant for helping escort them to the local town. Feeling sorry for the {1}, {0} let's it go free.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is gifted a pet {1} by a travelling merchant for helping escort them to the local town. {0} and the {1} become the best of friends.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is confronted by a War-Priest with a flaming sword. The War-Priest bellows 'It ends here', before attacking. {0} flees in terror.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is confronted by a War-Priest with a flaming sword. The War-Priest bellows 'It ends here', before attacking. {0} reacts quickly, drawing their weapon and taking down the War-Priest.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is confronted by a War-Priest with a flaming sword. The War-Priest bellows 'It ends here', before attacking. {0} reacts quickly, drawing their weapon and taking down the War-Priest. {0} claims the priests sword.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"Flaming Sword"
+	},
+	{
+	    "encounter":"{0} watches in terror as a group of civilians explode in a gout of fire infront of them.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} hears cries of terror from behind them. Turning {0} sees a crowd of civilians fleeing from a rampaging {1}.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is setting up camp when a {1} walks into the fire light. Hoping to avoid a confrontation {0} offers half of their food to the {1}. The {1} settles down to share {0}s fire but refuses to take the food. In the morning {0} finds all of their food is missing.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} settles down for the night, gazing up into a clear night sky. Above {0} notices a constallation in the shape of a {1}.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} wakes up to find a group of {1} eating all of their rations. Outraged {0} draws their weapon and drives them off.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} can smell something cooking. Upon investigating {0} finds a goblin camp that are roasting a {1} over a roaring fire. Noticing {0} the goblins chase them away.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} takes pity on a captured {1}, attacking it's captors and driving them off. Upon freeing the {1} it reveals its true form as a Devil, cursing {0} with elephant ears.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} takes pity on a captured {1}, attacking it's captors and driving them off. Upon freeing the {1} it reveals its true form as a Devil, granting {0} a boon of a {6}.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} takes pity on a captured {1}, attacking it's captors and driving them off. Upon freeing the {1} it reveals its true form as a Devil, granting {0} a pile of treasure.",
+		"exp":0,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} wakes from a strange dream of dancing {1}s, only to find the corpses of multiple {1}s lying around them.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} meets a friendly giant who is looking for their pet {1}. {0} helps the giant in exchange for a barrel of ale.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"Barrel of Ale",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} meets a friendly giant who is looking for their pet {1}. {0} helps the giant in exchange for a pile of treasure.",
+		"exp":0,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} meets a friendly giant who is looking for their pet {1}. {0} helps the giant in exchange for a {6}.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} gets startled by a crazed wizard who teleports into their camp. He begins to rave about his newest creation of {1} beer, he forces a bottle into {0} hand before teleporting away. Interested {0} takes a drink, it tastes like blueberries.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"{0} beer",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} gets startled by a crazed wizard who teleports into their camp. He begins to rave about his newest creation of {1} beer, he forces a bottle into {0} hand before teleporting away. Interested {0} takes a drink, it tastes like bacon.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"{0} beer",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} gets startled by a crazed wizard who teleports into their camp. He begins to rave about his newest creation of {1} beer, he forces a bottle into {0} hand before teleporting away. Interested {0} takes a drink, it tastes like sewage water.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"{0} beer",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} gets startled by a crazed wizard who teleports into their camp. He begins to rave about his newest creation of {1} beer, he forces a bottle into {0} hand before teleporting away. Interested {0} takes a drink, it tastes like honey.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"{0} beer",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} gets startled by a crazed wizard who teleports into their camp. He begins to rave about his newest creation of {1} beer, he forces a bottle into {0} hand before teleporting away. Interested {0} takes a drink, it tastes like a box of chocolates.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"{0} beer",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} gets startled by a crazed wizard who teleports into their camp. He begins to rave about his newest creation of {1} beer, he forces a bottle into {0} hand before teleporting away. Interested {0} takes a drink, it reminds {0} of their childhood.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"{0} beer",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} narrowly avoids the corpse of a {1} falling from the sky. Looking up {0} sees an Ancient White Dragon flying away.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} narrowly avoids the corpse of a {1} falling from the sky. Looking up {0} sees a Griffon flying away.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} narrowly avoids the corpse of a {1} falling from the sky. Looking up {0} sees a Giant Eagle flying away.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} gets turned into a {1} by an evil witch. {0} stays transformed for {3} hours.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds an ancient statue of a {1} in the woods. Upon inspection the statue is actually alive, {0} flees in terror.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds an ancient statue of a {1} in the woods. Upon inspection the statue is actually alive, ready for anything {0} draws their weapon and slays the stone {0}.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} caught a wild {1} in a bear trap.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} was eaten by a {1}.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} got ran over by a rampaging {1}.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} got into a fist fight with a {1}. {0} lost.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} got into a fist fight with a {1}. {0} was victorious.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} ran into Quinn Duggan in a dark alley, he insults {0} dealing 5 points of self esteem damage.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} ran into two self proclaimed streamers, Sephilar and Ventreex. They dab at {0} who cringes so hard that they pass out.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds shelter in a cave from the rain. Upon lighting a fire to keep warm {0} notices the cave is inhabited by a {1}. {0} flees in terror.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds shelter in a cave from the rain. Upon lighting a fire to keep warm {0} notices the cave is inhabited by a {1}. {0} quickly draws their weapon and slays the {1}.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds shelter in a cave from the rain. Upon lighting a fire to keep warm {0} notices the cave is inhabited by a {1}. Both seeing that the other is taking shelter from the rain, decide to keep to themselves during the night, parting ways in the morning.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} runs into an Emerald Knight upon a bridge. The Knight refuses to allow {0} to pass unless they defeat them in single combat. {0} pushes the Knight off the bridge and continues on their journey whilst the Knight attempts to scramble out of the river.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} runs into an Emerald Knight upon a bridge. The Knight refuses to allow {0} to pass unless they defeat them in single combat. Not very adept in combat {0} is quickly defeated by the Knight, who proceeds to push {0} into the river and let the current wash them down stream.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} runs into an Emerald Knight upon a bridge. The Knight refuses to allow {0} to pass unless they defeat them in single combat. {0} proceeds to slice of each of the Knights limbs, as through sure willpower the Knight somehow continues to fight after loosing several limbs. Curses follow {0} as they continue their journey.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} rushes through the crowd to get to the market place before all the good food is gone. Upon reaching for their coin purse {0} realises that it has been stolen.",
+		"exp":0,
+		"treasure":-1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is thrown out of town for their wild behaviour. The guards refuse to let them back into town until the morning.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} spends the day resting in the claming atmosphere of a steam bath, sweating off the aches from the past weeks of adventure.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is excited to see how effective their newly purchased weapon is. Upon impact with the combat dummy their weapon shatters. Returning to the market place, {0} is dismayed to see that the merchant has already packed up and left.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} recognises the shady figure displayed on a nearby wanted poster. Rushing back to where they saw the individual they notice them dragging a gagged merchant into a dark alley. Rushing to the merchants aid, {0} apprehends the criminal, receiving a small pouch of gold for saving the merchants life.",
+		"exp":1,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds themselves surrounded by a gang of angry young men who insist that they are betrothed to marry their sister. {0} agrees, albeit at knife point. The marriage is at sunrise, {0} must decided if they will attend or flee the town.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is employed by a local merchant to carry bales of cotton to the riverside for the day. {0} recieves a pouch of coins for their help.",
+		"exp":0,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} decides to treat themselves after weeks on the open road. Taken with the joys of hot food and a comfortable bed, {0} overspends and finds their coin purse close to empty the next day.",
+		"exp":0,
+		"treasure":-1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} enters a game of chance at the local tavern. {0} loses badly and has to hand over most of their coin.",
+		"exp":0,
+		"treasure":-1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} enters a game of chance at the local tavern. {0} has a few bad rolls, costing them 5 gold by the end of the game.",
+		"exp":0,
+		"treasure":-2,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} enters a game of chance at the local tavern. {0}s dice are in their favour, at the end of the game {0} has won 10 gold.",
+		"exp":0,
+		"treasure":4,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} enters a game of chance at the local tavern. {0}s dice seem to be blessed by the gods, by the end of the game {0} has made 5 gold and won a {6}.",
+		"exp":0,
+		"treasure":2,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} catches a terrible illness that has been plauging a local settlement. {0} must spend {3} days in bed to recover from the illness.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is accused of murder and gets thrown in jail. The matter is sorted out eventually and {0} is let out after {3} days.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is invited by a group of locals to join them on a nocturnal hunt. {0} is informed that they will be hunting a {1}. At sunset the hunters return victorious, telling tales of the nights adventures.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is invited by a group of locals to join them on a nocturnal hunt. {0} is informed that they will be hunting a {1}. At sunset the hunters return empty handed.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is invited by a group of locals to join them on a nocturnal hunt. {0} is informed that they will be hunting a {1}. At sunset the hunters return victorious, {0} landing the killing blow and is rewared with the {1}s head.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"{0} head",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is invited by a group of locals to join them on a nocturnal hunt. {0} is informed that they will be hunting a {1}. Unprepared the group is ambushed by the {1} and are all slain",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} has been travelling in the pouring rain for the past few days. Upon reaching the river crossing they find a rapidly flowing and flooded river, making it impassable. {0} decided to brave the river but is quickly swept away by the river, drowning in the process.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} is unprepared as a blizzard howls across the land suddenly. Taking shelter in a nearby cave {0} is able to outlast the storm, but their supplies are running very low.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"With a flash of light {0} suddenly finds themselves surrounded by a group of dead {1}s.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"With a flash of light {0} suddenly finds themselves surrounded by a group of bloodthirsty {1}s. {0} is quickly defeated.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"With a flash of light {0} suddenly finds themselves surrounded by a group of rabid {1}s. Reacting with blinding speed, {0} draws their weapon and cuts them all down.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"Off in the distance {0} can see an adult {1} escorting their young.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"Whilst practicing their fighting technique {0} decides to channel their inner {1}. {0} promptly lost their balance and fell.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"Whilst practicing their fighting technique {0} decides to channel their inner {1}, effortlessly flowing through the motions.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds a spellbook whilst searching through a cave. Spending the night studying the book {0} learns how to cast the {5} spell.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds an ancient ruin overrun by {1}s and {2}s. {0} decides not to push their luck and retreats to a save distance.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds an ancient ruin overrun by {1}s and {2}s. Convinced their must be some epic loot inside {0} charges in, only to be defeated.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds an ancient ruin overrun by {1}s and {2}s. {0} carves their way through the ruin, finding a pile of treasure and a {6}.",
+		"exp":1,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"{0} finds an ancient ruin overrun by {1}s and {2}s. {0} returns to the local tavern and recruits a group of adventurers to help them clear out the ruin. When the deed is done each of them claims a pile of treasure.",
+		"exp":1,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds an ancient ruin overrun by {1}s and {2}s. {0} returns to the local tavern and recruits a group of adventurers to help them clear out the ruin. When the deed each adventurer takes a pile of treasure, while {0} claims a {6}",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"Lost in the storm {0} spends {3} hours wandering around before finding shelter in a cave. After a long rest {0} decides to explore the cave further, after {3} hours of exploring they emerge out of a secret enterance to {8}.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"A merchant offers to give {0} a lift to {8} in exchange for protection against the {1} supposed to be in the area.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} watches in amazement as the {1} they were hunting get's ambushed by a {2}. Waiting for the combatants to weaken, {0} jumps in to finish both monsters off, claiming both kills for themselves.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"The walls and floor begins to rumble, {0} dives to the side as the roof above them collapses, trapping them. {0} spends the next {3} hours clearing a path.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} finds a dead {1} lying in a pool of blood. Searching around the corpse {0} finds a {6}.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"Whilst exploring an ancient ruin {0} comes across a ghost. The ghost leads {0} to a pile of treasure.",
+		"exp":0,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"Whilst exploring an ancient ruin {0} comes across a ghost. The ghost leads {0} to a pile of treasure, which includes a {6}.",
+		"exp":0,
+		"treasure":1,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"Whilst exploring an ancient ruin {0} comes across a ghost. The ghost leads {0} to a chest, within is a {6}.",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"{0}"
+	},
+	{
+	    "encounter":"Whilst exploring an ancient ruin {0} comes across a ghost. The ghost leads {0} to a chest, reaching out to open the chest its lid flys open revealing a set of sharp teeth. {0} has no time to react as the mimic consumes them.",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} misses their footing on the icy path and slips, falling awkwardly and spraining their ankle. Luckily after only {3} hours an adventuring party passes by with a healer, the healer charges {0} {3} gold to fix their ankle.",
+		"exp":0,
+		"treasure":-1,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} gets jumped by a {1}. Panicked {0} pulls out their {4} and plunges it into the {1}s heart.",
+		"exp":1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} remembers when they were a young person, that their father took them into the city to see a marching {1}",
+		"exp":0,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0} ran into Streetdance whilst he was on his mass killing spree. Streetdance welcomes {0}: 'Hello Gamer'. Brutally killing {0} and increasing Streetdance's kill count",
+		"exp":-1,
+		"treasure":0,
+		"trophies":"null",
+		"loot":"null"
+	},
+	{
+	    "encounter":"{0}, {0} and {0} walked into a bar. They talked to Tavern master {0} asking for information on a gang of doppelgangers but before they could get any answers the mimic bar stools ate {0}, {0}, {0} and Tavernkeep {0}.",
 		"exp":0,
 		"treasure":0,
 		"trophies":"null",

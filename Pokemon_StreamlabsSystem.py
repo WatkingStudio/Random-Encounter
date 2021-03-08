@@ -845,8 +845,12 @@ def Execute(data):
 
             randomMonster = GetRandomMonster()
             randomLoot = "null"
+            loot = "null"
+            trophy = "null"
             if not RandomEncounter.loot == "null":
-                randomLoot = AssignLoot(RandomEncounter.loot)
+                loot = AssignLoot(RandomEncounter.loot)
+            if not RandomEncounter.trophies == "null":
+                trophy = FormatTrophy(RandomEncounter.trophies, randomMonster)
 
             formattedEncounter = RandomEncounter.encounter.replace('{0}', data.UserName)\
                 .replace('{1}', randomMonster)\
@@ -854,10 +858,11 @@ def Execute(data):
                 .replace('{3}', str(GetRandomTime()))\
                 .replace('{4}', GetRandomWeapon())\
                 .replace('{5}', GetRandomSpell())\
-                .replace('{6}', randomLoot)\
+                .replace('{6}', loot)\
                 .replace('{7}', GetRandomBodyPart())\
                 .replace('{8}', GetRandomLocation())\
-                .replace('{9}', GetRandomNPC())
+                .replace('{9}', GetRandomNPC())\
+                .replace('{10}', trophy)
 
             # constructs a response message based on parameters given in SL chatbot UI
             response = MySet.EncounterResponse.format(formattedEncounter)
@@ -903,11 +908,11 @@ def Execute(data):
                 # Assign Trophies to the user
                 data2['trophies'] = []
                 if not RandomEncounter.trophies == "null":
-                    data2['trophies'].append(FormatTrophy(RandomEncounter.trophies, randomMonster))
+                    data2['trophies'].append(trophy)
                 # Assign Loot to the user
                 data2['loot'] = []
                 if not RandomEncounter.loot == "null":
-                    data2['loot'].append(randomLoot)
+                    data2['loot'].append(loot)
             # If the user already has a .json file, open it and add the new data to it
             else:
                 with open(userencounterpath) as json_file:
@@ -925,10 +930,10 @@ def Execute(data):
                     data2['treasure'] = treasureValue
                     # Add Trophies from the encounter
                     if not RandomEncounter.trophies == "null":
-                        data2['trophies'].append(FormatTrophy(RandomEncounter.trophies, randomMonster))
+                        data2['trophies'].append(trophy)
                     # Add Loot from the encounter
                     if not RandomEncounter.loot == "null":
-                        data2['loot'].append(randomLoot)
+                        data2['loot'].append(loot)
 
 
             if os.path.exists(userencounterpath):
