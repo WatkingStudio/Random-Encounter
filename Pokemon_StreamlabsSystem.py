@@ -104,13 +104,11 @@ class Settings:
             self.TurnOnQuest = True
             self.TurnOnJoin = True
             self.TurnOnRebalance = True
-            self.PointsName = "Street Rep"
             self.InvalidDataResponse = "{0} does not have a valid data file"
             self.GiveLootResponse = "{0} has been rewarded with a {1}"
             self.EncounterCommand = "!encounter"
-            self.EncounterResponse = "caught pokemon"
-            self.EncounterCooldownResponse = "{0}, the encounter command on cooldown for {1}"
-            self.EncounterNumber = 5
+            self.EncounterResponse = "{0}"
+            self.EncounterCooldownResponse = "{0} encounter command is on cooldown for {1} seconds !"
             self.EncounterCooldown = 60.0
             self.MonsterCommand = "!monster"
             self.MonsterPermission = "Moderator"
@@ -271,26 +269,6 @@ def CheckMonsterExists(filepath, monster):
             if line == monster:
                 MonsterExists = True
     return MonsterExists
-
-# -----------------------------------------------------------------------------------------------------------------------
-
-def RemoveFromFile(filepath, tmppath, removeme):
-    a = ""
-    with codecs.open(filepath, "r+", encoding="utf-8-sig") as fin:
-        for line in fin:
-            # only writes pokemon to the new file where it isn't the pokemon youve selected to release, case insensitive
-            if removeme not in line.strip("\r\n"):
-                a = a + line
-        with codecs.open(tmppath, "w", encoding="utf-8-sig") as fout:
-            fout.write(a)
-    # am doing these extremely long windedly, likely a better way to remove blank lines
-    with open(tmppath, 'r+') as fd:
-        lines = fd.readlines()
-        fd.seek(0)
-        fd.writelines(line for line in lines if line.strip())
-        fd.truncate()
-    os.remove(filepath)
-    os.rename(tmppath, filepath)
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -509,6 +487,7 @@ def DetermineQuestResult():
                 monsterOffence = monster['offence']
                 monsterDefence = monster['defence']
 
+                # Currently this s
                 Log(monster['name'])
                 Log("Monster Offence: " + str(monsterOffence))
                 Log("Monster Defence: " + str(monsterDefence))
@@ -665,21 +644,15 @@ def Init():
 # ---------------------------
 def Execute(data):
 
-    global Pokemon
-    global UserStarted
-    global TargetOf
     global userpath
-    global userencounterpath
-    global encounterfile
-    Pokemon = "test"
-    UserStarted = "test"
-    TargetOf = "test"
+    global userDataPath
     userpath = EncounterFolderPath + data.UserName + ".txt"
     # THIS VARIABLE NAME IS MISS LEADING AND SHOULD BE CHANGED COMPLETELY
     # IT SHOULDN'T BE FOR THE ENCOUNTER PATH, BUT INSTEAD FOR THE USERS DATA
-    userencounterpath = CreatePlayerPath(data.UserName)
+    userDataPath = CreatePlayerPath(data.UserName)
 
-    random.seed()
+    # Added in additional randomness
+    random.seed(random.seed())
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Encounter
@@ -688,10 +661,6 @@ def Execute(data):
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.EncounterCommand.lower() and LiveCheck() and MySet.TurnOnEncounter:
         if not Parent.IsOnUserCooldown(ScriptName, MySet.EncounterCommand, data.User):
-            # if the user doesn't have anything captured, then create an empty file
-            if not os.path.exists(userpath):
-                create = open(userpath, "w+")
-
             # gets a random line from the encounter files
             # This is the encounter which is selected
             encounters = ReadLinesFile(EncounterFile)
@@ -765,8 +734,8 @@ def Execute(data):
             #}
 
             # If this is the first time running the encounter script, make the user a new .json file
-            if not os.path.exists(userencounterpath):
-                create = open(userencounterpath, "w+")
+            if not os.path.exists(userDataPath):
+                create = open(userDataPath, "w+")
                 create.close()
                 data2 = {}
                 # Add the Experience from the encounter
@@ -799,7 +768,7 @@ def Execute(data):
                     data2['loot'].append(loot)
             # If the user already has a .json file, open it and add the new data to it
             else:
-                with open(userencounterpath) as json_file:
+                with open(userDataPath) as json_file:
                     data2 = json.load(json_file)
                     # Add the Experience from the encounter
                     value = data2['exp'] + RandomEncounter.exp
@@ -820,10 +789,10 @@ def Execute(data):
                         data2['loot'].append(loot)
 
 
-            if os.path.exists(userencounterpath):
-                os.remove(userencounterpath)
+            if os.path.exists(userDataPath):
+                os.remove(userDataPath)
 
-            AddToFile(userencounterpath, data2)
+            AddToFile(userDataPath, data2)
 
             Parent.SendStreamMessage(str(response))
             Parent.AddUserCooldown(ScriptName, MySet.EncounterCommand, data.User, MySet.EncounterCooldown)
@@ -870,8 +839,8 @@ def Execute(data):
         if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User):
             response = "null"
 
-            if os.path.exists(userencounterpath):
-                with open(userencounterpath) as json_file:
+            if os.path.exists(userDataPath):
+                with open(userDataPath) as json_file:
                     data2 = json.load(json_file)
                     response = MySet.CheckLevelResponse.format(data.UserName, data2['level'])
             else:
@@ -894,8 +863,8 @@ def Execute(data):
         if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User):
             response = "null"
 
-            if os.path.exists(userencounterpath):
-                with open(userencounterpath) as json_file:
+            if os.path.exists(userDataPath):
+                with open(userDataPath) as json_file:
                     data2 = json.load(json_file)
                     response = MySet.CheckTreasureResponse.format(data.UserName, data2['treasure'])
             else:
@@ -919,8 +888,8 @@ def Execute(data):
             response = "null"
 
             # Check to see if the user wants to know what is equipped in a specific location
-            if os.path.exists(userencounterpath):
-                with open(userencounterpath) as json_file:
+            if os.path.exists(userDataPath):
+                with open(userDataPath) as json_file:
                     data2 = json.load(json_file)
                     equipment = data2['equipment']
                     if(data.GetParam(1).lower() == 'head' or data.GetParam(2).lower() == 'head'):
@@ -967,8 +936,8 @@ def Execute(data):
         if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLootCommand, data.User):
             response = "null"
 
-            if os.path.exists(userencounterpath):
-                with open(userencounterpath) as json_file:
+            if os.path.exists(userDataPath):
+                with open(userDataPath) as json_file:
                     data2 = json.load(json_file)
                     loot = data2['loot']
                     response = MySet.CheckLootMessage.format(data.UserName, loot)
@@ -997,8 +966,8 @@ def Execute(data):
         if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User):
             response = "null"
 
-            if os.path.exists(userencounterpath):
-                with open(userencounterpath) as json_file:
+            if os.path.exists(userDataPath):
+                with open(userDataPath) as json_file:
                     data2 = json.load(json_file)
                     trophies = data2['trophies']
                     response = MySet.CheckTrophiesMessage.format(data.UserName, trophies)
@@ -1046,7 +1015,7 @@ def Execute(data):
                 locationIsValid = True
                 itemIsOwned = False
 
-                with open(userencounterpath) as json_file:
+                with open(userDataPath) as json_file:
                     data2 = json.load(json_file)
 
                     for i in data2['loot']:
@@ -1071,9 +1040,9 @@ def Execute(data):
 
                 # If the item and location is valid, update the users files
                 if locationIsValid and itemIsOwned:
-                    if os.path.exists(userencounterpath):
-                        os.remove(userencounterpath)
-                    AddToFile(userencounterpath, data2)
+                    if os.path.exists(userDataPath):
+                        os.remove(userDataPath)
+                    AddToFile(userDataPath, data2)
                     Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
                     SendWhisper(data.UserName, str(MySet.EquipResponseSuccess.format(itemName)))
                 elif not itemIsOwned:
