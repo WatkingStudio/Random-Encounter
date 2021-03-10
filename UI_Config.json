@@ -98,6 +98,13 @@
 		"tooltip": "Give Loot Response",
 		"group": "General"
 	},
+	"LevelledUpResponse": {
+		"type": "textbox",
+		"value": "{0} has levelled up to {1}",
+		"label": "Levelled Up Response",
+		"tooltip": "Levelled Up Response",
+		"group": "General"
+	},
     "EncounterCommand": {
         "type": "textbox",
         "value": "!encounter",

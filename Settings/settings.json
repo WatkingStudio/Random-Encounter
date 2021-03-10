@@ -13,6 +13,7 @@
   "TurnOnRebalance": true,
   "InvalidDataResponse": "{0} does not have a valid data file",
   "GiveLootResponse": "{0} has been rewarded with a {1}",
+  "LevelledUpResponse": "{0} has levelled up to {1}",
   "EncounterCommand": "!encounter",
   "EncounterResponse": "{0}",
   "EncounterCooldownResponse": "{0} encounter command is on cooldown for {1} seconds !",

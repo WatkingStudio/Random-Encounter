@@ -106,6 +106,7 @@ class Settings:
             self.TurnOnRebalance = True
             self.InvalidDataResponse = "{0} does not have a valid data file"
             self.GiveLootResponse = "{0} has been rewarded with a {1}"
+            self.LevelledUpResponse = "{0} has levelled up to {1}"
             self.EncounterCommand = "!encounter"
             self.EncounterResponse = "{0}"
             self.EncounterCooldownResponse = "{0} encounter command is on cooldown for {1} seconds !"
@@ -768,6 +769,8 @@ def Execute(data):
             if not os.path.exists(userDataPath):
                 CreatePlayer(userDataPath)
 
+            CurrentLevel = 0
+
             with open(userDataPath) as json_file:
                 data2 = json.load(json_file)
                 # Add the Experience from the encounter
@@ -775,6 +778,7 @@ def Execute(data):
                 if value >= 0:
                     data2['exp'] = value
                 # Update the users level
+                CurrentLevel = data2['level']
                 data2['level'] = DetermineLevel(data2['exp'])
                 # Update the users rank
                 data2['rank'] = DetermineRank(data2['level'])
@@ -788,6 +792,8 @@ def Execute(data):
                 if not RandomEncounter.loot == "null":
                     data2['loot'].append(loot)
 
+            if CurrentLevel < data2['level']:
+                SendMessage(MySet.LevelledUpResponse.format(data.UserName, data2['level']))
 
             if os.path.exists(userDataPath):
                 os.remove(userDataPath)
