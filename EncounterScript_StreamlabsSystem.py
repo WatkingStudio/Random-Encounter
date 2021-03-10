@@ -566,23 +566,23 @@ def GetRandomQuestMonster():
             return monster['name']
 
 def QuestCalculation(difficulty):
-    percent = random.random()
+    percent = Parent.GetRandom(0, 100)
     Log(percent)
 
     if difficulty == -2:
-        if percent > 0.17:
+        if percent > 17:
             return True
     elif difficulty == -1:
-        if percent > 0.34:
+        if percent > 34:
             return True
     elif difficulty == 0:
-        if percent > 0.5:
+        if percent > 50:
             return True
     elif difficulty == 1:
-        if percent > 0.67:
+        if percent > 67:
             return True
     elif difficulty == 2:
-        if percent > 0.84:
+        if percent > 84:
             return True
 
     return False
