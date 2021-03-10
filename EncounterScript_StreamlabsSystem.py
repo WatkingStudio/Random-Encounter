@@ -364,7 +364,9 @@ def CreatePlayerPath(player):
 # ---------------------------------------
 
 def GetTrophyCondition():
-    return random.choice(ReadLinesFile(TrophyConditionFile))
+    fileLines = ReadLinesFile(TrophyConditionFile)
+    index = Parent.GetRandom(0, len(fileLines))
+    return fileLines[index]
 
 def FormatTrophy(trophyString, monster):
     formattedTrophy = trophyString.replace('{0}', monster)\
@@ -562,27 +564,28 @@ def GetRandomQuestMonster():
     if os.path.exists(QuestFile):
         with open(QuestFile) as json_file:
             questMonsterList = json.load(json_file)
-            monster = random.choice(questMonsterList['monsters'])
+            index = Parent.GetRandom(0, len(questMonsterList))
+            monster = questMonsterList['monsters'][index]
             return monster['name']
 
 def QuestCalculation(difficulty):
-    percent = random.random()
+    percent = Parent.GetRandom(0, 100)
     Log(percent)
 
     if difficulty == -2:
-        if percent > 0.17:
+        if percent > 17:
             return True
     elif difficulty == -1:
-        if percent > 0.34:
+        if percent > 34:
             return True
     elif difficulty == 0:
-        if percent > 0.5:
+        if percent > 50:
             return True
     elif difficulty == 1:
-        if percent > 0.67:
+        if percent > 67:
             return True
     elif difficulty == 2:
-        if percent > 0.84:
+        if percent > 84:
             return True
 
     return False
@@ -591,13 +594,13 @@ def QuestSuccessful(monster, party, difficulty):
     randnum = Parent.GetRandom(0, len(party))
     randomPartyMember = party[randnum]
     SendMessage(str(MySet.QuestSuccessResponse.format(monster['name'])))
-    percent = random.random()
+    percent = Parent.GetRandom(0, 100)
 
     for member in party:
         ModifyPlayerExperience(difficulty + 3, member)
 
     if not monster['unique'] == "":
-        if percent > 0.75:
+        if percent > 75:
             GivePlayerLoot(monster['unique'], randomPartyMember)
         elif not monster['loot'] == "":
             GivePlayerLoot(monster['reward'], randomPartyMember)
@@ -623,42 +626,56 @@ def CheckQuestMonsterExists(monsterName):
 # ---------------------------------------
 
 def GetRandomMonster():
-    return random.choice(ReadLinesFile(MonsterFile))
+    monsterList = ReadLinesFile(MonsterFile)
+    index = Parent.GetRandom(0, len(monsterList))
+    return monsterList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomTime():
-    return random.randint(1, 12)
+    return Parent.GetRandom(1, 12)
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomWeapon():
-    return random.choice(ReadLinesFile(WeaponFile))
+    weaponList = ReadLinesFile(WeaponFile)
+    index = Parent.GetRandom(0, len(weaponList))
+    return weaponList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomSpell():
-    return random.choice(ReadLinesFile(SpellsFile))
+    spellList = ReadLinesFile(SpellsFile)
+    index = Parent.GetRandom(0, len(spellList))
+    return spellList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomTreasure():
-    return random.choice(ReadLinesFile(TreasureFile))
+    treasureList = ReadLinesFile(TreasureFile)
+    index = Parent.GetRandom(0, len(treasureList))
+    return treasureList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomBodyPart():
-    return random.choice(ReadLinesFile(BodyPartFile))
+    bodyPartList = ReadLinesFile(BodyPartFile)
+    index = Parent.GetRandom(0, len(bodyPartList))
+    return bodyPartList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomLocation():
-    return random.choice(ReadLinesFile(LocationFile))
+    locationList = ReadLinesFile(LocationFile)
+    index = Parent.GetRandom(0, len(locationList))
+    return locationList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomNPC():
-    return random.choice(ReadLinesFile(NPCFile))
+    npcList = ReadLinesFile(NPCFile)
+    index = Parent.GetRandom(0, len(npcList))
+    return npcList[index]
 
 
 # ---------------------------
