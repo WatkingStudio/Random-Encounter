@@ -34,7 +34,7 @@
   "CheckTreasureCooldown": 60.0,
   "EquipmentCommand": "!equipment",
   "EquipmentWhisperResponse": "{0} check your twitch inbox for your equipment info, you may need to refresh.",
-  "EquipmentMessage": "{0} has the following equipped: (head) {1}, (body) {2}, (hands) {3}, (legs) {4}, (feet) {5}, (right hand) {6}, (left hand) {7}, (back) {8}",
+  "EquipmentMessage": "{0} has the following equipped: (head) {1}, (body) {2}, (hands) {3}, (legs) {4}, (feet) {5}, (right hand) {6}, (left hand) {7}",
   "EquipmentSpecificResponse": "{0} has a {1} equipped on their {2}",
   "EquipmentCooldownResponse": "{0} the equipment command is on cooldown for {1} seconds",
   "EquipmentWhisperCooldown": 60.0,

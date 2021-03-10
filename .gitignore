@@ -1,5 +1,6 @@
 UserData/
 test.py
+ActiveQuest.json
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
