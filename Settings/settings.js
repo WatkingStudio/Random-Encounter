@@ -16,7 +16,7 @@
   "EncounterCommand": "!encounter",
   "EncounterResponse": "{0}",
   "EncounterCooldownResponse": "{0} encounter command is on cooldown for {1} seconds !",
-  "EncounterCooldown": 60,
+  "EncounterCooldown": 60.0,
   "MonsterCommand": "!addmonster",
   "MonsterPermission": "Moderator",
   "MonsterPermissionInfo": "Moderator",

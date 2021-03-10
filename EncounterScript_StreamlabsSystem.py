@@ -683,9 +683,7 @@ def Execute(data):
     # THIS VARIABLE NAME IS MISS LEADING AND SHOULD BE CHANGED COMPLETELY
     # IT SHOULDN'T BE FOR THE ENCOUNTER PATH, BUT INSTEAD FOR THE USERS DATA
     userDataPath = CreatePlayerPath(data.UserName)
-
-    # Added in additional randomness
-    random.seed()
+    IsOwner = (Parent.HasPermission(data.User, "Owner", ""))
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Encounter
@@ -693,7 +691,7 @@ def Execute(data):
 
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.EncounterCommand.lower() and LiveCheck() and MySet.TurnOnEncounter:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.EncounterCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.EncounterCommand, data.User):
             # gets a random line from the encounter files
             # This is the encounter which is selected
             encounters = ReadLinesFile(EncounterFile)
@@ -812,7 +810,7 @@ def Execute(data):
             0).lower() == MySet.MonsterCommand.lower() and LiveCheck() and MySet.TurnOnMonster:
 
         moderator = (Parent.HasPermission(data.User, "Moderator", ""))
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.MonsterCommand, data.User) and moderator is True:
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.MonsterCommand, data.User) and moderator:
             monsterName = data.GetParam(1)
             monsterName = monsterName.replace('_', ' ')
             response = "NULL"
@@ -838,7 +836,7 @@ def Execute(data):
 
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.CheckLevelCommand.lower() and LiveCheck() and MySet.TurnOnCheckLevel:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User):
             response = "null"
 
             if os.path.exists(userDataPath):
@@ -862,7 +860,7 @@ def Execute(data):
 
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.CheckTreasureCommand.lower() and LiveCheck() and MySet.TurnOnCheckTreasure:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User):
             response = "null"
 
             if os.path.exists(userDataPath):
@@ -886,7 +884,7 @@ def Execute(data):
 
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
         0).lower() == MySet.EquipmentCommand.lower() and LiveCheck() and MySet.TurnOnEquipment:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.EquipmentCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.EquipmentCommand, data.User):
             response = "null"
 
             # Check to see if the user wants to know what is equipped in a specific location
@@ -935,7 +933,7 @@ def Execute(data):
 
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
         0).lower() == MySet.CheckLootCommand.lower() and LiveCheck() and MySet.TurnOnCheckLoot:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLootCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLootCommand, data.User):
             response = "null"
 
             if os.path.exists(userDataPath):
@@ -952,7 +950,7 @@ def Execute(data):
                 Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootChatCooldown)
             else:
                 SendWhisper(data.UserName, str(response))
-                SendMessage(str(MySet.CheckLootWhisperResponse))
+                SendMessage(str(MySet.CheckLootWhisperResponse.format(data.UserName)))
                 Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootWhisperCooldown)
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckLootCommand, data.User)
@@ -965,7 +963,7 @@ def Execute(data):
 
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
         0).lower() == MySet.CheckTrophiesCommand.lower() and LiveCheck() and MySet.TurnOnCheckTrophies:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User):
             response = "null"
 
             if os.path.exists(userDataPath):
@@ -995,7 +993,7 @@ def Execute(data):
 
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.EquipCommand.lower() and LiveCheck() and MySet.TurnOnEquip:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.EquipCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.EquipCommand, data.User):
 
             if os.path.exists(userDataPath):
                 itemName = ""
@@ -1065,8 +1063,7 @@ def Execute(data):
 
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.QuestCommand.lower() and LiveCheck() and MySet.TurnOnQuest:
-        IsModerator = (Parent.HasPermission(data.User, "Moderator", ""))
-        if IsModerator is True:
+        if IsOwner is True:
             if data.GetParam(1) == "cancel":
                 SendMessage(str(MySet.QuestCancelResponse))
                 global IsActiveQuest
