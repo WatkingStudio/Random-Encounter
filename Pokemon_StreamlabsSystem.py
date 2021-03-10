@@ -241,6 +241,38 @@ def DetermineRank(level):
     else:
         return "God"
 
+def CreatePlayer(userDataPath):
+    if not os.path.exists(userDataPath):
+        create = open(userDataPath, "w+")
+        create.close()
+
+        data2 = {}
+        # Add the Experience from the encounter
+        data2['exp'] = 0
+        # Assign a level to the user
+        data2['level'] = DetermineLevel(data2['exp'])
+        # Assign a rank to the user
+        data2['rank'] = DetermineRank(data2['level'])
+        # Assign default stats to the user
+        data2['offence'] = 0
+        data2['defence'] = 0
+        # Assign equipment to the user
+        equipment = {}
+        equipment['head'] = "leather helmet"
+        equipment['body'] = "cloth shirt"
+        equipment['legs'] = "leather trousers"
+        equipment['feet'] = "leather boots"
+        equipment['hands'] = "empty"
+        equipment['right hand'] = "sword"
+        equipment['left hand'] = "shield"
+        data2['equipment'] = equipment
+        # Assign default items to the user
+        data2['treasure'] = 0
+        data2['trophies'] = []
+        data2['loot'] = []
+
+        AddToFile(userDataPath, data2)
+
 # ---------------------------------------
 # Functions used in commands
 # -----------------------------------------------------------------------------------------------------------------------
@@ -534,6 +566,7 @@ def GetRandomQuestMonster():
 
 def QuestCalculation(difficulty):
     percent = random.random()
+    Log(percent)
 
     if difficulty == -2:
         if percent > 0.17:
@@ -652,7 +685,7 @@ def Execute(data):
     userDataPath = CreatePlayerPath(data.UserName)
 
     # Added in additional randomness
-    random.seed(random.seed())
+    random.seed()
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Encounter
@@ -735,58 +768,27 @@ def Execute(data):
 
             # If this is the first time running the encounter script, make the user a new .json file
             if not os.path.exists(userDataPath):
-                create = open(userDataPath, "w+")
-                create.close()
-                data2 = {}
+                CreatePlayer(userDataPath)
+
+            with open(userDataPath) as json_file:
+                data2 = json.load(json_file)
                 # Add the Experience from the encounter
-                data2['exp'] = RandomEncounter.exp
-                # Assign a level to the user
+                value = data2['exp'] + RandomEncounter.exp
+                if value >= 0:
+                    data2['exp'] = value
+                # Update the users level
                 data2['level'] = DetermineLevel(data2['exp'])
-                # Assign a rank to the user
+                # Update the users rank
                 data2['rank'] = DetermineRank(data2['level'])
-                data2['offence'] = 0
-                data2['defence'] = 0
-                # Assign equipment to the user
-                equipment = {}
-                equipment['head'] = "leather helmet"
-                equipment['body'] = "cloth shirt"
-                equipment['legs'] = "leather trousers"
-                equipment['feet'] = "leather boots"
-                equipment['hands'] = "empty"
-                equipment['right hand'] = "sword"
-                equipment['left hand'] = "shield"
-                data2['equipment'] = equipment
-                # Assign treasure to the user
-                data2['treasure'] = RandomEncounter.treasure
-                # Assign Trophies to the user
-                data2['trophies'] = []
+                # Add treasure to the user
+                treasureValue = data2['treasure'] + RandomEncounter.treasure
+                data2['treasure'] = treasureValue
+                # Add Trophies from the encounter
                 if not RandomEncounter.trophies == "null":
                     data2['trophies'].append(trophy)
-                # Assign Loot to the user
-                data2['loot'] = []
+                # Add Loot from the encounter
                 if not RandomEncounter.loot == "null":
                     data2['loot'].append(loot)
-            # If the user already has a .json file, open it and add the new data to it
-            else:
-                with open(userDataPath) as json_file:
-                    data2 = json.load(json_file)
-                    # Add the Experience from the encounter
-                    value = data2['exp'] + RandomEncounter.exp
-                    if value >= 0:
-                        data2['exp'] = value
-                    # Update the users level
-                    data2['level'] = DetermineLevel(data2['exp'])
-                    # Update the users rank
-                    data2['rank'] = DetermineRank(data2['level'])
-                    # Add treasure to the user
-                    treasureValue = data2['treasure'] + RandomEncounter.treasure
-                    data2['treasure'] = treasureValue
-                    # Add Trophies from the encounter
-                    if not RandomEncounter.trophies == "null":
-                        data2['trophies'].append(trophy)
-                    # Add Loot from the encounter
-                    if not RandomEncounter.loot == "null":
-                        data2['loot'].append(loot)
 
 
             if os.path.exists(userDataPath):
@@ -995,62 +997,63 @@ def Execute(data):
             0).lower() == MySet.EquipCommand.lower() and LiveCheck() and MySet.TurnOnEquip:
         if not Parent.IsOnUserCooldown(ScriptName, MySet.EquipCommand, data.User):
 
-            itemName = ""
-            numberOfParams = data.GetParamCount()
+            if os.path.exists(userDataPath):
+                itemName = ""
+                numberOfParams = data.GetParamCount()
 
-            for i in range (1, numberOfParams):
-                word = data.GetParam(i)
-                if not WordIsLocation(word):
-                    if i != 1:
-                        itemName += " "
-                    itemName += word
+                for i in range (1, numberOfParams):
+                    word = data.GetParam(i)
+                    if not WordIsLocation(word):
+                        if i != 1:
+                            itemName += " "
+                        itemName += word
 
-            item = RetrieveItem(itemName.lower())
-            itemIsValid = True
-            if item.name == "":
-                itemIsValid = False
+                item = RetrieveItem(itemName.lower())
+                itemIsValid = True
+                if item.name == "":
+                    itemIsValid = False
 
-            if itemIsValid:
-                location = data.GetParam(numberOfParams - 1).lower()
-                locationIsValid = True
-                itemIsOwned = False
+                if itemIsValid:
+                    location = data.GetParam(numberOfParams - 1).lower()
+                    locationIsValid = True
+                    itemIsOwned = False
 
-                with open(userDataPath) as json_file:
-                    data2 = json.load(json_file)
+                    with open(userDataPath) as json_file:
+                        data2 = json.load(json_file)
 
-                    for i in data2['loot']:
-                        if i.lower() == item.name.lower():
-                            itemIsOwned = True
-                            break
+                        for i in data2['loot']:
+                            if i.lower() == item.name.lower():
+                                itemIsOwned = True
+                                break
 
-                    if itemIsOwned:
-                        hasLocation = WordIsLocation(location)
-                        # If a location is specified use that location
-                        #  otherwise use the first location in the array
-                        if hasLocation == True:
-                            for loc in item.location:
-                                if location == loc:
-                                    locationIsValid = True
-                                    data2 = AssignItem(data2, item, location)
-                                    break
-                                else:
-                                    locationIsValid = False
-                        else:
-                            data2 = AssignItem(data2, item, item.location[0])
+                        if itemIsOwned:
+                            hasLocation = WordIsLocation(location)
+                            # If a location is specified use that location
+                            #  otherwise use the first location in the array
+                            if hasLocation == True:
+                                for loc in item.location:
+                                    if location == loc:
+                                        locationIsValid = True
+                                        data2 = AssignItem(data2, item, location)
+                                        break
+                                    else:
+                                        locationIsValid = False
+                            else:
+                                data2 = AssignItem(data2, item, item.location[0])
 
-                # If the item and location is valid, update the users files
-                if locationIsValid and itemIsOwned:
-                    if os.path.exists(userDataPath):
-                        os.remove(userDataPath)
-                    AddToFile(userDataPath, data2)
-                    Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
-                    SendWhisper(data.UserName, str(MySet.EquipResponseSuccess.format(itemName)))
-                elif not itemIsOwned:
-                    SendWhisper(data.UserName, str(MySet.EquipResponseItemNotOwned.format(itemName)))
+                    # If the item and location is valid, update the users files
+                    if locationIsValid and itemIsOwned:
+                        if os.path.exists(userDataPath):
+                            os.remove(userDataPath)
+                        AddToFile(userDataPath, data2)
+                        Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
+                        SendWhisper(data.UserName, str(MySet.EquipResponseSuccess.format(itemName)))
+                    elif not itemIsOwned:
+                        SendWhisper(data.UserName, str(MySet.EquipResponseItemNotOwned.format(itemName)))
+                    else:
+                        SendWhisper(data.UserName, str(MySet.EquipResponseLocationInvalid.format(location, itemName)))
                 else:
-                    SendWhisper(data.UserName, str(MySet.EquipResponseLocationInvalid.format(location, itemName)))
-            else:
-                SendWhisper(data.UserName, str(MySet.EquipResponseItemInvalid.format(itemName)))
+                    SendWhisper(data.UserName, str(MySet.EquipResponseItemInvalid.format(itemName)))
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipCommand, data.User)
             message = MySet.EquipCooldownResponse.format(data.UserName, cooldownduration)
@@ -1113,7 +1116,11 @@ def Execute(data):
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.JoinCommand.lower() and LiveCheck() and MySet.TurnOnJoin:
         if not Parent.IsOnUserCooldown(ScriptName, MySet.JoinCommand, data.User):
-            #Check if there is an active quest
+            # If this is the first time running the encounter script, make the user a new .json file
+            if not os.path.exists(userDataPath):
+                CreatePlayer(userDataPath)
+
+            # Check if there is an active quest
             if IsCurrentlyActiveQuest():
                 if os.path.exists(ActiveQuestPath):
                     updateQuestFile = True

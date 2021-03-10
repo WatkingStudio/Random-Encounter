@@ -1009,7 +1009,7 @@
 		"loot":"null"
 	},
 	{
-	    "encounter":"{0} finds an ancient statue of a {1} in the woods. Upon inspection the statue is actually alive, ready for anything {0} draws their weapon and slays the stone {0}.",
+	    "encounter":"{0} finds an ancient statue of a {1} in the woods. Upon inspection the statue is actually alive, ready for anything {0} draws their weapon and slays the stone {1}.",
 		"exp":1,
 		"treasure":0,
 		"trophies":"null",
@@ -1121,7 +1121,7 @@
 		"loot":"null"
 	},
 	{
-	    "encounter":"{0} spends the day resting in the claming atmosphere of a steam bath, sweating off the aches from the past weeks of adventure.",
+	    "encounter":"{0} spends the day resting in the calming atmosphere of a steam bath, sweating off the aches from the past weeks of adventure.",
 		"exp":0,
 		"treasure":0,
 		"trophies":"null",
