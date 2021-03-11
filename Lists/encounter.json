@@ -1289,13 +1289,6 @@
 		"loot":"null"
 	},
 	{
-	    "encounter":"{0} finds a spellbook whilst searching through a cave. Spending the night studying the book {0} learns how to cast the {5} spell.",
-		"exp":0,
-		"treasure":0,
-		"trophies":"null",
-		"loot":"null"
-	},
-	{
 	    "encounter":"{0} finds an ancient ruin overrun by {1}s and {2}s. {0} decides not to push their luck and retreats to a save distance.",
 		"exp":0,
 		"treasure":0,

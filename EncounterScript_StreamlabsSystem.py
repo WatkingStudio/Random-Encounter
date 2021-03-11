@@ -45,6 +45,8 @@ EncounterFolderPath = UserDataFolderPath + "Encounter\\"
 # ---------------------------------------
 global ActiveQuestPath
 ActiveQuestPath = BaseFilePath + "ActiveQuest.json"
+global LogFile
+LogFile = BaseFilePath + "LogFile.json"
 global BodyPartFile
 BodyPartFile = ListFolderPath + "bodypart.txt"
 global EncounterFile
@@ -207,6 +209,65 @@ class Item:
     location = ""
     offence = 0
     defence = 0
+
+class LogEntry:
+    date = "11/03/2021"
+    monsters = []
+    items = []
+    encounter = []
+
+class LogValue:
+    name = ""
+    value = 0
+
+def AddLogEntry(section, data):
+    logFileData = ""
+    with open(LogFile) as json_file:
+        logFileData = json.load(json_file)
+
+        for logDate in logFileData['array']:
+            if logDate['date'] == "11/03/2021":
+                if section == "monsters":
+                    MonsterIsUnique = True
+                    for mon in logDate['monsters']:
+                        if mon['name'] == data:
+                            MonsterIsUnique = False
+                            mon['value'] = mon['value'] + 1
+
+                    if MonsterIsUnique:
+                        monster = {}
+                        monster['name'] = data
+                        monster['value'] = 0
+                        logDate['monsters'].append(monster)
+                elif section == "items":
+                    ItemIsUnique = True
+                    for itm in logDate['items']:
+                        if itm['name'] == data:
+                            ItemIsUnique = False
+                            itm['value'] = itm['value'] + 1
+
+                    if ItemIsUnique:
+                        item = {}
+                        item['name'] = data
+                        item['value'] = 0
+                        logDate['items'].append(item)
+                elif section == "encounters":
+                    EncounterIsUnique = True
+                    for enc in logDate['encounters']:
+                        if enc['name'] == data:
+                            EncounterIsUnique = False
+                            enc['value'] = enc['value'] + 1
+
+                    if EncounterIsUnique:
+                        encounter = {}
+                        encounter['name'] = data
+                        encounter['value'] = 0
+                        logDate['encounters'].append(encounter)
+
+    if os.path.exists(LogFile):
+        os.remove(LogFile)
+    AddToFile(LogFile, logFileData)
+
 
 # ---------------------------------------
 # Functions used for user creation/modification
@@ -703,6 +764,25 @@ def Execute(data):
     userDataPath = CreatePlayerPath(data.UserName)
     IsOwner = (Parent.HasPermission(data.User, "Owner", ""))
 
+    if not os.path.exists(LogFile):
+        create = open(LogFile, "w+")
+        create.close()
+        data2 = {}
+        logDate = "11/03/2021"
+        logItems = []
+        logEncounters = []
+        logMonsters = []
+        data2['array'] = []
+        arr = {}
+        arr['date'] = logDate
+        arr['items'] = logItems
+        arr['encounters'] = logEncounters
+        arr['monsters'] = logMonsters
+        data2['array'].append(arr)
+
+        AddToFile(LogFile, data2)
+
+
     # -----------------------------------------------------------------------------------------------------------------------
     #   Encounter
     # -----------------------------------------------------------------------------------------------------------------------
@@ -731,6 +811,7 @@ def Execute(data):
                 randnum = Parent.GetRandom(0, len(EncounterList))
                 RandomEncounter = EncounterList[randnum]
 
+            AddLogEntry("encounters", RandomEncounter.encounter)
             data2 = ""
 
             # The next section of code goes through the encounter and replaces any variables with the appropriate data

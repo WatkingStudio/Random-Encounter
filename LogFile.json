@@ -1,0 +1,19 @@
+{
+    "array": [
+        {
+            "date": "11/03/2021", 
+            "items": [], 
+            "encounters": [
+                {
+                    "name": "{0} gets startled by a crazed wizard who teleports into their camp. He begins to rave about his newest creation of {1} beer, he forces a bottle into {0} hand before teleporting away. Interested {0} takes a drink, it reminds {0} of their childhood.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} came across a fallen tree in the road, unbeknownst to {0} a group of {1}s was waiting in the nearby trees. The {1}s jumped the unaware {0} knocking them unconscious and stealing their coin.", 
+                    "value": 0
+                }
+            ], 
+            "monsters": []
+        }
+    ]
+}
