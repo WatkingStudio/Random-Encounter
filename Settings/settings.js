@@ -84,7 +84,7 @@
   "RebalanceResponse": "Rebalancing Complete",
   "RebalancePermission": "Moderator",
   "RebalancePermissionInfo": "Moderator",
-  "RebalancePermissionResp": "{0} -> only $permission ({1}) and higher can use this command"
+  "RebalancePermissionResp": "{0} -> only $permission ({1}) and higher can use this command",
   "StatsCommand": "!stats",
   "StatsResponse": "Item: {0}, Locations {1}, Offence: {2}, Defence: {3}",
   "StatsInvalidResponse": "The item {0} is not valid."
