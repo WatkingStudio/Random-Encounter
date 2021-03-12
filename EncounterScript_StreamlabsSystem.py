@@ -1366,7 +1366,6 @@ def Tick():
         else:
             global IsActiveQuest
             IsActiveQuest = False
-            for x in range(20):
-                DetermineQuestResult()
+            DetermineQuestResult()
     return
 
