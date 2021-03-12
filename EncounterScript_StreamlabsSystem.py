@@ -691,7 +691,7 @@ def GetRandomQuestMonster():
     if os.path.exists(QuestFile):
         with open(QuestFile) as json_file:
             questMonsterList = json.load(json_file)
-            index = Parent.GetRandom(0, len(questMonsterList))
+            index = Parent.GetRandom(0, len(questMonsterList['monsters']))
             monster = questMonsterList['monsters'][index]
             return monster['name']
 

@@ -32,7 +32,7 @@
                 }, 
                 {
                     "name": "Ancient Corpse", 
-                    "value": 0
+                    "value": 2
                 }, 
                 {
                     "name": "Ceberus", 
@@ -48,6 +48,10 @@
                 }, 
                 {
                     "name": "Black Bear", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Mind Flayer", 
                     "value": 0
                 }
             ]
