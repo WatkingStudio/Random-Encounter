@@ -11,6 +11,7 @@ import re
 import ctypes
 import time
 from os import walk
+from datetime import date
 
 codecs.BOM_UTF8
 '\xef\xbb\xbf'
@@ -45,6 +46,8 @@ EncounterFolderPath = UserDataFolderPath + "Encounter\\"
 # ---------------------------------------
 global ActiveQuestPath
 ActiveQuestPath = BaseFilePath + "ActiveQuest.json"
+global LogFile
+LogFile = BaseFilePath + "LogFile.json"
 global BodyPartFile
 BodyPartFile = ListFolderPath + "bodypart.txt"
 global EncounterFile
@@ -104,8 +107,10 @@ class Settings:
             self.TurnOnQuest = True
             self.TurnOnJoin = True
             self.TurnOnRebalance = True
+            self.TurnOnStats = True
             self.InvalidDataResponse = "{0} does not have a valid data file"
             self.GiveLootResponse = "{0} has been rewarded with a {1}"
+            self.LevelledUpResponse = "{0} has levelled up to {1}"
             self.EncounterCommand = "!encounter"
             self.EncounterResponse = "{0}"
             self.EncounterCooldownResponse = "{0} encounter command is on cooldown for {1} seconds !"
@@ -155,6 +160,7 @@ class Settings:
             self.QuestResponse = "A quest has been started to hunt down a {0}. Type '!join' in the chat to join the quest."
             self.QuestActiveMessage = "There is currently an active quest with {0} seconds left to join the questing party"
             self.QuestCountdownMessage = "You have {0} seconds to join the questing party"
+            self.QuestDifficultyModifier = 1
             self.QuestCountdown = 60
             self.QuestPermission = "Moderator"
             self.QuestPermissionInfo = "Moderator"
@@ -175,7 +181,9 @@ class Settings:
             self.RebalancePermission = "Moderator"
             self.RebalancePermissionInfo = "Moderator"
             self.RebalancePermissionResp = "{0} -> only $permission ({1}) and higher can use this command"
-
+            self.StatsCommand = "!stats"
+            self.StatsResponse = "Item: {0}, Locations {1}, Offence: {2}, Defence: {3}"
+            self.StatsInvalidResponse = "The item {0} is not valid."
 
     # ---------------------------
     #   [Optional] Reload Settings (Called when a user clicks the Save Settings button in the Chatbot UI)
@@ -206,6 +214,105 @@ class Item:
     location = ""
     offence = 0
     defence = 0
+
+# ---------------------------------------
+# Functions used for the Gameplay Log File
+# ---------------------------------------
+
+def CreateGameplayLogFile():
+    create = open(LogFile, "w+")
+    create.close()
+    data2 = {}
+    data2['array'] = []
+    arr = {}
+    arr['date'] = date.today().strftime("%d/%m/%Y")
+    arr['items'] = []
+    arr['encounters'] = []
+    arr['monsters'] = []
+    data2['array'].append(arr)
+
+    AddToFile(LogFile, data2)
+
+#------------------------------------------------------------------------------------------------------------------------
+
+# This function is used to log gameplay data. This is being used to debug and test the program. It will not be included
+#   for the entire duration of the project. It is in the release version, but just to continue the testing process.
+def AddLogEntry(section, data):
+    logFileData = ""
+    currentDate = date.today().strftime("%d/%m/%Y")
+
+    with open(LogFile) as json_file:
+        logFileData = json.load(json_file)
+        DataHasBeenAdded = False
+        EntryIsUnique = True
+
+        for logEntry in logFileData['array']:
+            if logEntry['date'] == currentDate:
+                if section == "monsters":
+                    for monsterEntry in logEntry['monsters']:
+                        if monsterEntry['name'] == data:
+                            EntryIsUnique = False
+                            monsterEntry['value'] = monsterEntry['value'] + 1
+                            break
+                    if EntryIsUnique:
+                        monster = {}
+                        monster['name'] = data
+                        monster['value'] = 0
+                        logEntry['monsters'].append(monster)
+
+                elif section == "items":
+                    for itemEntry in logEntry['items']:
+                        if itemEntry['name'] == data:
+                            EntryIsUnique = False
+                            itemEntry['value'] = itemEntry['value'] + 1
+                            break
+                    if EntryIsUnique:
+                        item = {}
+                        item['name'] = data
+                        item['value'] = 0
+                        logEntry['items'].append(item)
+
+                elif section == "encounters":
+                    for encounterEntry in logEntry['encounters']:
+                        if encounterEntry['name'] == data:
+                            EntryIsUnique = False
+                            encounterEntry['value'] = encounterEntry['value'] + 1
+                            break
+                    if EntryIsUnique:
+                        encounter = {}
+                        encounter['name'] = data
+                        encounter['value'] = 0
+                        logEntry['encounters'].append(encounter)
+
+                DataHasBeenAdded = True
+                break
+
+        if not DataHasBeenAdded:
+            arr = {}
+            arr['date'] = currentDate
+            arr['items'] = []
+            arr['monsters'] = []
+            arr['encounters'] = []
+            if section == "items":
+                item = {}
+                item['name'] = data
+                item['value'] = 0
+                arr['items'].append(item)
+            elif section == "monsters":
+                monster = {}
+                monster['name'] = data
+                monster['value'] = 0
+                arr['monster'].append(monster)
+            elif section == "encounters":
+                encounter = {}
+                encounter['name'] = data
+                encounter['value'] = 0
+                arr['encounters'].append(encounter)
+            logFileData['array'].append(arr)
+
+    if os.path.exists(LogFile):
+        os.remove(LogFile)
+    AddToFile(LogFile, logFileData)
 
 # ---------------------------------------
 # Functions used for user creation/modification
@@ -240,6 +347,8 @@ def DetermineRank(level):
         return "Hero"
     else:
         return "God"
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def CreatePlayer(userDataPath):
     if not os.path.exists(userDataPath):
@@ -356,19 +465,23 @@ def CreatePlayerPath(player):
     playerPath = EncounterFolderPath + player + ".json"
     return playerPath
 
-# -----------------------------------------------------------------------------------------------------------------------
-
 # ---------------------------------------
 # Functions used to apply encounter results
 # ---------------------------------------
 
 def GetTrophyCondition():
-    return random.choice(ReadLinesFile(TrophyConditionFile))
+    fileLines = ReadLinesFile(TrophyConditionFile)
+    index = Parent.GetRandom(0, len(fileLines))
+    return fileLines[index]
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def FormatTrophy(trophyString, monster):
     formattedTrophy = trophyString.replace('{0}', monster)\
         .replace('{1}', GetTrophyCondition())
     return formattedTrophy.lower()
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def GetRandomLoot():
     itemName = ""
@@ -378,9 +491,13 @@ def GetRandomLoot():
         itemName = itemList['items'][randomItemNumber]['name']
     return itemName
 
+#------------------------------------------------------------------------------------------------------------------------
+
 def AssignLoot(lootString):
     assignedLoot = lootString.replace('{0}', GetRandomLoot())
     return assignedLoot.lower()
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def IsItemLoot(lootString):
     with open(LootDataFile) as json_file:
@@ -390,6 +507,8 @@ def IsItemLoot(lootString):
                 return True
 
         return False
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def GivePlayerLoot(lootString, player):
     if not lootString == "":
@@ -405,10 +524,13 @@ def GivePlayerLoot(lootString, player):
 
         if os.path.exists(playerPath):
             os.remove(playerPath)
+        AddLogEntry("items", lootString)
         SendMessage(str(MySet.GiveLootResponse.format(player, lootString)))
         AddToFile(playerPath, playerData)
     else:
         Log("LOG MESSAGE: No lootString has been given to " + player)
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def ModifyPlayerExperience(value, player):
     playerPath = CreatePlayerPath(player)
@@ -419,6 +541,8 @@ def ModifyPlayerExperience(value, player):
             newExp = playerData['exp'] + value
             if newExp >= 0:
                 playerData['exp'] = newExp
+            playerData['level'] = DetermineLevel(playerData['exp'])
+            playerData['rank'] = DetermineRank(playerData['level'])
 
     if os.path.exists(playerPath):
         os.remove(playerPath)
@@ -434,6 +558,8 @@ def WordIsLocation(location):
         if location == loc:
             return True
     return False
+
+#------------------------------------------------------------------------------------------------------------------------
 
 #This function takes the name of the item and retrieves it's data from the items list
 def RetrieveItem(itemName):
@@ -496,9 +622,13 @@ def AssignItem(userJson, item, location):
 def IsCurrentlyActiveQuest():
     return IsActiveQuest
 
+#------------------------------------------------------------------------------------------------------------------------
+
 def ToggleActiveQuest():
     global IsActiveQuest
     IsActiveQuest = not IsActiveQuest
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def DetermineQuestResult():
     if os.path.exists(ActiveQuestPath):
@@ -516,8 +646,8 @@ def DetermineQuestResult():
             monster = GetQuestMonster(questData['Monster'])
 
             if not monster == None:
-                monsterOffence = monster['offence']
-                monsterDefence = monster['defence']
+                monsterOffence = monster['offence'] * float(MySet.QuestDifficultyModifier)
+                monsterDefence = monster['defence'] * float(MySet.QuestDifficultyModifier)
 
                 # Currently this data is logged to check for quest balance
                 Log(monster['name'])
@@ -547,6 +677,8 @@ def DetermineQuestResult():
     else:
         Log("ERROR: Active Quest Path Missing")
 
+#------------------------------------------------------------------------------------------------------------------------
+
 def GetQuestMonster(monsterName):
     if os.path.exists(QuestFile):
         with open(QuestFile) as json_file:
@@ -557,56 +689,67 @@ def GetQuestMonster(monsterName):
                 if val == val2:
                     return monster
 
+#------------------------------------------------------------------------------------------------------------------------
+
 def GetRandomQuestMonster():
     if os.path.exists(QuestFile):
         with open(QuestFile) as json_file:
             questMonsterList = json.load(json_file)
-            monster = random.choice(questMonsterList['monsters'])
+            index = Parent.GetRandom(0, len(questMonsterList['monsters']))
+            monster = questMonsterList['monsters'][index]
             return monster['name']
 
+#------------------------------------------------------------------------------------------------------------------------
+
 def QuestCalculation(difficulty):
-    percent = random.random()
+    percent = Parent.GetRandom(0, 100)
     Log(percent)
 
     if difficulty == -2:
-        if percent > 0.17:
+        if percent > 17:
             return True
     elif difficulty == -1:
-        if percent > 0.34:
+        if percent > 34:
             return True
     elif difficulty == 0:
-        if percent > 0.5:
+        if percent > 50:
             return True
     elif difficulty == 1:
-        if percent > 0.67:
+        if percent > 67:
             return True
     elif difficulty == 2:
-        if percent > 0.84:
+        if percent > 84:
             return True
 
     return False
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def QuestSuccessful(monster, party, difficulty):
     randnum = Parent.GetRandom(0, len(party))
     randomPartyMember = party[randnum]
     SendMessage(str(MySet.QuestSuccessResponse.format(monster['name'])))
-    percent = random.random()
+    percent = Parent.GetRandom(0, 100)
 
     for member in party:
         ModifyPlayerExperience(difficulty + 3, member)
 
-    if not monster['unique'] == "":
-        if percent > 0.75:
+    if not monster['unique'] == "null":
+        if percent > 75:
             GivePlayerLoot(monster['unique'], randomPartyMember)
-        elif not monster['loot'] == "":
+        elif not monster['reward'] == "null":
             GivePlayerLoot(monster['reward'], randomPartyMember)
-    elif not monster['loot'] == "":
+    elif not monster['reward'] == "null":
         GivePlayerLoot(monster['reward'], randomPartyMember)
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def QuestFailed(monster, party):
     SendMessage(str(MySet.QuestFailedResponse.format(monster['name'])))
     for member in party:
         ModifyPlayerExperience(-1, member)
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def CheckQuestMonsterExists(monsterName):
     if os.path.exists(QuestFile):
@@ -622,42 +765,56 @@ def CheckQuestMonsterExists(monsterName):
 # ---------------------------------------
 
 def GetRandomMonster():
-    return random.choice(ReadLinesFile(MonsterFile))
+    monsterList = ReadLinesFile(MonsterFile)
+    index = Parent.GetRandom(0, len(monsterList))
+    return monsterList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomTime():
-    return random.randint(1, 12)
+    return Parent.GetRandom(1, 12)
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomWeapon():
-    return random.choice(ReadLinesFile(WeaponFile))
+    weaponList = ReadLinesFile(WeaponFile)
+    index = Parent.GetRandom(0, len(weaponList))
+    return weaponList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomSpell():
-    return random.choice(ReadLinesFile(SpellsFile))
+    spellList = ReadLinesFile(SpellsFile)
+    index = Parent.GetRandom(0, len(spellList))
+    return spellList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomTreasure():
-    return random.choice(ReadLinesFile(TreasureFile))
+    treasureList = ReadLinesFile(TreasureFile)
+    index = Parent.GetRandom(0, len(treasureList))
+    return treasureList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomBodyPart():
-    return random.choice(ReadLinesFile(BodyPartFile))
+    bodyPartList = ReadLinesFile(BodyPartFile)
+    index = Parent.GetRandom(0, len(bodyPartList))
+    return bodyPartList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomLocation():
-    return random.choice(ReadLinesFile(LocationFile))
+    locationList = ReadLinesFile(LocationFile)
+    index = Parent.GetRandom(0, len(locationList))
+    return locationList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomNPC():
-    return random.choice(ReadLinesFile(NPCFile))
+    npcList = ReadLinesFile(NPCFile)
+    index = Parent.GetRandom(0, len(npcList))
+    return npcList[index]
 
 
 # ---------------------------
@@ -683,9 +840,10 @@ def Execute(data):
     # THIS VARIABLE NAME IS MISS LEADING AND SHOULD BE CHANGED COMPLETELY
     # IT SHOULDN'T BE FOR THE ENCOUNTER PATH, BUT INSTEAD FOR THE USERS DATA
     userDataPath = CreatePlayerPath(data.UserName)
+    IsOwner = (Parent.HasPermission(data.User, "Owner", ""))
 
-    # Added in additional randomness
-    random.seed()
+    if not os.path.exists(LogFile):
+        CreateGameplayLogFile()
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Encounter
@@ -693,7 +851,7 @@ def Execute(data):
 
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.EncounterCommand.lower() and LiveCheck() and MySet.TurnOnEncounter:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.EncounterCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.EncounterCommand, data.User):
             # gets a random line from the encounter files
             # This is the encounter which is selected
             encounters = ReadLinesFile(EncounterFile)
@@ -715,6 +873,7 @@ def Execute(data):
                 randnum = Parent.GetRandom(0, len(EncounterList))
                 RandomEncounter = EncounterList[randnum]
 
+            AddLogEntry("encounters", RandomEncounter.encounter)
             data2 = ""
 
             # The next section of code goes through the encounter and replaces any variables with the appropriate data
@@ -730,13 +889,16 @@ def Execute(data):
             # {9} - NPC
 
             randomMonster = GetRandomMonster()
+            AddLogEntry("monsters", randomMonster)
             randomLoot = "null"
             loot = "null"
             trophy = "null"
             if not RandomEncounter.loot == "null":
                 loot = AssignLoot(RandomEncounter.loot)
+                AddLogEntry("items", loot)
             if not RandomEncounter.trophies == "null":
                 trophy = FormatTrophy(RandomEncounter.trophies, randomMonster)
+                AddLogEntry("items", trophy)
 
             formattedEncounter = RandomEncounter.encounter.replace('{0}', data.UserName)\
                 .replace('{1}', randomMonster)\
@@ -770,6 +932,8 @@ def Execute(data):
             if not os.path.exists(userDataPath):
                 CreatePlayer(userDataPath)
 
+            CurrentLevel = 0
+
             with open(userDataPath) as json_file:
                 data2 = json.load(json_file)
                 # Add the Experience from the encounter
@@ -777,6 +941,7 @@ def Execute(data):
                 if value >= 0:
                     data2['exp'] = value
                 # Update the users level
+                CurrentLevel = data2['level']
                 data2['level'] = DetermineLevel(data2['exp'])
                 # Update the users rank
                 data2['rank'] = DetermineRank(data2['level'])
@@ -790,6 +955,8 @@ def Execute(data):
                 if not RandomEncounter.loot == "null":
                     data2['loot'].append(loot)
 
+            if CurrentLevel < data2['level']:
+                SendMessage(MySet.LevelledUpResponse.format(data.UserName, data2['level']))
 
             if os.path.exists(userDataPath):
                 os.remove(userDataPath)
@@ -812,7 +979,7 @@ def Execute(data):
             0).lower() == MySet.MonsterCommand.lower() and LiveCheck() and MySet.TurnOnMonster:
 
         moderator = (Parent.HasPermission(data.User, "Moderator", ""))
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.MonsterCommand, data.User) and moderator is True:
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.MonsterCommand, data.User) and moderator:
             monsterName = data.GetParam(1)
             monsterName = monsterName.replace('_', ' ')
             response = "NULL"
@@ -836,9 +1003,9 @@ def Execute(data):
     #   Check Level
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.CheckLevelCommand.lower() and LiveCheck() and MySet.TurnOnCheckLevel:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User):
             response = "null"
 
             if os.path.exists(userDataPath):
@@ -849,7 +1016,8 @@ def Execute(data):
                 response = MySet.InvalidDataResponse.format(data.UserName)
 
             Parent.SendStreamMessage(str(response))
-            Parent.AddUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User, MySet.CheckLevelCooldown)
+            if not data.IsWhisper():
+                Parent.AddUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User, MySet.CheckLevelCooldown)
 
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckLevelCommand, data.User)
@@ -860,9 +1028,9 @@ def Execute(data):
     #   Check Treasure
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.CheckTreasureCommand.lower() and LiveCheck() and MySet.TurnOnCheckTreasure:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User):
             response = "null"
 
             if os.path.exists(userDataPath):
@@ -873,7 +1041,8 @@ def Execute(data):
                 response = MySet.InvalidDataResponse.format(data.UserName)
 
             Parent.SendStreamMessage(str(response))
-            Parent.AddUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User, MySet.CheckTreasureCooldown)
+            if not data.IsWhisper():
+                Parent.AddUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User, MySet.CheckTreasureCooldown)
 
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckTreasureCommand, data.User)
@@ -884,9 +1053,9 @@ def Execute(data):
     #   Check Equipment
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
         0).lower() == MySet.EquipmentCommand.lower() and LiveCheck() and MySet.TurnOnEquipment:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.EquipmentCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.EquipmentCommand, data.User):
             response = "null"
 
             # Check to see if the user wants to know what is equipped in a specific location
@@ -918,11 +1087,13 @@ def Execute(data):
             # Check to see if the user wants to print the information into the Twitch chat
             if(data.GetParam(1).lower() == "chat"):
                 SendMessage(str(response))
-                Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentChatCooldown)
+                if not data.IsWhisper():
+                    Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentChatCooldown)
             else:
                 SendWhisper(data.UserName, str(response))
                 SendMessage(str(MySet.EquipmentWhisperResponse.format(data.UserName)))
-                Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentWhisperCooldown)
+                if not data.IsWhisper():
+                    Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentWhisperCooldown)
 
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipmentCommand, data.User)
@@ -933,9 +1104,9 @@ def Execute(data):
     #   Loot
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
         0).lower() == MySet.CheckLootCommand.lower() and LiveCheck() and MySet.TurnOnCheckLoot:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLootCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLootCommand, data.User):
             response = "null"
 
             if os.path.exists(userDataPath):
@@ -949,11 +1120,13 @@ def Execute(data):
             # Check to see if the user wants to print the information into the Twitch chat
             if(data.GetParam(1).lower() == "chat"):
                 SendMessage(str(response))
-                Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootChatCooldown)
+                if not data.IsWhisper():
+                    Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootChatCooldown)
             else:
                 SendWhisper(data.UserName, str(response))
-                SendMessage(str(MySet.CheckLootWhisperResponse))
-                Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootWhisperCooldown)
+                SendMessage(str(MySet.CheckLootWhisperResponse.format(data.UserName)))
+                if not data.IsWhisper():
+                    Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootWhisperCooldown)
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckLootCommand, data.User)
             message = MySet.CheckLootCooldownResponse.format(data.UserName, cooldownduration)
@@ -963,9 +1136,9 @@ def Execute(data):
     #   Trophies
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
         0).lower() == MySet.CheckTrophiesCommand.lower() and LiveCheck() and MySet.TurnOnCheckTrophies:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User):
             response = "null"
 
             if os.path.exists(userDataPath):
@@ -979,11 +1152,13 @@ def Execute(data):
             #Check to see if the user wants to print the information into the Twitch chat
             if(data.GetParam(1).lower() == "chat"):
                 SendMessage(str(response))
-                Parent.AddUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.user, MySet.CheckTrophiesChatCooldown)
+                if not data.IsWhisper():
+                    Parent.AddUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.user, MySet.CheckTrophiesChatCooldown)
             else:
                 SendWhisper(data.UserName, str(response))
                 SendMessage(str(MySet.CheckTrophiesWhisperResponse))
-                Parent.AddUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User, MySet.CheckTrophiesWhisperCooldown)
+                if not data.IsWhisper():
+                    Parent.AddUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User, MySet.CheckTrophiesWhisperCooldown)
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckTrophiesCommand, data.User)
             message = MySet.CheckTrophiesCooldownResponse.format(data.UserName, cooldownduration)
@@ -993,9 +1168,9 @@ def Execute(data):
     #   Equip
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.EquipCommand.lower() and LiveCheck() and MySet.TurnOnEquip:
-        if not Parent.IsOnUserCooldown(ScriptName, MySet.EquipCommand, data.User):
+        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.EquipCommand, data.User):
 
             if os.path.exists(userDataPath):
                 itemName = ""
@@ -1046,7 +1221,8 @@ def Execute(data):
                         if os.path.exists(userDataPath):
                             os.remove(userDataPath)
                         AddToFile(userDataPath, data2)
-                        Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
+                        if not data.IsWhisper():
+                            Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
                         SendWhisper(data.UserName, str(MySet.EquipResponseSuccess.format(itemName)))
                     elif not itemIsOwned:
                         SendWhisper(data.UserName, str(MySet.EquipResponseItemNotOwned.format(itemName)))
@@ -1065,8 +1241,7 @@ def Execute(data):
 
     if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.QuestCommand.lower() and LiveCheck() and MySet.TurnOnQuest:
-        IsModerator = (Parent.HasPermission(data.User, "Moderator", ""))
-        if IsModerator is True:
+        if IsOwner is True:
             if data.GetParam(1) == "cancel":
                 SendMessage(str(MySet.QuestCancelResponse))
                 global IsActiveQuest
@@ -1089,6 +1264,8 @@ def Execute(data):
                             monsterName = GetRandomQuestMonster()
                     else:
                         monsterName = GetRandomQuestMonster()
+
+                    AddLogEntry("monsters", monsterName)
 
                     if os.path.exists(ActiveQuestPath):
                         with open(ActiveQuestPath) as json_file:
@@ -1190,6 +1367,33 @@ def Execute(data):
         else:
             SendMessage(str(MySet.RebalancePermissionResponse.format(data.UserName, MySet.RebalancePermissionInfo)))
 
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Stats
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    if data.IsWhisper() and not data.IsFromDiscord() and data.GetParam(0).lower() == MySet.StatsCommand.lower() and LiveCheck()\
+            and MySet.TurnOnStats:
+        itemName = ""
+        numberOfParams = data.GetParamCount()
+
+        for i in range(1, numberOfParams):
+            word = data.GetParam(i)
+            if i != 1:
+                itemName += " "
+            itemName += word
+
+        item = RetrieveItem(itemName.lower())
+        itemIsValid = True
+        if item.name == "":
+            itemIsValid = False
+
+        if itemIsValid:
+            SendWhisper(data.UserName, str(MySet.StatsResponse.format(itemName, item.location, item.offence, item.defence)))
+        else:
+            SendWhisper(data.UserName, str(MySet.StatsInvalidResponse.format(itemName)))
+
+        SendWhisper(data.UserName, "HELLO")
+
 # ---------------------------
 #   [Required] Tick method (Gets called during every iteration even when there is no incoming data)
 # ---------------------------
@@ -1199,8 +1403,8 @@ def Tick():
             global QuestCurrentCountdown
             QuestCurrentCountdown = (QuestStarted + MySet.QuestCountdown) - time.time()
         else:
-            DetermineQuestResult()
             global IsActiveQuest
             IsActiveQuest = False
+            DetermineQuestResult()
     return
 
