@@ -1,0 +1,56 @@
+{
+    "array": [
+        {
+            "date": "12/03/2021", 
+            "items": [], 
+            "encounters": [
+                {
+                    "name": "{0} watches as two {1}s have a wrestling match in the middle of the field.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} hunts a group of {1}s, slaying them all.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} quickly ducks out of the way as an arrow whistles past their ear. After cowering behind a nearby tree for half an hour {0} finally realises the arrow has a note attached. The note reads 'Haha, scared you'.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} wants nothing more than to give a {1} a hug.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} entered a local duelling contest. After only one match {0} was defeated.", 
+                    "value": 0
+                }
+            ], 
+            "monsters": [
+                {
+                    "name": "Giant Owl", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Ancient Corpse", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Ceberus", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Vampire", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Dragonling", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Black Bear", 
+                    "value": 0
+                }
+            ]
+        }
+    ]
+}

@@ -11,6 +11,7 @@ import re
 import ctypes
 import time
 from os import walk
+from datetime import date
 
 codecs.BOM_UTF8
 '\xef\xbb\xbf'
@@ -45,6 +46,8 @@ EncounterFolderPath = UserDataFolderPath + "Encounter\\"
 # ---------------------------------------
 global ActiveQuestPath
 ActiveQuestPath = BaseFilePath + "ActiveQuest.json"
+global LogFile
+LogFile = BaseFilePath + "LogFile.json"
 global BodyPartFile
 BodyPartFile = ListFolderPath + "bodypart.txt"
 global EncounterFile
@@ -209,6 +212,105 @@ class Item:
     defence = 0
 
 # ---------------------------------------
+# Functions used for the Gameplay Log File
+# ---------------------------------------
+
+def CreateGameplayLogFile():
+    create = open(LogFile, "w+")
+    create.close()
+    data2 = {}
+    data2['array'] = []
+    arr = {}
+    arr['date'] = date.today().strftime("%d/%m/%Y")
+    arr['items'] = []
+    arr['encounters'] = []
+    arr['monsters'] = []
+    data2['array'].append(arr)
+
+    AddToFile(LogFile, data2)
+
+#------------------------------------------------------------------------------------------------------------------------
+
+# This function is used to log gameplay data. This is being used to debug and test the program. It will not be included
+#   for the entire duration of the project. It is in the release version, but just to continue the testing process.
+def AddLogEntry(section, data):
+    logFileData = ""
+    currentDate = date.today().strftime("%d/%m/%Y")
+
+    with open(LogFile) as json_file:
+        logFileData = json.load(json_file)
+        DataHasBeenAdded = False
+        EntryIsUnique = True
+
+        for logEntry in logFileData['array']:
+            if logEntry['date'] == currentDate:
+                if section == "monsters":
+                    for monsterEntry in logEntry['monsters']:
+                        if monsterEntry['name'] == data:
+                            EntryIsUnique = False
+                            monsterEntry['value'] = monsterEntry['value'] + 1
+                            break
+                    if EntryIsUnique:
+                        monster = {}
+                        monster['name'] = data
+                        monster['value'] = 0
+                        logEntry['monsters'].append(monster)
+
+                elif section == "items":
+                    for itemEntry in logEntry['items']:
+                        if itemEntry['name'] == data:
+                            EntryIsUnique = False
+                            itemEntry['value'] = itemEntry['value'] + 1
+                            break
+                    if EntryIsUnique:
+                        item = {}
+                        item['name'] = data
+                        item['value'] = 0
+                        logEntry['items'].append(item)
+
+                elif section == "encounters":
+                    for encounterEntry in logEntry['encounters']:
+                        if encounterEntry['name'] == data:
+                            EntryIsUnique = False
+                            encounterEntry['value'] = encounterEntry['value'] + 1
+                            break
+                    if EntryIsUnique:
+                        encounter = {}
+                        encounter['name'] = data
+                        encounter['value'] = 0
+                        logEntry['encounters'].append(encounter)
+
+                DataHasBeenAdded = True
+                break
+
+        if not DataHasBeenAdded:
+            arr = {}
+            arr['date'] = currentDate
+            arr['items'] = []
+            arr['monsters'] = []
+            arr['encounters'] = []
+            if section == "items":
+                item = {}
+                item['name'] = data
+                item['value'] = 0
+                arr['items'].append(item)
+            elif section == "monsters":
+                monster = {}
+                monster['name'] = data
+                monster['value'] = 0
+                arr['monster'].append(monster)
+            elif section == "encounters":
+                encounter = {}
+                encounter['name'] = data
+                encounter['value'] = 0
+                arr['encounters'].append(encounter)
+            logFileData['array'].append(arr)
+
+    if os.path.exists(LogFile):
+        os.remove(LogFile)
+    AddToFile(LogFile, logFileData)
+
+# ---------------------------------------
 # Functions used for user creation/modification
 # ---------------------------------------
 
@@ -241,6 +343,8 @@ def DetermineRank(level):
         return "Hero"
     else:
         return "God"
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def CreatePlayer(userDataPath):
     if not os.path.exists(userDataPath):
@@ -368,10 +472,14 @@ def GetTrophyCondition():
     index = Parent.GetRandom(0, len(fileLines))
     return fileLines[index]
 
+#------------------------------------------------------------------------------------------------------------------------
+
 def FormatTrophy(trophyString, monster):
     formattedTrophy = trophyString.replace('{0}', monster)\
         .replace('{1}', GetTrophyCondition())
     return formattedTrophy.lower()
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def GetRandomLoot():
     itemName = ""
@@ -381,9 +489,13 @@ def GetRandomLoot():
         itemName = itemList['items'][randomItemNumber]['name']
     return itemName
 
+#------------------------------------------------------------------------------------------------------------------------
+
 def AssignLoot(lootString):
     assignedLoot = lootString.replace('{0}', GetRandomLoot())
     return assignedLoot.lower()
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def IsItemLoot(lootString):
     with open(LootDataFile) as json_file:
@@ -393,6 +505,8 @@ def IsItemLoot(lootString):
                 return True
 
         return False
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def GivePlayerLoot(lootString, player):
     if not lootString == "":
@@ -408,10 +522,13 @@ def GivePlayerLoot(lootString, player):
 
         if os.path.exists(playerPath):
             os.remove(playerPath)
+        AddLogEntry("items", lootString)
         SendMessage(str(MySet.GiveLootResponse.format(player, lootString)))
         AddToFile(playerPath, playerData)
     else:
         Log("LOG MESSAGE: No lootString has been given to " + player)
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def ModifyPlayerExperience(value, player):
     playerPath = CreatePlayerPath(player)
@@ -437,6 +554,8 @@ def WordIsLocation(location):
         if location == loc:
             return True
     return False
+
+#------------------------------------------------------------------------------------------------------------------------
 
 #This function takes the name of the item and retrieves it's data from the items list
 def RetrieveItem(itemName):
@@ -499,9 +618,13 @@ def AssignItem(userJson, item, location):
 def IsCurrentlyActiveQuest():
     return IsActiveQuest
 
+#------------------------------------------------------------------------------------------------------------------------
+
 def ToggleActiveQuest():
     global IsActiveQuest
     IsActiveQuest = not IsActiveQuest
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def DetermineQuestResult():
     if os.path.exists(ActiveQuestPath):
@@ -550,6 +673,8 @@ def DetermineQuestResult():
     else:
         Log("ERROR: Active Quest Path Missing")
 
+#------------------------------------------------------------------------------------------------------------------------
+
 def GetQuestMonster(monsterName):
     if os.path.exists(QuestFile):
         with open(QuestFile) as json_file:
@@ -560,6 +685,8 @@ def GetQuestMonster(monsterName):
                 if val == val2:
                     return monster
 
+#------------------------------------------------------------------------------------------------------------------------
+
 def GetRandomQuestMonster():
     if os.path.exists(QuestFile):
         with open(QuestFile) as json_file:
@@ -567,6 +694,8 @@ def GetRandomQuestMonster():
             index = Parent.GetRandom(0, len(questMonsterList))
             monster = questMonsterList['monsters'][index]
             return monster['name']
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def QuestCalculation(difficulty):
     percent = Parent.GetRandom(0, 100)
@@ -590,6 +719,8 @@ def QuestCalculation(difficulty):
 
     return False
 
+#------------------------------------------------------------------------------------------------------------------------
+
 def QuestSuccessful(monster, party, difficulty):
     randnum = Parent.GetRandom(0, len(party))
     randomPartyMember = party[randnum]
@@ -607,10 +738,14 @@ def QuestSuccessful(monster, party, difficulty):
     elif not monster['loot'] == "":
         GivePlayerLoot(monster['reward'], randomPartyMember)
 
+#------------------------------------------------------------------------------------------------------------------------
+
 def QuestFailed(monster, party):
     SendMessage(str(MySet.QuestFailedResponse.format(monster['name'])))
     for member in party:
         ModifyPlayerExperience(-1, member)
+
+#------------------------------------------------------------------------------------------------------------------------
 
 def CheckQuestMonsterExists(monsterName):
     if os.path.exists(QuestFile):
@@ -703,6 +838,9 @@ def Execute(data):
     userDataPath = CreatePlayerPath(data.UserName)
     IsOwner = (Parent.HasPermission(data.User, "Owner", ""))
 
+    if not os.path.exists(LogFile):
+        CreateGameplayLogFile()
+
     # -----------------------------------------------------------------------------------------------------------------------
     #   Encounter
     # -----------------------------------------------------------------------------------------------------------------------
@@ -731,6 +869,7 @@ def Execute(data):
                 randnum = Parent.GetRandom(0, len(EncounterList))
                 RandomEncounter = EncounterList[randnum]
 
+            AddLogEntry("encounters", RandomEncounter.encounter)
             data2 = ""
 
             # The next section of code goes through the encounter and replaces any variables with the appropriate data
@@ -746,13 +885,16 @@ def Execute(data):
             # {9} - NPC
 
             randomMonster = GetRandomMonster()
+            AddLogEntry("monsters", randomMonster)
             randomLoot = "null"
             loot = "null"
             trophy = "null"
             if not RandomEncounter.loot == "null":
                 loot = AssignLoot(RandomEncounter.loot)
+                AddLogEntry("items", loot)
             if not RandomEncounter.trophies == "null":
                 trophy = FormatTrophy(RandomEncounter.trophies, randomMonster)
+                AddLogEntry("items", trophy)
 
             formattedEncounter = RandomEncounter.encounter.replace('{0}', data.UserName)\
                 .replace('{1}', randomMonster)\
@@ -1109,6 +1251,8 @@ def Execute(data):
                             monsterName = GetRandomQuestMonster()
                     else:
                         monsterName = GetRandomQuestMonster()
+
+                    AddLogEntry("monsters", monsterName)
 
                     if os.path.exists(ActiveQuestPath):
                         with open(ActiveQuestPath) as json_file:
