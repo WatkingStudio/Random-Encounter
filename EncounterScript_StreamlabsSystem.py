@@ -219,10 +219,9 @@ def CreateGameplayLogFile():
     create = open(LogFile, "w+")
     create.close()
     data2 = {}
-    unformattedDate = date.today()
     data2['array'] = []
     arr = {}
-    arr['date'] = unformattedDate.strftime("%d/%m/%Y")
+    arr['date'] = date.today().strftime("%d/%m/%Y")
     arr['items'] = []
     arr['encounters'] = []
     arr['monsters'] = []
@@ -236,54 +235,55 @@ def CreateGameplayLogFile():
 #   for the entire duration of the project. It is in the release version, but just to continue the testing process.
 def AddLogEntry(section, data):
     logFileData = ""
-    unformattedDate = date.today()
-    currentDate = unformattedDate.strftime("%d/%m/%Y")
+    currentDate = date.today().strftime("%d/%m/%Y")
 
     with open(LogFile) as json_file:
         logFileData = json.load(json_file)
-        DataAdded = False
+        DataHasBeenAdded = False
+        EntryIsUnique = True
 
         for logEntry in logFileData['array']:
             if logEntry['date'] == currentDate:
                 if section == "monsters":
-                    MonsterIsUnique = True
                     for monsterEntry in logEntry['monsters']:
                         if monsterEntry['name'] == data:
-                            MonsterIsUnique = False
+                            EntryIsUnique = False
                             monsterEntry['value'] = monsterEntry['value'] + 1
-
-                    if MonsterIsUnique:
+                            break
+                    if EntryIsUnique:
                         monster = {}
                         monster['name'] = data
                         monster['value'] = 0
                         logEntry['monsters'].append(monster)
+
                 elif section == "items":
-                    ItemIsUnique = True
                     for itemEntry in logEntry['items']:
                         if itemEntry['name'] == data:
-                            ItemIsUnique = False
+                            EntryIsUnique = False
                             itemEntry['value'] = itemEntry['value'] + 1
-
-                    if ItemIsUnique:
+                            break
+                    if EntryIsUnique:
                         item = {}
                         item['name'] = data
                         item['value'] = 0
                         logEntry['items'].append(item)
+
                 elif section == "encounters":
-                    EncounterIsUnique = True
                     for encounterEntry in logEntry['encounters']:
                         if encounterEntry['name'] == data:
-                            EncounterIsUnique = False
+                            EntryIsUnique = False
                             encounterEntry['value'] = encounterEntry['value'] + 1
-
-                    if EncounterIsUnique:
+                            break
+                    if EntryIsUnique:
                         encounter = {}
                         encounter['name'] = data
                         encounter['value'] = 0
                         logEntry['encounters'].append(encounter)
-                DataAdded = True
 
-        if not DataAdded:
+                DataHasBeenAdded = True
+                break
+
+        if not DataHasBeenAdded:
             arr = {}
             arr['date'] = currentDate
             arr['items'] = []
