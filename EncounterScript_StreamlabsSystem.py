@@ -159,6 +159,7 @@ class Settings:
             self.QuestResponse = "A quest has been started to hunt down a {0}. Type '!join' in the chat to join the quest."
             self.QuestActiveMessage = "There is currently an active quest with {0} seconds left to join the questing party"
             self.QuestCountdownMessage = "You have {0} seconds to join the questing party"
+            self.QuestDifficultyModifier = 1
             self.QuestCountdown = 60
             self.QuestPermission = "Moderator"
             self.QuestPermissionInfo = "Moderator"
@@ -461,8 +462,6 @@ def CreatePlayerPath(player):
     playerPath = EncounterFolderPath + player + ".json"
     return playerPath
 
-# -----------------------------------------------------------------------------------------------------------------------
-
 # ---------------------------------------
 # Functions used to apply encounter results
 # ---------------------------------------
@@ -539,6 +538,8 @@ def ModifyPlayerExperience(value, player):
             newExp = playerData['exp'] + value
             if newExp >= 0:
                 playerData['exp'] = newExp
+            playerData['level'] = DetermineLevel(playerData['exp'])
+            playerData['rank'] = DetermineRank(playerData['level'])
 
     if os.path.exists(playerPath):
         os.remove(playerPath)
@@ -642,8 +643,8 @@ def DetermineQuestResult():
             monster = GetQuestMonster(questData['Monster'])
 
             if not monster == None:
-                monsterOffence = monster['offence']
-                monsterDefence = monster['defence']
+                monsterOffence = monster['offence'] * float(MySet.QuestDifficultyModifier)
+                monsterDefence = monster['defence'] * float(MySet.QuestDifficultyModifier)
 
                 # Currently this data is logged to check for quest balance
                 Log(monster['name'])
@@ -730,12 +731,12 @@ def QuestSuccessful(monster, party, difficulty):
     for member in party:
         ModifyPlayerExperience(difficulty + 3, member)
 
-    if not monster['unique'] == "":
+    if not monster['unique'] == "null":
         if percent > 75:
             GivePlayerLoot(monster['unique'], randomPartyMember)
-        elif not monster['loot'] == "":
+        elif not monster['reward'] == "null":
             GivePlayerLoot(monster['reward'], randomPartyMember)
-    elif not monster['loot'] == "":
+    elif not monster['reward'] == "null":
         GivePlayerLoot(monster['reward'], randomPartyMember)
 
 #------------------------------------------------------------------------------------------------------------------------
@@ -1363,8 +1364,8 @@ def Tick():
             global QuestCurrentCountdown
             QuestCurrentCountdown = (QuestStarted + MySet.QuestCountdown) - time.time()
         else:
-            DetermineQuestResult()
             global IsActiveQuest
             IsActiveQuest = False
+            DetermineQuestResult()
     return
 

@@ -475,6 +475,13 @@
 		"tooltip": "Quest Active Message",
 		"group": "Quest"
 	},
+	"QuestDifficultyModifier":{
+		"type": "textbox",
+		"value": 1,
+		"label": "Quest Difficulty Modifier",
+		"tooltip": "Quest Difficulty Modifier",
+		"group": "Quest"
+	},
     "QuestCountdownMessage":
 	{
 		"type": "textbox",
