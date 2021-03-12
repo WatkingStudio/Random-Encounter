@@ -91,6 +91,13 @@
 		"tooltip": "Turn On Rebalance Command",
 		"group": "General"
 	},
+	"TurnOnStats": {
+		"type": "checkbox",
+		"value": true,
+		"label": "Turn On Stats",
+		"tooltip": "Turn On Stats Command",
+		"group": "General"
+	},
 	"GiveLootResponse": {
 		"type": "textbox",
 		"value": "{0} has been rewarded with a {1}",
@@ -637,5 +644,26 @@
 		"label": "Rebalance Permission Response",
 		"tooltip": "Rebalance Permission Response",
 		"group": "Rebalance"
+	},
+	"StatsCommand": {
+		"type": "textbox",
+		"value": "!stats",
+		"label": "Stats Command",
+		"tooltip": "Stats Command",
+		"group": "Stats"
+	},
+	"StatsResponse": {
+		"type": "textbox",
+		"value": "Item: {0}, Locations {1}, Offence: {2}, Defence: {3}",
+		"label": "Stats Response",
+		"tooltip": "Stats Response",
+		"group": "Stats"
+	},
+	"StatsInvalidResponse": {
+		"type": "textbox",
+		"value": "The item {0} is not valid.",
+		"label": "Stats Invalid Response",
+		"tooltip": "Stats Invalid Response",
+		"group": "Stats"
 	}
 }
