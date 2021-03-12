@@ -2,31 +2,31 @@
 "monsters":[
 	{
 		"name": "Ancient Corpse",
-		"reward": "",
+		"reward": "null",
 		"offence": 20,
 		"defence": 20,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Ancient Minotaur",
 		"reward": "Minotaur Horn",
 		"offence": 45,
 		"defence": 45,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Balrog",
-		"reward": "",
+		"reward": "null",
 		"offence": 85,
 		"defence": 80,
 		"unique": "Flaming Whip"
 	},
 	{
 		"name": "Black Bear",
-		"reward": "",
+		"reward": "null",
 		"offence": 20,
 		"defence": 20,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Black Dragon",
@@ -58,38 +58,38 @@
 	},
 	{
 		"name": "Brown Bear",
-		"reward": "",
+		"reward": "null",
 		"offence": 22,
 		"defence": 22,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Cave Troll",
-		"reward": "",
+		"reward": "null",
 		"offence": 24,
 		"defence": 26,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Cerberus",
-		"reward": "",
+		"reward": "null",
 		"offence": 44,
 		"defence": 40,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Chimera",
-		"reward": "",
+		"reward": "null",
 		"offence": 44,
 		"defence": 44,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Cloud Giant",
-		"reward": "",
+		"reward": "null",
 		"offence": 50,
 		"defence": 55,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Copper Dragon",
@@ -100,122 +100,122 @@
 	},
 	{
 		"name": "Cyclops",
-		"reward": "",
+		"reward": "null",
 		"offence": 30,
 		"defence": 32,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Deathclaw",
-		"reward": "",
+		"reward": "null",
 		"offence": 42,
 		"defence": 38,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Demon Lord",
-		"reward": "",
+		"reward": "null",
 		"offence": 55,
 		"defence": 52,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Dracaenae",
 		"reward": "Poison Blade",
 		"offence": 24,
 		"defence": 24,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Dragon Ogre",
-		"reward": "",
+		"reward": "null",
 		"offence": 46,
 		"defence": 42,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Drake",
 		"reward": "Drake Fang",
 		"offence": 2,
 		"defence": 0,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Earth Elemental",
-		"reward": "",
+		"reward": "null",
 		"offence": 30,
 		"defence": 40,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Emperor Dragon",
 		"reward": "Emperor Dragon Scale",
 		"offence": 85,
 		"defence": 80,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Fire Elemental",
-		"reward": "",
+		"reward": "null",
 		"offence": 35,
 		"defence": 30,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Fire Giant",
-		"reward": "",
+		"reward": "null",
 		"offence": 65,
 		"defence": 60,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Flame Demon",
-		"reward": "",
+		"reward": "null",
 		"offence": 35,
 		"defence": 30,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Frost Giant",
-		"reward": "",
+		"reward": "null",
 		"offence": 50,
 		"defence": 55,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Giant Ape",
-		"reward": "",
+		"reward": "null",
 		"offence": 30,
 		"defence": 28,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Giant Crocodile",
-		"reward": "",
+		"reward": "null",
 		"offence": 31,
 		"defence": 31,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Giant Gorilla",
-		"reward": "",
+		"reward": "null",
 		"offence": 35,
 		"defence": 32,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Giant Lion",
-		"reward": "",
+		"reward": "null",
 		"offence": 25,
 		"defence": 25,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Giant Scorpion",
-		"reward": "",
+		"reward": "null",
 		"offence": 28,
 		"defence": 28,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Gold Dragon",
@@ -226,24 +226,24 @@
 	},
 	{
 		"name": "Golem",
-		"reward": "",
+		"reward": "null",
 		"offence": 32,
 		"defence": 32,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Gorgon",
-		"reward": "",
+		"reward": "null",
 		"offence": 45,
 		"defence": 45,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Greater Demon",
-		"reward": "",
+		"reward": "null",
 		"offence": 65,
 		"defence": 62,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Green Dragon",
@@ -254,192 +254,192 @@
 	},
 	{
 		"name": "Griffon",
-		"reward": "",
+		"reward": "null",
 		"offence": 26,
 		"defence": 26,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Hag",
-		"reward": "",
+		"reward": "null",
 		"offence": 22,
 		"defence": 22,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Half-Troll",
-		"reward": "",
+		"reward": "null",
 		"offence": 28,
 		"defence": 28,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Hellhound",
-		"reward": "",
+		"reward": "null",
 		"offence": 36,
 		"defence": 33,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Hill Giant",
-		"reward": "",
+		"reward": "null",
 		"offence": 42,
 		"defence": 40,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Hill Troll",
-		"reward": "",
+		"reward": "null",
 		"offence": 36,
 		"defence": 34,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Hippogriff",
-		"reward": "",
+		"reward": "null",
 		"offence": 24,
 		"defence": 24,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Hydra",
-		"reward": "",
+		"reward": "null",
 		"offence": 66,
 		"defence": 80,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Ice Demon",
-		"reward": "",
+		"reward": "null",
 		"offence": 36,
 		"defence": 40,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Ice Elemental",
 		"reward": "Ice Shard",
 		"offence": 30,
 		"defence": 35,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Ice Troll",
-		"reward": "",
+		"reward": "null",
 		"offence": 35,
 		"defence": 38,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Incubus",
-		"reward": "",
+		"reward": "null",
 		"offence": 38,
 		"defence": 32,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Jabberwock",
-		"reward": "",
+		"reward": "null",
 		"offence": 50,
 		"defence": 50,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Lamassu",
-		"reward": "",
+		"reward": "null",
 		"offence": 68,
 		"defence": 56,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Liche",
-		"reward": "",
+		"reward": "null",
 		"offence": 48,
 		"defence": 58,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Manticore",
-		"reward": "",
+		"reward": "null",
 		"offence": 38,
 		"defence": 34,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Mammoth",
 		"reward": "Mammoth Tusk",
 		"offence": 42,
 		"defence": 60,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Medusa",
-		"reward": "",
+		"reward": "null",
 		"offence": 50,
 		"defence": 50,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Mind Flayer",
-		"reward": "",
+		"reward": "null",
 		"offence": 46,
 		"defence": 42,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Minotaur Bull",
-		"reward": "",
+		"reward": "null",
 		"offence": 32,
 		"defence": 32,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Minotaur Skeleton",
-		"reward": "",
+		"reward": "null",
 		"offence": 30,
 		"defence": 30,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Ogre",
-		"reward": "",
+		"reward": "null",
 		"offence": 22,
 		"defence": 22,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Ogre Zombie",
-		"reward": "",
+		"reward": "null",
 		"offence": 20,
 		"defence": 24,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Owlbear",
-		"reward": "",
+		"reward": "null",
 		"offence": 26,
 		"defence": 24,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Pegasus",
-		"reward": "",
+		"reward": "null",
 		"offence": 24,
 		"defence": 24,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Polar Bear",
-		"reward": "",
+		"reward": "null",
 		"offence": 28,
 		"defence": 28,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Purple Dragon",
 		"reward": "Purple Dragon Scale",
 		"offence": 72,
 		"defence": 70,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Red Dragon",
@@ -450,24 +450,24 @@
 	},
 	{
 		"name": "Rock Troll",
-		"reward": "",
+		"reward": "null",
 		"offence": 35,
 		"defence": 38,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "River Troll",
-		"reward": "",
+		"reward": "null",
 		"offence": 33,
 		"defence": 36,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Salamander",
-		"reward": "",
+		"reward": "null",
 		"offence": 32,
 		"defence": 32,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Silver Dragon",
@@ -478,94 +478,94 @@
 	},
 	{
 		"name": "Sphinx",
-		"reward": "",
+		"reward": "null",
 		"offence": 55,
 		"defence": 50,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Stone Giant",
-		"reward": "",
+		"reward": "null",
 		"offence": 50,
 		"defence": 56,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Storm Elemental",
-		"reward": "",
+		"reward": "null",
 		"offence": 40,
 		"defence": 37,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Storm Giant",
-		"reward": "",
+		"reward": "null",
 		"offence": 62,
 		"defence": 58,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Treeman",
-		"reward": "",
+		"reward": "null",
 		"offence": 38,
 		"defence": 48,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Troll",
-		"reward": "",
+		"reward": "null",
 		"offence": 32,
 		"defence": 30,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Vampire",
-		"reward": "",
+		"reward": "null",
 		"offence": 40,
 		"defence": 36,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Vampire Lord",
-		"reward": "",
+		"reward": "null",
 		"offence": 60,
 		"defence": 54,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Water Elemental",
-		"reward": "",
+		"reward": "null",
 		"offence": 36,
 		"defence": 36,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Werebear",
-		"reward": "",
+		"reward": "null",
 		"offence": 38,
 		"defence": 38,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Wereboar",
-		"reward": "",
+		"reward": "null",
 		"offence": 33,
 		"defence": 33,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Weretiger",
-		"reward": "",
+		"reward": "null",
 		"offence": 35,
 		"defence": 35,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Werewolf",
-		"reward": "",
+		"reward": "null",
 		"offence": 34,
 		"defence": 34,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "White Dragon",
@@ -579,34 +579,34 @@
 		"reward": "Dragonglass Dagger",
 		"offence": 40,
 		"defence": 36,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Wight",
-		"reward": "",
+		"reward": "null",
 		"offence": 30,
 		"defence": 34,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Wraith",
-		"reward": "",
+		"reward": "null",
 		"offence": 28,
 		"defence": 32,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Wyvern",
 		"reward": "Wyvern Fang",
 		"offence": 42,
 		"defence": 40,
-		"unique": ""
+		"unique": "null"
 	},
 	{
 		"name": "Yeti",
-		"reward": "",
+		"reward": "null",
 		"offence": 38,
 		"defence": 36,
-		"unique": ""
+		"unique": "null"
 	}]
 }

@@ -2,7 +2,20 @@
     "array": [
         {
             "date": "12/03/2021", 
-            "items": [], 
+            "items": [
+                {
+                    "name": "Mammoth Tusk", 
+                    "value": 3
+                }, 
+                {
+                    "name": "Blue Dragon Scale", 
+                    "value": 3
+                }, 
+                {
+                    "name": "Purple Dragon Scale", 
+                    "value": 3
+                }
+            ], 
             "encounters": [
                 {
                     "name": "{0} watches as two {1}s have a wrestling match in the middle of the field.", 
@@ -32,7 +45,7 @@
                 }, 
                 {
                     "name": "Ancient Corpse", 
-                    "value": 2
+                    "value": 3
                 }, 
                 {
                     "name": "Ceberus", 
@@ -52,6 +65,98 @@
                 }, 
                 {
                     "name": "Mind Flayer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Purple Dragon", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Salamander", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Blue Dragon", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Minotaur Bull", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Brass Dragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Vampire Lord", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Hippogriff", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Stone Giant", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Black Dragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Troll", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Liche", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Weretiger", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Treeman", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Storm Giant", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Hag", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Scorpion", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Golem", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Fire Giant", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Mammoth", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Green Dragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Lamassu", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Deathclaw", 
+                    "value": 0
+                }, 
+                {
+                    "name": "River Troll", 
                     "value": 0
                 }
             ]
