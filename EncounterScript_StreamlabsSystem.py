@@ -11,6 +11,7 @@ import re
 import ctypes
 import time
 from os import walk
+from datetime import date
 
 codecs.BOM_UTF8
 '\xef\xbb\xbf'
@@ -222,11 +223,14 @@ class LogValue:
 
 def AddLogEntry(section, data):
     logFileData = ""
+    currentDate = date.today()
+    date1 = currentDate.strftime("%d/%m/%Y")
     with open(LogFile) as json_file:
         logFileData = json.load(json_file)
+        DataAdded = False
 
         for logDate in logFileData['array']:
-            if logDate['date'] == "11/03/2021":
+            if logDate['date'] == date1:
                 if section == "monsters":
                     MonsterIsUnique = True
                     for mon in logDate['monsters']:
@@ -263,6 +267,31 @@ def AddLogEntry(section, data):
                         encounter['name'] = data
                         encounter['value'] = 0
                         logDate['encounters'].append(encounter)
+                DataAdded = True
+
+        if not DataAdded:
+            logDate = date1
+            arr = {}
+            arr['date'] = logDate
+            arr['items'] = []
+            if section == "items":
+                item = {}
+                item['name'] = data
+                item['value'] = 0
+                arr['items'].append(item)
+            arr['monsters'] = []
+            if section == "monsters":
+                monster = {}
+                monster['name'] = data
+                monster['value'] = 0
+                arr['monster'].append(monster)
+            arr['encounters'] = []
+            if section == "encounters":
+                encounter = {}
+                encounter['name'] = data
+                encounter['value'] = 0
+                arr['encounters'].append(encounter)
+            logFileData['array'].append(arr)
 
     if os.path.exists(LogFile):
         os.remove(LogFile)
@@ -827,11 +856,13 @@ def Execute(data):
             # {9} - NPC
 
             randomMonster = GetRandomMonster()
+            AddLogEntry("monsters", randomMonster)
             randomLoot = "null"
             loot = "null"
             trophy = "null"
             if not RandomEncounter.loot == "null":
                 loot = AssignLoot(RandomEncounter.loot)
+                AddLogEntry("items", loot)
             if not RandomEncounter.trophies == "null":
                 trophy = FormatTrophy(RandomEncounter.trophies, randomMonster)
 

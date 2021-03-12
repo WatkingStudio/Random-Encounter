@@ -63,7 +63,7 @@
   "QuestResponse": "A quest has been started to hunt down a {0}. Type '!join' in the chat to join the quest.",
   "QuestActiveMessage": "There is currently an active quest with {0} seconds left to join the questing party",
   "QuestCountdownMessage": "You have {0} seconds to join the questing party",
-  "QuestCountdown": 20,
+  "QuestCountdown": 60.0,
   "QuestPermission": "Moderator",
   "QuestPermissionInfo": "Moderator",
   "QuestPermissionResponse": "{0} -> only $permission ({1}) and higher can use this command",
