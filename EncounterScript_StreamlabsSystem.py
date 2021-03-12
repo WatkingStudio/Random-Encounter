@@ -1003,7 +1003,7 @@ def Execute(data):
     #   Check Level
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.CheckLevelCommand.lower() and LiveCheck() and MySet.TurnOnCheckLevel:
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User):
             response = "null"
@@ -1016,7 +1016,8 @@ def Execute(data):
                 response = MySet.InvalidDataResponse.format(data.UserName)
 
             Parent.SendStreamMessage(str(response))
-            Parent.AddUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User, MySet.CheckLevelCooldown)
+            if not data.IsWhisper():
+                Parent.AddUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User, MySet.CheckLevelCooldown)
 
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckLevelCommand, data.User)
@@ -1027,7 +1028,7 @@ def Execute(data):
     #   Check Treasure
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.CheckTreasureCommand.lower() and LiveCheck() and MySet.TurnOnCheckTreasure:
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User):
             response = "null"
@@ -1040,7 +1041,8 @@ def Execute(data):
                 response = MySet.InvalidDataResponse.format(data.UserName)
 
             Parent.SendStreamMessage(str(response))
-            Parent.AddUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User, MySet.CheckTreasureCooldown)
+            if not data.IsWhisper():
+                Parent.AddUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User, MySet.CheckTreasureCooldown)
 
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckTreasureCommand, data.User)
@@ -1051,7 +1053,7 @@ def Execute(data):
     #   Check Equipment
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
         0).lower() == MySet.EquipmentCommand.lower() and LiveCheck() and MySet.TurnOnEquipment:
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.EquipmentCommand, data.User):
             response = "null"
@@ -1085,11 +1087,13 @@ def Execute(data):
             # Check to see if the user wants to print the information into the Twitch chat
             if(data.GetParam(1).lower() == "chat"):
                 SendMessage(str(response))
-                Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentChatCooldown)
+                if not data.IsWhisper():
+                    Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentChatCooldown)
             else:
                 SendWhisper(data.UserName, str(response))
                 SendMessage(str(MySet.EquipmentWhisperResponse.format(data.UserName)))
-                Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentWhisperCooldown)
+                if not data.IsWhisper():
+                    Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentWhisperCooldown)
 
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.EquipmentCommand, data.User)
@@ -1100,7 +1104,7 @@ def Execute(data):
     #   Loot
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
         0).lower() == MySet.CheckLootCommand.lower() and LiveCheck() and MySet.TurnOnCheckLoot:
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLootCommand, data.User):
             response = "null"
@@ -1116,11 +1120,13 @@ def Execute(data):
             # Check to see if the user wants to print the information into the Twitch chat
             if(data.GetParam(1).lower() == "chat"):
                 SendMessage(str(response))
-                Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootChatCooldown)
+                if not data.IsWhisper():
+                    Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootChatCooldown)
             else:
                 SendWhisper(data.UserName, str(response))
                 SendMessage(str(MySet.CheckLootWhisperResponse.format(data.UserName)))
-                Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootWhisperCooldown)
+                if not data.IsWhisper():
+                    Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootWhisperCooldown)
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckLootCommand, data.User)
             message = MySet.CheckLootCooldownResponse.format(data.UserName, cooldownduration)
@@ -1130,7 +1136,7 @@ def Execute(data):
     #   Trophies
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
         0).lower() == MySet.CheckTrophiesCommand.lower() and LiveCheck() and MySet.TurnOnCheckTrophies:
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User):
             response = "null"
@@ -1146,11 +1152,13 @@ def Execute(data):
             #Check to see if the user wants to print the information into the Twitch chat
             if(data.GetParam(1).lower() == "chat"):
                 SendMessage(str(response))
-                Parent.AddUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.user, MySet.CheckTrophiesChatCooldown)
+                if not data.IsWhisper():
+                    Parent.AddUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.user, MySet.CheckTrophiesChatCooldown)
             else:
                 SendWhisper(data.UserName, str(response))
                 SendMessage(str(MySet.CheckTrophiesWhisperResponse))
-                Parent.AddUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User, MySet.CheckTrophiesWhisperCooldown)
+                if not data.IsWhisper():
+                    Parent.AddUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User, MySet.CheckTrophiesWhisperCooldown)
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckTrophiesCommand, data.User)
             message = MySet.CheckTrophiesCooldownResponse.format(data.UserName, cooldownduration)
@@ -1160,7 +1168,7 @@ def Execute(data):
     #   Equip
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
+    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
             0).lower() == MySet.EquipCommand.lower() and LiveCheck() and MySet.TurnOnEquip:
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.EquipCommand, data.User):
 
@@ -1213,7 +1221,8 @@ def Execute(data):
                         if os.path.exists(userDataPath):
                             os.remove(userDataPath)
                         AddToFile(userDataPath, data2)
-                        Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
+                        if not data.IsWhisper():
+                            Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
                         SendWhisper(data.UserName, str(MySet.EquipResponseSuccess.format(itemName)))
                     elif not itemIsOwned:
                         SendWhisper(data.UserName, str(MySet.EquipResponseItemNotOwned.format(itemName)))
