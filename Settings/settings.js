@@ -11,6 +11,7 @@
   "TurnOnQuest": true,
   "TurnOnJoin": true,
   "TurnOnRebalance": true,
+  "TurnOnStats": true,
   "InvalidDataResponse": "{0} does not have a valid data file",
   "GiveLootResponse": "{0} has been rewarded with a {1}",
   "LevelledUpResponse": "{0} has levelled up to {1}",
@@ -84,4 +85,7 @@
   "RebalancePermission": "Moderator",
   "RebalancePermissionInfo": "Moderator",
   "RebalancePermissionResp": "{0} -> only $permission ({1}) and higher can use this command"
+  "StatsCommand": "!stats",
+  "StatsResponse": "Item: {0}, Locations {1}, Offence: {2}, Defence: {3}",
+  "StatsInvalidResponse": "The item {0} is not valid."
 };

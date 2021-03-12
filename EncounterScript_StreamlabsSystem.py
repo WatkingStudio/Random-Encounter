@@ -107,6 +107,7 @@ class Settings:
             self.TurnOnQuest = True
             self.TurnOnJoin = True
             self.TurnOnRebalance = True
+            self.TurnOnStats = True
             self.InvalidDataResponse = "{0} does not have a valid data file"
             self.GiveLootResponse = "{0} has been rewarded with a {1}"
             self.LevelledUpResponse = "{0} has levelled up to {1}"
@@ -180,7 +181,9 @@ class Settings:
             self.RebalancePermission = "Moderator"
             self.RebalancePermissionInfo = "Moderator"
             self.RebalancePermissionResp = "{0} -> only $permission ({1}) and higher can use this command"
-
+            self.StatsCommand = "!stats"
+            self.StatsResponse = "Item: {0}, Locations {1}, Offence: {2}, Defence: {3}"
+            self.StatsInvalidResponse = "The item {0} is not valid."
 
     # ---------------------------
     #   [Optional] Reload Settings (Called when a user clicks the Save Settings button in the Chatbot UI)
@@ -1354,6 +1357,33 @@ def Execute(data):
             SendMessage(MySet.RebalanceResponse)
         else:
             SendMessage(str(MySet.RebalancePermissionResponse.format(data.UserName, MySet.RebalancePermissionInfo)))
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Stats
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    if data.IsWhisper() and not data.IsFromDiscord() and data.GetParam(0).lower() == MySet.StatsCommand.lower() and LiveCheck()\
+            and MySet.TurnOnStats:
+        itemName = ""
+        numberOfParams = data.GetParamCount()
+
+        for i in range(1, numberOfParams):
+            word = data.GetParam(i)
+            if i != 1:
+                itemName += " "
+            itemName += word
+
+        item = RetrieveItem(itemName.lower())
+        itemIsValid = True
+        if item.name == "":
+            itemIsValid = False
+
+        if itemIsValid:
+            SendWhisper(data.UserName, str(MySet.StatsResponse.format(itemName, item.location, item.offence, item.defence)))
+        else:
+            SendWhisper(data.UserName, str(MySet.StatsInvalidResponse.format(itemName)))
+
+        SendWhisper(data.UserName, "HELLO")
 
 # ---------------------------
 #   [Required] Tick method (Gets called during every iteration even when there is no incoming data)
