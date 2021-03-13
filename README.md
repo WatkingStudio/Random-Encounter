@@ -17,9 +17,9 @@ Depending on the command used within the Twitch chat the program will either sen
 ## Twitch Streamer
 To run this script on your stream you will need to do the following:
 1) Download the project as a .zip file.
-2) Place the project in a suitable folder. I personally store all my scripts in the "Streamlabs Chatbot\Services\Scripts" for convenience.
-3) Download and setup Streamlabs Chatbot to run with your stream. More information on this can be found here (https://cdn.streamlabs.com/chatbot/Documentation_Twitch.pdf)
-4) Navigate to your "Script" tab in the Streamlabs Chatbot.
+2) Download and setup Streamlabs Chatbot to run with your stream. More information on this can be found here (https://cdn.streamlabs.com/chatbot/Documentation_Twitch.pdf)
+3) Place the project in a suitable folder. I personally store all my scripts in the "Streamlabs Chatbot\Services\Scripts" for convenience.
+4) Navigate to your "Script" tab in the Streamlabs Chatbot. Note: Ensure that you have setup Streamlabs Chatbot and connected you Twitch account, otherwise the "Script" tab will not be visible.
 5) Select import in the top right of the window.
 6) Navigate to where you have stored the script, I store mine within the "Streamlabs Chatbot\Services\Scripts" folder.
 7) Select the .zip of the project and click open.
@@ -33,9 +33,9 @@ If you run into any issues don't hesitate to get in contact with me, I will help
 ## Developer
 To use this script as a developer you will need to do the following:
 1) Download the project as a .zip file.
-2) Place the project in a suitable folder. I personally store all my scripts in the "Streamlabs Chatbot\Services\Scripts" for convenience.
-3) Download and setup Streamlabs Chatbot to run with your stream. More information on this can be found here (https://cdn.streamlabs.com/chatbot/Documentation_Twitch.pdf)
-4) Navigate to your "Script" tab in the Streamlabs Chatbot.
+2) Download and setup Streamlabs Chatbot to run with your stream. More information on this can be found here (https://cdn.streamlabs.com/chatbot/Documentation_Twitch.pdf)
+3) Place the project in a suitable folder. I personally store all my scripts in the "Streamlabs Chatbot\Services\Scripts" for convenience.
+4) Navigate to your "Script" tab in the Streamlabs Chatbot. Note: Ensure that you have setup Streamlabs Chatbot and connected you Twitch account, otherwise the "Script" tab will not be visible.
 5) Select import in the top right of the window.
 6) Navigate to where you have stored the script, I store mine within the "Streamlabs Chatbot\Services\Scripts" folder.
 7) Select the .zip of the project and click open.
