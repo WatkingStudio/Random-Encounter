@@ -17,14 +17,17 @@ Depending on the command used within the Twitch chat the program will either sen
 ## Twitch Streamer
 To run this script on your stream you will need to do the following:
 1) Download the project as a .zip file.
-2) Download and setup Streamlabs Chatbot to run with your stream. More information on this can be found here (https://cdn.streamlabs.com/chatbot/Documentation_Twitch.pdf)
-3) Place the project in a suitable folder. I personally store all my scripts in the "Streamlabs Chatbot\Services\Scripts" for convenience.
-4) Navigate to your "Script" tab in the Streamlabs Chatbot. Note: Ensure that you have setup Streamlabs Chatbot and connected you Twitch account, otherwise the "Script" tab will not be visible.
-5) Select import in the top right of the window.
-6) Navigate to where you have stored the script, I store mine within the "Streamlabs Chatbot\Services\Scripts" folder.
-7) Select the .zip of the project and click open.
-8) Streamlabs Chatbot will then add the script to the scripts lists, and if you click on the script in the list view you will be able to modify and parameters you wish.
-9) Now jump into your chat and test it out with the "!encounter" command. 
+2) Download and setup Streamlabs Chatbot to run with your stream. More information on this can be found here (https://cdn.streamlabs.com/chatbot/Documentation_Twitch.pdf).
+3) Install Python 2.7 on your system: https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi
+4) Place the project in a suitable folder. I personally store all my scripts in the "Streamlabs Chatbot\Services\Scripts" for convenience.
+5) Before progressing open the .zip file and rename the folder to "Random-Encounter".
+6) Navigate to your "Script" tab in the Streamlabs Chatbot. Note: Ensure that you have setup Streamlabs Chatbot and connected you Twitch account, otherwise the "Script" tab will not be visible.
+7) Click the settings icon in the Script window, select Pick Folder and find the Python27.Lib folder.
+8) Select import in the top right of the window.
+9) Navigate to where you have stored the script, I store mine within the "Streamlabs Chatbot\Services\Scripts" folder.
+10) Select the .zip of the project and click open.
+11) Streamlabs Chatbot will then add the script to the scripts lists, and if you click on the script in the list view you will be able to modify and parameters you wish.
+12) Now jump into your chat and test it out with the "!encounter" command. 
 
 Note: If you are offline you will need to untick the "Only When Live" checkbox in the "General" group, otherwise it will not run.  
   
@@ -34,15 +37,18 @@ If you run into any issues don't hesitate to get in contact with me, I will help
 To use this script as a developer you will need to do the following:
 1) Download the project as a .zip file.
 2) Download and setup Streamlabs Chatbot to run with your stream. More information on this can be found here (https://cdn.streamlabs.com/chatbot/Documentation_Twitch.pdf)
-3) Place the project in a suitable folder. I personally store all my scripts in the "Streamlabs Chatbot\Services\Scripts" for convenience.
-4) Navigate to your "Script" tab in the Streamlabs Chatbot. Note: Ensure that you have setup Streamlabs Chatbot and connected you Twitch account, otherwise the "Script" tab will not be visible.
-5) Select import in the top right of the window.
-6) Navigate to where you have stored the script, I store mine within the "Streamlabs Chatbot\Services\Scripts" folder.
-7) Select the .zip of the project and click open.
-8) Streamlabs Chatbot will then add the script to the scripts lists, and if you click on the script in the list view you will be able to modify and parameters you wish.
-9) Navigate back to where you stored the .zip file.
-10) You will now see a new folder of the un-zipped project.
-11) Open the folder and open the "EncounterScript.py" file in your preffered IDE.
+3) Install Python 2.7 on your system: https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi
+4) Place the project in a suitable folder. I personally store all my scripts in the "Streamlabs Chatbot\Services\Scripts" for convenience.
+5) Before progressing open the .zip file and rename the folder to "Random-Encounter".
+6) Navigate to your "Script" tab in the Streamlabs Chatbot. Note: Ensure that you have setup Streamlabs Chatbot and connected you Twitch account, otherwise the "Script" tab will not be visible.
+7) Click the settings icon in the Script window, select Pick Folder and find the Python27.Lib folder
+8) Select import in the top right of the window.
+9) Navigate to where you have stored the script, I store mine within the "Streamlabs Chatbot\Services\Scripts" folder.
+10) Select the .zip of the project and click open.
+11) Streamlabs Chatbot will then add the script to the scripts lists, and if you click on the script in the list view you will be able to modify and parameters you wish.
+12) Navigate back to where you stored the .zip file.
+13) You will now see a new folder of the un-zipped project.
+14) Open the folder and open the "EncounterScript.py" file in your preffered IDE.
 
 Note: I use the program PyCharm to edit my python code, you should be able to use your IDE of choice but I have not tested it with any other programs. If you run into any issues please get in contact with me and I will help the best that I can to resolve any issues.
 
