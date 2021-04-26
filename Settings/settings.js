@@ -12,6 +12,7 @@
   "TurnOnJoin": true,
   "TurnOnRebalance": true,
   "TurnOnStats": true,
+  "TurnOnCharacterStats": true,
   "InvalidDataResponse": "{0} does not have a valid data file",
   "GiveLootResponse": "{0} has been rewarded with a {1}",
   "LevelledUpResponse": "{0} has levelled up to {1}",
@@ -87,5 +88,9 @@
   "RebalancePermissionResp": "{0} -> only {1} ({2}) and higher can use this command",
   "StatsCommand": "!stats",
   "StatsResponse": "Item: {0}, Locations {1}, Offence: {2}, Defence: {3}",
-  "StatsInvalidResponse": "The item {0} is not valid."
+  "StatsInvalidResponse": "The item {0} is not valid.",
+  "CharacterStatsCommand": "!character",
+  "CharacterStatsResponse": "{0} has the following stats: Rank ({1}), Offence ({2}), Defence ({3})",
+  "CharacterStatsCooldownResponse": "{0} the character stats command is currently on cooldown for {1} seconds",
+  "CharacterStatsCooldown": 30
 };
