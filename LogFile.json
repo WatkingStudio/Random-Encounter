@@ -160,6 +160,2035 @@
                     "value": 0
                 }
             ]
+        }, 
+        {
+            "date": "01/04/2021", 
+            "items": [
+                {
+                    "name": "flaming gauntlet", 
+                    "value": 0
+                }, 
+                {
+                    "name": "juggernaut gauntlet", 
+                    "value": 0
+                }
+            ], 
+            "encounters": [
+                {
+                    "name": "{0} comes across a nest of baby {1}s. Looking to get some easy trophies {0} stalks towards the nest to take them out. Suddenly with a roar the {1}'s mother appears and tears {0} to shreds.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds a potion seller who is selling a potion of {1} strength. Upon drinking the potion {0}'s sight becomes clearer than ever.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} sees a group of guards chasing a thief down the street. {0} attempts to stop the thief, tackling them to the ground.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is approached by an urchin who claims to be a powerful wizard. He says that unless {0} pays him 5 gold they will make them disappear. {0} refuses to pay the urchin, whom then shouts 'PRESTO'. In a flash {0} disappears and finds themselves falling into a trash pile.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} helped defend the village from an invasion of {1}s. The villagers awarded them with a pile of treasure.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "With a flash of light {0} suddenly finds themselves surrounded by a group of dead {1}s.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} was caught by surprise by a rabid {1}. They were quickly defeated.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} takes pity on a captured {1}, attacking it's captors and driving them off. Upon freeing the {1} it reveals its true form as a Devil, granting {0} a boon of a {6}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} allowed the local mage to experiment a new spell on them. The spell turned {0} into a {1} for {3} hours.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} got ran over by a rampaging {1}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} comes across a group of {1}s in the middle of the road wearing trench cloaks. They request help repairing their wagon. {0} offers to help and is rewarded with a {6}", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} found a group of {1}s by the watering hole. They noticed {0} and attacked, {0} ran for their life.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds themselves surrounded by a gang of angry young men who insist that they are betrothed to marry their sister. {0} agrees, albeit at knife point. The marriage is at sunrise, {0} must decided if they will attend or flee the town.", 
+                    "value": 0
+                }
+            ], 
+            "monsters": [
+                {
+                    "name": "Cyclops", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Weretiger", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Water Elemental", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Sprite", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Vampire Spawn", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Redcap", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Harpy", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Frog", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Owl", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Bat", 
+                    "value": 0
+                }, 
+                {
+                    "name": "White Walkers", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Green Dragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Mind Flayer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Unicorn", 
+                    "value": 0
+                }
+            ]
+        }, 
+        {
+            "date": "06/04/2021", 
+            "items": [
+                {
+                    "name": "ice dagger", 
+                    "value": 0
+                }, 
+                {
+                    "name": "wolf beer", 
+                    "value": 0
+                }
+            ], 
+            "encounters": [
+                {
+                    "name": "Whilst practicing their fighting technique {0} decides to channel their inner {1}, effortlessly flowing through the motions.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} is invited by a group of locals to join them on a nocturnal hunt. {0} is informed that they will be hunting a {1}. At sunset the hunters return empty handed.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} can smell something cooking. Upon investigating {0} finds a goblin camp that are roasting a {1} over a roaring fire. Noticing {0} the goblins chase them away.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} used a {1} as target practice for their new bow.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} watches confused as a young {9} boy walks his pet {1} down the road.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0}, {0} and {0} walked into a bar. They talked to Tavern master {0} asking for information on a gang of doppelgangers but before they could get any answers the mimic bar stools ate {0}, {0}, {0} and Tavernkeep {0}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} was eaten by a {1}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} decided to visit the local fortune teller. Terrified of the news about the future {0} stayed shut up in their room for {3} days.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds an ancient ruin overrun by {1}s and {2}s. Convinced their must be some epic loot inside {0} charges in, only to be defeated.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} quickly ducks out of the way as an arrow whistles past their ear. After cowering behind a nearby tree for half an hour {0} finally realises the arrow has a note attached. The note reads 'Haha, scared you'.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} was ambushed by a group of {1}s, {0} was sadly defeated and had to retreat.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} found a {1} by the watering hole. Sneaking forwards {0} steps on twig alerting the {1}. The {1} attacked {0} before fleeing.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} remembers when they were a young person, that their father took them into the city to see a marching {1}", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds an ancient ruin overrun by {1}s and {2}s. {0} decides not to push their luck and retreats to a save distance.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Whilst exploring an ancient ruin {0} comes across a ghost. The ghost leads {0} to a chest, within is a {6}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "A merchant offers to give {0} a lift to {8} in exchange for protection against the {1} supposed to be in the area.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} runs into an Emerald Knight upon a bridge. The Knight refuses to allow {0} to pass unless they defeat them in single combat. {0} proceeds to slice of each of the Knights limbs, as through sure willpower the Knight somehow continues to fight after loosing several limbs. Curses follow {0} as they continue their journey.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} gets startled by a crazed wizard who teleports into their camp. He begins to rave about his newest creation of {1} beer, he forces a bottle into {0} hand before teleporting away. Interested {0} takes a drink, it tastes like blueberries.", 
+                    "value": 0
+                }
+            ], 
+            "monsters": [
+                {
+                    "name": "Mercenary", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Silver Dragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Black Bear", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Pseudodragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Warg", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Dwarf", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Enslaved Corpse", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Green Dragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Vampire", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Spider", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Faun", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Gorilla", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Owlbear", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Centaur", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Cockatrice", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Ceberus", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Dryad", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Panther", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Deathclaw", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Jabberwock", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Wolf", 
+                    "value": 0
+                }
+            ]
+        }, 
+        {
+            "date": "21/04/2021", 
+            "items": [
+                {
+                    "name": "manticore gauntlet", 
+                    "value": 0
+                }, 
+                {
+                    "name": "dragonscale gauntlet", 
+                    "value": 0
+                }, 
+                {
+                    "name": "gnome plush", 
+                    "value": 0
+                }, 
+                {
+                    "name": "orc beer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "panther head", 
+                    "value": 0
+                }
+            ], 
+            "encounters": [
+                {
+                    "name": "{0} entered a drinking contest against a {1}. After only {3} rounds {0} collapsed defeated.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} watches as a {1} and {2} fight to the death. Taking advantage of the situation, {0} charges forwards to finish off the victor.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds a recent battleground, scattered across the field are the bodies of fallen {1}s. Looking around a nearby group of bodies, {0} manages to collect a pile of treasure.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} comes across a group of {1}s in the middle of the road wearing trench cloaks. They request help repairing their wagon. {0} refuses to help and they curse them.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Whilst exploring an ancient ruin {0} comes across a ghost. The ghost leads {0} to a pile of treasure, which includes a {6}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is convinced that {1}s are the most adorable creatures.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds shelter in a cave from the rain. Upon lighting a fire to keep warm {0} notices the cave is inhabited by a {1}. {0} flees in terror.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds themselves surrounded by a gang of angry young men who insist that they are betrothed to marry their sister. {0} agrees, albeit at knife point. The marriage is at sunrise, {0} must decided if they will attend or flee the town.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} gets turned into a {1} by an evil witch. {0} stays transformed for {3} hours.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} runs into an Emerald Knight upon a bridge. The Knight refuses to allow {0} to pass unless they defeat them in single combat. {0} pushes the Knight off the bridge and continues on their journey whilst the Knight attempts to scramble out of the river.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} caught a wild {1} in a bear trap.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} decided to visit the local fortune teller. They were told that they would soon meet a dangerous hooded figure, who would turn out to be a long lost friend", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} meets a friendly giant who is looking for their pet {1}. {0} helps the giant in exchange for a {6}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds an ancient statue of a {1} in the woods. Upon inspection the statue is actually alive, {0} flees in terror.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} won a plush {1} at the local carnival.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} gets startled by a crazed wizard who teleports into their camp. He begins to rave about his newest creation of {1} beer, he forces a bottle into {0} hand before teleporting away. Interested {0} takes a drink, it tastes like blueberries.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} failed to help the village defend against a frenzied {1}. {0} fled in fear.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} nearly gets run over by a stampede of {1}s.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds a potion seller who is selling a potion of {1} strength. Upon drinking the potion {0} immediately shrinks to half size.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Whilst exploring an ancient ruin {0} comes across a ghost. The ghost leads {0} to a pile of treasure.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} walks by the stocks and recognizes one of the prisoners. It's the shop keeper that swindled {0} last week, {0} grabs a piece of rotten fruit and hits the shop keeper right between the eyes.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} found a {1} by the watering hole. They decided to attack the {1} and quickly defeated it, claiming the {10} as a prize.", 
+                    "value": 0
+                }
+            ], 
+            "monsters": [
+                {
+                    "name": "Mercenary", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Hippogriff", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Satyr", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Catoblepas", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Centaur Scout", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Black Dragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Griffon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Hyena", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Wyvern", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Balrog", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Ancient Minotaur", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Assassin", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Ice Troll", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Wight", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Dracaenae", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Wraith", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Gnome", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Orc", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Storm Elemental", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Thug", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Platypus", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Ghoul", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Vampire", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Panther", 
+                    "value": 0
+                }
+            ]
+        }, 
+        {
+            "date": "22/04/2021", 
+            "items": [
+                {
+                    "name": "barrel of ale", 
+                    "value": 1
+                }, 
+                {
+                    "name": "will-o-wisp beer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "mummy plush", 
+                    "value": 0
+                }, 
+                {
+                    "name": "ice mace", 
+                    "value": 0
+                }, 
+                {
+                    "name": "baboon plush", 
+                    "value": 0
+                }, 
+                {
+                    "name": "wabbajack", 
+                    "value": 0
+                }, 
+                {
+                    "name": "shiny gem", 
+                    "value": 1
+                }, 
+                {
+                    "name": "siren beer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "hellforged axe", 
+                    "value": 0
+                }, 
+                {
+                    "name": "rock troll beer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "giant weasel head", 
+                    "value": 0
+                }, 
+                {
+                    "name": "adamantine sword", 
+                    "value": 0
+                }, 
+                {
+                    "name": "giant hyena beer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "falcon bow", 
+                    "value": 0
+                }, 
+                {
+                    "name": "half-troll head", 
+                    "value": 0
+                }, 
+                {
+                    "name": "bat head", 
+                    "value": 0
+                }, 
+                {
+                    "name": "sapphire dagger", 
+                    "value": 0
+                }, 
+                {
+                    "name": "mastercrafted chestplate", 
+                    "value": 0
+                }, 
+                {
+                    "name": "hornet glaive", 
+                    "value": 0
+                }, 
+                {
+                    "name": "adamantine boots", 
+                    "value": 0
+                }, 
+                {
+                    "name": "battle armour", 
+                    "value": 0
+                }, 
+                {
+                    "name": "giant elk head", 
+                    "value": 0
+                }, 
+                {
+                    "name": "flaming sword", 
+                    "value": 0
+                }, 
+                {
+                    "name": "light hammer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "juggernaut chestplate", 
+                    "value": 0
+                }, 
+                {
+                    "name": "demon lord head", 
+                    "value": 0
+                }, 
+                {
+                    "name": "blue mail greaves", 
+                    "value": 0
+                }, 
+                {
+                    "name": "duskbreaker", 
+                    "value": 0
+                }, 
+                {
+                    "name": "gremlin head", 
+                    "value": 0
+                }, 
+                {
+                    "name": "nova greaves", 
+                    "value": 0
+                }, 
+                {
+                    "name": "diamond plated gauntlet", 
+                    "value": 0
+                }, 
+                {
+                    "name": "ruby chestplate", 
+                    "value": 0
+                }, 
+                {
+                    "name": "armour of thorns", 
+                    "value": 0
+                }, 
+                {
+                    "name": "ape beer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "imp beer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "blade of leaping copper", 
+                    "value": 0
+                }
+            ], 
+            "encounters": [
+                {
+                    "name": "{0} was caught by surprise by a rabid {1}. They were quickly defeated.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} meets a friendly giant who is looking for their pet {1}. {0} helps the giant in exchange for a barrel of ale.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} is travelling along the road when a caravan of magical meat traders pass by. Starving {0} buys a burger and begins to feast. Upon finishing the meal the caravan tells {0} that the meat was from a {1}.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} catches a terrible illness that has been plauging a local settlement. {0} must spend {3} days in bed to recover from the illness.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} is approached by an urchin who claims to be a powerful wizard. He says that unless {0} pays him 5 gold they will make them disappear. {0} refuses to pay the urchin, whom then shouts 'PRESTO'. In a flash {0} disappears and finds themselves falling into a trash pile.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "{0} decides to find an alternative way across the river, rather than paying the toll. Upon finding an alternative route {0} is confronted by a disgruntled {1}. {0} decides it would be easier to fight the {1} than pay the toll. A few swipes with their weapon and the {1} lies dead.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} watches as a {1} and {2} fight to the death.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} came across an injured {1} and decided to put it out of it's misery.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} gets startled by a crazed wizard who teleports into their camp. He begins to rave about his newest creation of {1} beer, he forces a bottle into {0} hand before teleporting away. Interested {0} takes a drink, it tastes like blueberries.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} was ambushed by a {1}, caught off guard {0} was quickly defeated.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "{0} finds their path blocked by a sleeping {1}. {0} decides to take advantage of the situation and sneaks forward slaying the {1} and stealing a pile of treasure.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} decided to visit the local fortune teller. They were told that they would soon meet a dangerous hooded figure, who would turn out to be a long lost friend", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is walking down a forest path when a {1} jumps out in front of them and demands payment for using their path. {0} decides to avoid conflict and pay up.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "{0} runs into an Emerald Knight upon a bridge. The Knight refuses to allow {0} to pass unless they defeat them in single combat. {0} proceeds to slice of each of the Knights limbs, as through sure willpower the Knight somehow continues to fight after loosing several limbs. Curses follow {0} as they continue their journey.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} decided to visit the local fortune teller. Terrified of the news about the future {0} stayed shut up in their room for {3} days.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} narrowly avoids the corpse of a {1} falling from the sky. Looking up {0} sees an Ancient White Dragon flying away.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} ran into two self proclaimed streamers, Sephilar and Ventreex. They dab at {0} who cringes so hard that they pass out.", 
+                    "value": 4
+                }, 
+                {
+                    "name": "{0} won a plush {1} at the local carnival.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} entered a local duelling contest. After a few close fights {0} was defeated by a {1}.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "{0} watches confused as a young {9} boy walks his pet {1} down the road.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} finds a recent battleground, scattered across the field are the bodies of fallen {1}s. Looking around a nearby group of bodies, {0} manages to collect a pile of treasure.", 
+                    "value": 3
+                }, 
+                {
+                    "name": "{0} visits the local fighting pit and gets convinced to fight a {1}. Upon entering the pit {0}'s courage fails them, and they attempt to flee.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is invited by a group of locals to join them on a nocturnal hunt. {0} is informed that they will be hunting a {1}. At sunset the hunters return victorious, telling tales of the nights adventures.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} enters a game of chance at the local tavern. {0} loses badly and has to hand over most of their coin.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} entered a drinking contest against a {1}. After {3} rounds the {1} collapsed to the ground. {0} claimed the winnings of a {6}.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} was caught by surprise by a rabid {1}. {0} fled in terror, dropping their weapon in panic.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} meets a friendly giant who is looking for their pet {1}. {0} helps the giant in exchange for a pile of treasure.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "{0} went on an epic quest to fight a {1}. Upon reaching the location they find the {1} dead at the feet of a {2}. Enraged {0} charges the {2}, who quickly reacts, cutting {0} down and leaving them to die.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} is excited to see how effective their newly purchased weapon is. Upon impact with the combat dummy their weapon shatters. Returning to the market place, {0} is dismayed to see that the merchant has already packed up and left.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is accused of murder and gets thrown in jail. The matter is sorted out eventually and {0} is let out after {3} days.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} came across an albino {1}. Upon seeing {0} the {1} fled.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} used a {1} as target practice for their new bow.", 
+                    "value": 3
+                }, 
+                {
+                    "name": "{0} finds a potion seller who is selling a potion of {1} strength. Upon drinking the potion {0} immediately begins to turn green.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is gifted a pet {1} by a travelling merchant for helping escort them to the local town. Feeling sorry for the {1}, {0} let's it go free.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} watches in amazement as the {1} they were hunting get's ambushed by a {2}. Waiting for the combatants to weaken, {0} jumps in to finish both monsters off, claiming both kills for themselves.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "{0} entered a drinking contest against a {1}. After only {3} rounds {0} collapsed defeated.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "{0} discovered that they have a trace of {1} blood.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} is unprepared as a blizzard howls across the land suddenly. Taking shelter in a nearby cave {0} is able to outlast the storm, but their supplies are running very low.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} takes part in a cult sacrifice summoning the god of {1}", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} nearly gets run over by a stampede of {1}s.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} was ambushed by a group of {1}s, {0} fought them off and found a {10} on the ground.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} gets startled by a crazed wizard who teleports into their camp. He begins to rave about his newest creation of {1} beer, he forces a bottle into {0} hand before teleporting away. Interested {0} takes a drink, it tastes like bacon.", 
+                    "value": 3
+                }, 
+                {
+                    "name": "{0} went on an epic quest to fight a {1}. Upon reaching the location they find the {1} dead at the feet of a {2}. Enraged that their glory was stolen {0} drew their {4} and attacked the {2}, slaying them and claiming both kills as their own. Amongst the carnage {0} found a {6}.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} ran into Quinn Duggan in a dark alley, he insults {0} dealing 5 points of self esteem damage.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} is invited by a group of locals to join them on a nocturnal hunt. {0} is informed that they will be hunting a {1}. Unprepared the group is ambushed by the {1} and are all slain", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} finds an ancient statue of a {1} in the woods. Upon inspection the statue is actually alive, {0} flees in terror.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "{0} finds a survivor from a {1} attack. {0} decides to avenge the survivors comrades, tracking down the {1}s and killing them all.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} was caught by surprise by a rabid {1}. After an epic confrontation {0} was the victor, taking the {1}s head as a prize.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} feels like they are being watched. Looking around carefully {0} notices a group of {1}s are currently following them.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "{0} went on an epic quest to fight a {1}. Upon reaching the location they find the {1} dead at the feet of a {2}. Disheartened that they were unable to get the kill {0} returns home, empty handed.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds a dead {1} lying in a pool of blood. Searching around the corpse {0} finds a {6}.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "{0} enters a game of chance at the local tavern. {0}s dice are in their favour, at the end of the game {0} has won 10 gold.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is confronted by a War-Priest with a flaming sword. The War-Priest bellows 'It ends here', before attacking. {0} reacts quickly, drawing their weapon and taking down the War-Priest.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} decided to try a slice of {1}, they were surprised by the taste.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} came across an injured {1} and helped to nurse it back to health.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} enters a game of chance at the local tavern. {0} has a few bad rolls, costing them 5 gold by the end of the game.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Whilst exploring an ancient ruin {0} comes across a ghost. The ghost leads {0} to a chest, reaching out to open the chest its lid flys open revealing a set of sharp teeth. {0} has no time to react as the mimic consumes them.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} was ambushed by a {1}, after a gruelling fight {0} came out on top, taking the {1}s head as a trophy.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "{0} found a group of {1}s by the watering hole. They noticed {0} and attacked, {0} ran for their life.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} took part in a multi-race obstacle course. They won the race by seconds. {0} won a pile of treasure.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} had the genius idea to mix {1} blood into a new batch of mead. It actually didn't taste that bad.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} flees from the roar of a terrifying monster. Upon looking over their shoulder {0} sees that it was a {1}. Getting back their whits {0} turns, draws their weapon and charges the foe. After a quick fight the {1} lays dead and {0} continues with their adventure.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} had the genius idea to mix {1} blood into a new batch of mead. It ruined the whole batch.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Whilst exploring an ancient ruin {0} comes across a ghost. The ghost leads {0} to a pile of treasure.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} ran into Streetdance whilst he was on his mass killing spree. Streetdance welcomes {0}: 'Hello Gamer'. Brutally killing {0} and increasing Streetdance's kill count", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} allowed the local mage to experiment a new spell on them. The spell turned {0} into a {1} for {3} hours. When the effects have worn off the mage gave {0} a pile of treasure as payment.", 
+                    "value": 3
+                }, 
+                {
+                    "name": "{0} is convinced that {1}s are the most adorable creatures.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} decided to visit the local fortune teller. Unimpressed by what they heard, {0} decided to keep their coin, rather than pay.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} gets jumped by a {1}. Panicked {0} pulls out their {4} and plunges it into the {1}s heart.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds their path blocked by a sleeping {1}. {0} decides to take advantage of the situation and sneaks forward to attack the {1}. Unfortunatly, the {1} was only pretending and quickly retaliates, attacking {0} and bringing them down.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} runs into an Emerald Knight upon a bridge. The Knight refuses to allow {0} to pass unless they defeat them in single combat. Not very adept in combat {0} is quickly defeated by the Knight, who proceeds to push {0} into the river and let the current wash them down stream.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} finds a recent battleground, scattered across the field are the bodies of fallen {1}s.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} is setting up camp when a {1} walks into the fire light. Hoping to avoid a confrontation {0} offers half of their food to the {1}. The {1} settles down to share {0}s fire but refuses to take the food. In the morning {0} finds all of their food is missing.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} recognises the shady figure displayed on a nearby wanted poster. Rushing back to where they saw the individual they notice them dragging a gagged merchant into a dark alley. Rushing to the merchants aid, {0} apprehends the criminal, receiving a small pouch of gold for saving the merchants life.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "{0} was eaten by a {1}.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} got into a fist fight with a {1}. {0} lost.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} was taken down by a {1}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} was caught by surprise by a rabid {1}. After a gruelling fight both parties were left bleeding out on the floor.", 
+                    "value": 3
+                }, 
+                {
+                    "name": "{0} failed to help the village defend against a group of {1}s.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} discovers a baby {1} learning to juggle. {0} stops off and helps teach the {1}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds shelter in a cave from the rain. Upon lighting a fire to keep warm {0} notices the cave is inhabited by a {1}. {0} quickly draws their weapon and slays the {1}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is invited by a group of locals to join them on a nocturnal hunt. {0} is informed that they will be hunting a {1}. At sunset the hunters return empty handed.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} took part in a multi-race obstacle course. They were beaten by a {1} by seconds.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} found a group of {1}s by the watering hole. They noticed {0} and ran.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} watches as a {1} and {2} fight to the death. Taking advantage of the situation, {0} charges forwards to finish off the victor.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} entered a local duelling contest. After only one match {0} was defeated.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} comes across a group of {1}s in the middle of the road wearing trench cloaks. They request help repairing their wagon. {0} helps and is rewarded with a pile of treasure.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} takes pity on a captured {1}, attacking it's captors and driving them off. Upon freeing the {1} it reveals its true form as a Devil, granting {0} a pile of treasure.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is thrown out of town for their wild behaviour. The guards refuse to let them back into town until the morning.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} finds an ancient statue of a {1} in the woods. Upon inspection the statue is actually alive, ready for anything {0} draws their weapon and slays the stone {1}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is confronted by a War-Priest with a flaming sword. The War-Priest bellows 'It ends here', before attacking. {0} flees in terror.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} steps aside as a wild {1} charges down the street. A group of {9} can be seen in the distance chasing after the {1}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} narrowly avoids the corpse of a {1} falling from the sky. Looking up {0} sees a Giant Eagle flying away.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} comes across a group of {1}s in the middle of the road wearing trench cloaks. They request help repairing their wagon. {0} offers to help and is rewarded with a {6}", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds a potion seller who is selling a potion of {1} strength. Upon drinking the potion {0} begins to start vomitting.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} is walking down a forest path when a {1} jumps out in front of them and demands payment for using their path. {0} draws their weapon and slays the {1}. Going through the {1} belongings, {0} finds a {6}", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} watches confused as a young {1} walks their pet {9} down the road.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} hears a paniced voice coming from a darkened alleyway. Running to help {0} suddenly feels a sharp pain to the back of the head. They wake a few hours later lying in the gutter, their clothes and coin pouch missing.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} was caught by surprise by a rabid {1}. With no time to draw their weapon {0} let out a roar of rage, causing the {1} to flee in terror.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} wakes up to find a group of {1} eating all of their rations. Outraged {0} draws their weapon and drives them off.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} entered a drinking contest against a {1}. After a dozen rounds the {1} collapsed to the ground and {0} won a pouch of coins.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} stops suddenly as the body of a {1} drops out of the sky in front of them. Looking around {0} has no idea where the {1} just fell from.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} went out for a gentle stroll and ran into a group of {1}s.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is ran over by a stampede of {1}s.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} visits the local fighting pit and gets convinced to fight a {1}. Entering the pit to cheers, {0} charges into the fray slaying the {1} and winning a {6}.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} entered a local duelling contest. After several tough matches {0} was victorious, claiming the mighty prize of a {6}, as well as a pile of treasure.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} helped defend the village from an invasion of {1}s. The villagers awarded them with a pile of treasure.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} entered a local duelling contest. After a few easy fights {0} was victorious, claiming a pile of treasure.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} was ambushed by a group of {1}s, {0} was sadly defeated and had to retreat.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds a recent battleground, scattered across the field are the bodies of fallen {1}s. Looking around a nearby pile of bodies, {0} manages to find a {6}", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is confronted by a War-Priest with a flaming sword. The War-Priest bellows 'It ends here', before attacking. {0} reacts quickly, drawing their weapon and taking down the War-Priest. {0} claims the priests sword.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "A merchant offers to give {0} a lift to {8} in exchange for protection against the {1} supposed to be in the area.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds a potion seller who is selling a potion of {1} strength. Upon drinking the potion {0}'s sight becomes clearer than ever.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "{0} comes across a nest of baby {1}s. Looking to get some easy trophies {0} stalks towards the nest to take them out. Suddenly with a roar the {1}'s mother appears and tears {0} to shreds.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} wakes from a strange dream of dancing {1}s, only to find the corpses of multiple {1}s lying around them.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is invited by a group of locals to join them on a nocturnal hunt. {0} is informed that they will be hunting a {1}. At sunset the hunters return victorious, {0} landing the killing blow and is rewared with the {1}s head.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} allowed the local mage to experiment a new spell on them. The spell turned {0} into a {1} for {3} hours. When the effects have worn off the mage gave {0} a {6} as payment.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} visits the local fighting pit and gets convinced to fight a {1}. Entering the pit to cheers, {0} charges into the fray slaying the {1} and winning a pile of treasure.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Whilst exploring an ancient ruin {0} comes across a ghost. The ghost leads {0} to a pile of treasure, which includes a {6}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is travelling with a merchant caravan when the wagons axel snaps rendering the wagon useless. {0} spends the next few hours helping to repair the wagon and receives a pile of treasure as a reward.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} remembers when they were a young person, that their father took them into the city to see a marching {1}", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds an ancient ruin overrun by {1}s and {2}s. {0} returns to the local tavern and recruits a group of adventurers to help them clear out the ruin. When the deed each adventurer takes a pile of treasure, while {0} claims a {6}", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} found a {1} by the watering hole. They noticed {0} and chased them off.", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Off in the distance {0} can see an adult {1} escorting their young.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds an ancient ruin overrun by {1}s and {2}s. Convinced their must be some epic loot inside {0} charges in, only to be defeated.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} hunts a group of {1}s, slaying them all.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds shelter in a cave from the rain. Upon lighting a fire to keep warm {0} notices the cave is inhabited by a {1}. Both seeing that the other is taking shelter from the rain, decide to keep to themselves during the night, parting ways in the morning.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} decides to treat themselves after weeks on the open road. Taken with the joys of hot food and a comfortable bed, {0} overspends and finds their coin purse close to empty the next day.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} came across a fallen tree in the road, unbeknownst to {0} a group of {1}s was waiting in the nearby trees. The {1}s jumped the unaware {0} knocking them unconscious and stealing their coin.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is struck by a bolt of lightning while traversing a mountain path. Upon regaining consciousness {0} realises that they have lost all of their clothes and the smell of burning is coming from their hair.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} decided to visit the local fortune teller. {0} was told to stay clear of ale for the next week.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is employed by a local merchant to carry bales of cotton to the riverside for the day. {0} recieves a pouch of coins for their help.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} was caught by surprise by a rabid {1}. Not having time to draw their weapon {0} quickly grappled the {1} to the floor, before plunging their dagger into the {1}s heart.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "With a flash of light {0} suddenly finds themselves surrounded by a group of bloodthirsty {1}s. {0} is quickly defeated.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} takes pity on a captured {1}, attacking it's captors and driving them off. Upon freeing the {1} it reveals its true form as a Devil, granting {0} a boon of a {6}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} joins a Fey hunt, tracking down the legendary {1} found in the region. {0} deals the final blow to the {1} and is rewarded with a feast in their name.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "With a flash of light {0} suddenly finds themselves surrounded by a group of dead {1}s.", 
+                    "value": 1
+                }, 
+                {
+                    "name": "{0} hears cries of terror from behind them. Turning {0} sees a crowd of civilians fleeing from a rampaging {1}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Lost in the storm {0} spends {3} hours wandering around before finding shelter in a cave. After a long rest {0} decides to explore the cave further, after {3} hours of exploring they emerge out of a secret enterance to {8}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} joins a Fey hunt, tracking down the legendary {1} found in the region. {0} deals the final blow to the {1} and is rewarded with a {6}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} found a {1} by the watering hole. Sneaking forwards {0} steps on twig alerting the {1}. The {1} attacked {0} before fleeing.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is walking down a forest path when a {1} jumps out in front of them and demands payment for using their path. {0} draws their weapon and slays the {1}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} allowed the local mage to experiment a new spell on them. The spell turned {0} into a {1} for {3} hours.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} enters a game of chance at the local tavern. {0}s dice seem to be blessed by the gods, by the end of the game {0} has made 5 gold and won a {6}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds a strange formation of {1} bodies in a clearing. {0} decides to leave before what killed the {1} returns.", 
+                    "value": 0
+                }
+            ], 
+            "monsters": [
+                {
+                    "name": "Vampire Spawn", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Squig", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Boar", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Rhinoceros", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Dragonling", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Thug", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Greater Demon", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Ice Demon", 
+                    "value": 3
+                }, 
+                {
+                    "name": "Will-O-Wisp", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Scorpion", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Guard", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Hawk", 
+                    "value": 3
+                }, 
+                {
+                    "name": "Scout", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Giant Crocodile", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Enslaved Corpse", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Rug Of Smothering", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Demon Lord", 
+                    "value": 3
+                }, 
+                {
+                    "name": "Mummy", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Giant Rat", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Pegasus", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Vampire Lord", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Elephant", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Air Demon", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Cave Squig", 
+                    "value": 0
+                }, 
+                {
+                    "name": "White Walkers", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Ice Troll", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Warhorse Skeleton", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Incubus", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Platypus", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Satyr", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Bat", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Dragon Ogre", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Giant Elk", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Snotling", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Earth Elemental", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Centaur", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Baboon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Scarecrow", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Mind Flayer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Griffon", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Flame Demon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Siren", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Hippogriff", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Salamander", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Giant Scorpion", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Vampire", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Sabre-Toother Tiger", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Rock Troll", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Werewolf", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Giant Weasel", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Mercenary", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Ape", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Half-Troll", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Giant Hyena", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Falcon", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Pixie", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Faun", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Centaur Scout", 
+                    "value": 3
+                }, 
+                {
+                    "name": "Knight", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Lion", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Liche", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Vulture", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Stone Giant", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Minotaur Skeleton", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Orangutan", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Zombie", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Goliath", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Dwarf", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Nymph", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Silver Dragon", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Winter Wolf", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Emperor Dragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Warhorse", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Mage", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Weretiger", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Taurus", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Cave Troll", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Kobold", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Raven", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Elk", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Redcap", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Hobgoblin", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Catoblepas", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Frog", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Storm Elemental", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Half-Elf", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Black Bear", 
+                    "value": 2
+                }, 
+                {
+                    "name": "Hellhound", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Dracaenae", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Giant Eagle", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Skeleton", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Warg", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Ghoul", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Berserker", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Werebear", 
+                    "value": 1
+                }, 
+                {
+                    "name": "River Troll", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Blue Dragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Ceberus", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Owl", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Toad", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Dryad", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Fire Beetle", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Phoenix", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Dire Wolf", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Gnome", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Wight", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Fire Elemental", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Fire Giant", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Storm Giant", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Yeti", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Gold Dragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Barghest", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Wereboar", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Wraith", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Treemen", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Gnoll", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Cloud Giant", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Cockatrice", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Golem", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Sphinx", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Gremlin", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Lesser Corpse", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Owlbear", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Drake", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Worg", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Warhound", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Hill Giant", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Cultist", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Spider", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Jabberwock", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Green Dragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Cyclops", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Gorgon", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Half-Ogre", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Necromancer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Badger", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Gnoblar", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Wolf", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Bandit", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Naga", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Orc", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Panther", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Crab", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Lion", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Goblin", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Brown Bear", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Ancient Minotaur", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Lammasu", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Wizard", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Mammoth", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Deathclaw", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Awakened Tree", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Ape", 
+                    "value": 1
+                }, 
+                {
+                    "name": "Imp", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Air Elemental", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Gargoyle", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Vulture", 
+                    "value": 0
+                }
+            ]
+        }, 
+        {
+            "date": "24/04/2021", 
+            "items": [
+                {
+                    "name": "shadow greaves", 
+                    "value": 0
+                }
+            ], 
+            "encounters": [
+                {
+                    "name": "{0} enters a game of chance at the local tavern. {0} loses badly and has to hand over most of their coin.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} caught a wild {1} in a bear trap.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} takes pity on a captured {1}, attacking it's captors and driving them off. Upon freeing the {1} it reveals its true form as a Devil, granting {0} a boon of a {6}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is employed by a local merchant to carry bales of cotton to the riverside for the day. {0} recieves a pouch of coins for their help.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is confronted by a War-Priest with a flaming sword. The War-Priest bellows 'It ends here', before attacking. {0} flees in terror.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} decided to visit the local fortune teller. They were told that they would soon meet a dangerous hooded figure, who would turn out to be a long lost friend", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is walking down a forest path when a {1} jumps out in front of them and demands payment for using their path. {0} draws their weapon and slays the {1}. Going through the {1}s belongings, {0} collects a pile of treasure.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds a recent battleground, scattered across the field are the bodies of fallen {1}s. Looking around a nearby group of bodies, {0} manages to collect a pile of treasure.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds a potion seller who is selling a potion of {1} strength. Upon drinking the potion {0} immediately begins to turn green.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0}, {0} and {0} walked into a bar. They talked to Tavern master {0} asking for information on a gang of doppelgangers but before they could get any answers the mimic bar stools ate {0}, {0}, {0} and Tavernkeep {0}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} nearly gets run over by a stampede of {1}s.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is gifted a pet {1} by a travelling merchant for helping escort them to the local town. Feeling sorry for the {1}, {0} let's it go free.", 
+                    "value": 0
+                }
+            ], 
+            "monsters": [
+                {
+                    "name": "Water Elemental", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Faun", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Zombie", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Naga", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Boar", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Warhorse", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Hippogriff", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Incubus", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Wolf", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Gnome", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Leopard", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Half-Troll", 
+                    "value": 0
+                }
+            ]
+        }, 
+        {
+            "date": "26/04/2021", 
+            "items": [], 
+            "encounters": [
+                {
+                    "name": "{0} ran into Streetdance whilst he was on his mass killing spree. Streetdance welcomes {0}: 'Hello Gamer'. Brutally killing {0} and increasing Streetdance's kill count", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Whilst practicing their fighting technique {0} decides to channel their inner {1}, effortlessly flowing through the motions.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is employed by a local merchant to carry bales of cotton to the riverside for the day. {0} recieves a pouch of coins for their help.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} decides to find an alternative way across the river, rather than paying the toll. Upon finding an alternative route {0} is confronted by a disgruntled {1}. {0} decides it would be easier to fight the {1} than pay the toll. A few swipes with their weapon and the {1} lies dead.", 
+                    "value": 0
+                }
+            ], 
+            "monsters": [
+                {
+                    "name": "Flame Demon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Wight", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Rock Troll", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Storm Elemental", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Mammoth", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Half-Troll", 
+                    "value": 0
+                }
+            ]
         }
     ]
 }

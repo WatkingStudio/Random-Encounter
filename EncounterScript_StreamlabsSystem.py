@@ -118,7 +118,7 @@ class Settings:
             self.MonsterCommand = "!monster"
             self.MonsterPermission = "Moderator"
             self.MonsterPermissionInfo = "Moderator"
-            self.MonsterPermissionResp = "$user -> only $permission ($permissioninfo) and higher can use this command"
+            self.MonsterPermissionResp = "{0} -> only {1} ({2}) and higher can use this command"
             self.MonsterResponse = "/me Added {0} to the monster script"
             self.MonsterCooldownResponse = "{0}; the monster command is on cooldown for {1} seconds"
             self.MonsterCooldown = 1.0
@@ -849,8 +849,7 @@ def Execute(data):
     #   Encounter
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.EncounterCommand.lower() and LiveCheck() and MySet.TurnOnEncounter:
+    if MySet.TurnOnEncounter and LiveCheck() and data.GetParam(0).lower() == MySet.EncounterCommand.lower() and (data.IsChatMessage() and not data.IsWhisper()):
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.EncounterCommand, data.User):
             # gets a random line from the encounter files
             # This is the encounter which is selected
@@ -975,36 +974,35 @@ def Execute(data):
     #   Add Monster
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.MonsterCommand.lower() and LiveCheck() and MySet.TurnOnMonster:
+    if MySet.TurnOnMonster and LiveCheck() and data.GetParam(0).lower() == MySet.MonsterCommand.lower() and (data.IsChatMessage() and not data.IsWhisper()):
+        if Parent.HasPermission(data.User, MySet.MonsterPermission, ""):
+            if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.MonsterCommand, data.User):
+                monsterName = data.GetParam(1)
+                monsterName = monsterName.replace('_', ' ')
+                response = "NULL"
+                #Add A Monster File Check
+                if CheckMonsterExists(MonsterFile, monsterName):
+                    response = monsterName + " is already part of the monster list. Unable to add duplicate monster"
+                else:
+                    AddToFile(MonsterFile, monsterName)
 
-        moderator = (Parent.HasPermission(data.User, "Moderator", ""))
-        if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.MonsterCommand, data.User) and moderator:
-            monsterName = data.GetParam(1)
-            monsterName = monsterName.replace('_', ' ')
-            response = "NULL"
-            #Add A Monster File Check
-            if CheckMonsterExists(MonsterFile, monsterName):
-                response = monsterName + " is already part of the monster list. Unable to add duplicate monster"
+                    # constructs a response message based on parameters given in SL chatbot UI
+                    response = MySet.MonsterResponse.format(data.GetParam(1))
+
+                Parent.SendStreamMessage(str(response))
+                Parent.AddUserCooldown(ScriptName, MySet.MonsterCommand, data.User, MySet.MonsterCooldown)
             else:
-                AddToFile(MonsterFile, monsterName)
-
-                # constructs a response message based on parameters given in SL chatbot UI
-                response = MySet.MonsterResponse.format(data.GetParam(1))
-
-            Parent.SendStreamMessage(str(response))
-            Parent.AddUserCooldown(ScriptName, MySet.MonsterCommand, data.User, MySet.MonsterCooldown)
+                cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.MonsterCommand, data.User)
+                message = MySet.MonsterCooldownResponse.format(data.UserName, cooldownduration)
+                Parent.SendStreamMessage(str(message))
         else:
-            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.MonsterCommand, data.User)
-            message = MySet.MonsterCooldownResponse.format(data.UserName, cooldownduration)
-            Parent.SendStreamMessage(str(message))
+            SendMessage(str(MySet.MonsterPermissionResp.format(data.User, MySet.MonsterPermission, MySet.MonsterPermissionInfo)))
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Check Level
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.CheckLevelCommand.lower() and LiveCheck() and MySet.TurnOnCheckLevel:
+    if MySet.TurnOnCheckLevel and LiveCheck() and data.GetParam(0).lower() == MySet.CheckLevelCommand.lower() and (data.IsChatMessage() or data.IsWhisper()):
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User):
             response = "null"
 
@@ -1015,21 +1013,22 @@ def Execute(data):
             else:
                 response = MySet.InvalidDataResponse.format(data.UserName)
 
-            Parent.SendStreamMessage(str(response))
-            if not data.IsWhisper():
+            if data.IsWhisper():
+                SendWhisper(data.UserName,str(response))
+            else:
+                SendMessage(str(response))
                 Parent.AddUserCooldown(ScriptName, MySet.CheckLevelCommand, data.User, MySet.CheckLevelCooldown)
 
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckLevelCommand, data.User)
             message = MySet.CheckLevelCooldownResponse.format(data.UserName,cooldownduration)
-            Parent.SendStreamMessage(str(message))
+            SendMessage(str(message))
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Check Treasure
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.CheckTreasureCommand.lower() and LiveCheck() and MySet.TurnOnCheckTreasure:
+    if MySet.TurnOnCheckTreasure and LiveCheck() and data.GetParam(0).lower() == MySet.CheckTreasureCommand.lower() and (data.IsChatMessage() or data.IsWhisper()):
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User):
             response = "null"
 
@@ -1040,21 +1039,22 @@ def Execute(data):
             else:
                 response = MySet.InvalidDataResponse.format(data.UserName)
 
-            Parent.SendStreamMessage(str(response))
-            if not data.IsWhisper():
+            if data.IsWhisper():
+                SendWhisper(data.UserName, str(response))
+            else:
+                SendMessage(str(response))
                 Parent.AddUserCooldown(ScriptName, MySet.CheckTreasureCommand, data.User, MySet.CheckTreasureCooldown)
 
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckTreasureCommand, data.User)
             message = MySet.CheckTreasureCooldownResponse.format(data.UserName,cooldownduration)
-            Parent.SendStreamMessage(str(message))
+            SendMessage(str(message))
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Check Equipment
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-        0).lower() == MySet.EquipmentCommand.lower() and LiveCheck() and MySet.TurnOnEquipment:
+    if MySet.TurnOnEquipment and LiveCheck() and data.GetParam(0).lower() == MySet.EquipmentCommand.lower() and (data.IsChatMessage() or data.IsWhisper()):
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.EquipmentCommand, data.User):
             response = "null"
 
@@ -1091,8 +1091,8 @@ def Execute(data):
                     Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentChatCooldown)
             else:
                 SendWhisper(data.UserName, str(response))
-                SendMessage(str(MySet.EquipmentWhisperResponse.format(data.UserName)))
                 if not data.IsWhisper():
+                    SendMessage(str(MySet.EquipmentWhisperResponse.format(data.UserName)))
                     Parent.AddUserCooldown(ScriptName, MySet.EquipmentCommand, data.User, MySet.EquipmentWhisperCooldown)
 
         else:
@@ -1104,8 +1104,7 @@ def Execute(data):
     #   Loot
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-        0).lower() == MySet.CheckLootCommand.lower() and LiveCheck() and MySet.TurnOnCheckLoot:
+    if MySet.TurnOnCheckLoot and LiveCheck() and data.GetParam(0).lower() == MySet.CheckLootCommand.lower() and (data.IsChatMessage() or data.IsWhisper()):
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckLootCommand, data.User):
             response = "null"
 
@@ -1115,7 +1114,7 @@ def Execute(data):
                     loot = data2['loot']
                     response = MySet.CheckLootMessage.format(data.UserName, loot)
             else:
-                response = MySet.InvaldDataResponse.format(data.UserName)
+                response = MySet.InvalidDataResponse.format(data.UserName)
 
             # Check to see if the user wants to print the information into the Twitch chat
             if(data.GetParam(1).lower() == "chat"):
@@ -1124,8 +1123,8 @@ def Execute(data):
                     Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootChatCooldown)
             else:
                 SendWhisper(data.UserName, str(response))
-                SendMessage(str(MySet.CheckLootWhisperResponse.format(data.UserName)))
                 if not data.IsWhisper():
+                    SendMessage(str(MySet.CheckLootWhisperResponse.format(data.UserName)))
                     Parent.AddUserCooldown(ScriptName, MySet.CheckLootCommand, data.User, MySet.CheckLootWhisperCooldown)
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckLootCommand, data.User)
@@ -1136,8 +1135,7 @@ def Execute(data):
     #   Trophies
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-        0).lower() == MySet.CheckTrophiesCommand.lower() and LiveCheck() and MySet.TurnOnCheckTrophies:
+    if MySet.TurnOnCheckTrophies and LiveCheck() and data.GetParam(0).lower() == MySet.CheckTrophiesCommand.lower() and (data.IsChatMessage() or data.IsWhisper()):
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User):
             response = "null"
 
@@ -1156,8 +1154,8 @@ def Execute(data):
                     Parent.AddUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.user, MySet.CheckTrophiesChatCooldown)
             else:
                 SendWhisper(data.UserName, str(response))
-                SendMessage(str(MySet.CheckTrophiesWhisperResponse))
                 if not data.IsWhisper():
+                    SendMessage(str(MySet.CheckTrophiesWhisperResponse))
                     Parent.AddUserCooldown(ScriptName, MySet.CheckTrophiesCommand, data.User, MySet.CheckTrophiesWhisperCooldown)
         else:
             cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CheckTrophiesCommand, data.User)
@@ -1168,10 +1166,8 @@ def Execute(data):
     #   Equip
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if data.IsWhisper() or data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.EquipCommand.lower() and LiveCheck() and MySet.TurnOnEquip:
+    if MySet.TurnOnEquip and LiveCheck() and data.GetParam(0).lower() == MySet.EquipCommand.lower() and (data.IsChatMessage() or data.IsWhisper()):
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.EquipCommand, data.User):
-
             if os.path.exists(userDataPath):
                 itemName = ""
                 numberOfParams = data.GetParamCount()
@@ -1239,9 +1235,8 @@ def Execute(data):
     #   Quest
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.QuestCommand.lower() and LiveCheck() and MySet.TurnOnQuest:
-        if IsOwner is True:
+    if MySet.TurnOnQuest and LiveCheck() and data.GetParam(0).lower() == MySet.QuestCommand.lower() and (data.IsChatMessage() and not data.IsWhisper()):
+        if Parent.HasPermission(data.User, MySet.QuestPermission, ""):
             if data.GetParam(1) == "cancel":
                 SendMessage(str(MySet.QuestCancelResponse))
                 global IsActiveQuest
@@ -1290,8 +1285,7 @@ def Execute(data):
     #   Join
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-            0).lower() == MySet.JoinCommand.lower() and LiveCheck() and MySet.TurnOnJoin:
+    if MySet.TurnOnJoin and LiveCheck() and data.GetParam(0).lower() == MySet.JoinCommand.lower() and (data.IsChatMessage() and not data.IsWhisper()):
         if not Parent.IsOnUserCooldown(ScriptName, MySet.JoinCommand, data.User):
             # If this is the first time running the encounter script, make the user a new .json file
             if not os.path.exists(userDataPath):
@@ -1330,10 +1324,8 @@ def Execute(data):
     #   Rebalance
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if not data.IsWhisper() and data.IsChatMessage() and not data.IsFromDiscord() and data.GetParam(
-           0).lower() == MySet.RebalanceCommand.lower() and LiveCheck() and MySet.TurnOnRebalance:
-        IsModerator = (Parent.HasPermission(data.User, "Moderator", ""))
-        if IsModerator is True:
+    if MySet.TurnOnRebalance and LiveCheck() and data.GetParam(0).lower() == MySet.RebalanceCommand.lower() and (data.IsChatMessage() and not data.IsWhisper()):
+        if Parent.HasPermission(data.User, MySet.RebalancePermission, ""):
             _, _, playerFilePaths = next(walk(EncounterFolderPath))
             for playerFilePath in playerFilePaths:
                 playerPath = EncounterFolderPath + playerFilePath
@@ -1365,14 +1357,13 @@ def Execute(data):
                     AddToFile(playerPath, playerData)
             SendMessage(MySet.RebalanceResponse)
         else:
-            SendMessage(str(MySet.RebalancePermissionResponse.format(data.UserName, MySet.RebalancePermissionInfo)))
+            SendMessage(str(MySet.RebalancePermissionResp.format(data.UserName, MySet.RebalancePermission, MySet.RebalancePermissionInfo)))
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Stats
     # -----------------------------------------------------------------------------------------------------------------------
 
-    if data.IsWhisper() and not data.IsFromDiscord() and data.GetParam(0).lower() == MySet.StatsCommand.lower() and LiveCheck()\
-            and MySet.TurnOnStats:
+    if MySet.TurnOnStats and LiveCheck() and data.GetParam(0).lower() == MySet.StatsCommand.lower() and (data.IsChatMessage() or data.IsWhisper()):
         itemName = ""
         numberOfParams = data.GetParamCount()
 
@@ -1391,8 +1382,6 @@ def Execute(data):
             SendWhisper(data.UserName, str(MySet.StatsResponse.format(itemName, item.location, item.offence, item.defence)))
         else:
             SendWhisper(data.UserName, str(MySet.StatsInvalidResponse.format(itemName)))
-
-        SendWhisper(data.UserName, "HELLO")
 
 # ---------------------------
 #   [Required] Tick method (Gets called during every iteration even when there is no incoming data)

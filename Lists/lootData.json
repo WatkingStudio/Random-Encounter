@@ -312,12 +312,6 @@
 		"defence": 0
 	},
 	{
-		"name": "Blade of Leaping Copper",
-		"location": ["right", "left"],
-		"offence": 2,
-		"defence": 0
-	},
-	{
 		"name": "Blade of Olympus",
 		"location": ["right", "left"],
 		"offence": 3,
