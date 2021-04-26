@@ -108,6 +108,7 @@ class Settings:
             self.TurnOnJoin = True
             self.TurnOnRebalance = True
             self.TurnOnStats = True
+            self.TurnOnCharacterStats = True
             self.InvalidDataResponse = "{0} does not have a valid data file"
             self.GiveLootResponse = "{0} has been rewarded with a {1}"
             self.LevelledUpResponse = "{0} has levelled up to {1}"
@@ -184,6 +185,10 @@ class Settings:
             self.StatsCommand = "!stats"
             self.StatsResponse = "Item: {0}, Locations {1}, Offence: {2}, Defence: {3}"
             self.StatsInvalidResponse = "The item {0} is not valid."
+            self.CharacterStatsCommand = "!character"
+            self.CharacterStatsResponse = "{0} has the following stats: Rank ({1}), Offence ({2}), Defence ({3})"
+            self.CharacterStatsCooldownResponse = "{0} the character stats command is currently on cooldown for {1} seconds"
+            self.CharacterStatsCooldown = 30
 
     # ---------------------------
     #   [Optional] Reload Settings (Called when a user clicks the Save Settings button in the Chatbot UI)
@@ -1382,6 +1387,30 @@ def Execute(data):
             SendWhisper(data.UserName, str(MySet.StatsResponse.format(itemName, item.location, item.offence, item.defence)))
         else:
             SendWhisper(data.UserName, str(MySet.StatsInvalidResponse.format(itemName)))
+
+    # -----------------------------------------------------------------------------------------------------------------------
+    #   Character Stats
+    # -----------------------------------------------------------------------------------------------------------------------
+
+    if MySet.TurnOnCharacterStats and LiveCheck() and data.GetParam(0).lower() == MySet.CharacterStatsCommand.lower() and (data.IsChatMessage() or data.IsWhisper()):
+        if not Parent.IsOnUserCooldown(ScriptName, MySet.CharacterStatsCommand, data.User):
+            response = ""
+            if os.path.exists(userDataPath):
+                with open(userDataPath) as json_file:
+                    data2 = json.load(json_file)
+                    response = MySet.CharacterStatsResponse.format(data.UserName, data2['rank'], data2['offence'], data2['defence'])
+            else:
+                response = MySet.InvalidDataResponse.format(data.UserName)
+
+            if data.IsWhisper():
+                SendWhisper(data.UserName, response)
+            else:
+                SendMessage(response)
+                Parent.AddUserCooldown(ScriptName, MySet.CharacterStatsCommand, data.User, MySet.CharacterStatsCooldown)
+        else:
+            cooldownduration = Parent.GetUserCooldownDuration(ScriptName, MySet.CharacterStatsCommand, data.User)
+            message = MySet.CharacterStatsCooldownResponse.format(data.UserName, cooldownduration)
+            SendMessage(str(message))
 
 # ---------------------------
 #   [Required] Tick method (Gets called during every iteration even when there is no incoming data)

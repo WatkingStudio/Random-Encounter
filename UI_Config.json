@@ -665,5 +665,36 @@
 		"label": "Stats Invalid Response",
 		"tooltip": "Stats Invalid Response",
 		"group": "Stats"
+	},
+	"CharacterStatsCommand": {
+		"type": "textbox",
+		"value": "!character",
+		"label": "Character Stats Command",
+		"tooltip": "Character Stats Command",
+		"group": "Character Stats"
+	},
+	"CharacterStatsResponse": {
+		"type": "textbox",
+		"value": "{0} has the following stats: Rank ({1}), Offence ({2}), Defence ({3})",
+		"label": "Character Stats Response",
+		"tooltip": "Character Stats Reponse",
+		"group": "Character Stats"
+	},
+	"CharacterStatsCooldownResponse": {
+		"type": "textbox",
+		"value": "{0} the character stats command is currently on cooldown for {1} seconds",
+		"label": "Character Stats Cooldown Response",
+		"tooltip": "Character Stats Cooldown Response",
+		"group": "Character Stats"
+	},
+	"CharacterStatsCooldown":{
+		"type": "slider",
+		"value": 1,
+		"min": 1,
+		"max": 60,
+		"ticks": 1,
+		"label": "Character Stats Cooldown (seconds)",
+		"tooltip": "How long the command should go on cooldown for (seconds)",
+		"group": "Character Stats"
 	}
 }
