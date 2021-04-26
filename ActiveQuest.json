@@ -1,6 +1,7 @@
 {
+    "Monster": "Half-Troll", 
     "Party": [
-        "Mr_Snoblar"
-    ], 
-    "Monster": "Troll"
+        "Mr_Snoblar", 
+        "snoblar_script_tester"
+    ]
 }

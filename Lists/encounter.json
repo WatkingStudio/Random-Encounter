@@ -79,7 +79,7 @@
 	},
 	{
 	    "encounter":"{0} went on an epic quest to fight a {1}. Upon reaching the location they find the {1} dead at the feet of a {2}. Enraged {0} charges the {2}, who quickly reacts, cutting {0} down and leaving them to die.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -93,7 +93,7 @@
 	},
 	{
 	    "encounter":"{0} was ambushed by a {1}, {0} was defeated and was left to die.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -107,7 +107,7 @@
 	},
 	{
 	    "encounter":"{0} was ambushed by a {1}, caught off guard {0} was quickly defeated.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -142,14 +142,14 @@
 	},
 	{
 	    "encounter":"{0} failed to help the village defend against a frenzied {1}. {0} fled in fear.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
 	},
 	{
 	    "encounter":"{0} failed to help the village defend against a group of {1}s.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -177,7 +177,7 @@
 	},
 	{
 	    "encounter":"{0} entered a local duelling contest. After only one match {0} was defeated.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -233,7 +233,7 @@
 	},
 	{
 	    "encounter":"{0} was caught by surprise by a rabid {1}. They were quickly defeated.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -313,7 +313,7 @@
 		"exp":0,
 		"treasure":0,
 		"trophies":"null",
-		"loot":"null"
+		"loot":"bow"
 	},
 	{
 	    "encounter":"{0} discovered that they have a trace of {1} blood.",
@@ -499,7 +499,7 @@
 	},
 	{
 	    "encounter":"{0} comes across a nest of baby {1}s. Looking to get some easy trophies {0} stalks towards the nest to take them out. Suddenly with a roar the {1}'s mother appears and tears {0} to shreds.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -597,7 +597,7 @@
 	},
 	{
 	    "encounter":"{0} is walking down a forest path when a {1} jumps out in front of them and demands payment for using their path. {0} draws their weapon, but is quickly slain.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -1024,21 +1024,21 @@
 	},
 	{
 	    "encounter":"{0} was eaten by a {1}.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
 	},
 	{
 	    "encounter":"{0} got ran over by a rampaging {1}.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
 	},
 	{
 	    "encounter":"{0} got into a fist fight with a {1}. {0} lost.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -1052,14 +1052,14 @@
 	},
 	{
 	    "encounter":"{0} ran into Quinn Duggan in a dark alley, he insults {0} dealing 5 points of self esteem damage.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
 	},
 	{
 	    "encounter":"{0} ran into two self proclaimed streamers, Sephilar and Ventreex. They dab at {0} who cringes so hard that they pass out.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -1094,7 +1094,7 @@
 	},
 	{
 	    "encounter":"{0} runs into an Emerald Knight upon a bridge. The Knight refuses to allow {0} to pass unless they defeat them in single combat. Not very adept in combat {0} is quickly defeated by the Knight, who proceeds to push {0} into the river and let the current wash them down stream.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -1227,14 +1227,14 @@
 	},
 	{
 	    "encounter":"{0} is invited by a group of locals to join them on a nocturnal hunt. {0} is informed that they will be hunting a {1}. Unprepared the group is ambushed by the {1} and are all slain",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
 	},
 	{
 	    "encounter":"{0} has been travelling in the pouring rain for the past few days. Upon reaching the river crossing they find a rapidly flowing and flooded river, making it impassable. {0} decided to brave the river but is quickly swept away by the river, drowning in the process.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -1255,7 +1255,7 @@
 	},
 	{
 	    "encounter":"With a flash of light {0} suddenly finds themselves surrounded by a group of bloodthirsty {1}s. {0} is quickly defeated.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -1297,7 +1297,7 @@
 	},
 	{
 	    "encounter":"{0} finds an ancient ruin overrun by {1}s and {2}s. Convinced their must be some epic loot inside {0} charges in, only to be defeated.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -1381,7 +1381,7 @@
 	},
 	{
 	    "encounter":"Whilst exploring an ancient ruin {0} comes across a ghost. The ghost leads {0} to a chest, reaching out to open the chest its lid flys open revealing a set of sharp teeth. {0} has no time to react as the mimic consumes them.",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
@@ -1409,7 +1409,7 @@
 	},
 	{
 	    "encounter":"{0} ran into Streetdance whilst he was on his mass killing spree. Streetdance welcomes {0}: 'Hello Gamer'. Brutally killing {0} and increasing Streetdance's kill count",
-		"exp":-1,
+		"exp":0,
 		"treasure":0,
 		"trophies":"null",
 		"loot":"null"
