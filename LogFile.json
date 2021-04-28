@@ -2,7 +2,32 @@
     "array": [
         {
             "date": "28/04/2021", 
-            "items": [], 
+            "items": [
+                {
+                    "name": "juggernaut greaves", 
+                    "value": 0
+                }, 
+                {
+                    "name": "sapphire gauntlet", 
+                    "value": 0
+                }, 
+                {
+                    "name": "lammasu beer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "dark steel greataxe", 
+                    "value": 0
+                }, 
+                {
+                    "name": "flaming chestplate", 
+                    "value": 0
+                }, 
+                {
+                    "name": "diamond plated boots", 
+                    "value": 0
+                }
+            ], 
             "encounters": [
                 {
                     "name": "{0} failed to help the village defend against a group of {1}s.", 
@@ -11,15 +36,147 @@
                 {
                     "name": "{0} watches as two wizards duel on the path ahead. They both summon a crystal {1} to fight for them. Upon defeating the other {1} the wizard on the right's {1} explodes shattering crystal everywhere, and killing the wizard on the left.", 
                     "value": 0
+                }, 
+                {
+                    "name": "{0} was caught by surprise by a rabid {1}. Not having time to draw their weapon {0} quickly grappled the {1} to the floor, before plunging their dagger into the {1}s heart.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} allowed the local mage to experiment a new spell on them. The spell turned {0} into a {1} for {3} hours. When the effects have worn off the mage gave {0} a {6} as payment.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is travelling with a merchant caravan when the wagons axel snaps rendering the wagon useless. {0} spends the next few hours helping to repair the wagon and receives a pile of treasure as a reward.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} runs into an Emerald Knight upon a bridge. The Knight refuses to allow {0} to pass unless they defeat them in single combat. {0} pushes the Knight off the bridge and continues on their journey whilst the Knight attempts to scramble out of the river.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is walking down a forest path when a {1} jumps out in front of them and demands payment for using their path. {0} draws their weapon and slays the {1}. Going through the {1} belongings, {0} finds a {6}", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} gets startled by a crazed wizard who teleports into their camp. He begins to rave about his newest creation of {1} beer, he forces a bottle into {0} hand before teleporting away. Interested {0} takes a drink, it tastes like blueberries.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is struck by a bolt of lightning while traversing a mountain path. Upon regaining consciousness {0} realises that they have lost all of their clothes and the smell of burning is coming from their hair.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} enters a game of chance at the local tavern. {0}s dice seem to be blessed by the gods, by the end of the game {0} has made 5 gold and won a {6}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} is walking down a forest path when a {1} jumps out in front of them and demands payment for using their path. {0} draws their weapon and slays the {1}. Going through the {1}s belongings, {0} collects a pile of treasure.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds a recent battleground, scattered across the field are the bodies of fallen {1}s. Looking around a nearby group of bodies, {0} manages to collect a pile of treasure.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds an ancient ruin overrun by {1}s and {2}s. Convinced their must be some epic loot inside {0} charges in, only to be defeated.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} went on an epic quest to fight a {1}. Upon reaching the location they find the {1} dead at the feet of a {2}. Enraged that their glory was stolen {0} drew their {4} and attacked the {2}, slaying them and claiming both kills as their own. Amongst the carnage {0} found a {6}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} finds a strange formation of {1} bodies in a clearing. {0} decides to leave before what killed the {1} returns.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} narrowly avoids the corpse of a {1} falling from the sky. Looking up {0} sees a Giant Eagle flying away.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} joins a Fey hunt, tracking down the legendary {1} found in the region. {0} deals the final blow to the {1} and is rewarded with a {6}.", 
+                    "value": 0
+                }, 
+                {
+                    "name": "{0} found a group of {1}s by the watering hole. They noticed {0} and attacked, {0} ran for their life.", 
+                    "value": 0
                 }
             ], 
             "monsters": [
                 {
                     "name": "Enslaved Corpse", 
-                    "value": 0
+                    "value": 1
                 }, 
                 {
                     "name": "Ape", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Harpy", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Vampire Lord", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Spider", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Purple Dragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Barghest", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Storm Giant", 
+                    "value": 0
+                }, 
+                {
+                    "name": "White Dragon", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Lammasu", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Toad", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Crab", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Mind Flayer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Giant Weasel", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Rug Of Smothering", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Golem", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Yeti", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Necromancer", 
+                    "value": 0
+                }, 
+                {
+                    "name": "Pegasus", 
                     "value": 0
                 }
             ]
