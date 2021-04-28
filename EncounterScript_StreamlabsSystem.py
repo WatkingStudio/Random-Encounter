@@ -407,13 +407,12 @@ def HasPermission(data):
 
 # -----------------------------------------------------------------------------------------------------------------------
 
-def CheckMonsterExists(filepath, monster):
+def CheckMonsterExists(monster):
     MonsterExists = False
-    if os.path.exists(filepath):
-        monsterList = ReadLinesFile(filepath)
-        for line in monsterList:
-            if line == monster:
-                MonsterExists = True
+    for line in MonsterList:
+        if line == monster:
+            MonsterExists = True
+
     return MonsterExists
 
 # -----------------------------------------------------------------------------------------------------------------------
@@ -490,10 +489,8 @@ def FormatTrophy(trophyString, monster):
 
 def GetRandomLoot():
     itemName = ""
-    with open(LootDataFile) as json_file:
-        itemList = json.load(json_file)
-        randomItemNumber = Parent.GetRandom(0, len(itemList['items']))
-        itemName = itemList['items'][randomItemNumber]['name']
+    randomItemNumber = Parent.GetRandom(0, len(LootItemList['items']))
+    itemName = LootItemList['items'][randomItemNumber]['name']
     return itemName
 
 #------------------------------------------------------------------------------------------------------------------------
@@ -505,13 +502,11 @@ def AssignLoot(lootString):
 #------------------------------------------------------------------------------------------------------------------------
 
 def IsItemLoot(lootString):
-    with open(LootDataFile) as json_file:
-        itemList = json.load(json_file)
-        for i in itemList['items']:
-            if i['name'].lower() == lootString.lower():
-                return True
+    for i in LootItemList['items']:
+        if i['name'].lower() == lootString.lower():
+            return True
 
-        return False
+    return False
 
 #------------------------------------------------------------------------------------------------------------------------
 
@@ -570,16 +565,14 @@ def WordIsLocation(location):
 def RetrieveItem(itemName):
     item = Item()
     validItem = False
-    with open(LootDataFile) as json_file:
-        itemList = json.load(json_file)
-        for i in itemList['items']:
-            if i['name'].lower() == itemName.lower():
-                validItem = True
-                item.name = itemName.lower()
-                item.location = i['location']
-                item.offence = i['offence']
-                item.defence = i['defence']
-                break
+    for i in LootItemList['items']:
+        if i['name'].lower() == itemName.lower():
+            validItem = True
+            item.name = itemName.lower()
+            item.location = i['location']
+            item.offence = i['offence']
+            item.defence = i['defence']
+            break
     return item
 
 # This function applies the changes required when a new item is being equipped
@@ -685,24 +678,17 @@ def DetermineQuestResult():
 #------------------------------------------------------------------------------------------------------------------------
 
 def GetQuestMonster(monsterName):
-    if os.path.exists(QuestFile):
-        with open(QuestFile) as json_file:
-            monsterList = json.load(json_file)
-            for monster in monsterList['monsters']:
-                val = monster['name'].lower()
-                val2 = monsterName.lower()
-                if val == val2:
-                    return monster
+    for monster in QuestMonsterList['monsters']:
+        val = monster['name'].lower()
+        if val == monsterName.lower():
+            return monster
 
 #------------------------------------------------------------------------------------------------------------------------
 
 def GetRandomQuestMonster():
-    if os.path.exists(QuestFile):
-        with open(QuestFile) as json_file:
-            questMonsterList = json.load(json_file)
-            index = Parent.GetRandom(0, len(questMonsterList['monsters']))
-            monster = questMonsterList['monsters'][index]
-            return monster['name']
+    index = Parent.GetRandom(0, len(QuestMonsterList['monsters']))
+    monster = QuestMonsterList['monsters'][index]
+    return monster['name']
 
 #------------------------------------------------------------------------------------------------------------------------
 
@@ -757,12 +743,9 @@ def QuestFailed(monster, party):
 #------------------------------------------------------------------------------------------------------------------------
 
 def CheckQuestMonsterExists(monsterName):
-    if os.path.exists(QuestFile):
-        with open(QuestFile) as json_file:
-            questMonsterList = json.load(json_file)
-            for monster in questMonsterList['monsters']:
-                if monsterName.lower() == monster['name'].lower():
-                    return True
+    for monster in QuestMonsterList['monsters']:
+        if monsterName.lower() == monster['name'].lower():
+            return True
     return False
 
 # ---------------------------------------
@@ -770,9 +753,8 @@ def CheckQuestMonsterExists(monsterName):
 # ---------------------------------------
 
 def GetRandomMonster():
-    monsterList = ReadLinesFile(MonsterFile)
-    index = Parent.GetRandom(0, len(monsterList))
-    return monsterList[index]
+    index = Parent.GetRandom(0, len(MonsterList))
+    return MonsterList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
@@ -782,44 +764,38 @@ def GetRandomTime():
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomWeapon():
-    weaponList = ReadLinesFile(WeaponFile)
-    index = Parent.GetRandom(0, len(weaponList))
-    return weaponList[index]
+    index = Parent.GetRandom(0, len(RandomWeaponList))
+    return RandomWeaponList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomSpell():
-    spellList = ReadLinesFile(SpellsFile)
-    index = Parent.GetRandom(0, len(spellList))
-    return spellList[index]
+    index = Parent.GetRandom(0, len(RandomSpellList))
+    return RandomSpellList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomTreasure():
-    treasureList = ReadLinesFile(TreasureFile)
-    index = Parent.GetRandom(0, len(treasureList))
-    return treasureList[index]
+    index = Parent.GetRandom(0, len(RandomTreasureList))
+    return RandomTreasureList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomBodyPart():
-    bodyPartList = ReadLinesFile(BodyPartFile)
-    index = Parent.GetRandom(0, len(bodyPartList))
-    return bodyPartList[index]
+    index = Parent.GetRandom(0, len(RandomBodyPartList))
+    return RandomBodyPartList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomLocation():
-    locationList = ReadLinesFile(LocationFile)
-    index = Parent.GetRandom(0, len(locationList))
-    return locationList[index]
+    index = Parent.GetRandom(0, len(RandomLocationList))
+    return RandomLocationList[index]
 
 # -----------------------------------------------------------------------------------------------------------------------
 
 def GetRandomNPC():
-    npcList = ReadLinesFile(NPCFile)
-    index = Parent.GetRandom(0, len(npcList))
-    return npcList[index]
+    index = Parent.GetRandom(0, len(RandomNpcList))
+    return RandomNpcList[index]
 
 
 # ---------------------------
@@ -830,14 +806,94 @@ def Init():
     """data on Load, required function"""
     # Globals
     global MySet
+    global EncounterList
+    global MonsterList
+    global LootItemList
+    global QuestMonsterList
+    global RandomWeaponList
+    global RandomSpellList
+    global RandomTreasureList
+    global RandomBodyPartList
+    global RandomLocationList
+    global RandomNpcList
+
     # Load in saved settings
     MySet = Settings(settingsFile)
+    EncounterList = []
+    MonsterList = []
+    LootItemList = []
+    QuestMonsterList = []
+
+    RandomWeaponList = []
+    RandomSpellList = []
+    RandomTreasureList = []
+    RandomBodyPartList = []
+    RandomLocationList = []
+    RandomNpcList = []
+
+    with open(EncounterFile) as json_file:
+        newEncounter = json.load(json_file)
+        for e in newEncounter['encounters']:
+            en = Encounter()
+            en.encounter = e['encounter']
+            en.exp = e['exp']
+            en.treasure = e['treasure']
+            en.trophies = e['trophies']
+            en.loot = e['loot']
+            EncounterList.append(en)
 
     if not os.path.exists(LogFile):
         CreateGameplayLogFile()
 
     if not os.path.exists(EncounterFolderPath):
         os.makedirs(EncounterFolderPath)
+
+    if os.path.exists(MonsterFile):
+        MonsterList = ReadLinesFile(MonsterFile)
+    else:
+        Log("ERROR: Monster List doesn't exist!")
+
+    if os.path.exists(LootDataFile):
+        with open(LootDataFile) as json_file:
+            LootItemList = json.load(json_file)
+    else:
+        Log("ERROR: Loot List doesn't exist!")
+
+    if os.path.exists(QuestFile):
+        with open(QuestFile) as json_file:
+            QuestMonsterList = json.load(json_file)
+    else:
+        Log("ERROR: Quest File doesn't exist!")
+
+    if os.path.exists(WeaponFile):
+        RandomWeaponList = ReadLinesFile(WeaponFile)
+    else:
+        Log("ERROR: Weapon File doesn't exist!")
+
+    if os.path.exists(SpellsFile):
+        RandomSpellList = ReadLinesFile(SpellsFile)
+    else:
+        Log("ERROR: Spells File doesn't exist!")
+
+    if os.path.exists(TreasureFile):
+        RandomTreasureList = ReadLinesFile(TreasureFile)
+    else:
+        Log("ERROR: Treasure File doesn't exist!")
+
+    if os.path.exists(BodyPartFile):
+        RandomBodyPartList = ReadLinesFile(BodyPartFile)
+    else:
+        Log("ERROR: Body Part doesn't exist!")
+
+    if os.path.exists(LocationFile):
+        RandomLocationList = ReadLinesFile(LocationFile)
+    else:
+        Log("ERROR: Location File doesn't exist!")
+
+    if os.path.exists(NPCFile):
+        RandomNpcList = ReadLinesFile(NPCFile)
+    else:
+        Log("ERROR: NPC File doesn't exist!")
 
     return
 
@@ -856,26 +912,14 @@ def Execute(data):
 
     if MySet.TurnOnEncounter and LiveCheck() and data.GetParam(0).lower() == MySet.EncounterCommand.lower() and (data.IsChatMessage() and not data.IsWhisper()):
         if IsOwner or not Parent.IsOnUserCooldown(ScriptName, MySet.EncounterCommand, data.User):
-            # gets a random line from the encounter files
-            # This is the encounter which is selected
-            encounters = ReadLinesFile(EncounterFile)
 
-            EncounterList = []
+            # If this is the first time running the encounter script, make the user a new .json file
+            if not os.path.exists(userDataPath):
+                CreatePlayer(userDataPath)
+
             RandomEncounter = Encounter()
-
-            with open(EncounterFile) as json_file:
-                newEncounter = json.load(json_file)
-                for e in newEncounter['encounters']:
-                    en = Encounter()
-                    en.encounter = e['encounter']
-                    en.exp = e['exp']
-                    en.treasure = e['treasure']
-                    en.trophies = e['trophies']
-                    en.loot = e['loot']
-                    EncounterList.append(en)
-
-                randnum = Parent.GetRandom(0, len(EncounterList))
-                RandomEncounter = EncounterList[randnum]
+            randnum = Parent.GetRandom(0, len(EncounterList))
+            RandomEncounter = EncounterList[randnum]
 
             AddLogEntry("encounters", RandomEncounter.encounter)
             data2 = ""
@@ -932,10 +976,6 @@ def Execute(data):
             #   "loot": [string]
             #}
 
-            # If this is the first time running the encounter script, make the user a new .json file
-            if not os.path.exists(userDataPath):
-                CreatePlayer(userDataPath)
-
             CurrentLevel = 0
 
             with open(userDataPath) as json_file:
@@ -986,7 +1026,7 @@ def Execute(data):
                 monsterName = monsterName.replace('_', ' ')
                 response = "NULL"
                 #Add A Monster File Check
-                if CheckMonsterExists(MonsterFile, monsterName):
+                if CheckMonsterExists(monsterName):
                     response = monsterName + " is already part of the monster list. Unable to add duplicate monster"
                 else:
                     AddToFile(MonsterFile, monsterName)
