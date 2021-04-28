@@ -832,6 +832,13 @@ def Init():
     global MySet
     # Load in saved settings
     MySet = Settings(settingsFile)
+
+    if not os.path.exists(LogFile):
+        CreateGameplayLogFile()
+
+    if not os.path.exists(EncounterFolderPath):
+        os.makedirs(EncounterFolderPath)
+
     return
 
 # ---------------------------
@@ -839,16 +846,9 @@ def Init():
 # ---------------------------
 def Execute(data):
 
-    global userpath
     global userDataPath
-    userpath = EncounterFolderPath + data.UserName + ".txt"
-    # THIS VARIABLE NAME IS MISS LEADING AND SHOULD BE CHANGED COMPLETELY
-    # IT SHOULDN'T BE FOR THE ENCOUNTER PATH, BUT INSTEAD FOR THE USERS DATA
     userDataPath = CreatePlayerPath(data.UserName)
     IsOwner = (Parent.HasPermission(data.User, "Owner", ""))
-
-    if not os.path.exists(LogFile):
-        CreateGameplayLogFile()
 
     # -----------------------------------------------------------------------------------------------------------------------
     #   Encounter
