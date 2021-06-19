@@ -66,7 +66,7 @@
   "QuestActiveMessage": "There is currently an active quest with {0} seconds left to join the questing party",
   "QuestCountdownMessage": "You have {0} seconds to join the questing party",
   "QuestDifficultyModifier": "0.5",
-  "QuestCountdown": 12,
+  "QuestCountdown": 60.0,
   "QuestPermission": "Moderator",
   "QuestPermissionInfo": "Moderator",
   "QuestPermissionResponse": "{0} -> only $permission ({1}) and higher can use this command",

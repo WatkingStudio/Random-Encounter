@@ -317,7 +317,6 @@ def AddLogEntry(section, data):
                     arr['encounters'].append(encounter)
                 logFileData['array'].append(arr)
 
-        os.remove(LogFile)
         AddToFile(LogFile, logFileData)
     else:
         Log("Log File Is Missing")
@@ -399,7 +398,7 @@ def CreatePlayer(userDataPath):
 # -----------------------------------------------------------------------------------------------------------------------
 
 def AddToFile(filepath, addme):
-    with open(filepath, "a") as outfile:
+    with open(filepath, "w") as outfile:
         json.dump(addme, outfile, indent=4)
 
 # -----------------------------------------------------------------------------------------------------------------------
@@ -529,8 +528,6 @@ def GivePlayerLoot(lootString, player):
                 else:
                     playerData['trophies'].append(lootString)
 
-        if os.path.exists(playerPath):
-            os.remove(playerPath)
         AddLogEntry("items", lootString)
         SendMessage(str(MySet.GiveLootResponse.format(player, lootString)))
         AddToFile(playerPath, playerData)
@@ -551,8 +548,6 @@ def ModifyPlayerExperience(value, player):
             playerData['level'] = DetermineLevel(playerData['exp'])
             playerData['rank'] = DetermineRank(playerData['level'])
 
-    if os.path.exists(playerPath):
-        os.remove(playerPath)
     AddToFile(playerPath, playerData)
 
 # ---------------------------------------
@@ -730,7 +725,7 @@ def QuestSuccessful(monster, party, difficulty):
 
     for member in party:
         ModifyPlayerExperience(difficulty + 3, member)
-    
+
     try:
         if not monster['unique'] == "null":
             randomPartyMember = party[Parent.GetRandom(0, len(party))]
@@ -956,6 +951,7 @@ def Execute(data):
             randomLoot = "null"
             loot = "null"
             trophy = "null"
+
             if not RandomEncounter.loot == "null":
                 loot = AssignLoot(RandomEncounter.loot)
                 AddLogEntry("items", loot)
@@ -990,7 +986,7 @@ def Execute(data):
             #   "trophies": [string],
             #   "loot": [string]
             #}
-
+            Log("Five")
             CurrentLevel = 0
 
             with open(userDataPath) as json_file:
@@ -1016,9 +1012,6 @@ def Execute(data):
 
             if CurrentLevel < data2['level']:
                 SendMessage(MySet.LevelledUpResponse.format(data.UserName, data2['level']))
-
-            if os.path.exists(userDataPath):
-                os.remove(userDataPath)
 
             AddToFile(userDataPath, data2)
 
@@ -1274,8 +1267,6 @@ def Execute(data):
 
                     # If the item and location is valid, update the users files
                     if locationIsValid and itemIsOwned:
-                        if os.path.exists(userDataPath):
-                            os.remove(userDataPath)
                         AddToFile(userDataPath, data2)
                         if not data.IsWhisper():
                             Parent.AddUserCooldown(ScriptName, MySet.EquipCommand, data.User, MySet.EquipCooldown)
@@ -1327,7 +1318,6 @@ def Execute(data):
                             questData = json.load(json_file)
                             questData['Monster'] = monsterName
                             questData['Party'] = []
-                        os.remove(ActiveQuestPath)
                         AddToFile(ActiveQuestPath, questData)
 
                     ToggleActiveQuest()
@@ -1369,7 +1359,6 @@ def Execute(data):
                             questData['Party'] = party
 
                     if updateQuestFile:
-                        os.remove(ActiveQuestPath)
                         AddToFile(ActiveQuestPath, questData)
             else:
                 SendMessage(MySet.JoinResponseNoQuest.format(data.UserName))
@@ -1413,7 +1402,6 @@ def Execute(data):
                                                 + RetrieveItem(equipment['feet']).defence \
                                                 + RetrieveItem(equipment['legs']).defence \
                                                 + RetrieveItem(equipment['head']).defence
-                    os.remove(playerPath)
                     AddToFile(playerPath, playerData)
             SendMessage(MySet.RebalanceResponse)
         else:
