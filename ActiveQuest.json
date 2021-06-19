@@ -1,4 +1,7 @@
 {
-    "Monster": "White Dragon", 
-    "Party": []
+    "Party": [
+        "Mr_Snoblar", 
+        "snoblar_script_tester"
+    ], 
+    "Monster": "Ogre Zombie"
 }

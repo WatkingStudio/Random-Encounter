@@ -19,7 +19,7 @@
   "EncounterCommand": "!encounter",
   "EncounterResponse": "{0}",
   "EncounterCooldownResponse": "{0} encounter command is on cooldown for {1} seconds !",
-  "EncounterCooldown": 60.0,
+  "EncounterCooldown": 120.0,
   "MonsterCommand": "!addmonster",
   "MonsterPermission": "Moderator",
   "MonsterPermissionInfo": "High Command",
@@ -66,7 +66,7 @@
   "QuestActiveMessage": "There is currently an active quest with {0} seconds left to join the questing party",
   "QuestCountdownMessage": "You have {0} seconds to join the questing party",
   "QuestDifficultyModifier": "0.5",
-  "QuestCountdown": 60.0,
+  "QuestCountdown": 12,
   "QuestPermission": "Moderator",
   "QuestPermissionInfo": "Moderator",
   "QuestPermissionResponse": "{0} -> only $permission ({1}) and higher can use this command",
@@ -92,5 +92,5 @@
   "CharacterStatsCommand": "!character",
   "CharacterStatsResponse": "{0} has the following stats: Rank ({1}), Offence ({2}), Defence ({3})",
   "CharacterStatsCooldownResponse": "{0} the character stats command is currently on cooldown for {1} seconds",
-  "CharacterStatsCooldown": 30
+  "CharacterStatsCooldown": 30.0
 };
