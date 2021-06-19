@@ -986,7 +986,7 @@ def Execute(data):
             #   "trophies": [string],
             #   "loot": [string]
             #}
-            Log("Five")
+            
             CurrentLevel = 0
 
             with open(userDataPath) as json_file:
